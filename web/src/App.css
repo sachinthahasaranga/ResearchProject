@@ -1,0 +1,313 @@
+Button {
+  margin-right: 5px;
+}
+
+.form-container {
+    padding: 50px 100px;
+}
+
+.image-preview-card {
+    display: flex;
+    border: 1px solid #7c7c7c;
+    border-radius: 2px;
+    padding: 5px;
+  }
+  
+  .image-preview {
+    height: 200px;
+    width: auto;
+    margin-right: 20px; 
+    padding: 5px;
+    border: 1px solid #7c7c7c;
+  }
+  
+  .image-details {
+    flex: 3;
+  }
+
+  .options-container {
+    display: flex;
+    background-color: #62d391;
+  }
+
+  .options-container h5 {
+    padding: 5px;
+    padding-left: 14px;
+    padding-right: 30px;
+  }
+
+  .main-container {
+    min-height: 90vh;
+    background-image: linear-gradient(to bottom, var(--primary-bg), var(--bg0), var(--bg1), var(--bg2), var(--bg3));
+    color: var(--primary-font);
+  }
+
+  .btn-signin {
+    background-color: var(--primary-accent);
+  }
+
+  @media screen and (max-width: 1400px) {
+    .btn-signin {
+      display: none;
+    }
+  }
+
+  .btn-signout {
+    background-color: var(--danger);
+  }
+  
+  .content-container {
+    margin: 5px 40px;
+    
+  }
+
+  .custom-container {
+    background-color: #62d391;
+  }
+
+  .custom-profile-large {
+    height: 200px;
+    width: 200px;
+    overflow: hidden; 
+    border: 5px solid var(--primary-accent);
+    border-radius: 10px;
+  }
+  
+  .custom-profile-large img {
+    width: 100%;
+    height: auto; 
+  }
+
+  .ft-large {
+    font-size: 60px;
+  }
+
+
+  a, Link {
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: 1300px) {
+    .custom-row {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  /* Flex SIde */
+  .custom {
+    overflow: hidden;
+    margin: 50px;
+    
+  }
+
+  .flex-content {
+    margin-left: 10px;
+    min-height: 100vh;
+    background-color: var(--secondary-accent);
+    overflow-y: scroll;
+  }
+
+  /* Thin scrollbar design */
+.flex-content::-webkit-scrollbar {
+  width: 5px; /* Set the width of the scrollbar */
+}
+
+.flex-content::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color for the scrollbar track */
+}
+
+.flex-content::-webkit-scrollbar-thumb {
+  background: #888; /* Color for the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+}
+
+.flex-content::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color for the scrollbar thumb on hover */
+}
+
+  .custom-breadcrumb {
+    background-color: var(--light);
+    margin: 10px 0px;
+    padding: 10px 10px 2px 5px;
+    border-radius: 5px;
+    color: rgb(232, 234, 236);
+  }
+
+  .custom-card {
+    background-color: var(--light);
+  }
+
+  .custom-table {
+    max-height: 80vh;
+    overflow-y: scroll;
+  }
+
+  .custom-table {
+    max-height: 80vh;
+    overflow-y: scroll;
+  }
+  
+  .custom-table::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+  }
+  
+  .custom-table::-webkit-scrollbar-thumb {
+    background-color: var(--bg1); /* Color of the thumb */
+    border-radius: 5px; /* Radius of the thumb */
+  }
+  
+  .custom-table::-webkit-scrollbar-thumb:hover {
+    background-color: var(--bg3); /* Color of the thumb on hover */
+  }
+
+  .custom-frame {
+    padding: 0px 150px;
+  }
+
+
+  /* Dashboard */
+
+  /* Custom styles for StudyEntry component */
+.plan-container {
+  border: 2px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-color: var(--bg1);
+  color: var(--primary-font);
+  border-radius: 5px;
+}
+
+.add-plan-container {
+  border: 2px dashed #ccc;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-color: var(--secondary-accent);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-plan-container span {
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.activity-container {
+  border: 2px dashed #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activity-container div{
+  flex: 3;
+}
+
+.activity-container .image {
+  flex: 1;
+}
+
+.add-activity-container {
+  border: 2px dashed #ccc;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.custom-token{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg0);
+  border: 1px solid var(--light);
+  border-radius: 5px;
+}
+
+.custom-token span {
+  flex: 2;
+}
+
+.custom-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-flex  div {
+  flex: 1;
+}
+
+.chart-container {
+  background: #FCF6F9;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+  padding: 1rem;
+  border-radius: 20px;
+  /* height: 60vh; */
+  width: 50vw;
+}
+
+.card-number , .card-icon{
+  font-size: 40px;
+}
+
+.card-bar {
+  height: 10px;
+  width: 100%;
+  background-color: var(--primary-bg);
+  border-radius: 10px;
+}
+
+.success {
+  background-color: var(--success);
+}
+
+.warning {
+  background-color: var(--warning);
+}
+
+
+/* FAQ */
+.faq-container {
+  padding: 50px 0;
+}
+
+.accordion-toggle {
+  text-align: left;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: none;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.custom-button {
+  margin-top: 20px;
+}
+
+.custom-title {
+  font-size: 30px;
+  color: var(--primary-font);
+  margin-left: 20px;
+}
+
+.custom-calendar {
+  height: 500px; /* Default height */
+  width: 800px; /* Default width */
+
+  /* Media queries for different device widths */
+  @media (max-width: 768px) {
+    width: 600px; /* Adjust width for smaller devices */
+  }
+
+  @media (max-width: 576px) {
+    width: 400px; /* Adjust width for even smaller devices */
+  }
+}

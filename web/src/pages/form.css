@@ -1,0 +1,117 @@
+.custom-link {
+  color:  var(--highlight);
+  padding-bottom: 10px;
+  transition: 0.6s;
+}
+
+.custom-link:hover {
+  color:  var(--light);
+}
+
+/* Body background */
+.form-body {
+  background-image: linear-gradient(to bottom, var(--primary-bg), var(--bg0), var(--bg1), var(--bg2), var(--bg3));
+  min-height: 100vh;
+  margin: 0;
+  padding: 50px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
+  /* Form container */
+  .form-container {
+    background-color: var(--primary-bg); 
+    color: var(--light);
+    padding: 40px 100px;
+    border-radius: 10px;
+    border-left: 1px solid var(--primary-accent2);
+    border-right: 1px solid var(--primary-accent2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 600px;
+  }
+
+  .form-container h1{
+    color: var(--primary-font);
+  }
+  
+  /* Input fields */
+  input[type='text'],
+  input[type='email'],
+  input[type='password'], input[type='file'], input[type='range'], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--primary-bg);
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: var(--primary-accent2);
+    color: var(--primary-font);
+  }
+  
+  /* Remember me checkbox */
+  #remember-me {
+    margin-right: 10px;
+  }
+  
+  /* Sign In button */
+  .form-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Sign Up link */
+  .text-sm {
+    text-align: center;
+  }
+  
+  .text-sm a {
+    color: #007bff;
+  }
+  
+  .text-sm a:hover {
+    color: #0056b3;
+  }
+
+  .custom-button {
+    padding: 4px 60px;
+    background-color: var(--dark);
+    color: var(--primary-font);
+    border-radius: 50px;
+    min-width: 250px;
+    border-top: 1px solid var(--highlight);
+    border-left: 1px solid var(--highlight);
+    border-bottom: 1px solid var(--info);
+    border-right: 1px solid var(--info);
+    transition: 0.6s;
+    opacity: 0.9;
+  }
+
+  .custom-button {
+    opacity: 1;
+  }
+
+  .primary {
+    background-color: var(--highlight);
+  }
+
+  .light {
+    background-color: var(--light);
+    color: var(--highlight);
+  }
+
+  .custom-form-button {
+    color: var(--highlight);
+  }
+  

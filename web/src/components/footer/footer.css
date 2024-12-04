@@ -1,0 +1,29 @@
+.mfooter {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--dark);
+    border-top: 14px solid  var(--primary-accent);
+    color: var(--primary-font);
+    padding: 20px;
+  }
+  
+  .footer-container {
+    width: 100%;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .links a {
+    padding: 10px;
+  }
+ 
+  
+  @media screen and (max-width: 1000px){
+    .logo-column {
+      display: none;
+    }
+  }

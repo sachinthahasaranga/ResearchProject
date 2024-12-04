@@ -1,0 +1,34 @@
+.service-card {
+    margin-bottom: 20px;
+  }
+  
+  .services-container {
+    padding: 50px 0;
+  }
+
+  .services-container {
+    padding: 40px 0;
+  }
+  
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    background-color: var(--primary-bg);
+    color: var(--primary-font);
+    opacity: 0.85;
+  }
+  
+  .service-card-body {
+    flex-grow: 1; /* Allow the body to grow and fill the remaining space */
+  }
+  
+  .service-card-button {
+    margin-top: auto; /* Push the button to the bottom of the card */
+  }
+
+  .custom-card {
+    background-color: var(--bg2);
+  }
+  
+  
