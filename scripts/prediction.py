@@ -41,8 +41,12 @@ def predict(model_path, correct_answer, student_answer):
 
 if __name__ == "__main__":
     # Example test case
-    correct_answer = "The Mona Lisa was painted by Leonardo da Vinci."
-    student_answer = "Vinci."
+
+    # correct_answer = "The Mona Lisa was painted by Leonardo da Vinci."
+    # student_answer = "Vincent van Gogh painted the Mona Lisa."
+
+    correct_answer = "Electricity was discovered by Benjamin Franklin."
+    student_answer = "Benjamin Franklin discovered electricity"
     
     result, score = predict('./models/', correct_answer, student_answer)
     print(f"Prediction: {result}, Similarity Score: {score:.4f}")

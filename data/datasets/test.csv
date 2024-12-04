@@ -1,76 +1,95 @@
 question,correct_answer,student_answer,label,processed_correct_answer,processed_student_answer
-What is the capital of Italy?,The capital of Italy is Rome.,Rome is the capital of Italy.,1,capital italy rome,rome capital italy
-What is the largest continent?,The largest continent is Asia.,Asia is the largest continent.,1,largest continent asia,asia largest continent
-What is the smallest bone in the human body?,The smallest bone in the human body is the stapes.,The femur is the smallest bone.,0,smallest bone human body stapes,femur smallest bone
-What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is primarily made with flour.,1,main ingredient bread flour,bread primarily made flour
-What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Jupiter is the largest planet.,1,largest planet solar system jupiter,jupiter largest planet
-What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs are used for breathing.,1,lungs help breathing exchanging oxygen carbon dioxide,lungs used breathing
-What is the tallest mountain in the world?,The tallest mountain in the world is Mount Everest.,K2 is the tallest mountain.,0,tallest mountain world mount everest,k2 tallest mountain
-What is a polygon?,A polygon is a closed figure with straight sides.,A polygon has straight sides and is a closed shape.,1,polygon closed figure straight sides,polygon straight sides closed shape
-Who wrote '1984'?,'1984' was written by George Orwell.,George Orwell wrote '1984'.,1,written george orwell,george orwell wrote
-What is the third planet from the Sun?,The third planet from the Sun is Earth.,The planet Earth is the third from the Sun.,1,third planet sun earth,planet earth third sun
-What is the square root of 64?,The square root of 64 is 8.,The square root of sixty-four is 8.,1,square root 64 8,square root 8
-What is the capital of India?,The capital of India is New Delhi.,Mumbai is the capital of India.,0,capital india new delhi,mumbai capital india
-What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA is Dynamic Nucleic Acid.,0,dna stands deoxyribonucleic acid,dna dynamic nucleic acid
-What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,Pythagoras proved that a² + b² = c².,1,pythagorean theorem states a² b² c²,pythagoras proved a² b² c²
-What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA is short for Deoxyribonucleic Acid.,1,dna stands deoxyribonucleic acid,dna short deoxyribonucleic acid
-Who discovered gravity?,Gravity was discovered by Isaac Newton.,Isaac Newton is known for discovering gravity.,1,gravity discovered isaac newton,isaac newton known discovering gravity
+What is the process of converting solid to gas?,The process of converting a solid directly to a gas is called sublimation.,Condensation is the process where solids turn into gases.,0,process converting solid directly gas called sublimation,condensation process solids turn gases
 Who discovered electricity?,Electricity was discovered by Benjamin Franklin.,Benjamin Franklin discovered electricity.,1,electricity discovered benjamin franklin,benjamin franklin discovered electricity
-What is an adjective?,An adjective is a word that describes a noun.,An adjective is a verb.,0,adjective word describes noun,adjective verb
-Who discovered gravity?,Gravity was discovered by Isaac Newton.,Albert Einstein discovered gravity.,0,gravity discovered isaac newton,albert einstein discovered gravity
-What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 212°F.,1,boiling point water 212 degrees fahrenheit,water boils
-What is the chemical symbol for Sodium?,The chemical symbol for Sodium is Na.,The symbol for Sodium is Na.,1,chemical symbol sodium na,symbol sodium na
-What is the capital of Japan?,The capital of Japan is Tokyo.,The capital city of Japan is Tokyo.,1,capital japan tokyo,capital city japan tokyo
-What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,The area of a triangle is calculated as 1/2 base times height.,1,formula area triangle x base x height,area triangle calculated base times height
-What is a noun?,A noun is a word that names a person place thing or idea.,A noun describes an action.,0,noun word names person place thing idea,noun describes action
-What is the function of the kidneys?,The kidneys filter waste from the blood.,Kidneys help pump blood throughout the body.,0,kidneys filter waste blood,kidneys help pump blood throughout body
-What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water boils at 100 degrees Celsius.,1,boiling point water 100 degrees celsius,water boils 100 degrees celsius
-What is a triangle?,A triangle is a polygon with three sides.,A triangle is a square.,0,triangle polygon three sides,triangle square
-What is the name of our galaxy?,Our galaxy is called the Milky Way.,The Milky Way is our galaxy.,1,galaxy called milky way,milky way galaxy
-What is the smallest prime number?,The smallest prime number is 2.,The smallest prime number is 1.,0,smallest prime number 2,smallest prime number 1
-Who painted the Sistine Chapel ceiling?,The Sistine Chapel ceiling was painted by Michelangelo.,Leonardo da Vinci painted the Sistine Chapel ceiling.,0,sistine chapel ceiling painted michelangelo,leonardo da vinci painted sistine chapel ceiling
-What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 180 degrees.,1,sum angles triangle 180 degrees,triangle angles add 180 degrees
-What is the square root of 64?,The square root of 64 is 8.,The square root of sixty-four is 9.,0,square root 64 8,square root 9
-What is the chemical formula for water?,The chemical formula for water is H2O.,The formula for water is CO2.,0,chemical formula water h2o,formula water co2
-What is the largest continent?,The largest continent is Asia.,The largest continent is Asia.,1,largest continent asia,largest continent asia
-What is the smallest ocean?,The smallest ocean is the Arctic Ocean.,The Arctic Ocean is the smallest.,1,smallest ocean arctic ocean,arctic ocean smallest
-What is the genre of 'To Kill a Mockingbird'?,The genre of 'To Kill a Mockingbird' is fiction.,'To Kill a Mockingbird' is a history book.,0,genre kill mockingbird fiction,kill mockingbird history book
-What is the smallest prime number?,The smallest prime number is 2.,2 is the smallest prime.,1,smallest prime number 2,2 smallest prime
-What is the capital of Russia?,The capital of Russia is Moscow.,Moscow is Russia's capital city.,1,capital russia moscow,moscow russia capital city
-What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Sahara is the largest desert.,1,largest desert world sahara desert,sahara largest desert
-Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Alexander Graham Bell is the inventor of the telephone.,1,telephone invented alexander graham bell,alexander graham bell inventor telephone
-What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 32°F.,1,freezing point water 32 degrees fahrenheit,water freezes
-What is the result of 5 x 6?,The result of 5 x 6 is 30.,5 multiplied by 6 equals 30.,1,result 5 x 6 30,5 multiplied 6 equals 30
-What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,The speed of light is 150000 kilometers per second.,0,speed light approximately 300000 kilometers per second,speed light 150000 kilometers per second
-What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,The symbol Fe represents Iron.,1,chemical symbol iron fe,symbol fe represents iron
-What is the square root of 64?,The square root of 64 is 8.,The square root of 64 is 9.,0,square root 64 8,square root 64 9
-Who discovered electricity?,Electricity was discovered by Benjamin Franklin.,Benjamin Franklin discovered electricity.,1,electricity discovered benjamin franklin,benjamin franklin discovered electricity
-What is the capital of Germany?,The capital of Germany is Berlin.,Hamburg is the capital of Germany.,0,capital germany berlin,hamburg capital germany
-What is the smallest country in the world?,The smallest country in the world is Vatican City.,Vatican City is the smallest country.,1,smallest country world vatican city,vatican city smallest country
-Who discovered gravity?,Gravity was discovered by Isaac Newton.,Isaac Newton discovered gravity.,1,gravity discovered isaac newton,isaac newton discovered gravity
-What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Photosynthesis is how animals eat.,0,photosynthesis process plants make food using sunlight,photosynthesis animals eat
-What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs are used for breathing.,1,lungs help breathing exchanging oxygen carbon dioxide,lungs used breathing
-What is the function of the heart?,The heart pumps blood throughout the body.,The heart pumps blood.,1,heart pumps blood throughout body,heart pumps blood
-What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states a² * b² = c².,0,pythagorean theorem states a² b² c²,theorem states a² b² c²
-What is the capital of India?,The capital of India is New Delhi.,Mumbai is India's capital.,0,capital india new delhi,mumbai india capital
+What is the capital of Canada?,The capital of Canada is Ottawa.,Toronto is the capital of Canada.,0,capital canada ottawa,toronto capital canada
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Gobi Desert is the largest.,0,largest desert world sahara desert,gobi desert largest
+What is an adjective?,An adjective is a word that describes a noun.,An adjective describes a noun.,1,adjective word describes noun,adjective describes noun
+What does UNESCO stand for?,UNESCO stands for United Nations Educational Scientific and Cultural Organization.,UNESCO means United Nations Educational Scientific and Cultural Organization.,1,unesco stands united nations educational scientific cultural organization,unesco means united nations educational scientific cultural organization
 Who painted 'Starry Night'?,'Starry Night' was painted by Vincent van Gogh.,Vincent van Gogh painted 'Starry Night'.,1,night painted vincent van gogh,vincent van gogh painted night
-What is the largest ocean?,The largest ocean is the Pacific Ocean.,The Pacific Ocean is the largest ocean.,1,largest ocean pacific ocean,pacific ocean largest ocean
-What is the hardest natural substance on Earth?,The hardest natural substance on Earth is diamond.,Gold is the hardest natural material.,0,hardest natural substance earth diamond,gold hardest natural material
-What is the capital of France?,The capital of France is Paris.,France's capital is Paris.,1,capital france paris,france capital paris
-What is the capital of Australia?,The capital of Australia is Canberra.,Sydney is the capital of Australia.,0,capital australia canberra,sydney capital australia
-What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,Iron is represented by the symbol Fe.,1,chemical symbol iron fe,iron represented symbol fe
-What is the chemical formula for water?,The chemical formula for water is H2O.,Water is made of CO2.,0,chemical formula water h2o,water made co2
-What is the smallest prime number?,The smallest prime number is 2.,The smallest prime number is 2.,1,smallest prime number 2,smallest prime number 2
-What is the capital of Russia?,The capital of Russia is Moscow.,Moscow is Russia's capital city.,1,capital russia moscow,moscow russia capital city
-What is the formula for the area of a rectangle?,The formula for the area of a rectangle is length x width.,Area of a rectangle is length times width.,1,formula area rectangle length x width,area rectangle length times width
-What is the smallest prime number?,The smallest prime number is 2.,Two is the smallest prime number.,1,smallest prime number 2,two smallest prime number
-What is the chemical symbol for Oxygen?,The chemical symbol for Oxygen is O.,Oxygen is represented by the symbol N.,0,chemical symbol oxygen,oxygen represented symbol n
-What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 0°F.,0,freezing point water 32 degrees fahrenheit,water freezes
-What is the smallest ocean?,The smallest ocean is the Arctic Ocean.,The Pacific Ocean is the smallest.,0,smallest ocean arctic ocean,pacific ocean smallest
-What is an adjective?,An adjective is a word that describes a noun.,An adjective is a type of verb.,0,adjective word describes noun,adjective type verb
+What is the process of liquid turning into solid called?,The process of liquid turning into a solid is called freezing.,Condensation is the process where liquids turn into solids.,0,process liquid turning solid called freezing,condensation process liquids turn solids
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 212°F.,1,boiling point water 212 degrees fahrenheit,water boils
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,Water freezes at 100 degrees Celsius.,0,freezing point water 0 degrees celsius,water freezes 100 degrees celsius
+What is the square root of 64?,The square root of 64 is 8.,The square root of sixty-four is 8.,1,square root 64 8,square root 8
+What does the term biodiversity mean?,Biodiversity refers to the variety of life on Earth.,The term biodiversity means the diversity of life forms.,1,biodiversity refers variety life earth,term biodiversity means diversity life forms
+Who painted 'Starry Night'?,'Starry Night' was painted by Vincent van Gogh.,Vincent van Gogh painted 'Starry Night'.,1,night painted vincent van gogh,vincent van gogh painted night
+What is the formula for the area of a circle?,The formula for the area of a circle is πr².,To find a circle's area use π times the radius squared.,1,formula area circle πr²,find circle area use π times radius squared
+What is the capital of South Africa?,South Africa has three capitals: Pretoria Cape Town and Bloemfontein.,Pretoria Cape Town and Bloemfontein are the capitals of South Africa.,1,south africa three capitals pretoria cape town bloemfontein,pretoria cape town bloemfontein capitals south africa
+Who painted the Sistine Chapel ceiling?,The Sistine Chapel ceiling was painted by Michelangelo.,Michelangelo painted the Sistine Chapel ceiling.,1,sistine chapel ceiling painted michelangelo,michelangelo painted sistine chapel ceiling
+What is the largest internal organ in the human body?,The largest internal organ is the liver.,The liver is the largest internal organ.,1,largest internal organ liver,liver largest internal organ
 What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is made with sugar.,0,main ingredient bread flour,bread made sugar
-What is the smallest country in the world?,The smallest country in the world is Vatican City.,Monaco is the smallest country.,0,smallest country world vatican city,monaco smallest country
-What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Evaporation occurs when water turns to vapor.,1,process water changing vapor called evaporation,evaporation occurs water turns vapor
-What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water freezes at 0 degrees Celsius.,0,boiling point water 100 degrees celsius,water freezes 0 degrees celsius
-What is the smallest prime number?,The smallest prime number is 2.,One is the smallest prime number.,0,smallest prime number 2,one smallest prime number
-What is the capital of Japan?,The capital of Japan is Tokyo.,Osaka is the capital of Japan.,0,capital japan tokyo,osaka capital japan
+What is the capital of Spain?,The capital of Spain is Madrid.,Spain's capital is Madrid.,1,capital spain madrid,spain capital madrid
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Jupiter is the largest planet in the Solar System.,1,largest planet solar system jupiter,jupiter largest planet solar system
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Photosynthesis is how animals eat.,0,photosynthesis process plants make food using sunlight,photosynthesis animals eat
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Thomas Edison invented the telephone.,0,telephone invented alexander graham bell,thomas edison invented telephone
+What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,Iron is represented by the symbol Fe.,1,chemical symbol iron fe,iron represented symbol fe
+What is the chemical formula for water?,The chemical formula for water is H2O.,The formula for water is CO2.,0,chemical formula water h2o,formula water co2
+Who wrote '1984'?,'1984' was written by George Orwell.,Charles Dickens wrote '1984'.,0,written george orwell,charles dickens wrote
+What is the smallest prime number?,The smallest prime number is 2.,Two is the smallest prime number.,1,smallest prime number 2,two smallest prime number
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Isaac Newton is known for discovering gravity.,1,gravity discovered isaac newton,isaac newton known discovering gravity
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,Light travels at about 300000 km/s.,1,speed light approximately 300000 kilometers per second,light travels 300000
+What is the capital of France?,The capital of France is Paris.,Berlin is the capital of France.,0,capital france paris,berlin capital france
+What is the square root of 64?,The square root of 64 is 8.,The square root of 64 is 9.,0,square root 64 8,square root 64 9
+What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,The area of a triangle is calculated as 1/2 base times height.,1,formula area triangle x base x height,area triangle calculated base times height
+What is the function of the kidneys?,The kidneys filter waste from the blood.,The kidneys filter and clean the blood.,1,kidneys filter waste blood,kidneys filter clean blood
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Sahara is the largest desert.,1,largest desert world sahara desert,sahara largest desert
+What is the result of 5 x 6?,The result of 5 x 6 is 30.,5 multiplied by 6 equals 30.,1,result 5 x 6 30,5 multiplied 6 equals 30
+What is the largest continent?,The largest continent is Asia.,Asia is the largest continent on Earth.,1,largest continent asia,asia largest continent earth
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Albert Einstein discovered gravity.,0,gravity discovered isaac newton,albert einstein discovered gravity
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon has curved sides and is an open shape.,0,polygon closed figure straight sides,polygon curved sides open shape
+What is the capital of Russia?,The capital of Russia is Moscow.,Moscow is Russia's capital city.,1,capital russia moscow,moscow russia capital city
+What is a verb?,A verb is a word that describes an action state or occurrence.,A verb shows an activity.,1,verb word describes action state occurrence,verb shows activity
+What is the smallest country in the world?,The smallest country in the world is Vatican City.,Vatican City is the smallest country.,1,smallest country world vatican city,vatican city smallest country
+What is the result of 5 x 6?,The result of 5 x 6 is 30.,5 multiplied by 6 equals 25.,0,result 5 x 6 30,5 multiplied 6 equals 25
+What is the capital of India?,The capital of India is New Delhi.,India's capital city is New Delhi.,1,capital india new delhi,india capital city new delhi
+What is the chemical symbol for Oxygen?,The chemical symbol for Oxygen is O.,Oxygen is represented by the symbol O.,1,chemical symbol oxygen,oxygen represented symbol
+What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,Iron is represented by the symbol Fe.,1,chemical symbol iron fe,iron represented symbol fe
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon is a multi-sided shape with straight edges.,1,polygon closed figure straight sides,polygon shape straight edges
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,The discovery of gravity is attributed to Isaac Newton.,1,gravity discovered isaac newton,discovery gravity attributed isaac newton
+What is the smallest ocean?,The smallest ocean is the Arctic Ocean.,The Arctic Ocean is the smallest.,1,smallest ocean arctic ocean,arctic ocean smallest
+What is the function of the respiratory system?,The respiratory system is responsible for gas exchange.,Oxygen and carbon dioxide are exchanged by the respiratory system.,1,respiratory system responsible gas exchange,oxygen carbon dioxide exchanged respiratory system
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 180 degrees.,1,sum angles triangle 180 degrees,triangle angles add 180 degrees
+What is the tallest mountain in the world?,The tallest mountain in the world is Mount Everest.,K2 is the tallest mountain.,0,tallest mountain world mount everest,k2 tallest mountain
+What is the capital of Australia?,The capital of Australia is Canberra.,Canberra is Australia's capital.,1,capital australia canberra,canberra australia capital
+What is the smallest country in the world?,The smallest country in the world is Vatican City.,Vatican City is the smallest country.,1,smallest country world vatican city,vatican city smallest country
+What is the powerhouse of the cell?,The mitochondria are the powerhouse of the cell.,Mitochondria are known as the cell's powerhouse.,1,mitochondria powerhouse cell,mitochondria known cell powerhouse
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 360 degrees.,0,sum angles triangle 180 degrees,triangle angles add 360 degrees
+What is the chemical formula for salt?,The chemical formula for salt is NaCl.,The formula for salt is NaH.,0,chemical formula salt nacl,formula salt nah
+What is a preposition?,A preposition shows the relationship between a noun and another word.,A preposition indicates location or time.,1,preposition shows relationship noun another word,preposition indicates location time
+What is the process of liquid turning into solid called?,The process of liquid turning into a solid is called freezing.,Freezing is when a liquid becomes a solid.,1,process liquid turning solid called freezing,freezing liquid becomes solid
+What is the capital of Brazil?,The capital of Brazil is Brasília.,The capital city of Brazil is Brasília.,1,capital brazil brasília,capital city brazil brasília
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Alexander Graham Bell invented the telephone.,1,telephone invented alexander graham bell,alexander graham bell invented telephone
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Condensation occurs when water turns to vapor.,0,process water changing vapor called evaporation,condensation occurs water turns vapor
+What is the chemical symbol for Gold?,The chemical symbol for Gold is Au.,Gold is represented by the symbol Ag.,0,chemical symbol gold au,gold represented symbol ag
+What is the smallest prime number?,The smallest prime number is 2.,The smallest prime number is 2.,1,smallest prime number 2,smallest prime number 2
+What is the largest bone in the human body?,The largest bone in the human body is the femur.,The femur is the largest bone in humans.,1,largest bone human body femur,femur largest bone humans
+What does UNESCO stand for?,UNESCO stands for United Nations Educational Scientific and Cultural Organization.,UNESCO stands for United Nations Economic and Social Council.,0,unesco stands united nations educational scientific cultural organization,unesco stands united nations economic social council
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,Metaphors describe symbolic relationships.,1,metaphor figure speech one thing said another,metaphors describe symbolic relationships
+What is the chemical symbol for Oxygen?,The chemical symbol for Oxygen is O.,Oxygen is represented by the symbol N.,0,chemical symbol oxygen,oxygen represented symbol n
+What is the capital of France?,The capital of France is Paris.,Paris is the capital of France.,1,capital france paris,paris capital france
+What is the capital of Spain?,The capital of Spain is Madrid.,Barcelona is the capital of Spain.,0,capital spain madrid,barcelona capital spain
+What is a triangle?,A triangle is a polygon with three sides.,A triangle is a square.,0,triangle polygon three sides,triangle square
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,At 0°C water reaches its freezing point.,1,freezing point water 0 degrees celsius,water reaches freezing point
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 0°F.,0,freezing point water 32 degrees fahrenheit,water freezes
+Who discovered electricity?,Electricity was discovered by Benjamin Franklin.,Thomas Edison discovered electricity.,0,electricity discovered benjamin franklin,thomas edison discovered electricity
+What is the smallest prime number?,The smallest prime number is 2.,The smallest prime number is 1.,0,smallest prime number 2,smallest prime number 1
+What is the capital of India?,The capital of India is New Delhi.,New Delhi is India's capital.,1,capital india new delhi,new delhi india capital
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The Milky Way is the name of our galaxy.,1,galaxy called milky way,milky way name galaxy
+Who discovered electricity?,Electricity was discovered by Benjamin Franklin.,Thomas Edison discovered electricity.,0,electricity discovered benjamin franklin,thomas edison discovered electricity
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,Mars is the third planet from the Sun.,0,third planet sun earth,mars third planet sun
+What is the square root of 64?,The square root of 64 is 8.,The square root of 64 is 9.,0,square root 64 8,square root 64 9
+What is the chemical symbol for Helium?,The chemical symbol for Helium is He.,The symbol for Helium is H.,0,chemical symbol helium,symbol helium h
+What is the capital of India?,The capital of India is New Delhi.,New Delhi is India's capital.,1,capital india new delhi,new delhi india capital
+What is the powerhouse of the cell?,The powerhouse of the cell is the mitochondria.,Mitochondria are known as the powerhouse of the cell.,1,powerhouse cell mitochondria,mitochondria known powerhouse cell
+What is the capital of Japan?,The capital of Japan is Tokyo.,Kyoto is the capital of Japan.,0,capital japan tokyo,kyoto capital japan
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,The speed of light is 150000 kilometers per second.,0,speed light approximately 300000 kilometers per second,speed light 150000 kilometers per second
+What is the capital of France?,The capital of France is Paris.,Berlin is the capital of France.,0,capital france paris,berlin capital france
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart circulates blood in the body.,1,heart pumps blood throughout body,heart circulates blood body
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Evaporation is when water turns into vapor.,1,process water changing vapor called evaporation,evaporation water turns vapor
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Gobi is the largest desert.,0,largest desert world sahara desert,gobi largest desert
+What is the largest continent?,The largest continent is Asia.,The largest continent is Asia.,1,largest continent asia,largest continent asia
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 212°F.,1,boiling point water 212 degrees fahrenheit,water boils
+What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,The area of a triangle is base times height.,0,formula area triangle x base x height,area triangle base times height
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon is a shape with straight edges.,1,polygon closed figure straight sides,polygon shape straight edges
+What is the largest continent?,The largest continent is Asia.,Asia is the largest continent.,1,largest continent asia,asia largest continent
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,The speed of light is roughly 300000 kilometers per second.,1,speed light approximately 300000 kilometers per second,speed light roughly 300000 kilometers per second
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,Mars is the third planet from the Sun.,0,third planet sun earth,mars third planet sun
