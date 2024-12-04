@@ -1,6 +1,6 @@
 # ResearchProject
 this is our 4th year reasearch project along with latest AI,ML tecnologies 
-
+Set-ExecutionPolicy Unrestricted -Scope Process
 python -m venv venv    
 .\venv\Scripts\activate 
 pip install -r requirements.txt     

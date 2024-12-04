@@ -1,5 +1,11 @@
-torch==2.0.1
-transformers==4.31.0
-scikit-learn==1.2.2
-pandas==1.5.3
-nltk==3.8.1
+# torch==2.0.1
+# transformers==4.31.0
+# scikit-learn==1.2.2
+# pandas==1.5.3
+# nltk==3.8.1
+
+torch
+transformers
+scikit-learn
+pandas
+nltk

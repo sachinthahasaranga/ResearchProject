@@ -45,6 +45,9 @@ if __name__ == "__main__":
     # correct_answer = "The Mona Lisa was painted by Leonardo da Vinci."
     # student_answer = "Vincent van Gogh painted the Mona Lisa."
 
+    # correct_answer = "im sachintha hasaranga"
+    # student_answer = "my name is sachintha"
+
     correct_answer = "Electricity was discovered by Benjamin Franklin."
     student_answer = "Benjamin Franklin discovered electricity"
     
