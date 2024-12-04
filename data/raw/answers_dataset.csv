@@ -1,0 +1,503 @@
+﻿question,correct_answer,student_answer,label
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun names a person or thing.,1
+What is a noun?,A noun is a word that names a person place thing or idea.,A verb describes an action.,0
+What is a verb?,A verb is a word that describes an action state or occurrence.,A verb is an action word.,1
+What is a verb?,A verb is a word that describes an action state or occurrence.,A noun names objects.,0
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Photosynthesis helps plants make food.,1
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Photosynthesis is how animals get energy.,0
+What is the capital of France?,The capital of France is Paris.,Paris is the capital of France.,1
+What is the capital of France?,The capital of France is Paris.,Berlin is the capital of France.,0
+What is the square root of 64?,The square root of 64 is 8.,The square root of 64 is 8.,1
+What is the square root of 64?,The square root of 64 is 8.,The square root of 64 is 9.,0
+What is an adjective?,An adjective is a word that describes a noun.,An adjective describes a noun.,1
+What is an adjective?,An adjective is a word that describes a noun.,An adjective is a type of verb.,0
+What is a synonym for 'big'?,A synonym for 'big' is 'large'.,A synonym for 'big' is 'huge'.,1
+What is a synonym for 'big'?,A synonym for 'big' is 'large'.,A synonym for 'big' is 'tiny'.,0
+What does 'benevolent' mean?,Benevolent means kind and charitable.,Benevolent describes kindness.,1
+What does 'benevolent' mean?,Benevolent means kind and charitable.,Benevolent means cruel and selfish.,0
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water boils at 100 degrees Celsius.,1
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water freezes at 0 degrees Celsius.,0
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Jupiter is the largest planet.,1
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Mars is the largest planet.,0
+What is the capital of Germany?,The capital of Germany is Berlin.,Berlin is Germany's capital.,1
+What is the capital of Germany?,The capital of Germany is Berlin.,Hamburg is the capital of Germany.,0
+What is the genre of 'To Kill a Mockingbird'?,The genre of 'To Kill a Mockingbird' is fiction.,'To Kill a Mockingbird' is a fiction novel.,1
+What is the genre of 'To Kill a Mockingbird'?,The genre of 'To Kill a Mockingbird' is fiction.,'To Kill a Mockingbird' is a history book.,0
+What is the smallest country in the world?,The smallest country in the world is Vatican City.,Vatican City is the smallest country.,1
+What is the smallest country in the world?,The smallest country in the world is Vatican City.,Monaco is the smallest country.,0
+What is the chemical symbol for Gold?,The chemical symbol for Gold is Au.,Gold is represented by the symbol Au.,1
+What is the chemical symbol for Gold?,The chemical symbol for Gold is Au.,Gold is represented by the symbol Ag.,0
+Who painted the Mona Lisa?,The Mona Lisa was painted by Leonardo da Vinci.,Leonardo da Vinci painted the Mona Lisa.,1
+Who painted the Mona Lisa?,The Mona Lisa was painted by Leonardo da Vinci.,Vincent van Gogh painted the Mona Lisa.,0
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 180 degrees.,1
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 360 degrees.,0
+What is the capital of Australia?,The capital of Australia is Canberra.,Canberra is the capital of Australia.,1
+What is the capital of Australia?,The capital of Australia is Canberra.,Sydney is the capital of Australia.,0
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,A metaphor compares things symbolically.,1
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,A metaphor uses 'like' or 'as'.,0
+What is a pronoun?,A pronoun replaces a noun.,A pronoun is a word like 'he' or 'she'.,1
+What is a pronoun?,A pronoun replaces a noun.,A pronoun is a describing word.,0
+What is the chemical formula for water?,The chemical formula for water is H2O.,Water is made of H2O.,1
+What is the chemical formula for water?,The chemical formula for water is H2O.,The formula for water is CO2.,0
+What is the capital of Italy?,The capital of Italy is Rome.,Rome is the capital of Italy.,1
+What is the capital of Italy?,The capital of Italy is Rome.,Venice is the capital of Italy.,0
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,Light travels at about 300000 km/s.,1
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,The speed of light is 150000 km/s.,0
+What is an antonym for 'happy'?,An antonym for 'happy' is 'sad'.,'Sad' is the opposite of 'happy'.,1
+What is an antonym for 'happy'?,An antonym for 'happy' is 'sad'.,'Joyful' is the opposite of 'happy'.,0
+What is the largest ocean?,The largest ocean is the Pacific Ocean.,The Pacific Ocean is the largest ocean.,1
+What is the largest ocean?,The largest ocean is the Pacific Ocean.,The Atlantic Ocean is the largest ocean.,0
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA is Deoxyribonucleic Acid.,1
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA stands for Dynamic Nucleic Acid.,0
+What is a synonym for 'quick'?,A synonym for 'quick' is 'fast'.,A synonym for 'quick' is 'rapid'.,1
+What is a synonym for 'quick'?,A synonym for 'quick' is 'fast'.,A synonym for 'quick' is 'slow'.,0
+What is a preposition?,A preposition shows the relationship between a noun and another word.,A preposition indicates location or time.,1
+What is a preposition?,A preposition shows the relationship between a noun and another word.,A preposition is a describing word.,0
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Isaac Newton discovered gravity.,1
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Albert Einstein discovered gravity.,0
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart pumps blood.,1
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart filters blood.,0
+What is the capital of Canada?,The capital of Canada is Ottawa.,Ottawa is Canada's capital.,1
+What is the capital of Canada?,The capital of Canada is Ottawa.,Toronto is Canada's capital.,0
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,Water freezes at 0 degrees Celsius.,1
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,Water freezes at 100 degrees Celsius.,0
+What is the chemical symbol for Oxygen?,The chemical symbol for Oxygen is O.,Oxygen is represented by the symbol O.,1
+What is the chemical symbol for Oxygen?,The chemical symbol for Oxygen is O.,Oxygen is represented by the symbol N.,0
+Who wrote 'Hamlet'?,'Hamlet' was written by William Shakespeare.,William Shakespeare wrote 'Hamlet'.,1
+Who wrote 'Hamlet'?,'Hamlet' was written by William Shakespeare.,Charles Dickens wrote 'Hamlet'.,0
+What is the largest continent?,The largest continent is Asia.,Asia is the largest continent.,1
+What is the largest continent?,The largest continent is Asia.,Africa is the largest continent.,0
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states a² + b² = c².,1
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states a² + b² = ab.,0
+Who painted 'Starry Night'?,'Starry Night' was painted by Vincent van Gogh.,Vincent van Gogh painted 'Starry Night'.,1
+Who painted 'Starry Night'?,'Starry Night' was painted by Vincent van Gogh.,Pablo Picasso painted 'Starry Night'.,0
+What is the capital of Japan?,The capital of Japan is Tokyo.,Tokyo is the capital of Japan.,1
+What is the capital of Japan?,The capital of Japan is Tokyo.,Osaka is the capital of Japan.,0
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is made with flour.,1
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is made with sugar.,0
+What is the smallest prime number?,The smallest prime number is 2.,The smallest prime number is 2.,1
+What is the smallest prime number?,The smallest prime number is 2.,The smallest prime number is 1.,0
+What is the tallest mountain in the world?,The tallest mountain in the world is Mount Everest.,Mount Everest is the tallest mountain.,1
+What is the tallest mountain in the world?,The tallest mountain in the world is Mount Everest.,K2 is the tallest mountain.,0
+What is a triangle?,A triangle is a polygon with three sides.,A triangle is a three-sided polygon.,1
+What is a triangle?,A triangle is a polygon with three sides.,A triangle is a square.,0
+Who discovered electricity?,Electricity was discovered by Benjamin Franklin.,Benjamin Franklin discovered electricity.,1
+Who discovered electricity?,Electricity was discovered by Benjamin Franklin.,Thomas Edison discovered electricity.,0
+What is the chemical symbol for Sodium?,The chemical symbol for Sodium is Na.,The symbol for Sodium is Na.,1
+What is the chemical symbol for Sodium?,The chemical symbol for Sodium is Na.,The symbol for Sodium is So.,0
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs are used for breathing.,1
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs are used to pump blood.,0
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Evaporation is when water turns into vapor.,1
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Condensation is when water turns into vapor.,0
+What is the result of 5 x 6?,The result of 5 x 6 is 30.,5 multiplied by 6 equals 30.,1
+What is the result of 5 x 6?,The result of 5 x 6 is 30.,5 multiplied by 6 equals 25.,0
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Alexander Graham Bell invented the telephone.,1
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Thomas Edison invented the telephone.,0
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The Milky Way is our galaxy.,1
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The Andromeda galaxy is our galaxy.,0
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 32°F.,1
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 0°F.,0
+What is the name of the first president of the United States?,The first president of the United States is George Washington.,George Washington was the first president.,1
+What is the name of the first president of the United States?,The first president of the United States is George Washington.,Abraham Lincoln was the first president.,0
+What is the hardest natural substance on Earth?,The hardest natural substance on Earth is diamond.,Diamonds are the hardest natural material.,1
+What is the hardest natural substance on Earth?,The hardest natural substance on Earth is diamond.,Gold is the hardest natural material.,0
+What does HCl stand for in chemistry?,HCl stands for Hydrochloric Acid.,HCl is Hydrochloric Acid.,1
+What does HCl stand for in chemistry?,HCl stands for Hydrochloric Acid.,HCl stands for Hydrogen Carbonate.,0
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Sahara is the largest desert.,1
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Gobi is the largest desert.,0
+What is the formula for the area of a rectangle?,The formula for the area of a rectangle is length x width.,Area of a rectangle is length times width.,1
+What is the formula for the area of a rectangle?,The formula for the area of a rectangle is length x width.,Area of a rectangle is length plus width.,0
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,Earth is the third planet from the Sun.,1
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,Mars is the third planet from the Sun.,0
+What is the capital of India?,The capital of India is New Delhi.,New Delhi is India's capital.,1
+What is the capital of India?,The capital of India is New Delhi.,Mumbai is India's capital.,0
+What is the function of the kidneys?,The kidneys filter waste from the blood.,Kidneys filter blood and remove waste.,1
+What is the function of the kidneys?,The kidneys filter waste from the blood.,Kidneys help pump blood throughout the body.,0
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 212°F.,1
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 100°F.,0
+What is the smallest bone in the human body?,The smallest bone in the human body is the stapes.,The stapes is the smallest bone.,1
+What is the smallest bone in the human body?,The smallest bone in the human body is the stapes.,The femur is the smallest bone.,0
+What is the capital of Russia?,The capital of Russia is Moscow.,Moscow is Russia's capital.,1
+What is the capital of Russia?,The capital of Russia is Moscow.,St. Petersburg is Russia's capital.,0
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon is a shape with straight edges.,1
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon is a figure with curved edges.,0
+What is a habitat?,A habitat is the natural home of an organism.,A habitat is where an organism lives.,1
+What is a habitat?,A habitat is the natural home of an organism.,A habitat is where plants are grown artificially.,0
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun names a person or thing.,1
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun refers to an object or idea.,1
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun describes an action.,0
+What is a verb?,A verb is a word that describes an action state or occurrence.,A verb shows an activity.,1
+What is a verb?,A verb is a word that describes an action state or occurrence.,A verb indicates motion or action.,1
+What is a verb?,A verb is a word that describes an action state or occurrence.,A noun names an object.,0
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Photosynthesis helps plants produce food.,1
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Plants create food through photosynthesis.,1
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Photosynthesis is how animals eat.,0
+What is the capital of France?,The capital of France is Paris.,Paris is the capital of France.,1
+What is the capital of France?,The capital of France is Paris.,France's capital is Paris.,1
+What is the capital of France?,The capital of France is Paris.,Berlin is the capital of France.,0
+What is the square root of 64?,The square root of 64 is 8.,Eight is the square root of 64.,1
+What is the square root of 64?,The square root of 64 is 8.,The square root of sixty-four is 8.,1
+What is the square root of 64?,The square root of 64 is 8.,The square root of sixty-four is 9.,0
+What is an adjective?,An adjective is a word that describes a noun.,An adjective modifies a noun.,1
+What is an adjective?,An adjective is a word that describes a noun.,Adjectives describe qualities of a noun.,1
+What is an adjective?,An adjective is a word that describes a noun.,An adjective is a verb.,0
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water boils at 100 degrees Celsius.,1
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,At 100°C water reaches its boiling point.,1
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water boils at 200 degrees Celsius.,0
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Jupiter is the largest planet in the Solar System.,1
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,The planet Jupiter is the largest.,1
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Mars is the largest planet.,0
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Isaac Newton is known for discovering gravity.,1
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,The discovery of gravity is attributed to Isaac Newton.,1
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Albert Einstein discovered gravity.,0
+What is the chemical formula for water?,The chemical formula for water is H2O.,Water's chemical formula is H2O.,1
+What is the chemical formula for water?,The chemical formula for water is H2O.,H2O is the formula for water.,1
+What is the chemical formula for water?,The chemical formula for water is H2O.,Water is made of CO2.,0
+What is the capital of India?,The capital of India is New Delhi.,New Delhi is India's capital.,1
+What is the capital of India?,The capital of India is New Delhi.,India's capital city is New Delhi.,1
+What is the capital of India?,The capital of India is New Delhi.,Mumbai is the capital of India.,0
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,Deoxyribonucleic Acid is the full form of DNA.,1
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA is short for Deoxyribonucleic Acid.,1
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA is Dynamic Nucleic Acid.,0
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart's primary role is pumping blood.,1
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart circulates blood in the body.,1
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart filters blood.,0
+What is the capital of Australia?,The capital of Australia is Canberra.,Canberra is Australia's capital.,1
+What is the capital of Australia?,The capital of Australia is Canberra.,Australia's capital is Canberra.,1
+What is the capital of Australia?,The capital of Australia is Canberra.,Sydney is the capital of Australia.,0
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,A metaphor compares two things indirectly.,1
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,Metaphors describe symbolic relationships.,1
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,A metaphor uses 'like' or 'as'.,0
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs exchange oxygen and carbon dioxide.,1
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The primary function of lungs is to facilitate gas exchange.,1
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs pump blood through the body.,0
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Water changes to vapor during evaporation.,1
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Evaporation occurs when water turns to vapor.,1
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Condensation occurs when water turns to vapor.,0
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,Water freezes at 0 degrees Celsius.,1
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,At 0°C water reaches its freezing point.,1
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,Water freezes at 100 degrees Celsius.,0
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,Light travels at 300000 km/s.,1
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,The speed of light is roughly 300000 kilometers per second.,1
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,The speed of light is 150000 kilometers per second.,0
+What is the smallest prime number?,The smallest prime number is 2.,Two is the smallest prime number.,1
+What is the smallest prime number?,The smallest prime number is 2.,2 is the smallest prime.,1
+What is the smallest prime number?,The smallest prime number is 2.,One is the smallest prime number.,0
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The Milky Way is the name of our galaxy.,1
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The galaxy we live in is the Milky Way.,1
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The Andromeda galaxy is where we live.,0
+What is the capital of Canada?,The capital of Canada is Ottawa.,Ottawa is the capital city of Canada.,1
+What is the capital of Canada?,The capital of Canada is Ottawa.,Canada's capital city is Ottawa.,1
+What is the capital of Canada?,The capital of Canada is Ottawa.,Toronto is the capital of Canada.,0
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Alexander Graham Bell is the inventor of the telephone.,1
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,The inventor of the telephone is Alexander Graham Bell.,1
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Thomas Edison invented the telephone.,0
+What is the largest continent?,The largest continent is Asia.,Asia is the largest continent on Earth.,1
+What is the largest continent?,The largest continent is Asia.,The largest continent is Asia.,1
+What is the largest continent?,The largest continent is Asia.,Africa is the largest continent.,0
+What does HCl stand for in chemistry?,HCl stands for Hydrochloric Acid.,HCl is short for Hydrochloric Acid.,1
+What does HCl stand for in chemistry?,HCl stands for Hydrochloric Acid.,Hydrochloric Acid is the full form of HCl.,1
+What does HCl stand for in chemistry?,HCl stands for Hydrochloric Acid.,HCl is Hydrogen Chloride.,0
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states that a² + b² equals c².,1
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,Pythagoras proved that a² + b² = c².,1
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states a² * b² = c².,0
+What is the capital of Japan?,The capital of Japan is Tokyo.,Tokyo is Japan's capital.,1
+What is the capital of Japan?,The capital of Japan is Tokyo.,The capital city of Japan is Tokyo.,1
+What is the capital of Japan?,The capital of Japan is Tokyo.,Kyoto is the capital of Japan.,0
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is primarily made with flour.,1
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Flour is the key ingredient for bread.,1
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is mainly made of sugar.,0
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon has straight sides and is a closed shape.,1
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon is a multi-sided shape with straight edges.,1
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon has curved sides and is an open shape.,0
+What is the capital of Russia?,The capital of Russia is Moscow.,Moscow is Russia's capital city.,1
+What is the capital of Russia?,The capital of Russia is Moscow.,The capital city of Russia is Moscow.,1
+What is the capital of Russia?,The capital of Russia is Moscow.,St. Petersburg is the capital of Russia.,0
+What is a habitat?,A habitat is the natural home of an organism.,A habitat is the living place of an organism.,1
+What is a habitat?,A habitat is the natural home of an organism.,The natural environment of an organism is called its habitat.,1
+What is a habitat?,A habitat is the natural home of an organism.,A habitat is where humans artificially grow plants.,0
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Sahara Desert is the largest in the world.,1
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,Sahara is the largest desert.,1
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Gobi Desert is the largest.,0
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 212°F.,1
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,At 212°F water reaches its boiling point.,1
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 100°F.,0
+Who painted the Sistine Chapel ceiling?,The Sistine Chapel ceiling was painted by Michelangelo.,Michelangelo painted the Sistine Chapel ceiling.,1
+Who painted the Sistine Chapel ceiling?,The Sistine Chapel ceiling was painted by Michelangelo.,Michelangelo is the artist behind the Sistine Chapel ceiling.,1
+Who painted the Sistine Chapel ceiling?,The Sistine Chapel ceiling was painted by Michelangelo.,Leonardo da Vinci painted the Sistine Chapel ceiling.,0
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,Earth is the third planet from the Sun.,1
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,The planet Earth is the third from the Sun.,1
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,Mars is the third planet from the Sun.,0
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 32°F.,1
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,At 32°F water freezes.,1
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 0°F.,0
+What is the function of the kidneys?,The kidneys filter waste from the blood.,Kidneys remove waste and toxins from the blood.,1
+What is the function of the kidneys?,The kidneys filter waste from the blood.,The kidneys filter and clean the blood.,1
+What is the function of the kidneys?,The kidneys filter waste from the blood.,The kidneys pump blood through the body.,0
+What is the smallest ocean?,The smallest ocean is the Arctic Ocean.,The Arctic Ocean is the smallest.,1
+What is the smallest ocean?,The smallest ocean is the Arctic Ocean.,The Arctic is the smallest ocean.,1
+What is the smallest ocean?,The smallest ocean is the Arctic Ocean.,The Pacific Ocean is the smallest.,0
+Who wrote '1984'?,'1984' was written by George Orwell.,George Orwell wrote '1984'.,1
+Who wrote '1984'?,'1984' was written by George Orwell.,The author of '1984' is George Orwell.,1
+Who wrote '1984'?,'1984' was written by George Orwell.,Charles Dickens wrote '1984'.,0
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles total 180 degrees.,1
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,The total of a triangle's angles is 180 degrees.,1
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 360 degrees.,0
+What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,Iron is represented by the symbol Fe.,1
+What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,The symbol Fe represents Iron.,1
+What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,Iron's symbol is Ir.,0
+What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,The area of a triangle is calculated as 1/2 base times height.,1
+What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,To find a triangle's area multiply 1/2 by its base and height.,1
+What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,The area of a triangle is base times height.,0
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun names a person or thing.,1
+What is a noun?,A noun is a word that names a person place thing or idea.,A verb describes an action.,0
+What is a verb?,A verb is a word that describes an action state or occurrence.,A verb is an action word.,1
+What is a verb?,A verb is a word that describes an action state or occurrence.,A noun names objects.,0
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Photosynthesis helps plants make food.,1
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Photosynthesis is how animals get energy.,0
+What is the capital of France?,The capital of France is Paris.,Paris is the capital of France.,1
+What is the capital of France?,The capital of France is Paris.,Berlin is the capital of France.,0
+What is the square root of 64?,The square root of 64 is 8.,The square root of 64 is 8.,1
+What is the square root of 64?,The square root of 64 is 8.,The square root of 64 is 9.,0
+What is an adjective?,An adjective is a word that describes a noun.,An adjective describes a noun.,1
+What is an adjective?,An adjective is a word that describes a noun.,An adjective is a type of verb.,0
+What is a synonym for 'big'?,A synonym for 'big' is 'large'.,A synonym for 'big' is 'huge'.,1
+What is a synonym for 'big'?,A synonym for 'big' is 'large'.,A synonym for 'big' is 'tiny'.,0
+What does 'benevolent' mean?,Benevolent means kind and charitable.,Benevolent describes kindness.,1
+What does 'benevolent' mean?,Benevolent means kind and charitable.,Benevolent means cruel and selfish.,0
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water boils at 100 degrees Celsius.,1
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water freezes at 0 degrees Celsius.,0
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Jupiter is the largest planet.,1
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Mars is the largest planet.,0
+What is the capital of Germany?,The capital of Germany is Berlin.,Berlin is Germany's capital.,1
+What is the capital of Germany?,The capital of Germany is Berlin.,Hamburg is the capital of Germany.,0
+What is the genre of 'To Kill a Mockingbird'?,The genre of 'To Kill a Mockingbird' is fiction.,'To Kill a Mockingbird' is a fiction novel.,1
+What is the genre of 'To Kill a Mockingbird'?,The genre of 'To Kill a Mockingbird' is fiction.,'To Kill a Mockingbird' is a history book.,0
+What is the smallest country in the world?,The smallest country in the world is Vatican City.,Vatican City is the smallest country.,1
+What is the smallest country in the world?,The smallest country in the world is Vatican City.,Monaco is the smallest country.,0
+What is the chemical symbol for Gold?,The chemical symbol for Gold is Au.,Gold is represented by the symbol Au.,1
+What is the chemical symbol for Gold?,The chemical symbol for Gold is Au.,Gold is represented by the symbol Ag.,0
+Who painted the Mona Lisa?,The Mona Lisa was painted by Leonardo da Vinci.,Leonardo da Vinci painted the Mona Lisa.,1
+Who painted the Mona Lisa?,The Mona Lisa was painted by Leonardo da Vinci.,Vincent van Gogh painted the Mona Lisa.,0
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 180 degrees.,1
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 360 degrees.,0
+What is the capital of Australia?,The capital of Australia is Canberra.,Canberra is the capital of Australia.,1
+What is the capital of Australia?,The capital of Australia is Canberra.,Sydney is the capital of Australia.,0
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,A metaphor compares things symbolically.,1
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,A metaphor uses 'like' or 'as'.,0
+What is a pronoun?,A pronoun replaces a noun.,A pronoun is a word like 'he' or 'she'.,1
+What is a pronoun?,A pronoun replaces a noun.,A pronoun is a describing word.,0
+What is the chemical formula for water?,The chemical formula for water is H2O.,Water is made of H2O.,1
+What is the chemical formula for water?,The chemical formula for water is H2O.,The formula for water is CO2.,0
+What is the capital of Italy?,The capital of Italy is Rome.,Rome is the capital of Italy.,1
+What is the capital of Italy?,The capital of Italy is Rome.,Venice is the capital of Italy.,0
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,Light travels at about 300000 km/s.,1
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,The speed of light is 150000 km/s.,0
+What is an antonym for 'happy'?,An antonym for 'happy' is 'sad'.,'Sad' is the opposite of 'happy'.,1
+What is an antonym for 'happy'?,An antonym for 'happy' is 'sad'.,'Joyful' is the opposite of 'happy'.,0
+What is the largest ocean?,The largest ocean is the Pacific Ocean.,The Pacific Ocean is the largest ocean.,1
+What is the largest ocean?,The largest ocean is the Pacific Ocean.,The Atlantic Ocean is the largest ocean.,0
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA is Deoxyribonucleic Acid.,1
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA stands for Dynamic Nucleic Acid.,0
+What is a synonym for 'quick'?,A synonym for 'quick' is 'fast'.,A synonym for 'quick' is 'rapid'.,1
+What is a synonym for 'quick'?,A synonym for 'quick' is 'fast'.,A synonym for 'quick' is 'slow'.,0
+What is a preposition?,A preposition shows the relationship between a noun and another word.,A preposition indicates location or time.,1
+What is a preposition?,A preposition shows the relationship between a noun and another word.,A preposition is a describing word.,0
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Isaac Newton discovered gravity.,1
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Albert Einstein discovered gravity.,0
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart pumps blood.,1
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart filters blood.,0
+What is the capital of Canada?,The capital of Canada is Ottawa.,Ottawa is Canada's capital.,1
+What is the capital of Canada?,The capital of Canada is Ottawa.,Toronto is Canada's capital.,0
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,Water freezes at 0 degrees Celsius.,1
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,Water freezes at 100 degrees Celsius.,0
+What is the chemical symbol for Oxygen?,The chemical symbol for Oxygen is O.,Oxygen is represented by the symbol O.,1
+What is the chemical symbol for Oxygen?,The chemical symbol for Oxygen is O.,Oxygen is represented by the symbol N.,0
+Who wrote 'Hamlet'?,'Hamlet' was written by William Shakespeare.,William Shakespeare wrote 'Hamlet'.,1
+Who wrote 'Hamlet'?,'Hamlet' was written by William Shakespeare.,Charles Dickens wrote 'Hamlet'.,0
+What is the largest continent?,The largest continent is Asia.,Asia is the largest continent.,1
+What is the largest continent?,The largest continent is Asia.,Africa is the largest continent.,0
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states a² + b² = c².,1
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states a² + b² = ab.,0
+Who painted 'Starry Night'?,'Starry Night' was painted by Vincent van Gogh.,Vincent van Gogh painted 'Starry Night'.,1
+Who painted 'Starry Night'?,'Starry Night' was painted by Vincent van Gogh.,Pablo Picasso painted 'Starry Night'.,0
+What is the capital of Japan?,The capital of Japan is Tokyo.,Tokyo is the capital of Japan.,1
+What is the capital of Japan?,The capital of Japan is Tokyo.,Osaka is the capital of Japan.,0
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is made with flour.,1
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is made with sugar.,0
+What is the smallest prime number?,The smallest prime number is 2.,The smallest prime number is 2.,1
+What is the smallest prime number?,The smallest prime number is 2.,The smallest prime number is 1.,0
+What is the tallest mountain in the world?,The tallest mountain in the world is Mount Everest.,Mount Everest is the tallest mountain.,1
+What is the tallest mountain in the world?,The tallest mountain in the world is Mount Everest.,K2 is the tallest mountain.,0
+What is a triangle?,A triangle is a polygon with three sides.,A triangle is a three-sided polygon.,1
+What is a triangle?,A triangle is a polygon with three sides.,A triangle is a square.,0
+Who discovered electricity?,Electricity was discovered by Benjamin Franklin.,Benjamin Franklin discovered electricity.,1
+Who discovered electricity?,Electricity was discovered by Benjamin Franklin.,Thomas Edison discovered electricity.,0
+What is the chemical symbol for Sodium?,The chemical symbol for Sodium is Na.,The symbol for Sodium is Na.,1
+What is the chemical symbol for Sodium?,The chemical symbol for Sodium is Na.,The symbol for Sodium is So.,0
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs are used for breathing.,1
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs are used to pump blood.,0
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Evaporation is when water turns into vapor.,1
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Condensation is when water turns into vapor.,0
+What is the result of 5 x 6?,The result of 5 x 6 is 30.,5 multiplied by 6 equals 30.,1
+What is the result of 5 x 6?,The result of 5 x 6 is 30.,5 multiplied by 6 equals 25.,0
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Alexander Graham Bell invented the telephone.,1
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Thomas Edison invented the telephone.,0
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The Milky Way is our galaxy.,1
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The Andromeda galaxy is our galaxy.,0
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 32°F.,1
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 0°F.,0
+What is the name of the first president of the United States?,The first president of the United States is George Washington.,George Washington was the first president.,1
+What is the name of the first president of the United States?,The first president of the United States is George Washington.,Abraham Lincoln was the first president.,0
+What is the hardest natural substance on Earth?,The hardest natural substance on Earth is diamond.,Diamonds are the hardest natural material.,1
+What is the hardest natural substance on Earth?,The hardest natural substance on Earth is diamond.,Gold is the hardest natural material.,0
+What does HCl stand for in chemistry?,HCl stands for Hydrochloric Acid.,HCl is Hydrochloric Acid.,1
+What does HCl stand for in chemistry?,HCl stands for Hydrochloric Acid.,HCl stands for Hydrogen Carbonate.,0
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Sahara is the largest desert.,1
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Gobi is the largest desert.,0
+What is the formula for the area of a rectangle?,The formula for the area of a rectangle is length x width.,Area of a rectangle is length times width.,1
+What is the formula for the area of a rectangle?,The formula for the area of a rectangle is length x width.,Area of a rectangle is length plus width.,0
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,Earth is the third planet from the Sun.,1
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,Mars is the third planet from the Sun.,0
+What is the capital of India?,The capital of India is New Delhi.,New Delhi is India's capital.,1
+What is the capital of India?,The capital of India is New Delhi.,Mumbai is India's capital.,0
+What is the function of the kidneys?,The kidneys filter waste from the blood.,Kidneys filter blood and remove waste.,1
+What is the function of the kidneys?,The kidneys filter waste from the blood.,Kidneys help pump blood throughout the body.,0
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 212°F.,1
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 100°F.,0
+What is the smallest bone in the human body?,The smallest bone in the human body is the stapes.,The stapes is the smallest bone.,1
+What is the smallest bone in the human body?,The smallest bone in the human body is the stapes.,The femur is the smallest bone.,0
+What is the capital of Russia?,The capital of Russia is Moscow.,Moscow is Russia's capital.,1
+What is the capital of Russia?,The capital of Russia is Moscow.,St. Petersburg is Russia's capital.,0
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon is a shape with straight edges.,1
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon is a figure with curved edges.,0
+What is a habitat?,A habitat is the natural home of an organism.,A habitat is where an organism lives.,1
+What is a habitat?,A habitat is the natural home of an organism.,A habitat is where plants are grown artificially.,0
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun names a person or thing.,1
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun refers to an object or idea.,1
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun describes an action.,0
+What is a verb?,A verb is a word that describes an action state or occurrence.,A verb shows an activity.,1
+What is a verb?,A verb is a word that describes an action state or occurrence.,A verb indicates motion or action.,1
+What is a verb?,A verb is a word that describes an action state or occurrence.,A noun names an object.,0
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Photosynthesis helps plants produce food.,1
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Plants create food through photosynthesis.,1
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Photosynthesis is how animals eat.,0
+What is the capital of France?,The capital of France is Paris.,Paris is the capital of France.,1
+What is the capital of France?,The capital of France is Paris.,France's capital is Paris.,1
+What is the capital of France?,The capital of France is Paris.,Berlin is the capital of France.,0
+What is the square root of 64?,The square root of 64 is 8.,Eight is the square root of 64.,1
+What is the square root of 64?,The square root of 64 is 8.,The square root of sixty-four is 8.,1
+What is the square root of 64?,The square root of 64 is 8.,The square root of sixty-four is 9.,0
+What is an adjective?,An adjective is a word that describes a noun.,An adjective modifies a noun.,1
+What is an adjective?,An adjective is a word that describes a noun.,Adjectives describe qualities of a noun.,1
+What is an adjective?,An adjective is a word that describes a noun.,An adjective is a verb.,0
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water boils at 100 degrees Celsius.,1
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,At 100°C water reaches its boiling point.,1
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water boils at 200 degrees Celsius.,0
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Jupiter is the largest planet in the Solar System.,1
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,The planet Jupiter is the largest.,1
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Mars is the largest planet.,0
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Isaac Newton is known for discovering gravity.,1
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,The discovery of gravity is attributed to Isaac Newton.,1
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Albert Einstein discovered gravity.,0
+What is the chemical formula for water?,The chemical formula for water is H2O.,Water's chemical formula is H2O.,1
+What is the chemical formula for water?,The chemical formula for water is H2O.,H2O is the formula for water.,1
+What is the chemical formula for water?,The chemical formula for water is H2O.,Water is made of CO2.,0
+What is the capital of India?,The capital of India is New Delhi.,New Delhi is India's capital.,1
+What is the capital of India?,The capital of India is New Delhi.,India's capital city is New Delhi.,1
+What is the capital of India?,The capital of India is New Delhi.,Mumbai is the capital of India.,0
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,Deoxyribonucleic Acid is the full form of DNA.,1
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA is short for Deoxyribonucleic Acid.,1
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA is Dynamic Nucleic Acid.,0
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart's primary role is pumping blood.,1
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart circulates blood in the body.,1
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart filters blood.,0
+What is the capital of Australia?,The capital of Australia is Canberra.,Canberra is Australia's capital.,1
+What is the capital of Australia?,The capital of Australia is Canberra.,Australia's capital is Canberra.,1
+What is the capital of Australia?,The capital of Australia is Canberra.,Sydney is the capital of Australia.,0
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,A metaphor compares two things indirectly.,1
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,Metaphors describe symbolic relationships.,1
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,A metaphor uses 'like' or 'as'.,0
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs exchange oxygen and carbon dioxide.,1
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The primary function of lungs is to facilitate gas exchange.,1
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs pump blood through the body.,0
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Water changes to vapor during evaporation.,1
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Evaporation occurs when water turns to vapor.,1
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Condensation occurs when water turns to vapor.,0
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,Water freezes at 0 degrees Celsius.,1
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,At 0°C water reaches its freezing point.,1
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,Water freezes at 100 degrees Celsius.,0
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,Light travels at 300000 km/s.,1
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,The speed of light is roughly 300000 kilometers per second.,1
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,The speed of light is 150000 kilometers per second.,0
+What is the smallest prime number?,The smallest prime number is 2.,Two is the smallest prime number.,1
+What is the smallest prime number?,The smallest prime number is 2.,2 is the smallest prime.,1
+What is the smallest prime number?,The smallest prime number is 2.,One is the smallest prime number.,0
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The Milky Way is the name of our galaxy.,1
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The galaxy we live in is the Milky Way.,1
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The Andromeda galaxy is where we live.,0
+What is the capital of Canada?,The capital of Canada is Ottawa.,Ottawa is the capital city of Canada.,1
+What is the capital of Canada?,The capital of Canada is Ottawa.,Canada's capital city is Ottawa.,1
+What is the capital of Canada?,The capital of Canada is Ottawa.,Toronto is the capital of Canada.,0
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Alexander Graham Bell is the inventor of the telephone.,1
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,The inventor of the telephone is Alexander Graham Bell.,1
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Thomas Edison invented the telephone.,0
+What is the largest continent?,The largest continent is Asia.,Asia is the largest continent on Earth.,1
+What is the largest continent?,The largest continent is Asia.,The largest continent is Asia.,1
+What is the largest continent?,The largest continent is Asia.,Africa is the largest continent.,0
+What does HCl stand for in chemistry?,HCl stands for Hydrochloric Acid.,HCl is short for Hydrochloric Acid.,1
+What does HCl stand for in chemistry?,HCl stands for Hydrochloric Acid.,Hydrochloric Acid is the full form of HCl.,1
+What does HCl stand for in chemistry?,HCl stands for Hydrochloric Acid.,HCl is Hydrogen Chloride.,0
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states that a² + b² equals c².,1
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,Pythagoras proved that a² + b² = c².,1
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states a² * b² = c².,0
+What is the capital of Japan?,The capital of Japan is Tokyo.,Tokyo is Japan's capital.,1
+What is the capital of Japan?,The capital of Japan is Tokyo.,The capital city of Japan is Tokyo.,1
+What is the capital of Japan?,The capital of Japan is Tokyo.,Kyoto is the capital of Japan.,0
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is primarily made with flour.,1
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Flour is the key ingredient for bread.,1
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is mainly made of sugar.,0
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon has straight sides and is a closed shape.,1
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon is a multi-sided shape with straight edges.,1
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon has curved sides and is an open shape.,0
+What is the capital of Russia?,The capital of Russia is Moscow.,Moscow is Russia's capital city.,1
+What is the capital of Russia?,The capital of Russia is Moscow.,The capital city of Russia is Moscow.,1
+What is the capital of Russia?,The capital of Russia is Moscow.,St. Petersburg is the capital of Russia.,0
+What is a habitat?,A habitat is the natural home of an organism.,A habitat is the living place of an organism.,1
+What is a habitat?,A habitat is the natural home of an organism.,The natural environment of an organism is called its habitat.,1
+What is a habitat?,A habitat is the natural home of an organism.,A habitat is where humans artificially grow plants.,0
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Sahara Desert is the largest in the world.,1
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,Sahara is the largest desert.,1
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Gobi Desert is the largest.,0
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 212°F.,1
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,At 212°F water reaches its boiling point.,1
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 100°F.,0
+Who painted the Sistine Chapel ceiling?,The Sistine Chapel ceiling was painted by Michelangelo.,Michelangelo painted the Sistine Chapel ceiling.,1
+Who painted the Sistine Chapel ceiling?,The Sistine Chapel ceiling was painted by Michelangelo.,Michelangelo is the artist behind the Sistine Chapel ceiling.,1
+Who painted the Sistine Chapel ceiling?,The Sistine Chapel ceiling was painted by Michelangelo.,Leonardo da Vinci painted the Sistine Chapel ceiling.,0
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,Earth is the third planet from the Sun.,1
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,The planet Earth is the third from the Sun.,1
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,Mars is the third planet from the Sun.,0
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 32°F.,1
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,At 32°F water freezes.,1
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 0°F.,0
+What is the function of the kidneys?,The kidneys filter waste from the blood.,Kidneys remove waste and toxins from the blood.,1
+What is the function of the kidneys?,The kidneys filter waste from the blood.,The kidneys filter and clean the blood.,1
+What is the function of the kidneys?,The kidneys filter waste from the blood.,The kidneys pump blood through the body.,0
+What is the smallest ocean?,The smallest ocean is the Arctic Ocean.,The Arctic Ocean is the smallest.,1
+What is the smallest ocean?,The smallest ocean is the Arctic Ocean.,The Arctic is the smallest ocean.,1
+What is the smallest ocean?,The smallest ocean is the Arctic Ocean.,The Pacific Ocean is the smallest.,0
+Who wrote '1984'?,'1984' was written by George Orwell.,George Orwell wrote '1984'.,1
+Who wrote '1984'?,'1984' was written by George Orwell.,The author of '1984' is George Orwell.,1
+Who wrote '1984'?,'1984' was written by George Orwell.,Charles Dickens wrote '1984'.,0
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles total 180 degrees.,1
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,The total of a triangle's angles is 180 degrees.,1
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 360 degrees.,0
+What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,Iron is represented by the symbol Fe.,1
+What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,The symbol Fe represents Iron.,1
+What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,Iron's symbol is Ir.,0
+What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,The area of a triangle is calculated as 1/2 base times height.,1
+What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,To find a triangle's area multiply 1/2 by its base and height.,1
+What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,The area of a triangle is base times height.,0
+
+

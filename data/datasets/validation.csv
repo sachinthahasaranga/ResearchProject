@@ -1,0 +1,76 @@
+question,correct_answer,student_answer,label,processed_correct_answer,processed_student_answer
+Who painted 'Starry Night'?,'Starry Night' was painted by Vincent van Gogh.,Pablo Picasso painted 'Starry Night'.,0,night painted vincent van gogh,pablo picasso painted night
+What is an adjective?,An adjective is a word that describes a noun.,An adjective is a type of verb.,0,adjective word describes noun,adjective type verb
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart's primary role is pumping blood.,1,heart pumps blood throughout body,heart primary role pumping blood
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water boils at 200 degrees Celsius.,0,boiling point water 100 degrees celsius,water boils 200 degrees celsius
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is made with flour.,1,main ingredient bread flour,bread made flour
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Evaporation occurs when water turns to vapor.,1,process water changing vapor called evaporation,evaporation occurs water turns vapor
+What is the genre of 'To Kill a Mockingbird'?,The genre of 'To Kill a Mockingbird' is fiction.,'To Kill a Mockingbird' is a fiction novel.,1,genre kill mockingbird fiction,kill mockingbird fiction novel
+Who discovered electricity?,Electricity was discovered by Benjamin Franklin.,Thomas Edison discovered electricity.,0,electricity discovered benjamin franklin,thomas edison discovered electricity
+What is the capital of India?,The capital of India is New Delhi.,New Delhi is India's capital.,1,capital india new delhi,new delhi india capital
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states a² + b² = ab.,0,pythagorean theorem states a² b² c²,theorem states a² b² ab
+What is a verb?,A verb is a word that describes an action state or occurrence.,A verb is an action word.,1,verb word describes action state occurrence,verb action word
+What is a habitat?,A habitat is the natural home of an organism.,A habitat is the living place of an organism.,1,habitat natural home organism,habitat living place organism
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun names a person or thing.,1,noun word names person place thing idea,noun names person thing
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The galaxy we live in is the Milky Way.,1,galaxy called milky way,galaxy live milky way
+What does HCl stand for in chemistry?,HCl stands for Hydrochloric Acid.,HCl is Hydrochloric Acid.,1,hcl stands hydrochloric acid,hcl hydrochloric acid
+What is the capital of Canada?,The capital of Canada is Ottawa.,Canada's capital city is Ottawa.,1,capital canada ottawa,canada capital city ottawa
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 212°F.,1,boiling point water 212 degrees fahrenheit,water boils
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Water changes to vapor during evaporation.,1,process water changing vapor called evaporation,water changes vapor evaporation
+What is an adjective?,An adjective is a word that describes a noun.,Adjectives describe qualities of a noun.,1,adjective word describes noun,adjectives describe qualities noun
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart filters blood.,0,heart pumps blood throughout body,heart filters blood
+Who painted the Mona Lisa?,The Mona Lisa was painted by Leonardo da Vinci.,Leonardo da Vinci painted the Mona Lisa.,1,mona lisa painted leonardo da vinci,leonardo da vinci painted mona lisa
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states a² + b² = c².,1,pythagorean theorem states a² b² c²,theorem states a² b² c²
+What is the chemical symbol for Sodium?,The chemical symbol for Sodium is Na.,The symbol for Sodium is Na.,1,chemical symbol sodium na,symbol sodium na
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,Light travels at about 300000 km/s.,1,speed light approximately 300000 kilometers per second,light travels 300000
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,The planet Earth is the third from the Sun.,1,third planet sun earth,planet earth third sun
+What is the capital of India?,The capital of India is New Delhi.,India's capital city is New Delhi.,1,capital india new delhi,india capital city new delhi
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 180 degrees.,1,sum angles triangle 180 degrees,triangle angles add 180 degrees
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon is a multi-sided shape with straight edges.,1,polygon closed figure straight sides,polygon shape straight edges
+What is the chemical symbol for Gold?,The chemical symbol for Gold is Au.,Gold is represented by the symbol Ag.,0,chemical symbol gold au,gold represented symbol ag
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Thomas Edison invented the telephone.,0,telephone invented alexander graham bell,thomas edison invented telephone
+What is a verb?,A verb is a word that describes an action state or occurrence.,A verb shows an activity.,1,verb word describes action state occurrence,verb shows activity
+What is the chemical symbol for Sodium?,The chemical symbol for Sodium is Na.,The symbol for Sodium is So.,0,chemical symbol sodium na,symbol sodium
+What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,The area of a triangle is base times height.,0,formula area triangle x base x height,area triangle base times height
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun names a person or thing.,1,noun word names person place thing idea,noun names person thing
+What is the function of the kidneys?,The kidneys filter waste from the blood.,The kidneys filter and clean the blood.,1,kidneys filter waste blood,kidneys filter clean blood
+What is the largest continent?,The largest continent is Asia.,Asia is the largest continent on Earth.,1,largest continent asia,asia largest continent earth
+What is a metaphor?,A metaphor is a figure of speech where one thing is said to be another.,Metaphors describe symbolic relationships.,1,metaphor figure speech one thing said another,metaphors describe symbolic relationships
+What is the capital of Japan?,The capital of Japan is Tokyo.,Tokyo is the capital of Japan.,1,capital japan tokyo,tokyo capital japan
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 360 degrees.,0,sum angles triangle 180 degrees,triangle angles add 360 degrees
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun names a person or thing.,1,noun word names person place thing idea,noun names person thing
+What does 'benevolent' mean?,Benevolent means kind and charitable.,Benevolent means cruel and selfish.,0,benevolent means kind charitable,benevolent means cruel selfish
+What is a synonym for 'big'?,A synonym for 'big' is 'large'.,A synonym for 'big' is 'huge'.,1,synonym,synonym
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 100°F.,0,boiling point water 212 degrees fahrenheit,water boils
+What is a habitat?,A habitat is the natural home of an organism.,The natural environment of an organism is called its habitat.,1,habitat natural home organism,natural environment organism called habitat
+What is the tallest mountain in the world?,The tallest mountain in the world is Mount Everest.,Mount Everest is the tallest mountain.,1,tallest mountain world mount everest,mount everest tallest mountain
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 100°F.,0,boiling point water 212 degrees fahrenheit,water boils
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Thomas Edison invented the telephone.,0,telephone invented alexander graham bell,thomas edison invented telephone
+What is the capital of Japan?,The capital of Japan is Tokyo.,Kyoto is the capital of Japan.,0,capital japan tokyo,kyoto capital japan
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Plants create food through photosynthesis.,1,photosynthesis process plants make food using sunlight,plants create food photosynthesis
+What is the capital of Australia?,The capital of Australia is Canberra.,Sydney is the capital of Australia.,0,capital australia canberra,sydney capital australia
+What is the chemical symbol for Oxygen?,The chemical symbol for Oxygen is O.,Oxygen is represented by the symbol O.,1,chemical symbol oxygen,oxygen represented symbol
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 32°F.,1,freezing point water 32 degrees fahrenheit,water freezes
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 0°F.,0,freezing point water 32 degrees fahrenheit,water freezes
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles total 180 degrees.,1,sum angles triangle 180 degrees,triangle angles total 180 degrees
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Jupiter is the largest planet.,1,largest planet solar system jupiter,jupiter largest planet
+What is a verb?,A verb is a word that describes an action state or occurrence.,A noun names objects.,0,verb word describes action state occurrence,noun names objects
+What is the tallest mountain in the world?,The tallest mountain in the world is Mount Everest.,K2 is the tallest mountain.,0,tallest mountain world mount everest,k2 tallest mountain
+Who painted 'Starry Night'?,'Starry Night' was painted by Vincent van Gogh.,Vincent van Gogh painted 'Starry Night'.,1,night painted vincent van gogh,vincent van gogh painted night
+What is the largest continent?,The largest continent is Asia.,Asia is the largest continent.,1,largest continent asia,asia largest continent
+What is the capital of Japan?,The capital of Japan is Tokyo.,Osaka is the capital of Japan.,0,capital japan tokyo,osaka capital japan
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Plants create food through photosynthesis.,1,photosynthesis process plants make food using sunlight,plants create food photosynthesis
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 360 degrees.,0,sum angles triangle 180 degrees,triangle angles add 360 degrees
+What is the capital of Japan?,The capital of Japan is Tokyo.,Tokyo is the capital of Japan.,1,capital japan tokyo,tokyo capital japan
+What does 'benevolent' mean?,Benevolent means kind and charitable.,Benevolent means cruel and selfish.,0,benevolent means kind charitable,benevolent means cruel selfish
+What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,The area of a triangle is calculated as 1/2 base times height.,1,formula area triangle x base x height,area triangle calculated base times height
+What is the capital of Australia?,The capital of Australia is Canberra.,Australia's capital is Canberra.,1,capital australia canberra,australia capital canberra
+What is the largest continent?,The largest continent is Asia.,Africa is the largest continent.,0,largest continent asia,africa largest continent
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,At 0°C water reaches its freezing point.,1,freezing point water 0 degrees celsius,water reaches freezing point
+What is the freezing point of water?,The freezing point of water is 0 degrees Celsius.,At 0°C water reaches its freezing point.,1,freezing point water 0 degrees celsius,water reaches freezing point
+Who wrote '1984'?,'1984' was written by George Orwell.,Charles Dickens wrote '1984'.,0,written george orwell,charles dickens wrote
+What is the result of 5 x 6?,The result of 5 x 6 is 30.,5 multiplied by 6 equals 25.,0,result 5 x 6 30,5 multiplied 6 equals 25
+What is a synonym for 'quick'?,A synonym for 'quick' is 'fast'.,A synonym for 'quick' is 'slow'.,0,synonym,synonym
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon is a figure with curved edges.,0,polygon closed figure straight sides,polygon figure curved edges
+What is the function of the kidneys?,The kidneys filter waste from the blood.,Kidneys filter blood and remove waste.,1,kidneys filter waste blood,kidneys filter blood remove waste
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Mars is the largest planet.,0,largest planet solar system jupiter,mars largest planet

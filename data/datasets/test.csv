@@ -1,0 +1,76 @@
+question,correct_answer,student_answer,label,processed_correct_answer,processed_student_answer
+What is the capital of Italy?,The capital of Italy is Rome.,Rome is the capital of Italy.,1,capital italy rome,rome capital italy
+What is the largest continent?,The largest continent is Asia.,Asia is the largest continent.,1,largest continent asia,asia largest continent
+What is the smallest bone in the human body?,The smallest bone in the human body is the stapes.,The femur is the smallest bone.,0,smallest bone human body stapes,femur smallest bone
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is primarily made with flour.,1,main ingredient bread flour,bread primarily made flour
+What is the largest planet in the Solar System?,The largest planet in the Solar System is Jupiter.,Jupiter is the largest planet.,1,largest planet solar system jupiter,jupiter largest planet
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs are used for breathing.,1,lungs help breathing exchanging oxygen carbon dioxide,lungs used breathing
+What is the tallest mountain in the world?,The tallest mountain in the world is Mount Everest.,K2 is the tallest mountain.,0,tallest mountain world mount everest,k2 tallest mountain
+What is a polygon?,A polygon is a closed figure with straight sides.,A polygon has straight sides and is a closed shape.,1,polygon closed figure straight sides,polygon straight sides closed shape
+Who wrote '1984'?,'1984' was written by George Orwell.,George Orwell wrote '1984'.,1,written george orwell,george orwell wrote
+What is the third planet from the Sun?,The third planet from the Sun is Earth.,The planet Earth is the third from the Sun.,1,third planet sun earth,planet earth third sun
+What is the square root of 64?,The square root of 64 is 8.,The square root of sixty-four is 8.,1,square root 64 8,square root 8
+What is the capital of India?,The capital of India is New Delhi.,Mumbai is the capital of India.,0,capital india new delhi,mumbai capital india
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA is Dynamic Nucleic Acid.,0,dna stands deoxyribonucleic acid,dna dynamic nucleic acid
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,Pythagoras proved that a² + b² = c².,1,pythagorean theorem states a² b² c²,pythagoras proved a² b² c²
+What does DNA stand for?,DNA stands for Deoxyribonucleic Acid.,DNA is short for Deoxyribonucleic Acid.,1,dna stands deoxyribonucleic acid,dna short deoxyribonucleic acid
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Isaac Newton is known for discovering gravity.,1,gravity discovered isaac newton,isaac newton known discovering gravity
+Who discovered electricity?,Electricity was discovered by Benjamin Franklin.,Benjamin Franklin discovered electricity.,1,electricity discovered benjamin franklin,benjamin franklin discovered electricity
+What is an adjective?,An adjective is a word that describes a noun.,An adjective is a verb.,0,adjective word describes noun,adjective verb
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Albert Einstein discovered gravity.,0,gravity discovered isaac newton,albert einstein discovered gravity
+What is the boiling point of water in Fahrenheit?,The boiling point of water is 212 degrees Fahrenheit.,Water boils at 212°F.,1,boiling point water 212 degrees fahrenheit,water boils
+What is the chemical symbol for Sodium?,The chemical symbol for Sodium is Na.,The symbol for Sodium is Na.,1,chemical symbol sodium na,symbol sodium na
+What is the capital of Japan?,The capital of Japan is Tokyo.,The capital city of Japan is Tokyo.,1,capital japan tokyo,capital city japan tokyo
+What is the formula for the area of a triangle?,The formula for the area of a triangle is 1/2 x base x height.,The area of a triangle is calculated as 1/2 base times height.,1,formula area triangle x base x height,area triangle calculated base times height
+What is a noun?,A noun is a word that names a person place thing or idea.,A noun describes an action.,0,noun word names person place thing idea,noun describes action
+What is the function of the kidneys?,The kidneys filter waste from the blood.,Kidneys help pump blood throughout the body.,0,kidneys filter waste blood,kidneys help pump blood throughout body
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water boils at 100 degrees Celsius.,1,boiling point water 100 degrees celsius,water boils 100 degrees celsius
+What is a triangle?,A triangle is a polygon with three sides.,A triangle is a square.,0,triangle polygon three sides,triangle square
+What is the name of our galaxy?,Our galaxy is called the Milky Way.,The Milky Way is our galaxy.,1,galaxy called milky way,milky way galaxy
+What is the smallest prime number?,The smallest prime number is 2.,The smallest prime number is 1.,0,smallest prime number 2,smallest prime number 1
+Who painted the Sistine Chapel ceiling?,The Sistine Chapel ceiling was painted by Michelangelo.,Leonardo da Vinci painted the Sistine Chapel ceiling.,0,sistine chapel ceiling painted michelangelo,leonardo da vinci painted sistine chapel ceiling
+What is the sum of angles in a triangle?,The sum of angles in a triangle is 180 degrees.,A triangle's angles add up to 180 degrees.,1,sum angles triangle 180 degrees,triangle angles add 180 degrees
+What is the square root of 64?,The square root of 64 is 8.,The square root of sixty-four is 9.,0,square root 64 8,square root 9
+What is the chemical formula for water?,The chemical formula for water is H2O.,The formula for water is CO2.,0,chemical formula water h2o,formula water co2
+What is the largest continent?,The largest continent is Asia.,The largest continent is Asia.,1,largest continent asia,largest continent asia
+What is the smallest ocean?,The smallest ocean is the Arctic Ocean.,The Arctic Ocean is the smallest.,1,smallest ocean arctic ocean,arctic ocean smallest
+What is the genre of 'To Kill a Mockingbird'?,The genre of 'To Kill a Mockingbird' is fiction.,'To Kill a Mockingbird' is a history book.,0,genre kill mockingbird fiction,kill mockingbird history book
+What is the smallest prime number?,The smallest prime number is 2.,2 is the smallest prime.,1,smallest prime number 2,2 smallest prime
+What is the capital of Russia?,The capital of Russia is Moscow.,Moscow is Russia's capital city.,1,capital russia moscow,moscow russia capital city
+What is the largest desert in the world?,The largest desert in the world is the Sahara Desert.,The Sahara is the largest desert.,1,largest desert world sahara desert,sahara largest desert
+Who invented the telephone?,The telephone was invented by Alexander Graham Bell.,Alexander Graham Bell is the inventor of the telephone.,1,telephone invented alexander graham bell,alexander graham bell inventor telephone
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 32°F.,1,freezing point water 32 degrees fahrenheit,water freezes
+What is the result of 5 x 6?,The result of 5 x 6 is 30.,5 multiplied by 6 equals 30.,1,result 5 x 6 30,5 multiplied 6 equals 30
+What is the speed of light?,The speed of light is approximately 300000 kilometers per second.,The speed of light is 150000 kilometers per second.,0,speed light approximately 300000 kilometers per second,speed light 150000 kilometers per second
+What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,The symbol Fe represents Iron.,1,chemical symbol iron fe,symbol fe represents iron
+What is the square root of 64?,The square root of 64 is 8.,The square root of 64 is 9.,0,square root 64 8,square root 64 9
+Who discovered electricity?,Electricity was discovered by Benjamin Franklin.,Benjamin Franklin discovered electricity.,1,electricity discovered benjamin franklin,benjamin franklin discovered electricity
+What is the capital of Germany?,The capital of Germany is Berlin.,Hamburg is the capital of Germany.,0,capital germany berlin,hamburg capital germany
+What is the smallest country in the world?,The smallest country in the world is Vatican City.,Vatican City is the smallest country.,1,smallest country world vatican city,vatican city smallest country
+Who discovered gravity?,Gravity was discovered by Isaac Newton.,Isaac Newton discovered gravity.,1,gravity discovered isaac newton,isaac newton discovered gravity
+What is photosynthesis?,Photosynthesis is the process by which plants make food using sunlight.,Photosynthesis is how animals eat.,0,photosynthesis process plants make food using sunlight,photosynthesis animals eat
+What is the function of the lungs?,The lungs help in breathing by exchanging oxygen and carbon dioxide.,The lungs are used for breathing.,1,lungs help breathing exchanging oxygen carbon dioxide,lungs used breathing
+What is the function of the heart?,The heart pumps blood throughout the body.,The heart pumps blood.,1,heart pumps blood throughout body,heart pumps blood
+What is the Pythagorean theorem?,The Pythagorean theorem states that a² + b² = c².,The theorem states a² * b² = c².,0,pythagorean theorem states a² b² c²,theorem states a² b² c²
+What is the capital of India?,The capital of India is New Delhi.,Mumbai is India's capital.,0,capital india new delhi,mumbai india capital
+Who painted 'Starry Night'?,'Starry Night' was painted by Vincent van Gogh.,Vincent van Gogh painted 'Starry Night'.,1,night painted vincent van gogh,vincent van gogh painted night
+What is the largest ocean?,The largest ocean is the Pacific Ocean.,The Pacific Ocean is the largest ocean.,1,largest ocean pacific ocean,pacific ocean largest ocean
+What is the hardest natural substance on Earth?,The hardest natural substance on Earth is diamond.,Gold is the hardest natural material.,0,hardest natural substance earth diamond,gold hardest natural material
+What is the capital of France?,The capital of France is Paris.,France's capital is Paris.,1,capital france paris,france capital paris
+What is the capital of Australia?,The capital of Australia is Canberra.,Sydney is the capital of Australia.,0,capital australia canberra,sydney capital australia
+What is the chemical symbol for Iron?,The chemical symbol for Iron is Fe.,Iron is represented by the symbol Fe.,1,chemical symbol iron fe,iron represented symbol fe
+What is the chemical formula for water?,The chemical formula for water is H2O.,Water is made of CO2.,0,chemical formula water h2o,water made co2
+What is the smallest prime number?,The smallest prime number is 2.,The smallest prime number is 2.,1,smallest prime number 2,smallest prime number 2
+What is the capital of Russia?,The capital of Russia is Moscow.,Moscow is Russia's capital city.,1,capital russia moscow,moscow russia capital city
+What is the formula for the area of a rectangle?,The formula for the area of a rectangle is length x width.,Area of a rectangle is length times width.,1,formula area rectangle length x width,area rectangle length times width
+What is the smallest prime number?,The smallest prime number is 2.,Two is the smallest prime number.,1,smallest prime number 2,two smallest prime number
+What is the chemical symbol for Oxygen?,The chemical symbol for Oxygen is O.,Oxygen is represented by the symbol N.,0,chemical symbol oxygen,oxygen represented symbol n
+What is the freezing point of water in Fahrenheit?,The freezing point of water is 32 degrees Fahrenheit.,Water freezes at 0°F.,0,freezing point water 32 degrees fahrenheit,water freezes
+What is the smallest ocean?,The smallest ocean is the Arctic Ocean.,The Pacific Ocean is the smallest.,0,smallest ocean arctic ocean,pacific ocean smallest
+What is an adjective?,An adjective is a word that describes a noun.,An adjective is a type of verb.,0,adjective word describes noun,adjective type verb
+What is the main ingredient in bread?,The main ingredient in bread is flour.,Bread is made with sugar.,0,main ingredient bread flour,bread made sugar
+What is the smallest country in the world?,The smallest country in the world is Vatican City.,Monaco is the smallest country.,0,smallest country world vatican city,monaco smallest country
+What is the process of water changing to vapor called?,The process of water changing to vapor is called evaporation.,Evaporation occurs when water turns to vapor.,1,process water changing vapor called evaporation,evaporation occurs water turns vapor
+What is the boiling point of water?,The boiling point of water is 100 degrees Celsius.,Water freezes at 0 degrees Celsius.,0,boiling point water 100 degrees celsius,water freezes 0 degrees celsius
+What is the smallest prime number?,The smallest prime number is 2.,One is the smallest prime number.,0,smallest prime number 2,one smallest prime number
+What is the capital of Japan?,The capital of Japan is Tokyo.,Osaka is the capital of Japan.,0,capital japan tokyo,osaka capital japan
