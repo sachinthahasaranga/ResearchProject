@@ -1,15 +1,18 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 require('dotenv').config();
 
+const lstnRoutes = require('./src/routes/listeningRoutes');
 
 // Middleware to parse JSON
 app.use(express.json());
+app.use(cors());
 
-// Basic route
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+// Routes
+app.use('/api/lstn', lstnRoutes);
+
+
 
 // Start the server
 const PORT = process.env.PORT || 3000;
