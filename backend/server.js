@@ -3,11 +3,15 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 
+const connectDB = require('./src/config/db')
+
 const lstnRoutes = require('./src/routes/listeningRoutes');
 
 // Middleware to parse JSON
 app.use(express.json());
 app.use(cors());
+
+connectDB();
 
 // Routes
 app.use('/api/lstn', lstnRoutes);
