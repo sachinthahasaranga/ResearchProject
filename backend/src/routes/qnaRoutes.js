@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const qnaController = require('../controllers/qnaController'); // Adjust the path as necessary
+const qnaController = require('../controllers/qnaConteoller'); // Adjust the path as necessary
 
 // Route to create a new QnA
 router.post('/', qnaController.createQnA);

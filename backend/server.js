@@ -16,7 +16,7 @@ connectDB();
 
 // Routes
 app.use('/api/lstn', lstnRoutes);
-app.use('/api/qna', qnaRoutes)
+app.use('/api/qna', qnaRoutes);
 
 
 
