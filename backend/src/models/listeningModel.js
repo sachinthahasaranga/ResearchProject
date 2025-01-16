@@ -16,16 +16,18 @@ const listeningSchema = new Schema({
         required: true,
     },
     QnA: {
-        type: mongoose.Schema.Types.ObjectId, // Reference to QnA document
+        //type: mongoose.Schema.Types.ObjectId, // Reference to QnA document
+        type: String,
         ref: 'QnA',
         required: true,
     },
     category: {
-        type: mongoose.Schema.Types.ObjectId, // Reference to category document
+        //type: mongoose.Schema.Types.ObjectId, // Reference to category document
+        type: String,
         ref: 'Category', // Assuming a Category model exists
         required: true,
     },
 }, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
 
 // Create and export the listening model
-module.exports = mongoose.model('listening', listeningSchema);
+module.exports = mongoose.model('Listening', listeningSchema);

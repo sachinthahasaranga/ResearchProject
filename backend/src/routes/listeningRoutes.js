@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const listeningController = require('../controllers/listeningController'); // Adjust the path as necessary
+const listeningController = require('../controllers/listeningController'); // Ensure the path is correct
 
 // Route to create a new listening
 router.post('/', listeningController.createlistening);
