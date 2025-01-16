@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Define the Listing schema
-const listingSchema = new Schema({
+// Define the listening schema
+const listeningSchema = new Schema({
     audio: {
         type: String, // Store the audio file path or URL
         required: true,
@@ -27,5 +27,5 @@ const listingSchema = new Schema({
     },
 }, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
 
-// Create and export the Listing model
-module.exports = mongoose.model('Listing', listingSchema);
+// Create and export the listening model
+module.exports = mongoose.model('listening', listeningSchema);

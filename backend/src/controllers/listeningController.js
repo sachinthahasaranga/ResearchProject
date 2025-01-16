@@ -1,63 +1,63 @@
-const Listing = require('../models/listingModel'); // Adjust the path as necessary
+const listening = require('../models/listeningModel'); // Adjust the path as necessary
 
-// Create a new Listing
-exports.createListing = async (req, res) => {
+// Create a new listening
+exports.createlistening = async (req, res) => {
     try {
-        const listing = new Listing(req.body);
-        const savedListing = await listing.save();
-        res.status(201).json(savedListing);
+        const listening = new listening(req.body);
+        const savedlistening = await listening.save();
+        res.status(201).json(savedlistening);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 };
 
-// Get all Listings
-exports.getAllListings = async (req, res) => {
+// Get all listenings
+exports.getAlllistenings = async (req, res) => {
     try {
-        const listings = await Listing.find().populate('QnA').populate('category');
-        res.status(200).json(listings);
+        const listenings = await listening.find().populate('QnA').populate('category');
+        res.status(200).json(listenings);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
 
-// Get a single Listing by ID
-exports.getListingById = async (req, res) => {
+// Get a single listening by ID
+exports.getlisteningById = async (req, res) => {
     try {
-        const listing = await Listing.findById(req.params.id).populate('QnA').populate('category');
-        if (!listing) {
-            return res.status(404).json({ message: 'Listing not found' });
+        const listening = await listening.findById(req.params.id).populate('QnA').populate('category');
+        if (!listening) {
+            return res.status(404).json({ message: 'listening not found' });
         }
-        res.status(200).json(listing);
+        res.status(200).json(listening);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
 
-// Update a Listing
-exports.updateListing = async (req, res) => {
+// Update a listening
+exports.updatelistening = async (req, res) => {
     try {
-        const updatedListing = await Listing.findByIdAndUpdate(req.params.id, req.body, {
+        const updatedlistening = await listening.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
         });
-        if (!updatedListing) {
-            return res.status(404).json({ message: 'Listing not found' });
+        if (!updatedlistening) {
+            return res.status(404).json({ message: 'listening not found' });
         }
-        res.status(200).json(updatedListing);
+        res.status(200).json(updatedlistening);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 };
 
-// Delete a Listing
-exports.deleteListing = async (req, res) => {
+// Delete a listening
+exports.deletelistening = async (req, res) => {
     try {
-        const deletedListing = await Listing.findByIdAndDelete(req.params.id);
-        if (!deletedListing) {
-            return res.status(404).json({ message: 'Listing not found' });
+        const deletedlistening = await listening.findByIdAndDelete(req.params.id);
+        if (!deletedlistening) {
+            return res.status(404).json({ message: 'listening not found' });
         }
-        res.status(200).json({ message: 'Listing deleted successfully' });
+        res.status(200).json({ message: 'listening deleted successfully' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

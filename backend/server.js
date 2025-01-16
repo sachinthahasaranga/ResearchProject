@@ -6,6 +6,7 @@ require('dotenv').config();
 const connectDB = require('./src/config/db')
 
 const lstnRoutes = require('./src/routes/listeningRoutes');
+const qnaRoutes = require('./src/routes/qnaRoutes');
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -15,6 +16,7 @@ connectDB();
 
 // Routes
 app.use('/api/lstn', lstnRoutes);
+app.use('/api/qna', qnaRoutes)
 
 
 
