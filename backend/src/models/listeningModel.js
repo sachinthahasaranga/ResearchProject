@@ -15,14 +15,14 @@ const listeningSchema = new Schema({
         type: Boolean, // True for main session, false otherwise
         required: true,
     },
-    QnA: {
-        //type: mongoose.Schema.Types.ObjectId, // Reference to QnA document
-        type: String,
-        ref: 'QnA',
-        required: true,
-    },
+    QnA: [
+        {
+            type: mongoose.Schema.Types.ObjectId, // Array of references to QnA documents
+            ref: 'QnA',
+            required: true,
+        }
+    ],
     category: {
-        //type: mongoose.Schema.Types.ObjectId, // Reference to category document
         type: String,
         ref: 'Category', // Assuming a Category model exists
         required: true,

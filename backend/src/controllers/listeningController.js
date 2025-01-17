@@ -3,13 +3,14 @@ const Listening = require('../models/listeningModel'); // Correctly capitalize "
 // Create a new listening
 exports.createlistening = async (req, res) => {
     try {
-        const listening = new Listening(req.body); // Use the correct model "Listening"
-        const savedlistening = await listening.save();
-        res.status(201).json(savedlistening);
+        const listening = new Listening(req.body); // Ensure req.body.QnA is an array of ObjectId strings
+        const savedListening = await listening.save();
+        res.status(201).json(savedListening);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 };
+
 
 // Get all listenings
 exports.getAlllistenings = async (req, res) => {
