@@ -3,7 +3,7 @@ const QnA = require('../models/qnaModel'); // Adjust the path as necessary
 // Create a new QnA
 exports.createQnA = async (req, res) => {
     try {
-        const qna = new QnA(req.body);
+        const qna = new QnA(req.body); // Expecting { question, answer } in req.body
         const savedQnA = await qna.save();
         res.status(201).json(savedQnA);
     } catch (error) {
@@ -14,7 +14,7 @@ exports.createQnA = async (req, res) => {
 // Get all QnAs
 exports.getAllQnAs = async (req, res) => {
     try {
-        const qnas = await QnA.find();
+        const qnas = await QnA.find(); // Returns all question-answer pairs
         res.status(200).json(qnas);
     } catch (error) {
         res.status(500).json({ message: error.message });
