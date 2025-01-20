@@ -22,11 +22,13 @@ const listeningSchema = new Schema({
             required: true,
         }
     ],
-    category: {
-        type: String,
-        ref: 'Category', // Assuming a Category model exists
-        required: true,
-    },
+    category: 
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Category', // Assuming a Category model exists
+            required: true,
+        },
+    
 }, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
 
 // Create and export the listening model
