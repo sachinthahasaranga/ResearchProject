@@ -1,9 +1,10 @@
-const Category = require('../models/categoryModel'); // Adjust the path to the Category model as needed
+const Category = require('../models/categoryModel'); // Adjust the path to the Category model
 
 // Create a new category
 exports.createCategory = async (req, res) => {
     try {
-        const category = new Category(req.body); // Create a new category instance
+        const { categoryName, callingName } = req.body; // Destructure new fields
+        const category = new Category({ categoryName, callingName }); // Create a new category instance
         const savedCategory = await category.save(); // Save the category to the database
         res.status(201).json(savedCategory); // Respond with the saved category
     } catch (error) {
@@ -37,10 +38,15 @@ exports.getCategoryById = async (req, res) => {
 // Update a category by ID
 exports.updateCategory = async (req, res) => {
     try {
-        const updatedCategory = await Category.findByIdAndUpdate(req.params.id, req.body, {
-            new: true, // Return the updated document
-            runValidators: true, // Run schema validations
-        });
+        const { categoryName, callingName } = req.body; // Destructure new fields
+        const updatedCategory = await Category.findByIdAndUpdate(
+            req.params.id,
+            { categoryName, callingName }, // Update both fields
+            {
+                new: true, // Return the updated document
+                runValidators: true, // Run schema validations
+            }
+        );
         if (!updatedCategory) {
             return res.status(404).json({ message: 'Category not found' }); // Handle not found
         }
