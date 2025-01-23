@@ -17,4 +17,7 @@ router.put('/:id', qnaController.updateQnA);
 // Route to delete a QnA
 router.delete('/:id', qnaController.deleteQnA);
 
+//check Similarity
+router.post('/check-similarity', qnaController.getSimilarity);
+
 module.exports = router;
