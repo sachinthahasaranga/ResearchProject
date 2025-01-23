@@ -11,6 +11,11 @@ const listeningScoreSchema = new mongoose.Schema({
     ref: 'Listening',
     required: true,
   },
+  categoryId: {
+    type: mongoose.Schema.Types.ObjectId, // Reference to the category model
+    ref: 'Category',
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now, // Automatically sets to today's date
