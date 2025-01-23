@@ -8,7 +8,7 @@ const listeningScoreSchema = new mongoose.Schema({
   },
   listeningId: {
     type: mongoose.Schema.Types.ObjectId, // Reference to the listening model
-    ref: 'ListeningModel',
+    ref: 'Listening',
     required: true,
   },
   date: {
@@ -24,7 +24,7 @@ const listeningScoreSchema = new mongoose.Schema({
     {
       qnaId: {
         type: mongoose.Schema.Types.ObjectId, // Reference to the QnA model
-        ref: 'QnAModel',
+        ref: 'QnA',
         required: true,
       },
       score: {

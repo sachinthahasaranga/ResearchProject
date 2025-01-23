@@ -8,6 +8,8 @@ const connectDB = require('./src/config/db')
 const lstnRoutes = require('./src/routes/listeningRoutes');
 const qnaRoutes = require('./src/routes/qnaRoutes');
 const categoryRoutes = require('./src/routes/categoryRoutes');
+const lstnScoreRoutes = require('./src/routes/listeningScoreRoutes');
+
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -19,6 +21,7 @@ connectDB();
 app.use('/api/lstn', lstnRoutes);
 app.use('/api/qna', qnaRoutes);
 app.use('/api/ctgry', categoryRoutes);
+app.use('/api/lstnScore', lstnScoreRoutes)
 
 
 
