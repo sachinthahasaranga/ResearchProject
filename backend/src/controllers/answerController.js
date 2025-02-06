@@ -30,3 +30,26 @@ exports.getAnswerById = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+
+// Update Answer
+exports.updateAnswer = async (req, res) => {
+  try {
+    const answer = await Answer.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!answer) return res.status(404).json({ message: "Answer not found" });
+    res.status(200).json(answer);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Delete Answer
+exports.deleteAnswer = async (req, res) => {
+  try {
+    const answer = await Answer.findByIdAndDelete(req.params.id);
+    if (!answer) return res.status(404).json({ message: "Answer not found" });
+    res.status(200).json({ message: "Answer deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

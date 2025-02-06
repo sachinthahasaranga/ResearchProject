@@ -30,3 +30,27 @@ exports.getPaperById = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+
+// Update Paper
+exports.updatePaper = async (req, res) => {
+  try {
+    const paper = await Paper.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!paper) return res.status(404).json({ message: "Paper not found" });
+    res.status(200).json(paper);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Delete Paper
+exports.deletePaper = async (req, res) => {
+  try {
+    const paper = await Paper.findByIdAndDelete(req.params.id);
+    if (!paper) return res.status(404).json({ message: "Paper not found" });
+    res.status(200).json({ message: "Paper deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
