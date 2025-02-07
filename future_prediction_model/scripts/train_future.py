@@ -72,3 +72,4 @@ model.fit(X_train, y_train, epochs=20, batch_size=32, validation_data=(X_test, y
 model_path = os.path.join(os.path.dirname(__file__), "../models/lstm_future_predictor.h5")
 model.save(model_path)
 print("Future Prediction Model Saved Successfully!")
+
