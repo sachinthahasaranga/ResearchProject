@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 import joblib
 
 # Load Dataset
-df = pd.read_csv("../data/student_performance.csv")
+df = pd.read_csv("../data/student_performance2.csv")
 
 # Define Features and Target
 features = ["quiz_scores", "time_spent", "reading_volume", "peer_comparison", "past_performance_trend"]
