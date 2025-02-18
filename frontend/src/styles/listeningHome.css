@@ -1,4 +1,12 @@
 .session-box {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
     filter: grayscale(100%);
     transition: filter 0.5s ease-in-out, transform 0.3s ease-in-out;
   }
@@ -12,6 +20,8 @@
     padding: 10px;
     border-radius: 8px;
     transition: transform 0.3s ease-in-out;
+    text-align: center;
+    color: white;
   }
   
   .session-box:hover .session-content {
