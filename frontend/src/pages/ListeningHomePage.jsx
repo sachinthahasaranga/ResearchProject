@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import mainSessionImage from "../assets/Main_session.jpg"; // Import Main Session Image
-import practiceSessionImage from "../assets/practice_session.jpg"; // Import Practice Session Image
+import mainSessionImage from "../assets/mainSessionJake.jpg"; // Import Main Session Image
+import practiceSessionImage from "../assets/finn_practise.png"; // Import Practice Session Image
 
 const ListeningHomePage = () => {
   const navigate = useNavigate();
