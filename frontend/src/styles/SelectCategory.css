@@ -1,0 +1,31 @@
+/* Container for the cards */
+.category-container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    white-space: nowrap; /* Prevents cards from wrapping to the next line */
+  }
+  
+  /* Wrapper for the cards */
+  .cards-wrapper {
+    display: inline-flex; /* Ensures cards stay in a single row */
+    gap: 16px; /* Adds space between cards */
+  }
+  
+  /* Individual card styling */
+  .card {
+    flex: 0 0 auto; /* Prevents cards from shrinking or growing */
+    width: 200px; /* Fixed width for each card */
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  }
