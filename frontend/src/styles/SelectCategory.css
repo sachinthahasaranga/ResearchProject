@@ -1,6 +1,7 @@
 /* Container for the cards */
 .category-container {
     width: 100%;
+    height: 100vh; /* Full viewport height */
     padding: 20px;
     box-sizing: border-box;
     overflow-x: auto; /* Enables horizontal scrolling */
@@ -11,12 +12,14 @@
   .cards-wrapper {
     display: inline-flex; /* Ensures cards stay in a single row */
     gap: 16px; /* Adds space between cards */
+    height: 100%; /* Full height of the container */
   }
   
   /* Individual card styling */
   .card {
     flex: 0 0 auto; /* Prevents cards from shrinking or growing */
-    width: 200px; /* Fixed width for each card */
+    width: 700px; /* Fixed width for each card */
+    height: 100%; /* Full height of the container */
     padding: 20px;
     box-sizing: border-box;
     text-align: center;
