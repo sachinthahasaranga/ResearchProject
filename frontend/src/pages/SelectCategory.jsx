@@ -9,7 +9,7 @@ const SelectCategory = () => {
     { id: 2, title: 'Conversation', color: '#4ECDC4', description: 'This is the second category.', backgroundImage: 'images/listeningCategories/Conversation.png' },
     { id: 3, title: 'Voice Mail', color: '#FFE66D', description: 'This is the third category.', backgroundImage: 'images/listeningCategories/voiceMail.png' },
     { id: 4, title: 'Story telling', color: '#FF9F1C', description: 'This is the fourth category.', backgroundImage: 'images/listeningCategories/storyTelling.png' },
-    { id: 5, title: 'Giving Instructions', color: '#2EC4B6', description: 'This is the fifth category.', backgroundImage: '../assets/listeningCategories/ironmanLocation.png' },
+    { id: 5, title: 'Giving Instructions', color: '#2EC4B6', description: 'This is the fifth category.', backgroundImage: 'images/listeningCategories/GivingInstructions.png' },
    
   ];
 
