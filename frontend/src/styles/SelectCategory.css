@@ -1,0 +1,82 @@
+/* Container for the cards */
+.category-container {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Prevents cards from wrapping to the next line */
+  display: flex;
+  align-items: center; /* Center cards vertically */
+}
+
+/* Wrapper for the cards */
+.cards-wrapper {
+  display: inline-flex; /* Ensures cards stay in a single row */
+  gap: 16px; /* Adds space between cards */
+  height: 100%; /* Full height of the container */
+  padding-bottom: 20px;
+  scroll-snap-type: x mandatory; /* Smooth scrolling effect */
+}
+
+/* Individual card styling */
+.card {
+  flex: 0 0 auto; /* Prevents cards from shrinking or growing */
+  width: 700px; /* Fixed width for each card */
+  height: 100%; /* Full height of the container */
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Push text to bottom */
+  align-items: center;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  overflow: visible;
+  scroll-snap-align: center; /* Aligns cards properly when scrolling */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Add overlay effect for better text readability */
+.card::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%; /* Dark gradient at bottom */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+}
+
+/* Card text styling */
+.card h2, 
+.card p {
+  position: relative; /* Keeps text above overlay */
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  padding: 10px;
+  border-radius: 5px;
+  width: 90%;
+  text-align: center;
+}
+
+/* Smooth horizontal scrolling */
+.category-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.category-container::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+.category-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Hover Effect */
+.card:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
