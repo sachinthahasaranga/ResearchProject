@@ -24,7 +24,7 @@ const ListeningHomePage = () => {
       <div
         className="session-box"
         style={{ backgroundImage: `url(${practiceSessionImage})` }}
-        onClick={() => navigate("/practice-session")}
+        onClick={() => navigate("/SelectListeningCategory")} // Updated navigation path
       >
         <div className="session-content">
           <h2>Practice Session</h2>
