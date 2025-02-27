@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const categorySchema = new mongoose.Schema(
   {
+    _id: mongoose.Schema.Types.ObjectId, // Explicitly defining _id
     categoryName: {
       type: String,
       required: true,
@@ -24,7 +25,7 @@ const categorySchema = new mongoose.Schema(
       trim: true,
     }
   },
-  { timestamps: true } // Adds createdAt and updatedAt fields automatically
+  { timestamps: true, _id: true } // Ensuring _id is included
 );
 
 module.exports = mongoose.model('Category', categorySchema);
