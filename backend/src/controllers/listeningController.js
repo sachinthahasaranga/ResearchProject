@@ -3,8 +3,8 @@ const Listening = require('../models/listeningModel');
 // Create a new listening
 exports.createListening = async (req, res) => {
     try {
-        const { audio, difficultyLevel, mainSession, QnA, category } = req.body;
-        const listening = new Listening({ audio, difficultyLevel, mainSession, QnA, category });
+        const { name, audio, difficultyLevel, mainSession, QnA, category } = req.body;
+        const listening = new Listening({ name, audio, difficultyLevel, mainSession, QnA, category });
         const savedListening = await listening.save();
         res.status(201).json(savedListening);
     } catch (error) {
@@ -86,10 +86,10 @@ exports.getListeningsByCategoryAndDifficulty = async (req, res) => {
 // Update a listening
 exports.updateListening = async (req, res) => {
     try {
-        const { audio, difficultyLevel, mainSession, QnA, category } = req.body;
+        const { name, audio, difficultyLevel, mainSession, QnA, category } = req.body;
         const updatedListening = await Listening.findByIdAndUpdate(
             req.params.id,
-            { audio, difficultyLevel, mainSession, QnA, category },
+            { name, audio, difficultyLevel, mainSession, QnA, category },
             { new: true, runValidators: true }
         );
         if (!updatedListening) {

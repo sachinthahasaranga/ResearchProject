@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 // Define the listening schema
 const listeningSchema = new Schema({
+    name: {
+        type: String, // Store the name of the listening
+        required: true,
+    },
     audio: {
         type: String, // Store the audio file path or URL
         required: true,
@@ -22,13 +26,11 @@ const listeningSchema = new Schema({
             required: true,
         }
     ],
-    category: 
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Category', // Assuming a Category model exists
-            required: true,
-        },
-    
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category', // Assuming a Category model exists
+        required: true,
+    },
 }, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
 
 // Create and export the listening model
