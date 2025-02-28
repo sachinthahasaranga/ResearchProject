@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
-import '../styles/SelectCategory.css'; // Import the CSS file for styling
+import '../styles/SelectCategory.css';
 
 const SelectCategory = () => {
-    const [categories, setCategories] = useState([]); // State to store categories
+    const [categories, setCategories] = useState([]); 
+    const navigate = useNavigate(); // Initialize navigation
 
-    // Fetch categories from API
     useEffect(() => {
-        axios.get('http://localhost:3000/api/ctgry') // Ensure this matches your backend route
+        axios.get('http://localhost:3000/api/ctgry')
             .then(response => setCategories(response.data))
             .catch(error => console.error('Error fetching categories:', error));
     }, []);
@@ -21,10 +22,12 @@ const SelectCategory = () => {
                         <div
                             key={category._id}
                             className="card"
+                            onClick={() => navigate(`/SelectListenings/${category._id}`)} // Navigate with category _id
                             style={{
                                 backgroundImage: `url(/images/listeningCategories/${category.backgroundImage})`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
+                                cursor: 'pointer' // Make it clickable
                             }}
                         >
                             <h2>{category.callingName}</h2>
