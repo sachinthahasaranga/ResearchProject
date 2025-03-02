@@ -4,15 +4,24 @@ const Schema = mongoose.Schema;
 // Define the Category schema
 const categorySchema = new Schema({
     categoryName: {
-        type: String, // Name of the category
+        type: String, 
         required: true,
         unique: true, // Ensures category names are unique
         trim: true, // Removes extra spaces
     },
-    callingName:{
-        type: String, // Name of the category
+    callingName: {
+        type: String, 
         required: true,
-        
+        trim: true
+    },
+    description: {
+        type: String, 
+        required: true,
+        trim: true
+    },
+    backgroundImage: {
+        type: String, // URL to an image
+        default: "" // Optional: Set a default value if needed
     }
 }, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
 

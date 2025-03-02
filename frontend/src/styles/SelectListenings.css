@@ -1,0 +1,63 @@
+/* Make the container full screen */
+.listening-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content vertically */
+  width: 100vw;
+  height: 100vh;
+  background-color: #f8f9fa;
+  padding: 20px;
+  box-sizing: border-box; /* Ensure padding doesn't exceed viewport size */
+}
+
+/* Title styling */
+.listening-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+/* Ensure only the cards section scrolls and takes full screen width */
+.listening-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center cards horizontally */
+  gap: 15px;
+  width: 100vw; /* Take full screen width */
+  height: 80vh; /* Occupy most of the screen height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Hide scrollbar for Webkit (Chrome, Safari) */
+.listening-cards-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.listening-cards-wrapper {
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* For Internet Explorer */
+}
+
+/* Card styles */
+.listening-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  width: 90%; /* Adjust width of cards */
+  max-width: 800px; /* Ensure it doesn't stretch too much */
+  text-align: center; /* Align text inside the card */
+}
+
+.listening-card:hover {
+  transform: scale(1.05);
+}
