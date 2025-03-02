@@ -14,7 +14,7 @@
 .cards-wrapper {
   display: inline-flex; /* Ensures cards stay in a single row */
   gap: 16px; /* Adds space between cards */
-  height: 100%; /* Full height of the container */
+  height: 83%; /* Full height of the container */
   padding-bottom: 20px;
   scroll-snap-type: x mandatory; /* Smooth scrolling effect */
 }
