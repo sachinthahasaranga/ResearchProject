@@ -12,6 +12,7 @@ router.post("/predict", async (req, res) => {
   const scriptPath = path.resolve(__dirname, "../../../predictive_model/scripts");
 
   let options = {
+    pythonPath: "python",
     scriptPath: scriptPath,
     args: [quiz_scores, time_spent, reading_volume, peer_comparison, past_performance_trend]
   };
