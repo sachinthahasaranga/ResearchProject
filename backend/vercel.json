@@ -11,5 +11,6 @@
       "src": "/(.*)",
       "dest": "/server.js"
     }
-  ]
+  ],
+  "buildCommand": "apt-get update && apt-get install -y python3"
 }
