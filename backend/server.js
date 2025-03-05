@@ -34,9 +34,7 @@ app.use('/api/qna', qnaRoutes);
 app.use('/api/ctgry', categoryRoutes);
 app.use('/api/lstnScore', lstnScoreRoutes)
 
-// app.use("/api/papers", paperRoutes);
-// app.use("/api/questions", questionRoutes);
-// app.use("/api/answers", answerRoutes);
+//sachintha
 app.use("/api/users", userRoutes);
 app.use("/api/difficulty-levels", difficultyLevelRoutes);
 app.use("/api/user-roles", userRoleRoutes);

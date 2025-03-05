@@ -1,23 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const qnaController = require('../controllers/qnaConteoller'); // Adjust the path as necessary
+const qnaController = require('../controllers/qnaConteoller');
+const authMiddleware = require("../middleware/authMiddleware");
 
 // Route to create a new QnA
-router.post('/', qnaController.createQnA);
+router.post('/', authMiddleware, qnaController.createQnA);
 
 // Route to get all QnAs
-router.get('/', qnaController.getAllQnAs);
+router.get('/', authMiddleware, qnaController.getAllQnAs);
 
 // Route to get a QnA by ID
-router.get('/:id', qnaController.getQnAById);
+router.get('/:id', authMiddleware, qnaController.getQnAById);
 
 // Route to update a QnA
-router.put('/:id', qnaController.updateQnA);
+router.put('/:id', authMiddleware, qnaController.updateQnA);
 
 // Route to delete a QnA
-router.delete('/:id', qnaController.deleteQnA);
+router.delete('/:id', authMiddleware, qnaController.deleteQnA);
 
 //check Similarity
-router.post('/check-similarity', qnaController.getSimilarity);
+router.post('/check-similarity', authMiddleware, qnaController.getSimilarity);
 
 module.exports = router;
