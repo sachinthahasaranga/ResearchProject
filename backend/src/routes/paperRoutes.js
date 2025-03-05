@@ -1,12 +1,13 @@
 const express = require("express");
-const { createPaper, getPapers, getPaperById, updatePaper, deletePaper } = require("../controllers/paperController");
-
 const router = express.Router();
+const paperController = require("../controllers/paperController");
+const authMiddleware = require("../middleware/authMiddleware"); 
 
-router.post("/", createPaper);
-router.get("/", getPapers);
-router.get("/:id", getPaperById);
-router.put("/:id", updatePaper);
-router.delete("/:id", deletePaper);
+
+router.post("/", authMiddleware, paperController.createPaper);
+router.get("/", authMiddleware, paperController.getPapers);
+router.get("/:id", authMiddleware, paperController.getPaperById);
+router.put("/:id", authMiddleware, paperController.updatePaper);
+router.delete("/:id", authMiddleware, paperController.deletePaper);
 
 module.exports = router;

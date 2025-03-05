@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -5,14 +6,18 @@ require('dotenv').config();
 
 const connectDB = require('./src/config/db')
 
+const authRoutes = require('./src/routes/authRoutes');
+
 const lstnRoutes = require('./src/routes/listeningRoutes');
 const qnaRoutes = require('./src/routes/qnaRoutes');
 const categoryRoutes = require('./src/routes/categoryRoutes');
 const lstnScoreRoutes = require('./src/routes/listeningScoreRoutes');
 
+const userRoutes = require('./src/routes/userRoutes');
+const difficultyLevelRoutes = require("./src/routes/difficultyLevelRoutes");
+const userRoleRoutes = require("./src/routes/userRoleRoutes");
 const paperRoutes = require("./src/routes/paperRoutes");
-const questionRoutes = require("./src/routes/questionRoutes");
-const answerRoutes = require("./src/routes/answerRoutes");
+const questionTitleRoutes = require("./src/routes/questionTitleRoutes");
 
 const predictRoutes = require("./src/routes/predictRoutes");
 
@@ -23,15 +28,20 @@ app.use(cors());
 
 connectDB();
 
+app.use("/api/auth", authRoutes);
+
 // Routes
 app.use('/api/lstn', lstnRoutes);
 app.use('/api/qna', qnaRoutes);
 app.use('/api/ctgry', categoryRoutes);
 app.use('/api/lstnScore', lstnScoreRoutes)
 
+//sachintha
+app.use("/api/users", userRoutes);
+app.use("/api/difficulty-levels", difficultyLevelRoutes);
+app.use("/api/user-roles", userRoleRoutes);
 app.use("/api/papers", paperRoutes);
-app.use("/api/questions", questionRoutes);
-app.use("/api/answers", answerRoutes);
+app.use("/api/question-titles", questionTitleRoutes);
 
 app.use("/api/prediction", predictRoutes);
 
