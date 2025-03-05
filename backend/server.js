@@ -1,4 +1,3 @@
-
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -18,6 +17,10 @@ const difficultyLevelRoutes = require("./src/routes/difficultyLevelRoutes");
 const userRoleRoutes = require("./src/routes/userRoleRoutes");
 const paperRoutes = require("./src/routes/paperRoutes");
 const questionTitleRoutes = require("./src/routes/questionTitleRoutes");
+const questionRoutes = require("./src/routes/questionRoutes");
+const studentPerformanceRoutes = require("./src/routes/studentPerformanceRoutes");
+const studentPerformanceHistoryRoutes = require("./src/routes/studentPerformanceHistoryRoutes");
+
 
 const predictRoutes = require("./src/routes/predictRoutes");
 
@@ -42,6 +45,9 @@ app.use("/api/difficulty-levels", difficultyLevelRoutes);
 app.use("/api/user-roles", userRoleRoutes);
 app.use("/api/papers", paperRoutes);
 app.use("/api/question-titles", questionTitleRoutes);
+app.use("/api/questions", questionRoutes);
+app.use("/api/student-performance", studentPerformanceRoutes);
+app.use("/api/student-performance-history", studentPerformanceHistoryRoutes);
 
 app.use("/api/prediction", predictRoutes);
 
