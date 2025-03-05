@@ -16,6 +16,8 @@ const lstnScoreRoutes = require('./src/routes/listeningScoreRoutes');
 const userRoutes = require('./src/routes/userRoutes');
 const difficultyLevelRoutes = require("./src/routes/difficultyLevelRoutes");
 const userRoleRoutes = require("./src/routes/userRoleRoutes");
+const paperRoutes = require("./src/routes/paperRoutes");
+const questionTitleRoutes = require("./src/routes/questionTitleRoutes");
 
 const predictRoutes = require("./src/routes/predictRoutes");
 
@@ -38,6 +40,8 @@ app.use('/api/lstnScore', lstnScoreRoutes)
 app.use("/api/users", userRoutes);
 app.use("/api/difficulty-levels", difficultyLevelRoutes);
 app.use("/api/user-roles", userRoleRoutes);
+app.use("/api/papers", paperRoutes);
+app.use("/api/question-titles", questionTitleRoutes);
 
 app.use("/api/prediction", predictRoutes);
 
