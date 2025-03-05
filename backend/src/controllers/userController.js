@@ -1,36 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
-// Create User
-// exports.createUser = async (req, res) => {
-//     try {
-//         const { username, email, password, firstName, lastName, age, phoneNumber, difficultyLevel, status } = req.body;
-
-//         // Check if username or email already exists
-//         const existingUser = await User.findOne({ $or: [{ username }, { email }] });
-//         if (existingUser) return res.status(400).json({ message: "Username or Email already exists." });
-
-//         // Hash password
-//         const hashedPassword = await bcrypt.hash(password, 10);
-
-//         const newUser = new User({
-//             username,
-//             email,
-//             password: hashedPassword,
-//             firstName,
-//             lastName,
-//             age,
-//             phoneNumber,
-//             difficultyLevel,
-//             status
-//         });
-
-//         await newUser.save();
-//         res.status(201).json({ message: "User created successfully!" });
-//     } catch (error) {
-//         res.status(500).json({ message: "Error creating user", error });
-//     }
-// };
 
 // Get all users
 exports.getUsers = async (req, res) => {
