@@ -1,29 +1,30 @@
 const express = require('express');
 const router = express.Router();
 const listeningController = require('../controllers/listeningController');
+const authMiddleware = require("../middleware/authMiddleware");
 
 // Route to create a new listening
-router.post('/', listeningController.createListening);
+router.post('/', authMiddleware, listeningController.createListening);
 
 // Route to get all listenings
-router.get('/', listeningController.getAllListenings);
+router.get('/', authMiddleware, listeningController.getAllListenings);
 
 // Route to get a listening by ID
-router.get('/:id', listeningController.getListeningById);
+router.get('/:id', authMiddleware, listeningController.getListeningById);
 
 // Route to get listenings by category ID
-router.get('/category/:categoryId', listeningController.getListeningsByCategory);
+router.get('/category/:categoryId', authMiddleware, listeningController.getListeningsByCategory);
 
 // Route to get listenings by difficulty level
-router.get('/difficulty/:difficultyLevel', listeningController.getListeningsByDifficulty);
+router.get('/difficulty/:difficultyLevel', authMiddleware, listeningController.getListeningsByDifficulty);
 
 // Route to get listenings by category ID and difficulty level
-router.get('/category/:categoryId/difficulty/:difficultyLevel', listeningController.getListeningsByCategoryAndDifficulty);
+router.get('/category/:categoryId/difficulty/:difficultyLevel', authMiddleware, listeningController.getListeningsByCategoryAndDifficulty);
 
 // Route to update a listening
-router.put('/:id', listeningController.updateListening);
+router.put('/:id', authMiddleware, listeningController.updateListening);
 
 // Route to delete a listening
-router.delete('/:id', listeningController.deleteListening);
+router.delete('/:id', authMiddleware, listeningController.deleteListening);
 
 module.exports = router;
