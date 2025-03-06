@@ -12,7 +12,8 @@ const listeningSchema = new Schema({
         required: true,
     },
     difficultyLevel: {
-        type: Number, // Integer for difficulty level
+        type: mongoose.Schema.Types.ObjectId, // Reference to DifficultyLevel model
+        ref: 'DifficultyLevel',
         required: true,
     },
     mainSession: {
