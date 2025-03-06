@@ -15,11 +15,11 @@ router.get('/:id', authMiddleware, listeningController.getListeningById);
 // Route to get listenings by category ID
 router.get('/category/:categoryId', authMiddleware, listeningController.getListeningsByCategory);
 
-// Route to get listenings by difficulty level
-router.get('/difficulty/:difficultyLevel', authMiddleware, listeningController.getListeningsByDifficulty);
+// Route to get listenings by difficulty level (Updated route to use difficultyLevelId)
+router.get('/difficulty/:difficultyLevelId', authMiddleware, listeningController.getListeningsByDifficulty);
 
-// Route to get listenings by category ID and difficulty level
-router.get('/category/:categoryId/difficulty/:difficultyLevel', authMiddleware, listeningController.getListeningsByCategoryAndDifficulty);
+// Route to get listenings by category ID and difficulty level (Updated route to use difficultyLevelId)
+router.get('/category/:categoryId/difficulty/:difficultyLevelId', authMiddleware, listeningController.getListeningsByCategoryAndDifficulty);
 
 // Route to update a listening
 router.put('/:id', authMiddleware, listeningController.updateListening);
