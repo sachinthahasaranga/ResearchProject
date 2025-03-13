@@ -14,10 +14,15 @@ const SelectListenings = () => {
 
   return (
     <div className="listening-container">
-      <h1 className="listening-title">Select a Listening</h1>
+      <h1>Select a Listening</h1>
       <div className="listening-cards-wrapper">
         {listenings.map((listening) => (
           <div key={listening.id} className="listening-card">
+            <img 
+              src={`/images/listeningCard/${listening.id}.png`} 
+              alt={listening.title} 
+              className="listening-card-image"
+            />
             <h2>{listening.title}</h2>
             <p>{listening.description}</p>
           </div>

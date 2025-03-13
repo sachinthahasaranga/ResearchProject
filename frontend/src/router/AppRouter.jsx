@@ -11,7 +11,7 @@ const AppRouter = () => {
         <Route path="/" element={<App />} />
         <Route path="/listening" element={<ListeningHomePage />} />
         <Route path="/SelectListeningCategory" element={<SelectCategory />} />
-        <Route path="/SelectListenings/:categoryId" element={<SelectListenings />} /> 
+        <Route path="/SelectListenings" element={<SelectListenings />} /> 
         {/* Modified to accept categoryId */}
       </Routes>
     </Router>

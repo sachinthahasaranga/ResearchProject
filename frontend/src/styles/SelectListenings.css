@@ -1,20 +1,30 @@
+/* Prevent body-level horizontal scrolling */
+body {
+  overflow-x: hidden; /* Ensures no horizontal scrolling */
+  margin: 0;
+  padding: 0;
+}
+
 /* Make the container full screen */
 .listening-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center content vertically */
-  width: 100vw;
+  justify-content: center;
+  width: 100vw; /* Ensure it takes full screen width */
+  min-width: 100vw; /* Prevent shrinking */
   height: 100vh;
   background-color: #f8f9fa;
   padding: 20px;
-  box-sizing: border-box; /* Ensure padding doesn't exceed viewport size */
+  box-sizing: border-box;
+  overflow-x: hidden; /* Ensure no horizontal scrolling */
 }
 
 /* Title styling */
-.listening-title {
-  font-size: 24px;
-  margin-bottom: 20px;
+.listening-container h1 {
+  font-size: 36px; /* Increased font size */
+  font-weight: bold; /* Make it bold */
+  margin-bottom: 30px; /* Increase spacing below title */
   color: #333;
   text-align: center;
 }
@@ -23,10 +33,11 @@
 .listening-cards-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center cards horizontally */
+  align-items: center;
   gap: 15px;
-  width: 100vw; /* Take full screen width */
-  height: 80vh; /* Occupy most of the screen height */
+  width: 100vw; /* Prevents shrinking */
+  max-width: 100vw; /* Ensures no overflow */
+  height: 80vh;
   overflow-y: auto; /* Enable vertical scrolling */
   background: white;
   border-radius: 10px;
@@ -43,7 +54,7 @@
 /* Hide scrollbar for Firefox */
 .listening-cards-wrapper {
   scrollbar-width: none;
-  -ms-overflow-style: none; /* For Internet Explorer */
+  -ms-overflow-style: none;
 }
 
 /* Card styles */
@@ -53,9 +64,9 @@
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
-  width: 90%; /* Adjust width of cards */
-  max-width: 800px; /* Ensure it doesn't stretch too much */
-  text-align: center; /* Align text inside the card */
+  width: 90%; /* Allows responsiveness */
+  max-width: 800px; /* Prevents stretching too much */
+  text-align: center;
 }
 
 .listening-card:hover {
