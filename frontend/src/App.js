@@ -1,9 +1,9 @@
-
-import {BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'swiper/css';
 
-
 import ScrollToTop from "./component/layout/ScrollToTop";
+import ProtectedRoute from "./ProtectedRoute"; 
+
 import ErrorPage from "./page/404";
 import AboutPage from "./page/about";
 import BlogPage from "./page/blog";
@@ -33,44 +33,49 @@ import SignupPage from "./page/signup";
 import TeamPage from "./page/team";
 import TeamSingle from "./page/team-single";
 
-
-
 function App() {
-	return (
-		<BrowserRouter>
-			<ScrollToTop />
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="index-2" element={<HomeTwo />} />
-				<Route path="index-3" element={<HomeThree />} />
-				<Route path="index-4" element={<HomeFour />} />
-				<Route path="index-5" element={<HomeFive />} />
-				<Route path="index-6" element={<HomeSix />} />
-				<Route path="index-7" element={<HomeSeven />} />
-				<Route path="course" element={<CoursePage />} />
-				<Route path="course-single" element={<CourseSingle />} />
-				<Route path="course-view" element={<CourseView />} />
-				<Route path="blog" element={<BlogPage />} />
-				<Route path="blog-2" element={<BlogPageTwo />} />
-				<Route path="blog-3" element={<BlogPageThree />} />
-				<Route path="blog-single" element={<BlogSingle />} />
-				<Route path="about" element={<AboutPage />} />
-				<Route path="team" element={<TeamPage />} />
-				<Route path="team-single" element={<TeamSingle />} />
-				<Route path="instructor" element={<InstructorPage />} />
-				<Route path="shop" element={<ShopPage />} />
-				<Route path="shop-single" element={<ShopDetails />} />
-				<Route path="cart-page" element={<CartPage />} />
-				<Route path="search-page" element={<SearchPage />} />
-				<Route path="search-none" element={<SearchNone />} />
-				<Route path="contact" element={<ContactPage />} />
-				<Route path="login" element={<LoginPage />} />
-				<Route path="signup" element={<SignupPage />} />
-				<Route path="forgetpass" element={<ForgetPass />} />
-				<Route path="*" element={<ErrorPage />} />
-			</Routes>
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Routes>
+        {/* Public Routes */}
+        <Route path="login" element={<LoginPage />} />
+        <Route path="signup" element={<SignupPage />} />
+        <Route path="forgetpass" element={<ForgetPass />} />
+
+        {/* Protected Routes: Requires Login */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<Home />} />
+          <Route path="index-2" element={<HomeTwo />} />
+          <Route path="index-3" element={<HomeThree />} />
+          <Route path="index-4" element={<HomeFour />} />
+          <Route path="index-5" element={<HomeFive />} />
+          <Route path="index-6" element={<HomeSix />} />
+          <Route path="index-7" element={<HomeSeven />} />
+          <Route path="course" element={<CoursePage />} />
+          <Route path="course-single" element={<CourseSingle />} />
+          <Route path="course-view/:id" element={<CourseView />} />
+          <Route path="blog" element={<BlogPage />} />
+          <Route path="blog-2" element={<BlogPageTwo />} />
+          <Route path="blog-3" element={<BlogPageThree />} />
+          <Route path="blog-single" element={<BlogSingle />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="team" element={<TeamPage />} />
+          <Route path="team-single" element={<TeamSingle />} />
+          <Route path="instructor" element={<InstructorPage />} />
+          <Route path="shop" element={<ShopPage />} />
+          <Route path="shop-single" element={<ShopDetails />} />
+          <Route path="cart-page" element={<CartPage />} />
+          <Route path="search-page" element={<SearchPage />} />
+          <Route path="search-none" element={<SearchNone />} />
+          <Route path="contact" element={<ContactPage />} />
+        </Route>
+
+        {/* 404 Page */}
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

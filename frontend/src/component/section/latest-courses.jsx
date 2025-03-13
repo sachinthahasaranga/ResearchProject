@@ -1,99 +1,30 @@
-
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Rating from "../sidebar/rating";
+import apiClient from "../../api";
+import "../../assets/css/LatestCourse.css";
 
-const subTitle = "Featured Courses";
-const title = "Pick A Course To Get Started";
-
-
-const courseList = [
-    {
-        imgUrl: 'assets/images/course/01.jpg',
-        imgAlt: 'course rajibraj91 rajibraj',
-        price: '$30',
-        cate: 'Adobe XD',
-        reviewCount: '03 reviews',
-        title: 'Fundamentals of Adobe XD Theory Learn New',
-        totalLeson: '18x Lesson',
-        schdule: 'Online Class',
-        authorImgUrl: 'assets/images/course/author/01.jpg',
-        authorImgAlt: 'course author rajibraj91 rajibraj',
-        authorName: 'William Smith',
-        btnText: 'Read More',
-    },
-    {
-        imgUrl: 'assets/images/course/02.jpg',
-        imgAlt: 'course rajibraj91 rajibraj',
-        price: '$30',
-        cate: 'Adobe XD',
-        reviewCount: '03 reviews',
-        title: 'Certified Graphic Design with Free Project Course',
-        totalLeson: '18x Lesson',
-        schdule: 'Online Class',
-        authorImgUrl: 'assets/images/course/author/02.jpg',
-        authorImgAlt: 'course author rajibraj91 rajibraj',
-        authorName: 'Lora Smith',
-        btnText: 'Read More',
-    },
-    {
-        imgUrl: 'assets/images/course/03.jpg',
-        imgAlt: 'course rajibraj91 rajibraj',
-        price: '$30',
-        cate: 'Adobe XD',
-        reviewCount: '03 reviews',
-        title: 'Theory Learn New Student And Fundamentals',
-        totalLeson: '18x Lesson',
-        schdule: 'Online Class',
-        authorImgUrl: 'assets/images/course/author/03.jpg',
-        authorImgAlt: 'course author rajibraj91 rajibraj',
-        authorName: 'Robot Smith',
-        btnText: 'Read More',
-    },
-    {
-        imgUrl: 'assets/images/course/04.jpg',
-        imgAlt: 'course rajibraj91 rajibraj',
-        price: '$30',
-        cate: 'Adobe XD',
-        reviewCount: '03 reviews',
-        title: 'Computer Fundamentals Basic Startup Ultricies Vitae',
-        totalLeson: '18x Lesson',
-        schdule: 'Online Class',
-        authorImgUrl: 'assets/images/course/author/04.jpg',
-        authorImgAlt: 'course author rajibraj91 rajibraj',
-        authorName: 'Zinat Zaara',
-        btnText: 'Read More',
-    },
-    {
-        imgUrl: 'assets/images/course/05.jpg',
-        imgAlt: 'course rajibraj91 rajibraj',
-        price: '$30',
-        cate: 'Adobe XD',
-        reviewCount: '03 reviews',
-        title: 'Boozy Halloween Drinks for the Grown Eleifend Kuismod',
-        totalLeson: '18x Lesson',
-        schdule: 'Online Class',
-        authorImgUrl: 'assets/images/course/author/05.jpg',
-        authorImgAlt: 'course author rajibraj91 rajibraj',
-        authorName: 'Rajib Raj',
-        btnText: 'Read More',
-    },
-    {
-        imgUrl: 'assets/images/course/06.jpg',
-        imgAlt: 'course rajibraj91 rajibraj',
-        price: '$30',
-        cate: 'Adobe XD',
-        reviewCount: '03 reviews',
-        title: 'Student Want to Learn About Science And Arts',
-        totalLeson: '18x Lesson',
-        schdule: 'Online Class',
-        authorImgUrl: 'assets/images/course/author/06.jpg',
-        authorImgAlt: 'course author rajibraj91 rajibraj',
-        authorName: 'Angel Mili',
-        btnText: 'Read More',
-    },
-]
+const subTitle = "Featured Video Lectures";
+const title = "Latest Video Lectures";
 
 const LatestCourse = () => {
+    const [videoLectures, setVideoLectures] = useState([]);
+
+    // Fetch latest 6 video lectures
+    useEffect(() => {
+        const fetchVideoLectures = async () => {
+            try {
+                const response = await apiClient.get("/api/video-lectures");
+                const latestVideos = response.data.slice(-6).reverse();
+                setVideoLectures(latestVideos);
+            } catch (error) {
+                console.error("Error fetching video lectures:", error);
+            }
+        };
+
+        fetchVideoLectures();
+    }, []);
+
     return (
         <div className="course-section padding-tb section-bg">
             <div className="container">
@@ -103,36 +34,45 @@ const LatestCourse = () => {
                 </div>
                 <div className="section-wrapper">
                     <div className="row g-4 justify-content-center row-cols-xl-3 row-cols-md-2 row-cols-1">
-                        {courseList.map((val, i) => (
-                            <div className="col" key={i}>
+                        {videoLectures.map((lecture) => (
+                            <div className="col" key={lecture._id}>
                                 <div className="course-item">
                                     <div className="course-inner">
                                         <div className="course-thumb">
-                                            <img src={`${val.imgUrl}`} alt={`${val.imgAlt}`} />
+                                            <img src={lecture.imgUrl} alt={lecture.lectureTitle} />
                                         </div>
                                         <div className="course-content">
-                                            <div className="course-price">{val.price}</div>
                                             <div className="course-category">
                                                 <div className="course-cate">
-                                                    <a href="#">{val.cate}</a>
+                                                    <span>{lecture.categoryId?.categoryName || "Uncategorized"}</span>
                                                 </div>
                                                 <div className="course-reiew">
                                                     <Rating />
-                                                    <span className="ratting-count"> {val.reviewCount}</span>
+                                                    <span className="ratting-count"> 0 reviews</span>
                                                 </div>
                                             </div>
-                                            <Link to="/course-single"><h4>{val.title}</h4></Link>
+                                            <Link to={`/course-single/${lecture._id}`}>
+                                                <h4>{lecture.lectureTitle}</h4>
+                                            </Link>
                                             <div className="course-details">
-                                                <div className="couse-count"><i className="icofont-video-alt"></i> {val.totalLeson}</div>
-                                                <div className="couse-topic"><i className="icofont-signal"></i> {val.schdule}</div>
+                                                <div className="couse-count">
+                                                    <i className="icofont-video-alt"></i> {lecture.totalTime} mins
+                                                </div>
+                                                <div className="couse-topic">
+                                                    <i className="icofont-signal"></i> {lecture.categoryId.categoryName}
+                                                </div>
                                             </div>
                                             <div className="course-footer">
                                                 <div className="course-author">
-                                                    <img src={`${val.authorImgUrl}`} alt={`${val.authorImgAlt}`} />
-                                                    <Link to="/team-single" className="ca-name">{val.authorName}</Link>
+                                                    
+                                                    <Link to="/team-single" className="ca-name">
+                                                        {lecture.createdBy?.username || "Unknown"}
+                                                    </Link>
                                                 </div>
                                                 <div className="course-btn">
-                                                    <Link to="/course-single" className="lab-btn-text">{val.btnText} <i className="icofont-external-link"></i></Link>
+                                                    <Link to={`/course-view/${lecture._id}`} className="lab-btn-text">
+                                                        Read More <i className="icofont-external-link"></i>
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,9 +82,12 @@ const LatestCourse = () => {
                         ))}
                     </div>
                 </div>
+                <div className="text-center mt-5">
+                    <Link to="/course" className="lab-btn"><span>Browse All Lectures</span></Link>
+                </div>
             </div>
         </div>
     );
-}
- 
+};
+
 export default LatestCourse;

@@ -1,33 +1,27 @@
-
-
-
-const subTitle = "About Our Edukon";
-const title = "Good Qualification Services And Better Skills";
-const desc = "Distinctively provide acces mutfuncto users whereas transparent proceses somes ncentivize eficient functionalities rather than extensible archtectur communicate leveraged services and cross-platform.";
-
-
+const subTitle = "Welcome to EnglishHub";
+const title = "Empowering Young Minds to Master English";
+const desc = "A fun and engaging platform designed to help students improve their English skills through personalized AI-driven lessons, future-level predictions, and interactive NLP activities.";
 
 const aboutList = [
     {
         imgUrl: 'assets/images/about/icon/01.jpg',
-        imgAlt: 'about icon rajibraj91 rajibraj',
-        title: 'Skilled Instructors',
-        desc: 'Distinctively provide acces mutfuncto users whereas communicate leveraged services',
+        imgAlt: 'about icon skilled instructors',
+        title: 'Experienced Instructors',
+        desc: 'Our skilled instructors provide personalized learning experiences tailored to each student’s needs, ensuring effective language acquisition at every step.',
     },
-    {
-        imgUrl: 'assets/images/about/icon/02.jpg',
-        imgAlt: 'about icon rajibraj91 rajibraj',
-        title: 'Get Certificate',
-        desc: 'Distinctively provide acces mutfuncto users whereas communicate leveraged services',
-    },
+    // {
+    //     imgUrl: 'assets/images/about/icon/02.jpg',
+    //     imgAlt: 'about icon get certificate',
+    //     title: 'Get Certified',
+    //     desc: 'Receive certificates that demonstrate your progress and English proficiency after completing key learning milestones.',
+    // },
     {
         imgUrl: 'assets/images/about/icon/03.jpg',
-        imgAlt: 'about icon rajibraj91 rajibraj',
-        title: 'Online Classes',
-        desc: 'Distinctively provide acces mutfuncto users whereas communicate leveraged services',
+        imgAlt: 'about icon online classes',
+        title: 'Interactive Online Classes',
+        desc: 'Engage in dynamic online lessons that feature NLP-based listening exercises and AI-driven feedback to improve both speaking and listening skills.',
     },
 ]
-
 
 const About = () => {
     return (

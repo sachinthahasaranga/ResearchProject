@@ -83,3 +83,46 @@ exports.deleteStudentPerformance = async (req, res) => {
         res.status(500).json({ message: "Error deleting student performance", error });
     }
 };
+
+
+exports.getStudentPerformanceByUserId = async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        const studentPerformance = await StudentPerformance.findOne({ userId })
+            .populate("userId", "username email firstName lastName");
+
+        if (!studentPerformance) {
+            return res.status(200).json(null);
+        }
+
+        res.status(200).json(studentPerformance);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching student performance record", error });
+    }
+};
+
+
+exports.updateStudentPerformanceByUserId = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const { totalStudyTime, totalScore, paperCount } = req.body;
+
+        // Calculate the updated average score
+        const averageScore = paperCount > 0 ? totalScore / paperCount : 0;
+
+        const updatedStudentPerformance = await StudentPerformance.findOneAndUpdate(
+            { userId },
+            { totalStudyTime, totalScore, paperCount, averageScore },
+            { new: true }
+        );
+
+        if (!updatedStudentPerformance) {
+            return res.status(404).json({ message: "Student performance record not found" });
+        }
+
+        res.status(200).json({ message: "Student performance updated successfully!", updatedStudentPerformance });
+    } catch (error) {
+        res.status(500).json({ message: "Error updating student performance", error });
+    }
+};
