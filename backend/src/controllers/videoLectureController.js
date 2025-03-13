@@ -3,12 +3,13 @@ const VideoLecture = require("../models/VideoLecture");
 // Create Video Lecture
 exports.createVideoLecture = async (req, res) => {
     try {
-        const { lectureTitle, videoUrl, lectureDescription, categoryId, totalTime, difficultyLevel } = req.body;
+        const { lectureTitle, videoUrl,imgUrl, lectureDescription, categoryId, totalTime, difficultyLevel } = req.body;
         const createdBy = req.user.userId; // Extract from authenticated user
 
         const newLecture = new VideoLecture({
             lectureTitle,
             videoUrl,
+            imgUrl,
             lectureDescription,
             categoryId,
             totalTime,
@@ -52,14 +53,14 @@ exports.getVideoLectureById = async (req, res) => {
     }
 };
 
-// Update Video Lecture
+
 exports.updateVideoLecture = async (req, res) => {
     try {
-        const { lectureTitle, videoUrl, lectureDescription, categoryId, totalTime, difficultyLevel } = req.body;
+        const { lectureTitle, videoUrl,imgUrl, lectureDescription, categoryId, totalTime, difficultyLevel } = req.body;
 
         const updatedLecture = await VideoLecture.findByIdAndUpdate(
             req.params.id,
-            { lectureTitle, videoUrl, lectureDescription, categoryId, totalTime, difficultyLevel },
+            { lectureTitle, videoUrl,imgUrl, lectureDescription, categoryId, totalTime, difficultyLevel },
             { new: true }
         );
 
