@@ -23,7 +23,9 @@ html, body {
   background-attachment: fixed; /* Fixes background during scrolling */
   padding: 0; /* Remove padding */
   margin: 0; /* Remove margin */
-  position: relative; /* Ensure the container is positioned correctly */
+  position: absolute; /* Ensure the container is positioned correctly */
+  top: 0;
+  left: 0;
   overflow: hidden; /* Disable scrollbars for entire container */
 }
 
