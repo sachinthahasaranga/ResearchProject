@@ -13,8 +13,8 @@ const getRandomGradient = () => {
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
-const getRandomImageNumber = () => {
-  return Math.floor(Math.random() * 10) + 1; // Generates a random number between 1 and 10
+const getRandomImageNumber = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min; // Generates a random number between min and max
 };
 
 const SelectListenings = () => {
@@ -27,12 +27,19 @@ const SelectListenings = () => {
     { id: 6, title: 'Listening 6', description: 'Description for listening 6' },
   ];
 
+  const randomBackgroundImageNumber = getRandomImageNumber(1, 6); // Get a random background image number between 1 and 6
+
   return (
-    <div className="listening-container">
+    <div
+      className="listening-container"
+      style={{
+        backgroundImage: `url('/images/background/bg${randomBackgroundImageNumber}.png')`, // Dynamically set background image
+      }}
+    >
       <h1>Select a Listening</h1>
       <div className="listening-cards-wrapper">
         {listenings.map((listening) => {
-          const randomImageNumber = getRandomImageNumber(); // Generate a random image number for each card
+          const randomCardImageNumber = getRandomImageNumber(1, 10); // Generate a random number for each card image between 1 and 10
 
           return (
             <div
@@ -47,8 +54,8 @@ const SelectListenings = () => {
                 </div>
                 <div className="image-section">
                   <img
-                    src={`/images/listeningCard/${randomImageNumber}.png`}
-                    alt={`Listening ${randomImageNumber}`}
+                    src={`/images/listeningCard/${randomCardImageNumber}.png`}
+                    alt={`Listening ${randomCardImageNumber}`}
                   />
                 </div>
               </div>
