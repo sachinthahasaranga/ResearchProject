@@ -77,7 +77,8 @@ const Header = () => {
                         <div className="menu-area">
                             <div className="menu">
                                 <ul className={`lab-ul ${menuToggle ? "active" : ""}`}>
-                                    <li className="menu-item-has-children">
+                                    <li><NavLink to="/">Home</NavLink></li>
+                                    {/* <li className="menu-item-has-children">
                                         <a href="#">Home</a>
                                         <ul className="lab-ul dropdown-menu">
                                             <li><NavLink to="/">Home One</NavLink></li>
@@ -88,7 +89,7 @@ const Header = () => {
                                             <li><NavLink to="/index-6">Home Six</NavLink></li>
                                             <li><NavLink to="/index-7">Home Seven</NavLink></li>
                                         </ul>
-                                    </li>
+                                    </li> */}
                                     <li className="menu-item-has-children">
                                         <a href="#">Courses</a>
                                         <ul className="lab-ul dropdown-menu">

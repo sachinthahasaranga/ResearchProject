@@ -5,7 +5,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 // Routes
 router.post("/", authMiddleware, difficultyLevelController.createDifficultyLevel);
-router.get("/", difficultyLevelController.getDifficultyLevels);
+router.get("/", authMiddleware, difficultyLevelController.getDifficultyLevels);
 router.get("/:id", difficultyLevelController.getDifficultyLevelById);
 router.put("/:id", authMiddleware, difficultyLevelController.updateDifficultyLevel);
 router.delete("/:id", authMiddleware, difficultyLevelController.deleteDifficultyLevel);

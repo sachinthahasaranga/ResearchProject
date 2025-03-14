@@ -5,6 +5,7 @@ const paperSchema = new mongoose.Schema({
     recommendedAge: { type: Number, required: true },
     difficultyLevel: { type: mongoose.Schema.Types.ObjectId, ref: "DifficultyLevel", required: true },
     totalTime: { type: Number, required: true }, // in minutes
+    categoryId: { type: mongoose.Schema.Types.ObjectId, ref: "Category", required: true },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }
 }, { timestamps: true });
 
