@@ -1,52 +1,59 @@
-
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import apiClient from "../../api";
 
 const subTitle = "Popular Category";
-const title = "Popular Category For Learn";
+const title = "Popular Category For Learning";
 const btnText = "Browse All Categories";
 
-
-const categoryList = [
-    {
-        imgUrl: 'assets/images/category/icon/01.jpg',
-        imgAlt: 'category rajibraj91 rajibraj',
-        title: 'English Videos',
-        count: '24 Course',
-    },
-    {
-        imgUrl: 'assets/images/category/icon/02.jpg',
-        imgAlt: 'category rajibraj91 rajibraj',
-        title: 'Listning Activites',
-        count: '04 Course',
-    },
-    {
-        imgUrl: 'assets/images/category/icon/03.jpg',
-        imgAlt: 'category rajibraj91 rajibraj',
-        title: 'English Papers',
-        count: '27 Course',
-    },
-    // {
-    //     imgUrl: 'assets/images/category/icon/04.jpg',
-    //     imgAlt: 'category rajibraj91 rajibraj',
-    //     title: 'Data Science Analytics',
-    //     count: '28 Course',
-    // },
-    // {
-    //     imgUrl: 'assets/images/category/icon/05.jpg',
-    //     imgAlt: 'category rajibraj91 rajibraj',
-    //     title: 'Learning Management',
-    //     count: '78 Course',
-    // },
-    // {
-    //     imgUrl: 'assets/images/category/icon/06.jpg',
-    //     imgAlt: 'category rajibraj91 rajibraj',
-    //     title: 'Computer Engineering',
-    //     count: '38 Course',
-    // },
-]
-
-
 const Category = () => {
+    const [videoLectureCount, setVideoLectureCount] = useState(0);
+    const [paperCount, setPaperCount] = useState(0);
+
+    useEffect(() => {
+        const fetchVideoLectures = async () => {
+            try {
+                const response = await apiClient.get("/api/video-lectures");
+                setVideoLectureCount(response.data.length);
+            } catch (error) {
+                console.error("Error fetching video lectures:", error);
+            }
+        };
+
+        const fetchPapers = async () => {
+            try {
+              const response = await apiClient.get("/api/papers");
+              setPaperCount(response.data.length);
+            } catch (error) {
+                console.error("Error fetching paper count:", error);
+            }
+        };
+
+        fetchVideoLectures();
+        fetchPapers();
+    }, []);
+
+    const categoryList = [
+        {
+            imgUrl: 'assets/images/category/icon/01.jpg',
+            imgAlt: 'category',
+            title: 'English Videos',
+            count: `${videoLectureCount} Videos`, // Dynamic count from API
+        },
+        {
+            imgUrl: 'assets/images/category/icon/02.jpg',
+            imgAlt: 'category',
+            title: 'Listening Activities',
+            count: '04 Course',
+        },
+        {
+            imgUrl: 'assets/images/category/icon/03.jpg',
+            imgAlt: 'category',
+            title: 'English Papers',
+            count: `${paperCount} Papers`,
+        },
+    ];
+
     return (
         <div className="category-section padding-tb">
             <div className="container">
@@ -59,26 +66,30 @@ const Category = () => {
                         {categoryList.map((val, i) => (
                             <div className="col" key={i}>
                                 <div className="category-item text-center">
-                                    <div className="category-inner" style={{minHeight:"280px"}}>
+                                    <div className="category-inner" style={{ minHeight: "280px" }}>
                                         <div className="category-thumb">
                                             <img src={`${val.imgUrl}`} alt={val.imgAlt} />
                                         </div>
                                         <div className="category-content">
-                                            <Link to="/course"><h6>{val.title}</h6></Link>
+                                            <Link to="/course">
+                                                <h6>{val.title}</h6>
+                                            </Link>
                                             <span>{val.count}</span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>  
+                            </div>
                         ))}
                     </div>
                     <div className="text-center mt-5">
-                        <Link to="/course" className="lab-btn"><span>{btnText}</span></Link>
+                        <Link to="/course" className="lab-btn">
+                            <span>{btnText}</span>
+                        </Link>
                     </div>
                 </div>
             </div>
         </div>
     );
-}
- 
+};
+
 export default Category;
