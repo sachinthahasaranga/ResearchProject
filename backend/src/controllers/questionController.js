@@ -79,3 +79,21 @@ exports.deleteQuestion = async (req, res) => {
         res.status(500).json({ message: "Error deleting question", error });
     }
 };
+
+
+exports.getQuestionsByQuestionTitleId = async (req, res) => {
+    try {
+        const { questionTitleId } = req.params;
+
+        const questions = await Question.find({ questionTitleId })
+            .populate("questionTitleId", "title assignMarks")
+            .populate("createdBy", "username email");
+
+        if (!questions || questions.length === 0)
+            return res.status(404).json({ message: "No questions found for this question title." });
+
+        res.status(200).json(questions);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching questions", error });
+    }
+};

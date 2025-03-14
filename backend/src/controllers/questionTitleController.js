@@ -78,3 +78,22 @@ exports.deleteQuestionTitle = async (req, res) => {
         res.status(500).json({ message: "Error deleting question title", error });
     }
 };
+
+
+// Get Question Titles by Paper ID
+exports.getQuestionTitlesByPaper = async (req, res) => {
+    try {
+        const { paperId } = req.params;
+
+        const questionTitles = await QuestionTitle.find({ paper: paperId })
+            .populate("paper", "paperTitle")
+            .populate("createdBy", "username email");
+
+        if (!questionTitles || questionTitles.length === 0)
+            return res.status(404).json({ message: "No question titles found for this paper." });
+
+        res.status(200).json(questionTitles);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching question titles by paper", error });
+    }
+};

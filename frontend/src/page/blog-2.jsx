@@ -10,6 +10,7 @@ import PopularPost from "../component/sidebar/popular-post";
 import PostCategory from "../component/sidebar/post-category";
 import Search from "../component/sidebar/search";
 import Tags from "../component/sidebar/tags";
+import paperimg from "../assets/images/papers/paperimg.jpg"
 
 let blogList = [
     {

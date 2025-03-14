@@ -10,4 +10,6 @@ router.get("/:id", authMiddleware, questionController.getQuestionById);
 router.put("/:id", authMiddleware, questionController.updateQuestion);
 router.delete("/:id", authMiddleware, questionController.deleteQuestion);
 
+router.get("/question-title/:questionTitleId", authMiddleware, questionController.getQuestionsByQuestionTitleId);
+
 module.exports = router;
