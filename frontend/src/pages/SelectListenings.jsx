@@ -13,6 +13,10 @@ const getRandomGradient = () => {
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
+const getRandomImageNumber = () => {
+  return Math.floor(Math.random() * 10) + 1; // Generates a random number between 1 and 10
+};
+
 const SelectListenings = () => {
   const listenings = [
     { id: 1, title: 'Listening 1', description: 'Description for listening 1' },
@@ -27,26 +31,30 @@ const SelectListenings = () => {
     <div className="listening-container">
       <h1>Select a Listening</h1>
       <div className="listening-cards-wrapper">
-        {listenings.map((listening) => (
-          <div
-            key={listening.id}
-            className="listening-card"
-            style={{ background: getRandomGradient() }}
-          >
-            <div className="card-content">
-              <div className="text-section">
-                <h2>{listening.title}</h2>
-                <p>{listening.description}</p>
-              </div>
-              <div className="image-section">
-                <img
-                  src={`/images/listeningCard/${listening.id}.png`}
-                  alt={listening.title}
-                />
+        {listenings.map((listening) => {
+          const randomImageNumber = getRandomImageNumber(); // Generate a random image number for each card
+
+          return (
+            <div
+              key={listening.id}
+              className="listening-card"
+              style={{ background: getRandomGradient() }}
+            >
+              <div className="card-content">
+                <div className="text-section">
+                  <h2>{listening.title}</h2>
+                  <p>{listening.description}</p>
+                </div>
+                <div className="image-section">
+                  <img
+                    src={`/images/listeningCard/${randomImageNumber}.png`}
+                    alt={`Listening ${randomImageNumber}`}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
