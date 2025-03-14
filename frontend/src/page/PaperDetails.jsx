@@ -10,6 +10,9 @@ const PaperDetails = () => {
   const [paper, setPaper] = useState(null);
   const [questionTitles, setQuestionTitles] = useState([]);
   const [questions, setQuestions] = useState({});
+  const [correctAnswers, setCorrectAnswers] = useState({});
+  const [studentAnswers, setStudentAnswers] = useState({});
+  const [evaluationResults, setEvaluationResults] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -29,23 +32,51 @@ const PaperDetails = () => {
       );
       setQuestionTitles(questionTitleResponse.data);
 
-      // Fetch Questions for each Question Title
+      // Fetch Questions for each Question Title and store correct answers
       let questionsData = {};
+      let correctAnswersData = {};
+
       await Promise.all(
         questionTitleResponse.data.map(async (title) => {
           const questionResponse = await apiClient.get(
             `/api/questions/question-title/${title._id}`
           );
           questionsData[title._id] = questionResponse.data;
+
+          // Store correct answers mapped by question ID
+          questionResponse.data.forEach((question) => {
+            correctAnswersData[question._id] = question.answer.trim().toLowerCase();
+          });
         })
       );
 
       setQuestions(questionsData);
+      setCorrectAnswers(correctAnswersData);
       setLoading(false);
     } catch (error) {
       setError("Failed to fetch paper details.");
       setLoading(false);
     }
+  };
+
+  const handleAnswerChange = (questionId, value) => {
+    setStudentAnswers((prev) => ({
+      ...prev,
+      [questionId]: value,
+    }));
+  };
+
+  const submitAnswers = () => {
+    let results = {};
+
+    Object.keys(studentAnswers).forEach((questionId) => {
+      const studentAnswer = studentAnswers[questionId]?.trim().toLowerCase();
+      const correctAnswer = correctAnswers[questionId];
+
+      results[questionId] = studentAnswer === correctAnswer;
+    });
+
+    setEvaluationResults(results);
   };
 
   return (
@@ -80,10 +111,22 @@ const PaperDetails = () => {
                     <ul className="question-list">
                       {questions[title._id] && questions[title._id].length > 0 ? (
                         questions[title._id].map((question, qIndex) => (
-                          <li key={question._id}>
+                          <li key={question._id} className="mb-3">
                             <p>
                               <strong>Q{qIndex + 1}:</strong> {question.questionTitle}
                             </p>
+                            <input
+                              type="text"
+                              className="form-control"
+                              placeholder="Enter your answer..."
+                              value={studentAnswers[question._id] || ""}
+                              onChange={(e) => handleAnswerChange(question._id, e.target.value)}
+                            />
+                            {evaluationResults[question._id] !== undefined && (
+                              <p className={evaluationResults[question._id] ? "text-success" : "text-danger"}>
+                                {evaluationResults[question._id] ? "Correct ✅" : "Incorrect ❌"}
+                              </p>
+                            )}
                           </li>
                         ))
                       ) : (
@@ -92,6 +135,13 @@ const PaperDetails = () => {
                     </ul>
                   </div>
                 ))}
+              </div>
+
+              {/* Submit Button */}
+              <div className="text-center mt-4">
+                <button className="btn btn-primary" onClick={submitAnswers}>
+                  Submit Answers
+                </button>
               </div>
             </div>
           )}
