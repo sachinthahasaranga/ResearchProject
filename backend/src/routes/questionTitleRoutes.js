@@ -9,4 +9,6 @@ router.get("/:id", authMiddleware, questionTitleController.getQuestionTitleById)
 router.put("/:id", authMiddleware, questionTitleController.updateQuestionTitle);
 router.delete("/:id", authMiddleware, questionTitleController.deleteQuestionTitle);
 
+router.get("/paper/:paperId", authMiddleware, questionTitleController.getQuestionTitlesByPaper);
+
 module.exports = router;

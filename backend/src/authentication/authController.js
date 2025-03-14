@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const UserRole = require("../models/UserRole");
 
 const generateToken = (userId) => {
     return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: "7d" });
@@ -9,11 +10,16 @@ const generateToken = (userId) => {
 // Register User
 const registerUser = async (req, res) => {
     try {
-        const { username, email, password, firstName, lastName, age, phoneNumber, difficultyLevel, role, status } = req.body;
+        const { username, email, password, firstName, lastName, age, phoneNumber, difficultyLevel, status } = req.body;
 
         const existingUser = await User.findOne({ $or: [{ username }, { email }] });
         if (existingUser) {
             return res.status(400).json({ message: "Username or Email already exists" });
+        }
+
+        const userRole = await UserRole.findOne({ name: "User" });
+        if (!userRole) {
+            return res.status(500).json({ message: "Role 'User' not found. Please add it to the database." });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -27,7 +33,7 @@ const registerUser = async (req, res) => {
             age,
             phoneNumber,
             difficultyLevel,
-            role,
+            role: userRole._id,
             status
         });
 

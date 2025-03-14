@@ -9,4 +9,7 @@ router.get("/:id", authMiddleware, studentPerformanceController.getStudentPerfor
 router.put("/:id", authMiddleware, studentPerformanceController.updateStudentPerformance);
 router.delete("/:id", authMiddleware, studentPerformanceController.deleteStudentPerformance);
 
+router.get("/user/:userId", authMiddleware, studentPerformanceController.getStudentPerformanceByUserId);
+router.put("/user/:userId", authMiddleware, studentPerformanceController.updateStudentPerformanceByUserId);
+
 module.exports = router;

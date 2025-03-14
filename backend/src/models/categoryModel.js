@@ -7,7 +7,7 @@ const categorySchema = new Schema({
         type: String, 
         required: true,
         unique: true, // Ensures category names are unique
-        trim: true, // Removes extra spaces
+        trim: true // Removes extra spaces
     },
     callingName: {
         type: String, 
@@ -22,8 +22,13 @@ const categorySchema = new Schema({
     backgroundImage: {
         type: String, // URL to an image
         default: "" // Optional: Set a default value if needed
+    },
+    categoryType: {
+        type: String,
+        enum: ["paper", "listing", "lecture", "story"],
+        required: true
     }
-}, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
+}, { timestamps: true }); 
 
-// Create and export the Category model
+
 module.exports = mongoose.model('Category', categorySchema);

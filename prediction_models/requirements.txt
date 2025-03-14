@@ -1,0 +1,5 @@
+Flask
+pickle5
+numpy
+tensorflow
+scikit-learn

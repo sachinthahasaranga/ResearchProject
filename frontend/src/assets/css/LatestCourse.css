@@ -1,0 +1,105 @@
+/* LatestCourse.css */
+
+/* Style for the course section */
+.course-section {
+    padding: 50px 0;
+}
+
+/* Set fixed size for course items */
+.course-item {
+    width: 100%;
+    max-width: 350px; /* Limit max width */
+    height: 450px; /* Set a fixed height */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.course-item:hover {
+    transform: scale(1.02);
+}
+
+/* Course inner container */
+.course-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Fix image size */
+.course-thumb img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Ensure proper aspect ratio */
+}
+
+/* Course content container */
+.course-content {
+    flex-grow: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Course title */
+.course-content h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Course category and rating */
+.course-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+/* Course details section */
+.course-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Course footer */
+.course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+/* Author section */
+.course-author {
+    display: flex;
+    align-items: center;
+}
+
+.course-author img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Read more button */
+.course-btn a {
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.course-btn a:hover {
+    color: #0056b3;
+}
