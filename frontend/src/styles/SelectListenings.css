@@ -1,74 +1,121 @@
 /* Prevent body-level horizontal scrolling */
 body {
-  overflow-x: hidden; /* Ensures no horizontal scrolling */
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-/* Make the container full screen */
+/* Full-screen container */
 .listening-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100vw; /* Ensure it takes full screen width */
-  min-width: 100vw; /* Prevent shrinking */
+  justify-content: flex-start;
+  width: 100vw;
   height: 100vh;
   background-color: #f8f9fa;
   padding: 20px;
   box-sizing: border-box;
-  overflow-x: hidden; /* Ensure no horizontal scrolling */
+  overflow: hidden;
 }
 
-/* Title styling */
+/* Title stays fixed at the top */
 .listening-container h1 {
-  font-size: 36px; /* Increased font size */
-  font-weight: bold; /* Make it bold */
-  margin-bottom: 30px; /* Increase spacing below title */
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
   color: #333;
   text-align: center;
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa;
+  width: 100%;
+  padding: 10px 0;
+  z-index: 100;
 }
 
-/* Ensure only the cards section scrolls and takes full screen width */
+/* Scrollable cards section */
 .listening-cards-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  width: 100vw; /* Prevents shrinking */
-  max-width: 100vw; /* Ensures no overflow */
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
   height: 80vh;
-  overflow-y: auto; /* Enable vertical scrolling */
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  overflow-y: auto;
+  padding: 20px;
   box-sizing: border-box;
 }
 
-/* Hide scrollbar for Webkit (Chrome, Safari) */
 .listening-cards-wrapper::-webkit-scrollbar {
-  display: none;
+  width: 5px;
 }
 
-/* Hide scrollbar for Firefox */
-.listening-cards-wrapper {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+.listening-cards-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
 /* Card styles */
 .listening-card {
-  background-color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
-  width: 90%; /* Allows responsiveness */
-  max-width: 800px; /* Prevents stretching too much */
-  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Card content layout */
+.card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Text section on the left */
+.text-section {
+  flex: 1;
+  padding-right: 10px;
+}
+
+.text-section h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.text-section p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Image section on the right */
+.image-section {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Hover effect */
 .listening-card:hover {
   transform: scale(1.05);
 }

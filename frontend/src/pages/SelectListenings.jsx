@@ -1,8 +1,19 @@
 import React from 'react';
 import '../styles/SelectListenings.css'; // Import the CSS file for styling
 
+const getRandomGradient = () => {
+  const colors = [
+    'linear-gradient(to right, #ff9a9e, white)',
+    'linear-gradient(to right, #fad0c4, white)',
+    'linear-gradient(to right, #ffdde1, white)',
+    'linear-gradient(to right, #c2e9fb, white)',
+    'linear-gradient(to right, #fbc2eb, white)',
+    'linear-gradient(to right, #a1c4fd, white)',
+  ];
+  return colors[Math.floor(Math.random() * colors.length)];
+};
+
 const SelectListenings = () => {
-  // Array of listening categories
   const listenings = [
     { id: 1, title: 'Listening 1', description: 'Description for listening 1' },
     { id: 2, title: 'Listening 2', description: 'Description for listening 2' },
@@ -17,14 +28,23 @@ const SelectListenings = () => {
       <h1>Select a Listening</h1>
       <div className="listening-cards-wrapper">
         {listenings.map((listening) => (
-          <div key={listening.id} className="listening-card">
-            <img 
-              src={`/images/listeningCard/${listening.id}.png`} 
-              alt={listening.title} 
-              className="listening-card-image"
-            />
-            <h2>{listening.title}</h2>
-            <p>{listening.description}</p>
+          <div
+            key={listening.id}
+            className="listening-card"
+            style={{ background: getRandomGradient() }}
+          >
+            <div className="card-content">
+              <div className="text-section">
+                <h2>{listening.title}</h2>
+                <p>{listening.description}</p>
+              </div>
+              <div className="image-section">
+                <img
+                  src={`/images/listeningCard/${listening.id}.png`}
+                  alt={listening.title}
+                />
+              </div>
+            </div>
           </div>
         ))}
       </div>
