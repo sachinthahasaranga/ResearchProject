@@ -17,7 +17,9 @@ const Listening = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [countdownImage, setCountdownImage] = useState(null);
   const [isQuestionContainerVisible, setIsQuestionContainerVisible] = useState(false);
-  const [isQuestionVisible, setIsQuestionVisible] = useState(false); 
+  const [isQuestionVisible, setIsQuestionVisible] = useState(false);
+  const [isQuestion2Visible, setIsQuestion2Visible] = useState(false);
+  const [isQuestion3Visible, setIsQuestion3Visible] = useState(false);
 
   const audioRef = React.useRef(null);
 
@@ -76,6 +78,14 @@ const Listening = () => {
 
   const handleQuestionContainerClick = () => {
     setIsQuestionVisible((prevState) => !prevState);
+  };
+
+  const handleQuestion2ContainerClick = () => {
+    setIsQuestion2Visible((prevState) => !prevState);
+  };
+
+  const handleQuestion3ContainerClick = () => {
+    setIsQuestion3Visible((prevState) => !prevState);
   };
 
   const progress = (currentTime / duration) * 100;
@@ -171,30 +181,82 @@ const Listening = () => {
       )}
 
       {isAudioFinished && (
-        <div
-          className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
-          style={{
-            marginTop: '20px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            paddingRight: '20px',
-            position: 'relative',
-          }}
-          onClick={handleQuestionContainerClick}
-        >
-          <p className="question-text">Click to reveal the question</p>
-          <img
-            src="/icons/q_mark.png"
-            alt="Question Mark"
+        <>
+          <div
+            className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
             style={{
-              width: '40px',
-              height: '40px',
-              position: 'absolute',
-              right: '15px',
+              marginTop: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              paddingRight: '20px',
+              position: 'relative',
             }}
-          />
-        </div>
+            onClick={handleQuestionContainerClick}
+          >
+            <p className="question-text">Click to reveal the question</p>
+            <img
+              src="/icons/q_mark.png"
+              alt="Question Mark"
+              style={{
+                width: '40px',
+                height: '40px',
+                position: 'absolute',
+                right: '15px',
+              }}
+            />
+          </div>
+
+          <div
+            className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
+            style={{
+              marginTop: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              paddingRight: '20px',
+              position: 'relative',
+            }}
+            onClick={handleQuestion2ContainerClick}
+          >
+            <p className="question-text">Click to reveal the second question</p>
+            <img
+              src="/icons/q_mark.png"
+              alt="Question Mark"
+              style={{
+                width: '40px',
+                height: '40px',
+                position: 'absolute',
+                right: '15px',
+              }}
+            />
+          </div>
+
+          <div
+            className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
+            style={{
+              marginTop: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              paddingRight: '20px',
+              position: 'relative',
+            }}
+            onClick={handleQuestion3ContainerClick}
+          >
+            <p className="question-text">Click to reveal the third question</p>
+            <img
+              src="/icons/q_mark.png"
+              alt="Question Mark"
+              style={{
+                width: '40px',
+                height: '40px',
+                position: 'absolute',
+                right: '15px',
+              }}
+            />
+          </div>
+        </>
       )}
 
       {isQuestionVisible && (
@@ -204,7 +266,24 @@ const Listening = () => {
             <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
           </div>
         </CSSTransition>
-        
+      )}
+
+      {isQuestion2Visible && (
+        <CSSTransition in={isQuestion2Visible} timeout={500} classNames="slide" unmountOnExit>
+          <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px' }}>
+            <p className="question-text">What are the key points discussed?</p>
+            <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
+          </div>
+        </CSSTransition>
+      )}
+
+      {isQuestion3Visible && (
+        <CSSTransition in={isQuestion3Visible} timeout={500} classNames="slide" unmountOnExit>
+          <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px' }}>
+            <p className="question-text">What is your opinion on the topic?</p>
+            <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
+          </div>
+        </CSSTransition>
       )}
 
       <audio ref={audioRef} src="/audio/Legal Consultation Appointment Update.mp3" onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleTimeUpdate} onEnded={handleAudioEnd} />
