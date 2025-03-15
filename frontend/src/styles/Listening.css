@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,8 +44,26 @@
   
   /* Button hover scaling effect */
   .btn:hover {
-    transform: scale(1.1); /* Scale the button to 110% on hover */
+    transform: scale(1.1);
     transition: transform 0.3s ease;
+  }
+  
+  /* Keyframe animation to move elements up */
+  @keyframes slideUp {
+    0% {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Apply the animation to the question container and title */
+  .question-container.slide-up,
+  .title.slide-up {
+    animation: slideUp 0.6s ease-out forwards;
   }
   
   /* Keyframe animation for the waving flag */
@@ -69,30 +87,56 @@
   
   /* Apply waving animation to flag icon */
   .waving-flag {
-    animation: waveFlag 1s infinite; /* Apply waving effect infinitely */
+    animation: waveFlag 1s infinite;
   }
   
   /* Progress bar styling */
   progress {
     appearance: none;
-    border-radius: 20px; /* Border radius of 20px */
-    height: 20px; /* Increased height of progress bar */
-    width: 100%;  /* Ensure it spans the width of its parent container */
-    background-color: #e0e0e0; /* Background color of the progress bar */
+    border-radius: 20px;
+    height: 20px;
+    width: 100%;
+    background-color: #e0e0e0;
   }
   
   progress::-webkit-progress-bar {
-    background-color: #e0e0e0; /* Light gray background for the progress bar */
-    border-radius: 20px; /* Apply the 20px border-radius here */
+    background-color: #e0e0e0;
+    border-radius: 20px;
   }
   
   progress::-webkit-progress-value {
-    background-color: #b19cd9; /* Light purple color for the progress value */
-    border-radius: 20px; /* Apply the 20px border-radius here */
+    background-color: #8a2be2;
+    border-radius: 20px;
   }
   
   progress::-moz-progress-bar {
-    background-color: #b19cd9; /* Light purple color for the progress value */
-    border-radius: 20px; /* Apply the 20px border-radius here */
+    background-color: #8a2be2;
+    border-radius: 20px;
+  }
+  
+  /* Styling for the question container after audio ends */
+  .question-container {
+    width: 95%;
+    max-width: 800px;
+    padding: 15px;
+    margin-top: 20px;
+    background: linear-gradient(to right, #8a2be2, #ffffff);
+    text-align: left;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    color: white;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  /* Adjusting the question text */
+  .question-text {
+    font-size: 30px;
+    color: white !important;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-left: 20px;
   }
   

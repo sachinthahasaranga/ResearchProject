@@ -16,6 +16,7 @@ const Listening = () => {
   const [backgroundImageNumber, setBackgroundImageNumber] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
   const [countdownImage, setCountdownImage] = useState(null);
+  const [isQuestionContainerVisible, setIsQuestionContainerVisible] = useState(false);
 
   const audioRef = React.useRef(null);
 
@@ -69,6 +70,7 @@ const Listening = () => {
   const handleAudioEnd = () => {
     setIsAudioPlaying(false);
     setIsAudioFinished(true);
+    setIsQuestionContainerVisible(true); // Trigger the animation to show the question
   };
 
   // Calculate the progress as a percentage
@@ -96,7 +98,7 @@ const Listening = () => {
       ></div>
 
       <h1
-        className="text-white text-center position-sticky top-0 w-100 p-3 bg-dark bg-opacity-50"
+        className={`text-white text-center position-sticky top-0 w-100 p-3 bg-dark bg-opacity-50 ${isQuestionContainerVisible ? 'slide-up' : ''}`}
         style={{ zIndex: 1 }}
       >
         Listening Page
@@ -146,28 +148,26 @@ const Listening = () => {
             <span>{Math.floor(currentTime)}s</span> / <span>{Math.floor(duration)}s</span>
           </div>
         )}
-
-        
       </div>
 
       {/* Progress bar for audio playback */}
       {isAudioPlaying && (
-          <div style={{ width: "90%", marginTop: "20px" }}> {/* Increased width of progress bar to 90% */}
-            <progress
-              value={progress}
-              max="100"
-              style={{
-                width: "100%",  // This ensures the progress bar fills the parent div width
-                height: "20px", /* Height remains the same */
-                backgroundColor: "#e0e0e0",
-                borderRadius: "20px", // Border radius of 20px
-                border: "none",
-              }}
-            >
-              <span>{Math.floor(progress)}%</span>
-            </progress>
-          </div>
-        )}
+        <div style={{ width: "90%", marginTop: "20px" }}>
+          <progress
+            value={progress}
+            max="100"
+            style={{
+              width: "100%",
+              height: "20px",
+              backgroundColor: "#e0e0e0",
+              borderRadius: "20px",
+              border: "none",
+            }}
+          >
+            <span>{Math.floor(progress)}%</span>
+          </progress>
+        </div>
+      )}
 
       {showOverlay && countdownImage && (
         <div className="overlay">
@@ -180,6 +180,13 @@ const Listening = () => {
           >
             <img src={countdownImage} alt={`Countdown ${countdown}`} className="countdown-image" />
           </CSSTransition>
+        </div>
+      )}
+
+      {/* New Container for the Question after audio ends */}
+      {isAudioFinished && (
+        <div className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}>
+          <p className="question-text">Question</p>
         </div>
       )}
 
