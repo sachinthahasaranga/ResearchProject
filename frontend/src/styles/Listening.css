@@ -1,3 +1,4 @@
+/* Overlay for the countdown image */
 .overlay {
     position: fixed;
     top: 0;
@@ -11,12 +12,14 @@
     z-index: 1000;
   }
   
+  /* Countdown image styling */
   .countdown-image {
     width: 200px;
     height: auto;
     position: absolute;
   }
   
+  /* Slide transition for countdown image */
   .slide-enter {
     transform: translateX(-100%);
     opacity: 0;
@@ -37,5 +40,59 @@
     transform: translateX(100%);
     opacity: 0;
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
+  
+  /* Button hover scaling effect */
+  .btn:hover {
+    transform: scale(1.1); /* Scale the button to 110% on hover */
+    transition: transform 0.3s ease;
+  }
+  
+  /* Keyframe animation for the waving flag */
+  @keyframes waveFlag {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(10deg);
+    }
+    50% {
+      transform: rotate(0deg);
+    }
+    75% {
+      transform: rotate(-10deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  /* Apply waving animation to flag icon */
+  .waving-flag {
+    animation: waveFlag 1s infinite; /* Apply waving effect infinitely */
+  }
+  
+  /* Progress bar styling */
+  progress {
+    appearance: none;
+    border-radius: 20px; /* Border radius of 20px */
+    height: 20px; /* Increased height of progress bar */
+    width: 100%;  /* Ensure it spans the width of its parent container */
+    background-color: #e0e0e0; /* Background color of the progress bar */
+  }
+  
+  progress::-webkit-progress-bar {
+    background-color: #e0e0e0; /* Light gray background for the progress bar */
+    border-radius: 20px; /* Apply the 20px border-radius here */
+  }
+  
+  progress::-webkit-progress-value {
+    background-color: #b19cd9; /* Light purple color for the progress value */
+    border-radius: 20px; /* Apply the 20px border-radius here */
+  }
+  
+  progress::-moz-progress-bar {
+    background-color: #b19cd9; /* Light purple color for the progress value */
+    border-radius: 20px; /* Apply the 20px border-radius here */
   }
   

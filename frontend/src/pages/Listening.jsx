@@ -43,10 +43,13 @@ const Listening = () => {
   const handleStart = () => {
     setIsCountingDown(true);
     setShowOverlay(true);
-    let countdownTimer = 3;
-    
+
     const countdownSequence = [3, 2, 1];
     let index = 0;
+
+    setCountdownImage(`/images/countdown/${countdownSequence[index]}.png`);
+    setCountdown(countdownSequence[index]);
+    index++;
 
     const countdownInterval = setInterval(() => {
       if (index < countdownSequence.length) {
@@ -68,7 +71,8 @@ const Listening = () => {
     setIsAudioFinished(true);
   };
 
-  const progressBarValue = (currentTime / duration) * 100;
+  // Calculate the progress as a percentage
+  const progress = (currentTime / duration) * 100;
 
   return (
     <div
@@ -102,11 +106,31 @@ const Listening = () => {
         {isAudioFinished ? (
           <p className="fs-4">You can now answer the questions!</p>
         ) : (
-          <p className="fs-4">Content for the Listening page will go here!</p>
+          <p className="fs-4"></p>
         )}
 
         {!isCountingDown && !isAudioPlaying && !isAudioFinished && (
-          <button className="btn btn-primary mt-3" onClick={handleStart}>
+          <button
+            className="btn mt-3"
+            onClick={handleStart}
+            style={{
+              backgroundColor: "#FFD700", // Warm yellow (gold)
+              border: "2px solid #006400", // Dark green border
+              color: "#006400", // Dark green text
+              fontWeight: "bold",
+              fontFamily: "'Spicy Rice', cursive", // Apply Spicy Rice font
+              padding: "15px 30px", // Increased padding for larger button
+              fontSize: "20px", // Increased font size
+              borderRadius: "25px", // Slightly larger border radius for a more rounded button
+              transition: "background-color 0.3s ease",
+              display: "flex",
+              alignItems: "center", // Align icon and text
+              justifyContent: "center",
+            }}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#FFC107")} // Slightly lighter yellow on hover
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#FFD700")}
+          >
+            <i className="fas fa-flag waving-flag" style={{ marginRight: "10px" }}></i> {/* Flag icon with waving animation */}
             Start
           </button>
         )}
@@ -118,26 +142,34 @@ const Listening = () => {
         )}
 
         {isAudioPlaying && (
-          <div className="progress mt-4" style={{ width: "80%", maxWidth: "600px", height: "20px" }}>
-            <div
-              className="progress-bar"
-              role="progressbar"
-              style={{ width: `${progressBarValue}%` }}
-              aria-valuenow={progressBarValue}
-              aria-valuemin="0"
-              aria-valuemax="100"
-            ></div>
-          </div>
-        )}
-
-        {isAudioPlaying && (
           <div className="mt-3">
             <span>{Math.floor(currentTime)}s</span> / <span>{Math.floor(duration)}s</span>
           </div>
         )}
+
+        
       </div>
 
-      {showOverlay && (
+      {/* Progress bar for audio playback */}
+      {isAudioPlaying && (
+          <div style={{ width: "90%", marginTop: "20px" }}> {/* Increased width of progress bar to 90% */}
+            <progress
+              value={progress}
+              max="100"
+              style={{
+                width: "100%",  // This ensures the progress bar fills the parent div width
+                height: "20px", /* Height remains the same */
+                backgroundColor: "#e0e0e0",
+                borderRadius: "20px", // Border radius of 20px
+                border: "none",
+              }}
+            >
+              <span>{Math.floor(progress)}%</span>
+            </progress>
+          </div>
+        )}
+
+      {showOverlay && countdownImage && (
         <div className="overlay">
           <CSSTransition
             key={countdown}
