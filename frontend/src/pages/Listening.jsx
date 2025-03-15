@@ -17,7 +17,7 @@ const Listening = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [countdownImage, setCountdownImage] = useState(null);
   const [isQuestionContainerVisible, setIsQuestionContainerVisible] = useState(false);
-  const [isQuestionVisible, setIsQuestionVisible] = useState(false); // Added state for toggling question container
+  const [isQuestionVisible, setIsQuestionVisible] = useState(false); 
 
   const audioRef = React.useRef(null);
 
@@ -71,14 +71,13 @@ const Listening = () => {
   const handleAudioEnd = () => {
     setIsAudioPlaying(false);
     setIsAudioFinished(true);
-    setIsQuestionContainerVisible(true); // Trigger the animation to show the question
+    setIsQuestionContainerVisible(true);
   };
 
   const handleQuestionContainerClick = () => {
-    setIsQuestionVisible((prevState) => !prevState); // Toggle visibility of the second container
+    setIsQuestionVisible((prevState) => !prevState);
   };
 
-  // Calculate the progress as a percentage
   const progress = (currentTime / duration) * 100;
 
   return (
@@ -102,22 +101,20 @@ const Listening = () => {
         style={{ opacity: 0.5 }}
       ></div>
 
-      {/* Title - Align to the top */}
       <h1
         className={`text-white text-center w-100 p-3 bg-dark bg-opacity-50 ${isQuestionContainerVisible ? 'slide-up' : ''}`}
-        style={{ zIndex: 1, position: "relative", top: "10px" }} // Positioning it at the top
+        style={{ zIndex: 1, position: "relative", top: "10px" }}
       >
         Listening Page
       </h1>
 
-      <div className="text-center text-white" style={{ zIndex: 1, marginTop: '20px' }}> {/* Adjust margin-top */}
+      <div className="text-center text-white" style={{ zIndex: 1, marginTop: '20px' }}>
         {isAudioFinished ? (
           <p className="fs-4">You can now answer the questions!</p>
         ) : (
           <p className="fs-4"></p>
         )}
 
-        {/* Start Button */}
         {!isCountingDown && !isAudioPlaying && !isAudioFinished && (
           <button
             className="btn mt-3"
@@ -144,7 +141,6 @@ const Listening = () => {
           </button>
         )}
 
-        {/* Play/Pause button and audio progress */}
         {isAudioPlaying && (
           <>
             <button className="btn btn-secondary mt-3" onClick={handleAudioPlayPause}>
@@ -158,73 +154,60 @@ const Listening = () => {
         )}
       </div>
 
-      {/* Progress bar */}
       {isAudioPlaying && (
         <div style={{ width: "90%", marginTop: "20px" }}>
-          <progress
-            value={progress}
-            max="100"
-            style={{
-              width: "100%",
-              height: "20px",
-              backgroundColor: "#e0e0e0",
-              borderRadius: "20px",
-              border: "none",
-            }}
-          >
+          <progress value={progress} max="100" style={{ width: "100%", height: "20px" }}>
             <span>{Math.floor(progress)}%</span>
           </progress>
         </div>
       )}
 
-      {/* Countdown overlay */}
       {showOverlay && countdownImage && (
         <div className="overlay">
-          <CSSTransition
-            key={countdown}
-            in={showOverlay}
-            timeout={500}
-            classNames="slide"
-            unmountOnExit
-          >
+          <CSSTransition key={countdown} in={showOverlay} timeout={500} classNames="slide" unmountOnExit>
             <img src={countdownImage} alt={`Countdown ${countdown}`} className="countdown-image" />
           </CSSTransition>
         </div>
       )}
 
-      {/* Question container after audio ends */}
       {isAudioFinished && (
         <div
           className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
-          style={{ marginTop: '20px' }}
-          onClick={handleQuestionContainerClick} // Make the question container clickable
+          style={{
+            marginTop: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            paddingRight: '20px',
+            position: 'relative',
+          }}
+          onClick={handleQuestionContainerClick}
         >
           <p className="question-text">Click to reveal the question</p>
+          <img
+            src="/icons/q_mark.png"
+            alt="Question Mark"
+            style={{
+              width: '40px',
+              height: '40px',
+              position: 'absolute',
+              right: '15px',
+            }}
+          />
         </div>
       )}
 
-      {/* Second container with question and input field */}
       {isQuestionVisible && (
-        <CSSTransition
-          in={isQuestionVisible}
-          timeout={500}
-          classNames="slide"
-          unmountOnExit
-        >
+        <CSSTransition in={isQuestionVisible} timeout={500} classNames="slide" unmountOnExit>
           <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px' }}>
             <p className="question-text">What is the main topic of the audio?</p>
             <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
           </div>
         </CSSTransition>
+        
       )}
 
-      <audio
-        ref={audioRef}
-        src="/audio/Legal Consultation Appointment Update.mp3"
-        onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleTimeUpdate}
-        onEnded={handleAudioEnd}
-      />
+      <audio ref={audioRef} src="/audio/Legal Consultation Appointment Update.mp3" onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleTimeUpdate} onEnded={handleAudioEnd} />
     </div>
   );
 };
