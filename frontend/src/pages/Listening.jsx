@@ -17,6 +17,7 @@ const Listening = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [countdownImage, setCountdownImage] = useState(null);
   const [isQuestionContainerVisible, setIsQuestionContainerVisible] = useState(false);
+  const [isQuestionVisible, setIsQuestionVisible] = useState(false); // Added state for toggling question container
 
   const audioRef = React.useRef(null);
 
@@ -73,12 +74,16 @@ const Listening = () => {
     setIsQuestionContainerVisible(true); // Trigger the animation to show the question
   };
 
+  const handleQuestionContainerClick = () => {
+    setIsQuestionVisible((prevState) => !prevState); // Toggle visibility of the second container
+  };
+
   // Calculate the progress as a percentage
   const progress = (currentTime / duration) * 100;
 
   return (
     <div
-      className="d-flex flex-column justify-content-center align-items-center"
+      className="d-flex flex-column justify-content-start align-items-center"
       style={{
         height: "100vh",
         width: "100vw",
@@ -97,60 +102,63 @@ const Listening = () => {
         style={{ opacity: 0.5 }}
       ></div>
 
+      {/* Title - Align to the top */}
       <h1
-        className={`text-white text-center position-sticky top-0 w-100 p-3 bg-dark bg-opacity-50 ${isQuestionContainerVisible ? 'slide-up' : ''}`}
-        style={{ zIndex: 1 }}
+        className={`text-white text-center w-100 p-3 bg-dark bg-opacity-50 ${isQuestionContainerVisible ? 'slide-up' : ''}`}
+        style={{ zIndex: 1, position: "relative", top: "10px" }} // Positioning it at the top
       >
         Listening Page
       </h1>
 
-      <div className="text-center text-white mt-5" style={{ zIndex: 1 }}>
+      <div className="text-center text-white" style={{ zIndex: 1, marginTop: '20px' }}> {/* Adjust margin-top */}
         {isAudioFinished ? (
           <p className="fs-4">You can now answer the questions!</p>
         ) : (
           <p className="fs-4"></p>
         )}
 
+        {/* Start Button */}
         {!isCountingDown && !isAudioPlaying && !isAudioFinished && (
           <button
             className="btn mt-3"
             onClick={handleStart}
             style={{
-              backgroundColor: "#FFD700", // Warm yellow (gold)
-              border: "2px solid #006400", // Dark green border
-              color: "#006400", // Dark green text
+              backgroundColor: "#FFD700",
+              border: "2px solid #006400",
+              color: "#006400",
               fontWeight: "bold",
-              fontFamily: "'Spicy Rice', cursive", // Apply Spicy Rice font
-              padding: "15px 30px", // Increased padding for larger button
-              fontSize: "20px", // Increased font size
-              borderRadius: "25px", // Slightly larger border radius for a more rounded button
+              fontFamily: "'Spicy Rice', cursive",
+              padding: "15px 30px",
+              fontSize: "20px",
+              borderRadius: "25px",
               transition: "background-color 0.3s ease",
               display: "flex",
-              alignItems: "center", // Align icon and text
+              alignItems: "center",
               justifyContent: "center",
             }}
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "#FFC107")} // Slightly lighter yellow on hover
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#FFC107")}
             onMouseLeave={(e) => (e.target.style.backgroundColor = "#FFD700")}
           >
-            <i className="fas fa-flag waving-flag" style={{ marginRight: "10px" }}></i> {/* Flag icon with waving animation */}
+            <i className="fas fa-flag waving-flag" style={{ marginRight: "10px" }}></i>
             Start
           </button>
         )}
 
+        {/* Play/Pause button and audio progress */}
         {isAudioPlaying && (
-          <button className="btn btn-secondary mt-3" onClick={handleAudioPlayPause}>
-            {isAudioPlaying ? "Pause" : "Play"}
-          </button>
-        )}
+          <>
+            <button className="btn btn-secondary mt-3" onClick={handleAudioPlayPause}>
+              {isAudioPlaying ? "Pause" : "Play"}
+            </button>
 
-        {isAudioPlaying && (
-          <div className="mt-3">
-            <span>{Math.floor(currentTime)}s</span> / <span>{Math.floor(duration)}s</span>
-          </div>
+            <div className="mt-3">
+              <span>{Math.floor(currentTime)}s</span> / <span>{Math.floor(duration)}s</span>
+            </div>
+          </>
         )}
       </div>
 
-      {/* Progress bar for audio playback */}
+      {/* Progress bar */}
       {isAudioPlaying && (
         <div style={{ width: "90%", marginTop: "20px" }}>
           <progress
@@ -169,6 +177,7 @@ const Listening = () => {
         </div>
       )}
 
+      {/* Countdown overlay */}
       {showOverlay && countdownImage && (
         <div className="overlay">
           <CSSTransition
@@ -183,11 +192,30 @@ const Listening = () => {
         </div>
       )}
 
-      {/* New Container for the Question after audio ends */}
+      {/* Question container after audio ends */}
       {isAudioFinished && (
-        <div className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}>
-          <p className="question-text">Question</p>
+        <div
+          className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
+          style={{ marginTop: '20px' }}
+          onClick={handleQuestionContainerClick} // Make the question container clickable
+        >
+          <p className="question-text">Click to reveal the question</p>
         </div>
+      )}
+
+      {/* Second container with question and input field */}
+      {isQuestionVisible && (
+        <CSSTransition
+          in={isQuestionVisible}
+          timeout={500}
+          classNames="slide"
+          unmountOnExit
+        >
+          <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px' }}>
+            <p className="question-text">What is the main topic of the audio?</p>
+            <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
+          </div>
+        </CSSTransition>
       )}
 
       <audio

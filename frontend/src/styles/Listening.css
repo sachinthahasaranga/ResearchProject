@@ -42,12 +42,6 @@
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
   }
   
-  /* Button hover scaling effect */
-  .btn:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
-  }
-  
   /* Keyframe animation to move elements up */
   @keyframes slideUp {
     0% {
@@ -60,58 +54,16 @@
     }
   }
   
-  /* Apply the animation to the question container and title */
+  /* Apply the animation to both the question container and dropdown */
   .question-container.slide-up,
-  .title.slide-up {
+  .question-content.slide-up {
     animation: slideUp 0.6s ease-out forwards;
   }
   
-  /* Keyframe animation for the waving flag */
-  @keyframes waveFlag {
-    0% {
-      transform: rotate(0deg);
-    }
-    25% {
-      transform: rotate(10deg);
-    }
-    50% {
-      transform: rotate(0deg);
-    }
-    75% {
-      transform: rotate(-10deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-  
-  /* Apply waving animation to flag icon */
-  .waving-flag {
-    animation: waveFlag 1s infinite;
-  }
-  
-  /* Progress bar styling */
-  progress {
-    appearance: none;
-    border-radius: 20px;
-    height: 20px;
-    width: 100%;
-    background-color: #e0e0e0;
-  }
-  
-  progress::-webkit-progress-bar {
-    background-color: #e0e0e0;
-    border-radius: 20px;
-  }
-  
-  progress::-webkit-progress-value {
-    background-color: #8a2be2;
-    border-radius: 20px;
-  }
-  
-  progress::-moz-progress-bar {
-    background-color: #8a2be2;
-    border-radius: 20px;
+  /* Button hover scaling effect */
+  .btn:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
   }
   
   /* Styling for the question container after audio ends */
@@ -120,6 +72,7 @@
     max-width: 800px;
     padding: 15px;
     margin-top: 20px;
+    margin-bottom: 10px;
     background: linear-gradient(to right, #8a2be2, #ffffff);
     text-align: left;
     border-radius: 15px;
@@ -129,6 +82,9 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    opacity: 0;
+    transform: translateY(100px);
+    animation: slideUp 0.6s ease-out forwards;
   }
   
   /* Adjusting the question text */
@@ -138,5 +94,48 @@
     font-weight: bold;
     line-height: 1.2;
     margin-left: 20px;
+  }
+  
+  /* Additional styles for the second container (answer input) */
+  .question-content {
+    opacity: 0;
+    transform: translateY(100px);
+    animation: slideUp 0.6s ease-out forwards;
+    width: 95%;
+    max-width: 800px;
+  }
+  
+  /* Textarea styling */
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Progress bar styling */
+  progress {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    border: none;
+  }
+  
+  progress::-webkit-progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 20px;
+  }
+  
+  progress::-webkit-progress-value {
+    background-color: #8a2be2; /* Purple color */
+    border-radius: 20px;
+  }
+  
+  progress::-moz-progress-bar {
+    background-color: #8a2be2; /* Purple color */
+    border-radius: 20px;
   }
   
