@@ -171,7 +171,15 @@ const Listening = () => {
       )}
 
       {isAudioFinished && (
-        <>
+        <div
+          className="questions-scrollable-container"
+          style={{
+            width: "100%",
+            maxHeight: "60vh", // Adjust height as needed
+            overflowY: "auto", // Enable vertical scrolling
+            padding: "0 20px",
+          }}
+        >
           {/* Question Container 1 */}
           <div
             className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
@@ -244,42 +252,8 @@ const Listening = () => {
             </CSSTransition>
           )}
 
-          {/* Question Container 3 */}
-          <div
-            className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
-            style={{
-              marginTop: '20px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              paddingRight: '20px',
-              position: 'relative',
-            }}
-            onClick={() => handleQuestionContainerClick(3)}
-          >
-            <p className="question-text">Click to reveal the third question</p>
-            <img
-              src="/icons/q_mark.png"
-              alt="Question Mark"
-              style={{
-                width: '40px',
-                height: '40px',
-                position: 'absolute',
-                right: '15px',
-              }}
-            />
-          </div>
-
-          {/* Question Content 3 */}
-          {activeQuestion === 3 && (
-            <CSSTransition in={activeQuestion === 3} timeout={500} classNames="slide" unmountOnExit>
-              <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px' }}>
-                <p className="question-text">What is your opinion on the topic?</p>
-                <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
-              </div>
-            </CSSTransition>
-          )}
-        </>
+          {/* Add more question containers and content as needed */}
+        </div>
       )}
 
       <audio ref={audioRef} src="/audio/Legal Consultation Appointment Update.mp3" onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleTimeUpdate} onEnded={handleAudioEnd} />

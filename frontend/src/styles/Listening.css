@@ -85,6 +85,7 @@
     opacity: 0;
     transform: translateY(100px);
     animation: slideUp 0.6s ease-out forwards;
+    cursor: pointer; /* Add pointer cursor to indicate clickable */
   }
   
   /* Adjusting the question text */
@@ -103,6 +104,11 @@
     animation: slideUp 0.6s ease-out forwards;
     width: 95%;
     max-width: 800px;
+    padding: 20px;
+    background: #f1f1f1;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   /* Textarea styling */
@@ -113,6 +119,8 @@
     border-radius: 5px;
     font-size: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    resize: vertical; /* Allow vertical resizing of the textarea */
   }
   
   /* Progress bar styling */
@@ -137,4 +145,45 @@
   progress::-moz-progress-bar {
     background-color: #8a2be2; /* Purple color */
     border-radius: 20px;
+  }
+  
+  /* Add some spacing between elements */
+  .mt-3 {
+    margin-top: 1rem;
+  }
+  
+  /* Ensure the audio player is hidden */
+  audio {
+    display: none;
+  }
+  
+  /* Scrollable container for questions */
+  .questions-scrollable-container {
+    width: 100%;
+    max-height: 60vh; /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: flex-start; /* Align items to the top */
+  }
+  
+  /* Custom scrollbar styling */
+  .questions-scrollable-container::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+  }
+  
+  .questions-scrollable-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scrollbar track */
+    border-radius: 10px;
+  }
+  
+  .questions-scrollable-container::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px;
+  }
+  
+  .questions-scrollable-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb on hover */
   }
