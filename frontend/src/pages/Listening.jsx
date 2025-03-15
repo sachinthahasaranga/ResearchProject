@@ -17,9 +17,7 @@ const Listening = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [countdownImage, setCountdownImage] = useState(null);
   const [isQuestionContainerVisible, setIsQuestionContainerVisible] = useState(false);
-  const [isQuestionVisible, setIsQuestionVisible] = useState(false);
-  const [isQuestion2Visible, setIsQuestion2Visible] = useState(false);
-  const [isQuestion3Visible, setIsQuestion3Visible] = useState(false);
+  const [activeQuestion, setActiveQuestion] = useState(null); // Track which question is active
 
   const audioRef = React.useRef(null);
 
@@ -76,16 +74,8 @@ const Listening = () => {
     setIsQuestionContainerVisible(true);
   };
 
-  const handleQuestionContainerClick = () => {
-    setIsQuestionVisible((prevState) => !prevState);
-  };
-
-  const handleQuestion2ContainerClick = () => {
-    setIsQuestion2Visible((prevState) => !prevState);
-  };
-
-  const handleQuestion3ContainerClick = () => {
-    setIsQuestion3Visible((prevState) => !prevState);
+  const handleQuestionContainerClick = (questionNumber) => {
+    setActiveQuestion((prev) => (prev === questionNumber ? null : questionNumber)); // Toggle active question
   };
 
   const progress = (currentTime / duration) * 100;
@@ -182,6 +172,7 @@ const Listening = () => {
 
       {isAudioFinished && (
         <>
+          {/* Question Container 1 */}
           <div
             className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
             style={{
@@ -192,7 +183,7 @@ const Listening = () => {
               paddingRight: '20px',
               position: 'relative',
             }}
-            onClick={handleQuestionContainerClick}
+            onClick={() => handleQuestionContainerClick(1)}
           >
             <p className="question-text">Click to reveal the question</p>
             <img
@@ -207,6 +198,17 @@ const Listening = () => {
             />
           </div>
 
+          {/* Question Content 1 */}
+          {activeQuestion === 1 && (
+            <CSSTransition in={activeQuestion === 1} timeout={500} classNames="slide" unmountOnExit>
+              <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px' }}>
+                <p className="question-text">What is the main topic of the audio?</p>
+                <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
+              </div>
+            </CSSTransition>
+          )}
+
+          {/* Question Container 2 */}
           <div
             className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
             style={{
@@ -217,7 +219,7 @@ const Listening = () => {
               paddingRight: '20px',
               position: 'relative',
             }}
-            onClick={handleQuestion2ContainerClick}
+            onClick={() => handleQuestionContainerClick(2)}
           >
             <p className="question-text">Click to reveal the second question</p>
             <img
@@ -232,6 +234,17 @@ const Listening = () => {
             />
           </div>
 
+          {/* Question Content 2 */}
+          {activeQuestion === 2 && (
+            <CSSTransition in={activeQuestion === 2} timeout={500} classNames="slide" unmountOnExit>
+              <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px' }}>
+                <p className="question-text">What are the key points discussed?</p>
+                <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
+              </div>
+            </CSSTransition>
+          )}
+
+          {/* Question Container 3 */}
           <div
             className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
             style={{
@@ -242,7 +255,7 @@ const Listening = () => {
               paddingRight: '20px',
               position: 'relative',
             }}
-            onClick={handleQuestion3ContainerClick}
+            onClick={() => handleQuestionContainerClick(3)}
           >
             <p className="question-text">Click to reveal the third question</p>
             <img
@@ -256,34 +269,17 @@ const Listening = () => {
               }}
             />
           </div>
+
+          {/* Question Content 3 */}
+          {activeQuestion === 3 && (
+            <CSSTransition in={activeQuestion === 3} timeout={500} classNames="slide" unmountOnExit>
+              <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px' }}>
+                <p className="question-text">What is your opinion on the topic?</p>
+                <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
+              </div>
+            </CSSTransition>
+          )}
         </>
-      )}
-
-      {isQuestionVisible && (
-        <CSSTransition in={isQuestionVisible} timeout={500} classNames="slide" unmountOnExit>
-          <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px' }}>
-            <p className="question-text">What is the main topic of the audio?</p>
-            <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
-          </div>
-        </CSSTransition>
-      )}
-
-      {isQuestion2Visible && (
-        <CSSTransition in={isQuestion2Visible} timeout={500} classNames="slide" unmountOnExit>
-          <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px' }}>
-            <p className="question-text">What are the key points discussed?</p>
-            <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
-          </div>
-        </CSSTransition>
-      )}
-
-      {isQuestion3Visible && (
-        <CSSTransition in={isQuestion3Visible} timeout={500} classNames="slide" unmountOnExit>
-          <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px' }}>
-            <p className="question-text">What is your opinion on the topic?</p>
-            <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
-          </div>
-        </CSSTransition>
       )}
 
       <audio ref={audioRef} src="/audio/Legal Consultation Appointment Update.mp3" onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleTimeUpdate} onEnded={handleAudioEnd} />
