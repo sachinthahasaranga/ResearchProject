@@ -111,6 +111,11 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
+  /* Ensure the question text inside .question-content is black */
+  .question-content .question-text {
+    color: black !important; /* Override any other color */
+  }
+  
   /* Textarea styling */
   textarea {
     width: 100%;
