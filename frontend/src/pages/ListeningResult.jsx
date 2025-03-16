@@ -63,7 +63,7 @@ const ListeningResult = () => {
       >
         {/* Result Container 1 */}
         <div
-          className={`result-container ${isResultContainerVisible ? 'slide-up' : ''}`}
+          className={`result-container-correct ${isResultContainerVisible ? 'slide-up' : ''}`}
           style={{
             marginTop: '20px',
             display: 'flex',
@@ -76,11 +76,11 @@ const ListeningResult = () => {
         >
           <p className="result-text">Click to reveal the result</p>
           <img
-            src="/icons/q_mark.png"
+            src="/icons/correct.png"
             alt="Result Mark"
             style={{
-              width: '40px',
-              height: '40px',
+              width: '60px',
+              height: '60px',
               position: 'absolute',
               right: '15px',
             }}
@@ -111,7 +111,7 @@ const ListeningResult = () => {
 
         {/* Result Container 2 */}
         <div
-          className={`result-container ${isResultContainerVisible ? 'slide-up' : ''}`}
+          className={`result-container-wrong ${isResultContainerVisible ? 'slide-up' : ''}`}
           style={{
             marginTop: '20px',
             display: 'flex',
@@ -124,11 +124,11 @@ const ListeningResult = () => {
         >
           <p className="result-text">Click to reveal the second result</p>
           <img
-            src="/icons/q_mark.png"
+            src="/icons/wrong.png"
             alt="Result Mark"
             style={{
-              width: '40px',
-              height: '40px',
+              width: '60px',
+              height: '60px',
               position: 'absolute',
               right: '15px',
             }}

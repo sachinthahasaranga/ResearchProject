@@ -241,14 +241,36 @@ audio {
   background: #555; /* Color of the scrollbar thumb on hover */
 }
 
-/* Styling for the result container after results are shown */
-.result-container {
+/* Styling for the correct result container */
+.result-container-correct {
   width: 95%;
   max-width: 800px;
   padding: 15px;
   margin-top: 20px;
   margin-bottom: 10px;
-  background: linear-gradient(to right, #8a2be2, #ffffff);
+  background: linear-gradient(to right, green, #ffffff); /* Green gradient for correct results */
+  text-align: left;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+  color: white;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  opacity: 0;
+  transform: translateY(100px);
+  animation: slideUp 0.6s ease-out forwards;
+  cursor: pointer; /* Add pointer cursor to indicate clickable */
+}
+
+/* Styling for the wrong result container */
+.result-container-wrong {
+  width: 95%;
+  max-width: 800px;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background: linear-gradient(to right, red, #ffffff); /* Red gradient for wrong results */
   text-align: left;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
