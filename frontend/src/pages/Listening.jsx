@@ -318,9 +318,34 @@ const Listening = () => {
             bottom: "20px",
             right: "20px",
             zIndex: 1000, // Ensure it's above other elements
+            padding: "15px 30px", // Increased padding for larger size
+            fontSize: "24px", // Increased font size
+            borderRadius: "30px", // Adjusted border radius for larger size
+            backgroundColor: "#ADD8E6", // Light blue
+            border: "2px solid #0000FF", // Blue border
+            color: "#0000FF", // Blue text
+            fontWeight: "bold",
+            fontFamily: "'Spicy Rice', cursive", // Apply Spicy Rice font
+            transition: "background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease", // Added transform to transition
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "#0000FF"; // Blue background on hover
+            e.target.style.color = "#FFFFFF"; // White text on hover
+            e.target.style.borderColor = "#FFFFFF"; // White border on hover
+            e.target.style.transform = "scale(1.1)"; // Scale up the button by 10%
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "#ADD8E6"; // Light blue
+            e.target.style.color = "#0000FF"; // Blue text
+            e.target.style.borderColor = "#0000FF"; // Blue border
+            e.target.style.transform = "scale(1)"; // Reset scale
           }}
         >
-          <i className="fas fa-thumbs-up" style={{ marginRight: "10px" }}></i>
+          <i className="fas fa-thumbs-up" style={{ marginRight: "15px", transition: "color 0.3s ease" }}></i>
           Okay
         </button>
       )}

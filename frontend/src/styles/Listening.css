@@ -142,21 +142,25 @@
     box-shadow: 0 0 5px rgba(0, 128, 0, 0.5); /* Optional: Add a green shadow on focus */
   }
   
-  /* Okay button styling */
-  .okay-button {
+ /* Okay button styling */
+.okay-button {
     background-color: #ADD8E6; /* Light blue */
     border: 2px solid #0000FF; /* Blue border */
     color: #0000FF; /* Blue text */
     font-weight: bold;
     font-family: 'Spicy Rice', cursive; /* Apply Spicy Rice font */
-    padding: 10px 20px;
-    font-size: 18px;
-    border-radius: 25px;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    padding: 15px 30px; /* Increased padding for larger size */
+    font-size: 24px; /* Increased font size */
+    border-radius: 30px; /* Adjusted border radius for larger size */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease; /* Added transform to transition */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensure it's above other elements */
   }
   
   /* Okay button hover effect */
@@ -164,8 +168,13 @@
     background-color: #0000FF; /* Blue background on hover */
     color: #FFFFFF; /* White text on hover */
     border-color: #FFFFFF; /* White border on hover */
+    transform: scale(1.1); /* Scale up the button by 10% */
   }
   
+  /* Icon color change on hover */
+  .okay-button:hover i {
+    color: #FFFFFF; /* White icon color on hover */
+  }
   /* Progress bar styling */
   progress {
     width: 100%;
