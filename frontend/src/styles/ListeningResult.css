@@ -1,0 +1,291 @@
+/* Define the Spicy Rice font */
+@font-face {
+    font-family: 'Spicy Rice';
+    src: url('/fonts/SpicyRice-Regular.ttf') format('truetype'); /* Path to the font file */
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* Overlay for the countdown image */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Countdown image styling */
+  .countdown-image {
+    width: 200px;
+    height: auto;
+    position: absolute;
+  }
+  
+  /* Slide transition for countdown image */
+  .slide-enter {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  
+  .slide-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
+  
+  .slide-exit {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  .slide-exit-active {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
+  
+  /* Keyframe animation to move elements up */
+  @keyframes slideUp {
+    0% {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Apply the animation to both the question container and dropdown */
+  .question-container.slide-up,
+  .question-content.slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+  
+  /* Button hover scaling effect */
+  .btn:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Styling for the question container after audio ends */
+  .question-container {
+    width: 95%;
+    max-width: 800px;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #8a2be2, #ffffff);
+    text-align: left;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    color: white;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0;
+    transform: translateY(100px);
+    animation: slideUp 0.6s ease-out forwards;
+    cursor: pointer; /* Add pointer cursor to indicate clickable */
+  }
+  
+  /* Adjusting the question text */
+  .question-text {
+    font-size: 30px;
+    color: white !important;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-left: 20px;
+  }
+  
+  /* Additional styles for the second container (answer input) */
+  .question-content {
+    opacity: 0;
+    transform: translateY(100px);
+    animation: slideUp 0.6s ease-out forwards;
+    width: 95%;
+    max-width: 800px;
+    padding: 20px;
+    background: #f1f1f1;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Ensure the question text inside .question-content is black */
+  .question-content .question-text {
+    color: black !important; /* Override any other color */
+  }
+  
+  /* Input field styling */
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid green; /* Green border */
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+  }
+  
+  /* Focus state for input field */
+  input[type="text"]:focus {
+    outline: none;
+    border-color: green; /* Keep green border on focus */
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.5); /* Optional: Add a green shadow on focus */
+  }
+  
+ /* Okay button styling */
+.okay-button {
+    background-color: #ADD8E6; /* Light blue */
+    border: 2px solid #0000FF; /* Blue border */
+    color: #0000FF; /* Blue text */
+    font-weight: bold;
+    font-family: 'Spicy Rice', cursive; /* Apply Spicy Rice font */
+    padding: 15px 30px; /* Increased padding for larger size */
+    font-size: 24px; /* Increased font size */
+    border-radius: 30px; /* Adjusted border radius for larger size */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease; /* Added transform to transition */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensure it's above other elements */
+  }
+  
+  /* Okay button hover effect */
+  .okay-button:hover {
+    background-color: #0000FF; /* Blue background on hover */
+    color: #FFFFFF; /* White text on hover */
+    border-color: #FFFFFF; /* White border on hover */
+    transform: scale(1.1); /* Scale up the button by 10% */
+  }
+  
+  /* Icon color change on hover */
+  .okay-button:hover i {
+    color: #FFFFFF; /* White icon color on hover */
+  }
+  /* Progress bar styling */
+  progress {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    border: none;
+  }
+  
+  progress::-webkit-progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 20px;
+  }
+  
+  progress::-webkit-progress-value {
+    background-color: #8a2be2; /* Purple color */
+    border-radius: 20px;
+  }
+  
+  progress::-moz-progress-bar {
+    background-color: #8a2be2; /* Purple color */
+    border-radius: 20px;
+  }
+  
+  /* Add some spacing between elements */
+  .mt-3 {
+    margin-top: 1rem;
+  }
+  
+  /* Ensure the audio player is hidden */
+  audio {
+    display: none;
+  }
+  
+  /* Scrollable container for questions */
+  .questions-scrollable-container {
+    width: 100%;
+    max-height: 60vh; /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: flex-start; /* Align items to the top */
+  }
+  
+  /* Custom scrollbar styling */
+  .questions-scrollable-container::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+  }
+  
+  .questions-scrollable-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scrollbar track */
+    border-radius: 10px;
+  }
+  
+  .questions-scrollable-container::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px;
+  }
+  
+  .questions-scrollable-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb on hover */
+  }
+
+  /* Styling for the result container after results are shown */
+.result-container {
+  width: 95%;
+  max-width: 800px;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background: linear-gradient(to right, #8a2be2, #ffffff);
+  text-align: left;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+  color: white;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  opacity: 0;
+  transform: translateY(100px);
+  animation: slideUp 0.6s ease-out forwards;
+  cursor: pointer; /* Add pointer cursor to indicate clickable */
+}
+
+/* Adjusting the result text */
+.result-text {
+  font-size: 30px;
+  color: white !important;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-left: 20px;
+}
+
+/* Additional styles for the result content */
+.result-content {
+  opacity: 0;
+  transform: translateY(100px);
+  animation: slideUp 0.6s ease-out forwards;
+  width: 95%;
+  max-width: 800px;
+  padding: 20px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure the result text inside .result-content is black */
+.result-content .result-text {
+  color: black !important; /* Override any other color */
+}
