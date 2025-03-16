@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../styles/SelectCategory.css';
 
 const SelectCategory = () => {
-    const [categories, setCategories] = useState([]); 
+    const [categories, setCategories] = useState([]);
     const [error, setError] = useState('');
     const [backgroundImage, setBackgroundImage] = useState(''); // State for random background
     const navigate = useNavigate();
@@ -62,17 +62,40 @@ const SelectCategory = () => {
     };
 
     return (
-        <div 
-            className="main-container" 
-            style={{ 
+        <div
+            className="main-container"
+            style={{
                 backgroundImage: `url(${backgroundImage})`, // Set random background image
                 backgroundSize: 'cover', // Ensure the background covers the entire container
                 backgroundPosition: 'center', // Center the background image
                 minHeight: '100vh', // Ensure the container takes up the full viewport height
                 padding: '20px', // Add some padding
+
             }}
         >
-            <h1 className="category-title">Select A Category</h1>
+             <div
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    backgroundImage: `url(${backgroundImage})`, // Set random background image
+                    backgroundSize: 'cover', // Ensure the background covers the entire container
+                    backgroundPosition: 'center', // Center the background image
+                    filter: 'blur(8px)', // Apply blur effect
+                    WebkitFilter: 'blur(8px)', // For Safari support
+                    zIndex: 0, // Place the blurred background behind the content
+                    minHeight: '100vh', // Ensure the container takes up the full viewport height
+                    padding: '20px', 
+                }}
+            ></div>
+            <h1
+                className={`text-white text-center w-100 p-3 bg-dark bg-opacity-50`}
+                style={{ zIndex: 1, position: "relative", top: "10px" }}
+            >
+                Select a Category
+            </h1>
             {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
             <div className="category-container" ref={containerRef}>
                 <div className="cards-wrapper">

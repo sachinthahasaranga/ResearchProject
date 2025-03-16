@@ -1,3 +1,47 @@
+/* Main container styling */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background-size: cover; /* Ensures background image covers entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents background image repetition */
+  background-attachment: fixed; /* Fixes background during scrolling */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  position: absolute; /* Ensure the container is positioned correctly */
+  top: 0;
+  left: 0;
+  overflow: hidden; /* Disable scrollbars for entire container */
+  
+}
+
+/* Add a pseudo-element to create the blur effect */
+.main-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: inherit; /* Inherit the background image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  filter: blur(10px); /* Apply blur effect */
+  z-index: -1; /* Place the blurred background behind the content */
+}
+
+/* Ensure content is above the blurred background */
+.main-container > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* Container for the cards */
 .category-container {
   width: 100%;
@@ -69,25 +113,6 @@
 .card {
   background-size: cover;
   background-position: center;
-}
-
-.main-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100vw; /* Full viewport width */
-  height: 100vh; /* Full viewport height */
-  background-size: cover; /* Ensures background image covers entire container */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents background image repetition */
-  background-attachment: fixed; /* Fixes background during scrolling */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */
-  position: absolute; /* Ensure the container is positioned correctly */
-  top: 0;
-  left: 0;
-  overflow: hidden; /* Disable scrollbars for entire container */
 }
 
 /* Smooth horizontal scrolling */
