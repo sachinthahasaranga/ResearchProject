@@ -213,7 +213,20 @@ const Listening = () => {
           {/* Question Content 1 */}
           {activeQuestion === 1 && (
             <CSSTransition in={activeQuestion === 1} timeout={500} classNames="slide" unmountOnExit>
-              <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px' }}>
+              <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px', position: 'relative' }}>
+                {/* Answer Icon */}
+                <img
+                  src="/icons/answer.png"
+                  alt="Answer Icon"
+                  style={{
+                    width: '70px', // Increased from 40px to 50px
+                    height: '70px', // Increased from 40px to 50px
+                    position: 'absolute',
+                    top: '10px',
+                    right: '10px',
+                    opacity: 0.4
+                  }}
+                />
                 <p className="question-text">What is the main topic of the audio?</p>
                 <input
                   type="text"
@@ -260,7 +273,20 @@ const Listening = () => {
           {/* Question Content 2 */}
           {activeQuestion === 2 && (
             <CSSTransition in={activeQuestion === 2} timeout={500} classNames="slide" unmountOnExit>
-              <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px' }}>
+              <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px', position: 'relative' }}>
+                {/* Answer Icon */}
+                <img
+                  src="/icons/answer.png"
+                  alt="Answer Icon"
+                  style={{
+                    width: '70px', // Increased from 40px to 50px
+                    height: '70px', // Increased from 40px to 50px
+                    position: 'absolute',
+                    top: '10px',
+                    right: '10px',
+                    opacity: 0.4
+                  }}
+                />
                 <p className="question-text">What are the key points discussed?</p>
                 <input
                   type="text"
