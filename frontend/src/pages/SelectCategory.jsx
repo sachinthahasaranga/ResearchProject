@@ -5,17 +5,35 @@ import '../styles/SelectCategory.css';
 
 const SelectCategory = () => {
     const [categories, setCategories] = useState([]); 
+    const [error, setError] = useState(''); // State to handle errors
     const navigate = useNavigate(); // Initialize navigation
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/ctgry')
+        // Retrieve the token from localStorage
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            setError('No token found. Please log in.');
+            return;
+        }
+
+        // Fetch categories with the token
+        axios.get('http://localhost:3000/api/ctgry', {
+            headers: {
+                Authorization: `Bearer ${token}`, // Include the token in the request headers
+            },
+        })
             .then(response => setCategories(response.data))
-            .catch(error => console.error('Error fetching categories:', error));
+            .catch(error => {
+                console.error('Error fetching categories:', error);
+                setError('Failed to fetch categories. Please try again.');
+            });
     }, []);
 
     return (
         <div>
             <h1 className="category-title">Select A Category</h1>
+            {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>} {/* Display error message */}
             <div className="category-container">
                 <div className="cards-wrapper">
                     {categories.map((category) => (

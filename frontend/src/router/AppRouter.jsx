@@ -5,6 +5,7 @@ import App from "../App";
 import SelectListenings from "../pages/SelectListenings";
 import Listening from '../pages/Listening';
 import ListeningResult from "../pages/ListeningResult";
+import LoginPage from "../pages/LoginPage";
 
 const AppRouter = () => {
   return (
@@ -16,6 +17,7 @@ const AppRouter = () => {
         <Route path="/SelectListenings" element={<SelectListenings />} /> 
         <Route path="/listening" element={<Listening />} />
         <Route path="/listeningResult" element={<ListeningResult />} />
+        <Route path="/login" element={<LoginPage />} />
         {/* Modified to accept categoryId */}
       </Routes>
     </Router>
