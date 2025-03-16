@@ -211,7 +211,18 @@ const Listening = () => {
             <CSSTransition in={activeQuestion === 1} timeout={500} classNames="slide" unmountOnExit>
               <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px' }}>
                 <p className="question-text">What is the main topic of the audio?</p>
-                <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
+                <input
+                  type="text"
+                  placeholder="Your answer here..."
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    borderRadius: '5px',
+                    border: '1px solid #ccc',
+                    fontSize: '16px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  }}
+                />
               </div>
             </CSSTransition>
           )}
@@ -247,7 +258,18 @@ const Listening = () => {
             <CSSTransition in={activeQuestion === 2} timeout={500} classNames="slide" unmountOnExit>
               <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px' }}>
                 <p className="question-text">What are the key points discussed?</p>
-                <textarea placeholder="Your answer here..." rows="4" style={{ width: '100%' }} />
+                <input
+                  type="text"
+                  placeholder="Your answer here..."
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    borderRadius: '5px',
+                    border: '1px solid #ccc',
+                    fontSize: '16px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  }}
+                />
               </div>
             </CSSTransition>
           )}

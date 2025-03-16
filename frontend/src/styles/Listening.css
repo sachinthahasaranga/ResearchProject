@@ -116,16 +116,22 @@
     color: black !important; /* Override any other color */
   }
   
-  /* Textarea styling */
-  textarea {
+  /* Input field styling */
+  input[type="text"] {
     width: 100%;
     padding: 10px;
-    margin-top: 10px;
     border-radius: 5px;
+    border: 1px solid #ccc;
     font-size: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ccc;
-    resize: vertical; /* Allow vertical resizing of the textarea */
+    margin-top: 10px;
+  }
+  
+  /* Focus state for input field */
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #8a2be2; /* Purple color */
+    box-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
   }
   
   /* Progress bar styling */
