@@ -121,7 +121,7 @@
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 2px solid black !important; /* Force black border */
     font-size: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
@@ -130,7 +130,7 @@
   /* Focus state for input field */
   input[type="text"]:focus {
     outline: none;
-    border-color: #8a2be2; /* Purple color */
+    border-color: greenyellow !important; /* Purple color on focus */
     box-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
   }
   
