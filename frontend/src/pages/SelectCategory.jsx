@@ -6,8 +6,20 @@ import '../styles/SelectCategory.css';
 const SelectCategory = () => {
     const [categories, setCategories] = useState([]); 
     const [error, setError] = useState('');
+    const [backgroundImage, setBackgroundImage] = useState(''); // State for random background
     const navigate = useNavigate();
     const containerRef = useRef(null); // Ref for the container
+
+    // Function to generate a random background image path
+    const getRandomBackgroundImage = () => {
+        const randomNumber = Math.floor(Math.random() * 6) + 1; // Random number between 1 and 6
+        return `/images/background/bg${randomNumber}.png`; // Construct the image path
+    };
+
+    // Set the random background image on component mount
+    useEffect(() => {
+        setBackgroundImage(getRandomBackgroundImage());
+    }, []);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -50,7 +62,16 @@ const SelectCategory = () => {
     };
 
     return (
-        <div>
+        <div 
+            className="main-container" 
+            style={{ 
+                backgroundImage: `url(${backgroundImage})`, // Set random background image
+                backgroundSize: 'cover', // Ensure the background covers the entire container
+                backgroundPosition: 'center', // Center the background image
+                minHeight: '100vh', // Ensure the container takes up the full viewport height
+                padding: '20px', // Add some padding
+            }}
+        >
             <h1 className="category-title">Select A Category</h1>
             {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
             <div className="category-container" ref={containerRef}>

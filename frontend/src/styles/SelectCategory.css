@@ -71,6 +71,25 @@
   background-position: center;
 }
 
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background-size: cover; /* Ensures background image covers entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents background image repetition */
+  background-attachment: fixed; /* Fixes background during scrolling */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  position: absolute; /* Ensure the container is positioned correctly */
+  top: 0;
+  left: 0;
+  overflow: hidden; /* Disable scrollbars for entire container */
+}
+
 /* Smooth horizontal scrolling */
 .category-container::-webkit-scrollbar {
   height: 8px;
