@@ -8,6 +8,8 @@
   white-space: nowrap; /* Prevents cards from wrapping to the next line */
   display: flex;
   align-items: center; /* Center cards vertically */
+  scroll-snap-type: x mandatory; /* Smooth scrolling effect */
+  scroll-behavior: smooth; /* Smooth scrolling */
 }
 
 /* Wrapper for the cards */
@@ -16,7 +18,6 @@
   gap: 16px; /* Adds space between cards */
   height: 83%; /* Full height of the container */
   padding-bottom: 20px;
-  scroll-snap-type: x mandatory; /* Smooth scrolling effect */
 }
 
 /* Individual card styling */
@@ -34,9 +35,10 @@
   align-items: center;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
-  overflow: visible;
+  overflow: hidden; /* Ensures content doesn't overflow */
   scroll-snap-align: center; /* Aligns cards properly when scrolling */
   transition: transform 0.3s ease-in-out;
+  cursor: pointer; /* Indicates the card is clickable */
 }
 
 /* Add overlay effect for better text readability */
@@ -47,6 +49,7 @@
   width: 100%;
   height: 40%; /* Dark gradient at bottom */
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  z-index: 1; /* Ensures overlay is above the background image */
 }
 
 /* Card text styling */
@@ -59,6 +62,13 @@
   border-radius: 5px;
   width: 90%;
   text-align: center;
+  z-index: 2; /* Ensures text is above the overlay */
+}
+
+/* Background image for the card */
+.card {
+  background-size: cover;
+  background-position: center;
 }
 
 /* Smooth horizontal scrolling */
@@ -76,7 +86,42 @@
   border-radius: 10px;
 }
 
+.category-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker color on hover */
+}
+
 /* Hover Effect */
 .card:hover {
   transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Optional: Add navigation buttons */
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-button.left {
+  left: 10px;
+}
+
+.scroll-button.right {
+  right: 10px;
+}
+
+.scroll-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
