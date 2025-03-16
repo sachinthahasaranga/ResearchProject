@@ -78,6 +78,10 @@ const Listening = () => {
     setActiveQuestion((prev) => (prev === questionNumber ? null : questionNumber)); // Toggle active question
   };
 
+  const handleOkayButtonClick = () => {
+    alert("Okay button clicked!"); // Add your logic here
+  };
+
   const progress = (currentTime / duration) * 100;
 
   return (
@@ -218,7 +222,7 @@ const Listening = () => {
                     width: '100%',
                     padding: '10px',
                     borderRadius: '5px',
-                    border: '1px solid #ccc',
+                    border: '2px solid green', // Green border
                     fontSize: '16px',
                     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                   }}
@@ -265,7 +269,7 @@ const Listening = () => {
                     width: '100%',
                     padding: '10px',
                     borderRadius: '5px',
-                    border: '1px solid #ccc',
+                    border: '2px solid green', // Green border
                     fontSize: '16px',
                     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
                   }}
@@ -276,6 +280,23 @@ const Listening = () => {
 
           {/* Add more question containers and content as needed */}
         </div>
+      )}
+
+      {/* Okay Button in Bottom-Right Corner */}
+      {isAudioFinished && (
+        <button
+          className="okay-button"
+          onClick={handleOkayButtonClick}
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            zIndex: 1000, // Ensure it's above other elements
+          }}
+        >
+          <i className="fas fa-thumbs-up" style={{ marginRight: "10px" }}></i>
+          Okay
+        </button>
       )}
 
       <audio ref={audioRef} src="/audio/Legal Consultation Appointment Update.mp3" onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleTimeUpdate} onEnded={handleAudioEnd} />

@@ -1,5 +1,13 @@
-/* Overlay for the countdown image */
-.overlay {
+/* Define the Spicy Rice font */
+@font-face {
+    font-family: 'Spicy Rice';
+    src: url('/fonts/SpicyRice-Regular.ttf') format('truetype'); /* Path to the font file */
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* Overlay for the countdown image */
+  .overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -121,7 +129,7 @@
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border: 2px solid black !important; /* Force black border */
+    border: 2px solid green; /* Green border */
     font-size: 16px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
@@ -130,8 +138,32 @@
   /* Focus state for input field */
   input[type="text"]:focus {
     outline: none;
-    border-color: greenyellow !important; /* Purple color on focus */
-    box-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+    border-color: green; /* Keep green border on focus */
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.5); /* Optional: Add a green shadow on focus */
+  }
+  
+  /* Okay button styling */
+  .okay-button {
+    background-color: #ADD8E6; /* Light blue */
+    border: 2px solid #0000FF; /* Blue border */
+    color: #0000FF; /* Blue text */
+    font-weight: bold;
+    font-family: 'Spicy Rice', cursive; /* Apply Spicy Rice font */
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  /* Okay button hover effect */
+  .okay-button:hover {
+    background-color: #0000FF; /* Blue background on hover */
+    color: #FFFFFF; /* White text on hover */
+    border-color: #FFFFFF; /* White border on hover */
   }
   
   /* Progress bar styling */
