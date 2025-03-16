@@ -55,6 +55,10 @@ const ListeningResult = () => {
           maxHeight: "60vh", // Adjust height as needed
           overflowY: "auto", // Enable vertical scrolling
           padding: "0 20px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center", // Center horizontally
+          justifyContent: "center", // Center vertically
         }}
       >
         {/* Result Container 1 */}
