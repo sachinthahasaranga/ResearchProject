@@ -1,5 +1,6 @@
 import React from 'react';
-import '../styles/SelectListenings.css'; // Import the CSS file for styling
+import { useLocation } from 'react-router-dom'; // Import useLocation
+import '../styles/SelectListenings.css';
 
 const getRandomGradient = () => {
   const colors = [
@@ -18,6 +19,9 @@ const getRandomImageNumber = (min, max) => {
 };
 
 const SelectListenings = () => {
+  const location = useLocation(); // Access the location object
+  const { categoryId } = location.state || {}; // Destructure categoryId from location.state
+
   const listenings = [
     { id: 1, title: 'Listening 1', description: 'Description for listening 1' },
     { id: 2, title: 'Listening 2', description: 'Description for listening 2' },
@@ -28,6 +32,14 @@ const SelectListenings = () => {
   ];
 
   const randomBackgroundImageNumber = getRandomImageNumber(1, 6); // Get a random background image number between 1 and 6
+
+  // Log the categoryId for debugging
+  React.useEffect(() => {
+    if (categoryId) {
+      console.log("Selected Category ID:", categoryId);
+      // You can fetch additional data related to the categoryId here
+    }
+  }, [categoryId]);
 
   return (
     <div
