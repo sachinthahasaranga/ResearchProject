@@ -82,3 +82,45 @@ exports.deleteStudentPerformanceHistory = async (req, res) => {
         res.status(500).json({ message: "Error deleting student performance history", error });
     }
 };
+
+exports.getStudentPerformanceHistoryByUserId = async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        const studentPerformanceHistory = await StudentPerformanceHistory.find({ userId })
+            .populate("userId", "username email firstName lastName");
+
+        if (!studentPerformanceHistory) {
+            return res.status(200).json(null);
+        }
+
+        res.status(200).json(studentPerformanceHistory);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching student performance History record", error });
+    }
+};
+
+
+exports.updateStudentPerformanceHistoryByUserId = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const { totalStudyTime, totalScore, paperCount } = req.body;
+
+        // Calculate the updated average score
+        const averageScore = paperCount > 0 ? totalScore / paperCount : 0;
+
+        const updatedStudentPerformanceHistory = await StudentPerformanceHistory.findOneAndUpdate(
+            { userId },
+            { totalStudyTime, totalScore, paperCount, averageScore },
+            { new: true }
+        );
+
+        if (!updatedStudentPerformanceHistory) {
+            return res.status(404).json({ message: "Student performance History record not found" });
+        }
+
+        res.status(200).json({ message: "Student performance updated successfully!", updatedStudentPerformanceHistory });
+    } catch (error) {
+        res.status(500).json({ message: "Error updating student performance history", error });
+    }
+};
