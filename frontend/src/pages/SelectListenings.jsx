@@ -27,6 +27,7 @@ const SelectListenings = () => {
   const [error, setError] = useState('');
   const randomBackgroundImageNumber = getRandomImageNumber(1, 6);
 
+  // Fetch the list of listenings when the component mounts
   useEffect(() => {
     if (!categoryId) {
       setError('No category selected.');
@@ -39,11 +40,14 @@ const SelectListenings = () => {
       return;
     }
 
-    axios.get(`http://localhost:3000/api/lstn/category/${categoryId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(response => setListenings(response.data))
-      .catch(error => {
+    axios
+      .get(`http://localhost:3000/api/lstn/category/${categoryId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        setListenings(response.data); // Store the fetched data in the state
+      })
+      .catch((error) => {
         console.error('Error fetching listenings:', error);
         setError('Failed to fetch listenings. Please try again.');
       });
@@ -67,12 +71,15 @@ const SelectListenings = () => {
               key={listening._id}
               className="listening-card"
               style={{ background: getRandomGradient() }}
-              onClick={() => navigate('/ListeningDetails', { state: { listeningId: listening._id } })}
+              onClick={() =>
+                navigate('/listening', {
+                  state: { listening: listening }, // Pass the selected listening data
+                })
+              }
             >
               <div className="card-content">
                 <div className="text-section">
                   <h2>{listening.name}</h2>
-                  
                 </div>
                 <div className="image-section">
                   <img
