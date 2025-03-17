@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import axios from 'axios';
 import { CSSTransition } from "react-transition-group";
 import "../styles/Listening.css"; // Import CSS for animations
 
@@ -7,6 +9,9 @@ const getRandomImageNumber = (min, max) => {
 };
 
 const Listening = () => {
+  const location = useLocation();
+  const { listeningId } = location.state || {};  // Get the listening ID from location state
+  const [listening, setListening] = useState(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -18,12 +23,38 @@ const Listening = () => {
   const [countdownImage, setCountdownImage] = useState(null);
   const [isQuestionContainerVisible, setIsQuestionContainerVisible] = useState(false);
   const [activeQuestion, setActiveQuestion] = useState(null); // Track which question is active
+  const [isLoading, setIsLoading] = useState(true); // Track loading state
 
-  const audioRef = React.useRef(null);
+  const audioRef = React.useRef(null); // Reference to the audio element
 
+  // Fetch the full listening data when the component mounts
   useEffect(() => {
+    if (!listeningId) return; // Make sure the listeningId exists
     setBackgroundImageNumber(getRandomImageNumber(1, 6));
-  }, []);
+  
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('No token found. Please log in.');
+      return;
+    }
+  
+    // Fetch the full listening data from the server
+    axios
+      .get(`http://localhost:3000/api/lstn/${listeningId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        setListening(response.data); // Store the fetched listening data
+        console.log("QnA Data:", response.data.QnA);  // Log the data
+        setIsLoading(false); // Set loading to false once data is fetched
+      })
+      .catch((error) => {
+        console.error('Error fetching the listening:', error);
+        alert('Failed to fetch listening. Please try again.');
+        setIsLoading(false); // Set loading to false even if there's an error
+      });
+  }, [listeningId]); // Dependency array ensures fetch runs only when listeningId changes
+  
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
@@ -83,6 +114,16 @@ const Listening = () => {
   };
 
   const progress = (currentTime / duration) * 100;
+
+  if (isLoading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -160,9 +201,7 @@ const Listening = () => {
 
       {isAudioPlaying && (
         <div style={{ width: "90%", marginTop: "20px" }}>
-          <progress value={progress} max="100" style={{ width: "100%", height: "20px" }}>
-            <span>{Math.floor(progress)}%</span>
-          </progress>
+          <progress value={progress} max="100" style={{ width: "100%", height: "20px" }} />
         </div>
       )}
 
@@ -350,7 +389,8 @@ const Listening = () => {
         </button>
       )}
 
-      <audio ref={audioRef} src="/audio/Legal Consultation Appointment Update.mp3" onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleTimeUpdate} onEnded={handleAudioEnd} />
+      {/* Audio */}
+      {listening && <audio ref={audioRef} src={listening.audio} onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleTimeUpdate} onEnded={handleAudioEnd} />}
     </div>
   );
 };

@@ -73,7 +73,7 @@ const SelectListenings = () => {
               style={{ background: getRandomGradient() }}
               onClick={() =>
                 navigate('/listening', {
-                  state: { listening: listening }, // Pass the selected listening data
+                  state: { listeningId: listening._id }, // Pass only the listening ID
                 })
               }
             >
