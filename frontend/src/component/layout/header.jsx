@@ -95,6 +95,7 @@ const Header = () => {
                                         <ul className="lab-ul dropdown-menu">
                                             <li><NavLink to="/course">Course</NavLink></li>
                                             <li><NavLink to="/paperlist">Papers</NavLink></li>
+                                            <li><NavLink to="/studentprofile">profile</NavLink></li>
                                         </ul>
                                     </li>
                                     <li className="menu-item-has-children">

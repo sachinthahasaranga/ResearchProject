@@ -34,6 +34,7 @@ import TeamPage from "./page/team";
 import TeamSingle from "./page/team-single";
 import PaperList from "./page/PaperList";
 import PaperDetails from "./page/PaperDetails";
+import StudentProfile from "./page/StudentProfile";
 
 function App() {
   return (
@@ -73,6 +74,7 @@ function App() {
           <Route path="contact" element={<ContactPage />} />
           <Route path="paperlist" element={<PaperList />} />
           <Route path="paper-details/:paperId" element={<PaperDetails />} />
+          <Route path="studentprofile" element={<StudentProfile />} />
         </Route>
 
         {/* 404 Page */}
