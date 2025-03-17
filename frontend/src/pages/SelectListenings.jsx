@@ -1,5 +1,6 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom'; // Import useLocation
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/SelectListenings.css';
 
 const getRandomGradient = () => {
@@ -15,54 +16,63 @@ const getRandomGradient = () => {
 };
 
 const getRandomImageNumber = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min; // Generates a random number between min and max
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 const SelectListenings = () => {
-  const location = useLocation(); // Access the location object
-  const { categoryId } = location.state || {}; // Destructure categoryId from location.state
+  const location = useLocation();
+  const { categoryId } = location.state || {};
+  const navigate = useNavigate();
+  const [listenings, setListenings] = useState([]);
+  const [error, setError] = useState('');
+  const randomBackgroundImageNumber = getRandomImageNumber(1, 6);
 
-  const listenings = [
-    { id: 1, title: 'Listening 1', description: 'Description for listening 1' },
-    { id: 2, title: 'Listening 2', description: 'Description for listening 2' },
-    { id: 3, title: 'Listening 3', description: 'Description for listening 3' },
-    { id: 4, title: 'Listening 4', description: 'Description for listening 4' },
-    { id: 5, title: 'Listening 5', description: 'Description for listening 5' },
-    { id: 6, title: 'Listening 6', description: 'Description for listening 6' },
-  ];
-
-  const randomBackgroundImageNumber = getRandomImageNumber(1, 6); // Get a random background image number between 1 and 6
-
-  // Log the categoryId for debugging
-  React.useEffect(() => {
-    if (categoryId) {
-      console.log("Selected Category ID:", categoryId);
-      // You can fetch additional data related to the categoryId here
+  useEffect(() => {
+    if (!categoryId) {
+      setError('No category selected.');
+      return;
     }
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setError('No token found. Please log in.');
+      return;
+    }
+
+    axios.get(`http://localhost:3000/api/lstn/category/${categoryId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(response => setListenings(response.data))
+      .catch(error => {
+        console.error('Error fetching listenings:', error);
+        setError('Failed to fetch listenings. Please try again.');
+      });
   }, [categoryId]);
 
   return (
     <div
       className="listening-container"
       style={{
-        backgroundImage: `url('/images/background/bg${randomBackgroundImageNumber}.png')`, // Dynamically set background image
+        backgroundImage: `url('/images/background/bg${randomBackgroundImageNumber}.png')`,
       }}
     >
       <h1>Select a Listening</h1>
+      {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
       <div className="listening-cards-wrapper">
         {listenings.map((listening) => {
-          const randomCardImageNumber = getRandomImageNumber(1, 10); // Generate a random number for each card image between 1 and 10
+          const randomCardImageNumber = getRandomImageNumber(1, 10);
 
           return (
             <div
-              key={listening.id}
+              key={listening._id}
               className="listening-card"
               style={{ background: getRandomGradient() }}
+              onClick={() => navigate('/ListeningDetails', { state: { listeningId: listening._id } })}
             >
               <div className="card-content">
                 <div className="text-section">
-                  <h2>{listening.title}</h2>
-                  <p>{listening.description}</p>
+                  <h2>{listening.name}</h2>
+                  
                 </div>
                 <div className="image-section">
                   <img
@@ -71,6 +81,10 @@ const SelectListenings = () => {
                   />
                 </div>
               </div>
+              <audio controls>
+                <source src={listening.audio} type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
             </div>
           );
         })}
