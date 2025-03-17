@@ -70,10 +70,9 @@ const SelectCategory = () => {
                 backgroundPosition: 'center', // Center the background image
                 minHeight: '100vh', // Ensure the container takes up the full viewport height
                 padding: '20px', // Add some padding
-
             }}
         >
-             <div
+            <div
                 style={{
                     position: 'absolute',
                     top: 0,
@@ -87,7 +86,7 @@ const SelectCategory = () => {
                     WebkitFilter: 'blur(8px)', // For Safari support
                     zIndex: 0, // Place the blurred background behind the content
                     minHeight: '100vh', // Ensure the container takes up the full viewport height
-                    padding: '20px', 
+                    padding: '20px',
                 }}
             ></div>
             <h1
@@ -103,7 +102,7 @@ const SelectCategory = () => {
                         <div
                             key={category._id}
                             className="card"
-                            onClick={() => navigate(`/SelectListenings/${category._id}`)}
+                            onClick={() => navigate('/SelectListenings', { state: { categoryId: category._id } })}
                             style={{
                                 backgroundImage: `url(/images/listeningCategories/${category.backgroundImage})`,
                             }}
