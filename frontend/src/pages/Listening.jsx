@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from 'axios';
 import { CSSTransition } from "react-transition-group";
 import "../styles/Listening.css"; // Import CSS for animations
@@ -10,6 +10,7 @@ const getRandomImageNumber = (min, max) => {
 
 const Listening = () => {
   const location = useLocation();
+  const navigate = useNavigate(); // Initialize useNavigate
   const { listeningId } = location.state || {};
   const [listening, setListening] = useState(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
@@ -64,6 +65,7 @@ const Listening = () => {
         answer: qna.answer,
         studentsAnswer: studentAnswers[index + 1] || "",
         isCorrect: false,
+        score: 0.0
       }));
       setResponses(updatedResponses); // Update the responses state
     }
@@ -77,7 +79,7 @@ const Listening = () => {
     }));
   };
 
-  // Handle "Okay" button click to save responses
+  // Handle "Okay" button click to save responses and navigate to the result page
   const handleOkayButtonClick = async () => {
     if (!responses.length) {
       alert("No responses to save!");
@@ -91,17 +93,21 @@ const Listening = () => {
     }
 
     try {
-      const response = await axios.post(
-        'http://localhost:3000/api/quiz-responses',
-        { responses },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      // Save responses to the backend (if needed)
+      // const response = await axios.post(
+      //   'http://localhost:3000/api/quiz-responses',
+      //   { responses },
+      //   { headers: { Authorization: `Bearer ${token}` } }
+      // );
 
-      if (response.status === 200) {
-        alert("Responses saved successfully!");
-      } else {
-        alert("Failed to save responses.");
-      }
+      // if (response.status === 200) {
+      //   alert("Responses saved successfully!");
+      // } else {
+      //   alert("Failed to save responses.");
+      // }
+
+      // Navigate to the ListeningResult page with responses as state
+      navigate("/listeningResult", { state: { responses } });
     } catch (error) {
       console.error("Error saving responses:", error);
       alert("An error occurred while saving responses.");
@@ -201,7 +207,7 @@ const Listening = () => {
         className={`text-white text-center w-100 p-3 bg-dark bg-opacity-50 ${isQuestionContainerVisible ? 'slide-up' : ''}`}
         style={{ zIndex: 1, position: "relative", top: "10px" }}
       >
-        Listening Page
+        {listening ? listening.name : "Listening Page"}
       </h1>
 
       {/* Audio controls and progress */}
@@ -273,7 +279,7 @@ const Listening = () => {
           className="questions-scrollable-container"
           style={{
             width: "100%",
-            maxHeight: "90vh", // Adjust height as needed
+            maxHeight: "65vh", // Adjust height as needed
             overflowY: "auto", // Enable vertical scrolling
             padding: "0 20px",
           }}
