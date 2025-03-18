@@ -60,6 +60,9 @@ const ListeningResult = () => {
     }, 100);
   };
 
+  // Calculate the number of correct answers
+  const correctAnswersCount = responses.filter((response) => response.isCorrect).length;
+
   return (
     <div
       className="d-flex flex-column justify-content-start align-items-center"
@@ -87,6 +90,14 @@ const ListeningResult = () => {
       >
         Listening Results
       </h1>
+
+      {/* Display correct answers count */}
+      <h2
+        className="text-white text-center w-100 p-3 bg-dark bg-opacity-50"
+        style={{ zIndex: 1, position: "relative", marginBottom: "20px" }}
+      >
+        You got {correctAnswersCount} out of 5 correct answers!
+      </h2>
 
       <div
         className="results-scrollable-container"
