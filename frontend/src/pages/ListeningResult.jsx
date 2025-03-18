@@ -1,27 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom"; // Import useLocation
+import { useLocation } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
-import axios from "axios"; // Import axios for API calls
-import "../styles/ListeningResult.css"; // Import CSS for animations
+import axios from "axios";
+import "../styles/ListeningResult.css";
 
 const getRandomImageNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+const THRESHOLD = 0.7; // Set the threshold for correct answers
+
 const ListeningResult = () => {
   const [backgroundImageNumber, setBackgroundImageNumber] = useState(null);
   const [isResultContainerVisible, setIsResultContainerVisible] = useState(false);
-  const [activeResult, setActiveResult] = useState(null); // Track which result is active
-  const location = useLocation(); // Use the useLocation hook
-  const { responses: initialResponses } = location.state || {}; // Access the passed state
-  const [responses, setResponses] = useState([]); // State to store responses with scores
-  const containerRef = useRef(null); // Ref for scrollable container
+  const [activeResult, setActiveResult] = useState(null);
+  const location = useLocation();
+  const { responses: initialResponses } = location.state || {};
+  const [responses, setResponses] = useState([]);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     setBackgroundImageNumber(getRandomImageNumber(1, 6));
-    setIsResultContainerVisible(true); // Show the result container on component mount
+    setIsResultContainerVisible(true);
 
-    // Calculate cosine similarity for each response
     if (initialResponses) {
       const updatedResponses = initialResponses.map(async (response) => {
         try {
@@ -30,21 +31,16 @@ const ListeningResult = () => {
             word2: [response.studentsAnswer],
           });
 
-          // Add the score to the response
-          return {
-            ...response,
-            score: apiResponse.data[0].score, // Extract the score from the API response
-          };
+          const score = apiResponse.data[0].score || 0; // Ensure score is valid
+          const isCorrect = score >= THRESHOLD; // Compare with threshold
+
+          return { ...response, score, isCorrect }; // Assign score & correctness
         } catch (error) {
           console.error("Error calculating cosine similarity:", error);
-          return {
-            ...response,
-            score: 0, // Default score if API call fails
-          };
+          return { ...response, score: 0, isCorrect: false };
         }
       });
 
-      // Wait for all API calls to complete and update the responses state
       Promise.all(updatedResponses).then((updatedResponsesWithScores) => {
         setResponses(updatedResponsesWithScores);
       });
@@ -52,9 +48,8 @@ const ListeningResult = () => {
   }, [initialResponses]);
 
   const handleResultContainerClick = (index) => {
-    setActiveResult((prev) => (prev === index ? null : index)); // Toggle active result
+    setActiveResult((prev) => (prev === index ? null : index));
 
-    // Scroll into view smoothly
     setTimeout(() => {
       if (containerRef.current) {
         const selectedElement = containerRef.current.children[index];
@@ -95,7 +90,7 @@ const ListeningResult = () => {
 
       <div
         className="results-scrollable-container"
-        ref={containerRef} // Reference for auto-scrolling
+        ref={containerRef}
         style={{
           width: "100%",
           maxHeight: "80vh",
@@ -118,7 +113,7 @@ const ListeningResult = () => {
                 justifyContent: "space-between",
                 paddingRight: "630px",
                 position: "relative",
-                cursor: "pointer", // Indicates it's clickable
+                cursor: "pointer",
               }}
               onClick={() => handleResultContainerClick(index)}
             >
@@ -163,6 +158,7 @@ const ListeningResult = () => {
                   <p className="result-text"><strong>Question:</strong> {response.question}</p>
                   <p className="result-text"><strong>Your Answer:</strong> {response.studentsAnswer}</p>
                   <p className="result-text"><strong>Correct Answer:</strong> {response.answer}</p>
+                  
                 </div>
               </CSSTransition>
             )}
