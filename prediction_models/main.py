@@ -3,9 +3,11 @@ import pickle
 import numpy as np
 from tensorflow.keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from flask_cors import CORS
 
 # Initialize Flask app
 app = Flask(__name__)
+CORS(app)
 
 minmax_scl = None
 std_scl = None
