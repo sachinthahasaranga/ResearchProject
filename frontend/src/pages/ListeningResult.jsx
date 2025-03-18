@@ -161,9 +161,9 @@ const ListeningResult = () => {
                   <p className="result-text">
                     <strong>Correct Answer:</strong> {response.answer}
                   </p>
-                  <p className="result-text">
-                    <strong>Similarity Score:</strong> {response.score.toFixed(2)}
-                  </p>
+                  {/* <p className="result-text">
+                    <strong>Score:</strong> {response.score.toFixed(2)}
+                  </p> */}
                 </div>
               </CSSTransition>
             )}
