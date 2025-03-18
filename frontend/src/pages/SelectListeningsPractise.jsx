@@ -109,17 +109,26 @@ const SelectListeningsPractise = () => {
         <div className="difficulty-levels-list">
           {difficultyLevels.map((level) => {
             let className = "difficulty-level-card";
+            let stars = "";
             if (level.difficultyName.toLowerCase() === "easy") {
               className += " easy";
+              stars = "/icons/star.png";
             } else if (level.difficultyName.toLowerCase() === "medium") {
               className += " medium";
+              stars = "/icons/star.png /icons/star.png";
             } else if (level.difficultyName.toLowerCase() === "hard") {
               className += " hard";
+              stars = "/icons/star.png /icons/star.png /icons/star.png /icons/star.png";
             }
 
             return (
               <div key={level._id} className={className}>
                 <h3>{level.difficultyName}</h3>
+                <div className="difficulty-stars">
+                  {stars.split(" ").map((src, index) => (
+                    <img key={index} src={src} alt="star" className="star-icon" />
+                  ))}
+                </div>
               </div>
             );
           })}

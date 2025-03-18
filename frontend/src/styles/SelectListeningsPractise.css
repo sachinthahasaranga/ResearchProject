@@ -37,7 +37,8 @@ html, body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+  background: rgba(0, 0, 0, 0.2); /* Reduce opacity */
+  pointer-events: none; /* Dark overlay */
   z-index: 0;
 }
 
@@ -208,7 +209,11 @@ html, body {
   text-align: center;
   font-weight: bold;
   color: white;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
   border: 3px solid transparent; /* Default transparent border */
+  position: relative; /* Ensure it is positioned above the overlay */
+  z-index: 2; 
   transition: border-color 0.3s ease-in-out, transform 0.2s;
 }
 
@@ -240,3 +245,9 @@ html, body {
   border-color: yellow; /* Yellow outline */
   font-weight: bold;
 }
+
+.star-icon {
+  width: 16px; /* Adjust the width as per your preference */
+  height: 16px; /* Adjust the height as per your preference */
+}
+
