@@ -115,13 +115,13 @@ const StudentProfile = () => {
   };
 
   const getDifficultyLevel = (score) => {
-    if (score === null || score === undefined) return "N/A";
+    if (score === null || score === undefined) return "N/A"; // Handle null case
   
-    if (score < 0.0065) {
+    if ( score < 393.06) {
       return "Easy";
-    } else if (score >= 0.0065 && score < 0.0125) {
+    } else if (score >= 393.06 && score < 769.32) {
       return "Medium";
-    } else if (score >= 0.0125 && score <= 0.0184) {
+    } else if (score >= 769.32 && score <= 1145.59) {
       return "Hard";
     } else {
       return "Not Enough Data...";

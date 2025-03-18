@@ -90,5 +90,5 @@ if __name__ == '__main__':
     with open('minmax.pkl', 'rb') as f:
         scaler_forecast = pickle.load(f)
 
-    score_model = load_model('student_level_pred.keras')
+    score_model = load_model('student_level_pred.h5')
     app.run(debug=True)
