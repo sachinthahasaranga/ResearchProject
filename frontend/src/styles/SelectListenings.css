@@ -112,9 +112,15 @@ html, body {
 
 /* Text section */
 .text-section {
-  flex: 1;
-  padding-right: 10px;
-  color: black; /* Changed text color to black */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adds space between the number and the name */
+}
+
+.card-number {
+  font-size: 22px;
+  font-weight: bold;
+  color: black;
 }
 
 .text-section h2 {

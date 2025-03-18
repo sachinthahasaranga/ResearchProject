@@ -40,17 +40,27 @@ const SelectListenings = () => {
       return;
     }
 
+    let isMounted = true; // Add a flag to track if the component is mounted
+
     axios
       .get(`http://localhost:3000/api/lstn/category/${categoryId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        setListenings(response.data); // Store the fetched data in the state
+        if (isMounted) {
+          setListenings(response.data); // Store the fetched data in the state
+        }
       })
       .catch((error) => {
-        console.error('Error fetching listenings:', error);
-        setError('Failed to fetch listenings. Please try again.');
+        if (isMounted) {
+          console.error('Error fetching listenings:', error);
+          setError('Failed to fetch listenings. Please try again.');
+        }
       });
+
+    return () => {
+      isMounted = false; // Cleanup function to set isMounted to false
+    };
   }, [categoryId]);
 
   return (
@@ -63,7 +73,7 @@ const SelectListenings = () => {
       <h1>Select a Listening</h1>
       {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
       <div className="listening-cards-wrapper">
-        {listenings.map((listening) => {
+        {listenings.map((listening, index) => {
           const randomCardImageNumber = getRandomImageNumber(1, 10);
 
           return (
@@ -79,6 +89,8 @@ const SelectListenings = () => {
             >
               <div className="card-content">
                 <div className="text-section">
+                  {/* Display the number in front of the name */}
+                  <h2 className="card-number">{index + 1}.</h2>
                   <h2>{listening.name}</h2>
                 </div>
                 <div className="image-section">
