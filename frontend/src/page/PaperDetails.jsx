@@ -164,7 +164,8 @@ const PaperDetails = () => {
     });
 
     // Convert correct marks to percentage and apply difficulty weight
-    const correctScorePercentage = totalQuestions > 0 ? totalCorrectMarks / 100 : 0;
+    //const correctScorePercentage = totalQuestions > 0 ? totalCorrectMarks / 100 : 0;
+    const correctScorePercentage = totalQuestions > 0 ? totalCorrectMarks : 0;
     const finalConvertedMarks = correctScorePercentage * paper.difficultyLevel.difficultyWeight;
 
     setEvaluationResults(results);
