@@ -3,8 +3,8 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from '../../assets/images/logo/logo.png';
 import '../../assets/css/header/header.css';
 
-const phoneNumber = "+800-123-4567 6587";
-const address = "Beverley, New York 224 USA";
+const phoneNumber = "+94 712 - 758 - 785";
+const address = "Negombo, Sri Lanka";
 
 const socialList = [
     { iconName: 'icofont-facebook-messenger', siteLink: '#' },
@@ -77,37 +77,16 @@ const Header = () => {
                         <div className="menu-area">
                             <div className="menu">
                                 <ul className={`lab-ul ${menuToggle ? "active" : ""}`}>
-                                    <li><NavLink to="/">Home</NavLink></li>
-                                    {/* <li className="menu-item-has-children">
-                                        <a href="#">Home</a>
-                                        <ul className="lab-ul dropdown-menu">
-                                            <li><NavLink to="/">Home One</NavLink></li>
-                                            <li><NavLink to="/index-2">Home Two</NavLink></li>
-                                            <li><NavLink to="/index-3">Home Three</NavLink></li>
-                                            <li><NavLink to="/index-4">Home Four</NavLink></li>
-                                            <li><NavLink to="/index-5">Home Five</NavLink></li>
-                                            <li><NavLink to="/index-6">Home Six</NavLink></li>
-                                            <li><NavLink to="/index-7">Home Seven</NavLink></li>
-                                        </ul>
-                                    </li> */}
+                                    <li className="menu-item-has-children"><NavLink to="/">Home</NavLink></li>
                                     <li className="menu-item-has-children">
-                                        <a href="#">Courses</a>
+                                        <a href="#">Content</a>
                                         <ul className="lab-ul dropdown-menu">
                                             <li><NavLink to="/course">Course</NavLink></li>
-                                            <li><NavLink to="/course-single">Course Details</NavLink></li>
-                                            <li><NavLink to="/course-view">Course View</NavLink></li>
+                                            <li><NavLink to="/paperlist">Papers</NavLink></li>
+                                            <li><NavLink to="/lisning">Listening Activities</NavLink></li>
                                         </ul>
                                     </li>
-                                    <li className="menu-item-has-children">
-                                        <a href="#">Blog</a>
-                                        <ul className="lab-ul dropdown-menu">
-                                            <li><NavLink to="/blog">Blog Grid</NavLink></li>
-                                            <li><NavLink to="/blog-2">Blog Style 2</NavLink></li>
-                                            <li><NavLink to="/blog-3">Blog Style 3</NavLink></li>
-                                            <li><NavLink to="/blog-single">Blog Single</NavLink></li>
-                                        </ul>
-                                    </li>
-                                    <li className="menu-item-has-children">
+                                    {/* <li className="menu-item-has-children">
                                         <a href="#">Pages</a>
                                         <ul className="lab-ul dropdown-menu">
                                             <li><NavLink to="/about">About</NavLink></li>
@@ -120,8 +99,9 @@ const Header = () => {
                                             <li><NavLink to="/search-none">Search None</NavLink></li>
                                             <li><NavLink to="/404">404</NavLink></li>
                                         </ul>
-                                    </li>
-                                    <li><NavLink to="/contact">Contact</NavLink></li>
+                                    </li> */}
+                                    <li className="menu-item-has-children"><NavLink to="/studentprofile">Profile</NavLink></li>
+                                    <li className="menu-item-has-children"><NavLink to="/contact">Contact</NavLink></li>
                                 </ul>
                             </div>
 

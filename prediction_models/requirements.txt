@@ -3,3 +3,4 @@ pickle5
 numpy
 tensorflow
 scikit-learn
+flask_cors

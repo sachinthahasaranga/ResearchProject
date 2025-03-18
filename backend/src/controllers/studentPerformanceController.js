@@ -1,17 +1,16 @@
 const StudentPerformance = require("../models/StudentPerformance");
 const User = require("../models/User");
 
-// Create Student Performance Record
 exports.createStudentPerformance = async (req, res) => {
     try {
-        const { userId, totalStudyTime, totalScore, paperCount } = req.body;
+        const { userId, totalStudyTime,resourceScore, totalScore, paperCount } = req.body;
 
-        // Calculate the average score
         const averageScore = paperCount > 0 ? totalScore / paperCount : 0;
 
         const newStudentPerformance = new StudentPerformance({
             userId,
             totalStudyTime,
+            resourceScore,
             totalScore,
             paperCount,
             averageScore
@@ -53,14 +52,14 @@ exports.getStudentPerformanceById = async (req, res) => {
 // Update Student Performance
 exports.updateStudentPerformance = async (req, res) => {
     try {
-        const { totalStudyTime, totalScore, paperCount } = req.body;
+        const { totalStudyTime,resourceScore, totalScore, paperCount } = req.body;
 
         // Calculate the updated average score
         const averageScore = paperCount > 0 ? totalScore / paperCount : 0;
 
         const updatedStudentPerformance = await StudentPerformance.findByIdAndUpdate(
             req.params.id,
-            { totalStudyTime, totalScore, paperCount, averageScore },
+            { totalStudyTime, resourceScore, totalScore, paperCount, averageScore },
             { new: true }
         );
 
@@ -90,7 +89,7 @@ exports.getStudentPerformanceByUserId = async (req, res) => {
         const { userId } = req.params;
 
         const studentPerformance = await StudentPerformance.findOne({ userId })
-            .populate("userId", "username email firstName lastName");
+            .populate("userId");
 
         if (!studentPerformance) {
             return res.status(200).json(null);
@@ -106,14 +105,14 @@ exports.getStudentPerformanceByUserId = async (req, res) => {
 exports.updateStudentPerformanceByUserId = async (req, res) => {
     try {
         const { userId } = req.params;
-        const { totalStudyTime, totalScore, paperCount } = req.body;
+        const { totalStudyTime, resourceScore, totalScore, paperCount } = req.body;
 
         // Calculate the updated average score
         const averageScore = paperCount > 0 ? totalScore / paperCount : 0;
 
         const updatedStudentPerformance = await StudentPerformance.findOneAndUpdate(
             { userId },
-            { totalStudyTime, totalScore, paperCount, averageScore },
+            { totalStudyTime, resourceScore, totalScore, paperCount, averageScore },
             { new: true }
         );
 

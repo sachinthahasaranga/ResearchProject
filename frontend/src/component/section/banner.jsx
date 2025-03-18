@@ -1,5 +1,5 @@
-
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import girl3 from '../../assets/images/banner/girl3.png';
 const subTitle = "Online English education";
 const title = <h2 className="title"><span className="d-lg-block">Learn The</span>English Skills You Need <span className="d-lg-block">To Succeed</span></h2>;
@@ -33,7 +33,7 @@ const shapeList = [
         className: 'ccl-shape shape-1',
     },
     {
-        name: '130K+ Total Courses',
+        name: '100+ Total Courses',
         link: '#',
         className: 'ccl-shape shape-2',
     },
@@ -55,6 +55,22 @@ const shapeList = [
 ]
 
 const Banner = () => {
+
+    const [searchQuery, setSearchQuery] = useState("");
+    const navigate = useNavigate();
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/search-page/${searchQuery.trim()}`);
+        }
+    };
+
+
     return (
         <section className="banner-section">
             <div className="container">
@@ -65,11 +81,16 @@ const Banner = () => {
                                 <h6 className="subtitle text-uppercase fw-medium">{subTitle}</h6>
                                 {title}
                                 <p className="desc">{desc}</p>
-                                <form action="/">
+                                <form onSubmit={handleSearchSubmit}>
                                     <div className="banner-icon">
                                         <i className="icofont-search"></i>
                                     </div>
-                                    <input type="text" placeholder="Search English Videos" />
+                                    <input
+                                        type="text"
+                                        placeholder="Search English Videos"
+                                        value={searchQuery}
+                                        onChange={handleSearchChange}
+                                    />
                                     <button type="submit">Search</button>
                                 </form>
                                 <div className="banner-catagory d-flex flex-wrap">
@@ -85,7 +106,7 @@ const Banner = () => {
                         <div className="col-xxl-7 col-xl-6">
                             <div className="banner-thumb">
                                 <img src="assets/images/banner/01.png" alt="img" />
-                                {/* <img src={girl3} alt="img" /> */}
+                                {/* <img src={girl3} alt="img" style={{marginLeft:"100px", height:"700px"}}/> */}
                             </div>
                         </div>
                     </div>

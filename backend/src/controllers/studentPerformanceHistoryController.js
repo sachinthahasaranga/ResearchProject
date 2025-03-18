@@ -3,7 +3,7 @@ const StudentPerformanceHistory = require("../models/StudentPerformanceHistory")
 // Create Student Performance History Record
 exports.createStudentPerformanceHistory = async (req, res) => {
     try {
-        const { userId, totalStudyTime, totalScore, paperCount } = req.body;
+        const { userId, totalStudyTime, resourceScore, totalScore, paperCount } = req.body;
 
         // Calculate the average score
         const averageScore = paperCount > 0 ? totalScore / paperCount : 0;
@@ -11,6 +11,7 @@ exports.createStudentPerformanceHistory = async (req, res) => {
         const newStudentPerformanceHistory = new StudentPerformanceHistory({
             userId,
             totalStudyTime,
+            resourceScore,
             totalScore,
             paperCount,
             averageScore
@@ -52,14 +53,14 @@ exports.getStudentPerformanceHistoryById = async (req, res) => {
 // Update Student Performance History Record
 exports.updateStudentPerformanceHistory = async (req, res) => {
     try {
-        const { totalStudyTime, totalScore, paperCount } = req.body;
+        const { totalStudyTime, resourceScore, totalScore, paperCount } = req.body;
 
         // Calculate the updated average score
         const averageScore = paperCount > 0 ? totalScore / paperCount : 0;
 
         const updatedStudentPerformanceHistory = await StudentPerformanceHistory.findByIdAndUpdate(
             req.params.id,
-            { totalStudyTime, totalScore, paperCount, averageScore },
+            { totalStudyTime, resourceScore, totalScore,  paperCount, averageScore },
             { new: true }
         );
 
@@ -80,5 +81,47 @@ exports.deleteStudentPerformanceHistory = async (req, res) => {
         res.status(200).json({ message: "Student performance history deleted successfully" });
     } catch (error) {
         res.status(500).json({ message: "Error deleting student performance history", error });
+    }
+};
+
+exports.getStudentPerformanceHistoryByUserId = async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        const studentPerformanceHistory = await StudentPerformanceHistory.find({ userId })
+            .populate("userId", "username email firstName lastName");
+
+        if (!studentPerformanceHistory) {
+            return res.status(200).json(null);
+        }
+
+        res.status(200).json(studentPerformanceHistory);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching student performance History record", error });
+    }
+};
+
+
+exports.updateStudentPerformanceHistoryByUserId = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const { totalStudyTime, resourceScore, totalScore, paperCount } = req.body;
+
+        // Calculate the updated average score
+        const averageScore = paperCount > 0 ? totalScore / paperCount : 0;
+
+        const updatedStudentPerformanceHistory = await StudentPerformanceHistory.findOneAndUpdate(
+            { userId },
+            { totalStudyTime, resourceScore, totalScore, paperCount, averageScore },
+            { new: true }
+        );
+
+        if (!updatedStudentPerformanceHistory) {
+            return res.status(404).json({ message: "Student performance History record not found" });
+        }
+
+        res.status(200).json({ message: "Student performance updated successfully!", updatedStudentPerformanceHistory });
+    } catch (error) {
+        res.status(500).json({ message: "Error updating student performance history", error });
     }
 };

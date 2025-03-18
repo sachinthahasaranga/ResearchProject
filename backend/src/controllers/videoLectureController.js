@@ -77,7 +77,7 @@ exports.getVideoLectureById = async (req, res) => {
   try {
     const lecture = await VideoLecture.findById(req.params.id)
       .populate("categoryId", "categoryName")
-      .populate("difficultyLevel", "difficultyName")
+      .populate("difficultyLevel")
       .populate("createdBy", "username email");
 
     if (!lecture) return res.status(404).json({ message: "Video Lecture not found" });

@@ -3,9 +3,11 @@ import pickle
 import numpy as np
 from tensorflow.keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from flask_cors import CORS
 
 # Initialize Flask app
 app = Flask(__name__)
+CORS(app)
 
 minmax_scl = None
 std_scl = None
@@ -88,5 +90,5 @@ if __name__ == '__main__':
     with open('minmax.pkl', 'rb') as f:
         scaler_forecast = pickle.load(f)
 
-    score_model = load_model('student_level_pred.keras')
+    score_model = load_model('student_level_pred.h5')
     app.run(debug=True)
