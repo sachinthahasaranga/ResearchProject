@@ -77,16 +77,17 @@ const ListeningResult = () => {
 
       <h1
         className={`text-white text-center w-100 p-3 bg-dark bg-opacity-50 ${isResultContainerVisible ? 'slide-up' : ''}`}
-        style={{ zIndex: 1, position: "relative", top: "10px" }}
+        style={{ zIndex: 1, position: "relative", marginBottom: "10px" }}
       >
         Listening Results
       </h1>
+
 
       <div
         className="results-scrollable-container"
         style={{
           width: "100%",
-          maxHeight: "60vh", // Adjust height as needed
+          maxHeight: "80vh", // Adjust height as needed
           overflowY: "auto", // Enable vertical scrolling
           padding: "0 20px",
           display: "flex",
@@ -100,15 +101,14 @@ const ListeningResult = () => {
           <div key={index}>
             {/* Result Container */}
             <div
-              className={`result-container-${response.isCorrect ? "correct" : "wrong"} ${
-                isResultContainerVisible ? "slide-up" : ""
-              }`}
+              className={`result-container-${response.isCorrect ? "correct" : "wrong"} ${isResultContainerVisible ? "slide-up" : ""
+                }`}
               style={{
-                marginTop: "20px",
+                marginTop: "10px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                paddingRight: "20px",
+                paddingRight: "630px",
                 position: "relative",
               }}
               onClick={() => handleResultContainerClick(index + 1)}
