@@ -106,7 +106,7 @@ const Banner = () => {
                         <div className="col-xxl-7 col-xl-6">
                             <div className="banner-thumb">
                                 <img src="assets/images/banner/01.png" alt="img" />
-                                {/* <img src={girl3} alt="img" /> */}
+                                {/* <img src={girl3} alt="img" style={{marginLeft:"100px", height:"700px"}}/> */}
                             </div>
                         </div>
                     </div>
