@@ -59,12 +59,12 @@ const CourseView = () => {
             return;
         }
 
-        if (!lecture || !lecture.totalTime) {
+        if (!lecture || !lecture.totalTime || !lecture.difficultyLevel.difficultyWeight ) {
             console.error("Lecture total time is not available.");
             return;
         }
         console.log(`Starting study time update interval... Max duration: ${lecture.totalTime} minutes`);
-
+        console.log(lecture.difficultyLevel.difficultyWeight)
         let elapsedTime = 0;
 
         intervalRef.current = setInterval(async () => {
@@ -79,6 +79,7 @@ const CourseView = () => {
     
                         await apiClient.put(`/api/student-performance/user/${userId}`, {
                             totalStudyTime: studentPerformance.totalStudyTime + 1,
+                            resourceScore: studentPerformance.resourceScore + (1*lecture.difficultyLevel.difficultyWeight),
                             totalScore: studentPerformance.totalScore,
                             paperCount: studentPerformance.paperCount,
                         });
@@ -124,6 +125,7 @@ const CourseView = () => {
                 await apiClient.post("/api/student-performance", {
                     userId,
                     totalStudyTime: 0,
+                    resourceScore: 0,
                     totalScore: 0,
                     paperCount: 0,
                 });

@@ -3,7 +3,7 @@ const StudentPerformanceHistory = require("../models/StudentPerformanceHistory")
 // Create Student Performance History Record
 exports.createStudentPerformanceHistory = async (req, res) => {
     try {
-        const { userId, totalStudyTime, totalScore, paperCount } = req.body;
+        const { userId, totalStudyTime, resourceScore, totalScore, paperCount } = req.body;
 
         // Calculate the average score
         const averageScore = paperCount > 0 ? totalScore / paperCount : 0;
@@ -11,6 +11,7 @@ exports.createStudentPerformanceHistory = async (req, res) => {
         const newStudentPerformanceHistory = new StudentPerformanceHistory({
             userId,
             totalStudyTime,
+            resourceScore,
             totalScore,
             paperCount,
             averageScore
@@ -52,14 +53,14 @@ exports.getStudentPerformanceHistoryById = async (req, res) => {
 // Update Student Performance History Record
 exports.updateStudentPerformanceHistory = async (req, res) => {
     try {
-        const { totalStudyTime, totalScore, paperCount } = req.body;
+        const { totalStudyTime, resourceScore, totalScore, paperCount } = req.body;
 
         // Calculate the updated average score
         const averageScore = paperCount > 0 ? totalScore / paperCount : 0;
 
         const updatedStudentPerformanceHistory = await StudentPerformanceHistory.findByIdAndUpdate(
             req.params.id,
-            { totalStudyTime, totalScore, paperCount, averageScore },
+            { totalStudyTime, resourceScore, totalScore,  paperCount, averageScore },
             { new: true }
         );
 
@@ -104,14 +105,14 @@ exports.getStudentPerformanceHistoryByUserId = async (req, res) => {
 exports.updateStudentPerformanceHistoryByUserId = async (req, res) => {
     try {
         const { userId } = req.params;
-        const { totalStudyTime, totalScore, paperCount } = req.body;
+        const { totalStudyTime, resourceScore, totalScore, paperCount } = req.body;
 
         // Calculate the updated average score
         const averageScore = paperCount > 0 ? totalScore / paperCount : 0;
 
         const updatedStudentPerformanceHistory = await StudentPerformanceHistory.findOneAndUpdate(
             { userId },
-            { totalStudyTime, totalScore, paperCount, averageScore },
+            { totalStudyTime, resourceScore, totalScore, paperCount, averageScore },
             { new: true }
         );
 

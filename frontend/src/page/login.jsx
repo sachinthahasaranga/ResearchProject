@@ -60,14 +60,14 @@ const LoginPage = () => {
       const response = await apiClient.get(`/api/student-performance/user/${userId}`);
 
       if (response.data) {
-        const { totalStudyTime, totalScore, paperCount } = response.data;
+        const { totalStudyTime,resourceScore, totalScore, paperCount } = response.data;
 
         // Check if a history record exists for today
         const recordExists = await checkIfHistoryExistsForToday(userId);
 
         if (!recordExists) {
           // Send Performance Data to History API
-          await sendStudentPerformanceHistory(userId, totalStudyTime, totalScore, paperCount);
+          await sendStudentPerformanceHistory(userId, totalStudyTime,resourceScore, totalScore, paperCount);
         } else {
           console.log("Performance history for today already exists. Skipping update.");
         }
@@ -94,11 +94,12 @@ const LoginPage = () => {
     }
   };
 
-  const sendStudentPerformanceHistory = async (userId, totalStudyTime, totalScore, paperCount) => {
+  const sendStudentPerformanceHistory = async (userId, totalStudyTime,resourceScore, totalScore, paperCount) => {
     try {
       const requestBody = {
         userId: userId,
         totalStudyTime: totalStudyTime,
+        resourceScore: resourceScore,
         totalScore: totalScore,
         paperCount: paperCount,
       };

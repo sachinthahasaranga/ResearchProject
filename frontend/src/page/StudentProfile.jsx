@@ -15,9 +15,10 @@ const StudentProfile = () => {
 
   const fetchStudentProfile = async () => {
     try {
-      const response = await apiClient.get(`/api/student-performance/user/${userId}`);
+      const response = await apiClient.get(`/api/users/${userId}`);
       if (response.data) {
         setStudent(response.data);
+        console.log(response.data)
       }
     } catch (error) {
       console.error("Error fetching student profile:", error);
@@ -46,14 +47,14 @@ const StudentProfile = () => {
           <div className="profile-wrapper">
             {student ? (
               <div className="profile-content">
-                <h2 className="text-center">Welcome, {student.userId.firstName} {student.userId.lastName}</h2>
+                <h2 className="text-center">Welcome, {student.firstName} {student.lastName}</h2>
                 <div className="profile-info">
-                  <p><strong>Email:</strong> {student.userId.email}</p>
-                  <p><strong>First Name:</strong> {student.userId.firstName}</p>
-                  <p><strong>Last Name:</strong> {student.userId.lastName}</p>
+                  <p><strong>Email:</strong> {student.email}</p>
+                  <p><strong>First Name:</strong> {student.firstName}</p>
+                  <p><strong>Last Name:</strong> {student.lastName}</p>
                   <p><strong>Age:</strong> {student.age || "N/A"}</p>
                   <p><strong>Phone Number:</strong> {student.phoneNumber || "N/A"}</p>
-                  <p><strong>Current Difficulty Level:</strong> {student.difficultyLevel || "N/A"}</p>
+                  <p><strong>Current Difficulty Level:</strong> {student.difficultyLevel.difficultyName || "N/A"}</p>
                   <p><strong>Suggested Difficulty:</strong> {student.suggestedDifficulty || "N/A"}</p>
                 </div>
                 

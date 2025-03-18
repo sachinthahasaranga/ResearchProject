@@ -72,6 +72,7 @@ const PaperDetails = () => {
             await apiClient.post("/api/student-performance", {
                 userId,
                 totalStudyTime: 0,
+                resourceScore: 0,
                 totalScore: 0,
                 paperCount: 0,
             });
@@ -191,6 +192,7 @@ const updateStudentPerformance = async (convertedMarks) => {
             // Update existing student performance record
             await apiClient.put(`/api/student-performance/user/${userId}`, {
                 totalStudyTime: studentPerformance.totalStudyTime,
+                resourceScore: studentPerformance.resourceScore,
                 totalScore: studentPerformance.totalScore + parseFloat(convertedMarks),
                 paperCount: studentPerformance.paperCount + 1,
             });
@@ -209,6 +211,7 @@ const updateStudentPerformance = async (convertedMarks) => {
             await apiClient.post("/api/student-performance", {
                 userId,
                 totalStudyTime: 0,
+                resourceScore: 0,
                 totalScore: parseFloat(convertedMarks),
                 paperCount: 1,
             });
