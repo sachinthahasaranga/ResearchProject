@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/SelectCategory.css';
 
@@ -9,6 +9,8 @@ const SelectCategory = () => {
     const [backgroundImage, setBackgroundImage] = useState(''); // State for random background
     const navigate = useNavigate();
     const containerRef = useRef(null); // Ref for the container
+    const location = useLocation();
+    const { isPractise } = location.state || true;
 
     // Function to generate a random background image path
     const getRandomBackgroundImage = () => {
@@ -19,6 +21,7 @@ const SelectCategory = () => {
     // Set the random background image on component mount
     useEffect(() => {
         setBackgroundImage(getRandomBackgroundImage());
+        console.log(isPractise)
     }, []);
 
     useEffect(() => {
@@ -102,7 +105,7 @@ const SelectCategory = () => {
                         <div
                             key={category._id}
                             className="card"
-                            onClick={() => navigate('/SelectListenings', { state: { categoryId: category._id } })}
+                            onClick={() => navigate(isPractise ? '/SelectListeningsPractise' : '/SelectListenings', { state: { categoryId: category._id } })}
                             style={{
                                 backgroundImage: `url(/images/listeningCategories/${category.backgroundImage})`,
                             }}

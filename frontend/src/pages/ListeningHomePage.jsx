@@ -12,7 +12,9 @@ const ListeningHomePage = () => {
       <div
         className="session-box"
         style={{ backgroundImage: `url(${mainSessionImage})` }}
-        onClick={() => navigate("/main-session")}
+        onClick={() => navigate("/SelectListeningCategory", {
+          state: { isPractise: false }, // Pass only the listening ID
+        })}
       >
         <div className="session-content">
           <h2>Main Session</h2>
@@ -24,7 +26,7 @@ const ListeningHomePage = () => {
       <div
         className="session-box"
         style={{ backgroundImage: `url(${practiceSessionImage})` }}
-        onClick={() => navigate("/SelectListeningCategory")} // Updated navigation path
+        onClick={() => navigate("/SelectListeningCategory", {state: { isPractise: true },})} // Updated navigation path
       >
         <div className="session-content">
           <h2>Practice Session</h2>
