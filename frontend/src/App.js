@@ -69,7 +69,7 @@ function App() {
           <Route path="shop" element={<ShopPage />} />
           <Route path="shop-single" element={<ShopDetails />} />
           <Route path="cart-page" element={<CartPage />} />
-          <Route path="search-page" element={<SearchPage />} />
+          <Route path="search-page/:name" element={<SearchPage />} />
           <Route path="search-none" element={<SearchNone />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="paperlist" element={<PaperList />} />

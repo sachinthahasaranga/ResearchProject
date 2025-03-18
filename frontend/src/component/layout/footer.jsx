@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 
-const newsTitle = "Want Us To Email You About Special Offers And Updates?";
+const newsTitle = "Want Us To Contact trough Email?";
 const siteTitle = "Site Map";
 const useTitle = "Useful Links";
 const socialTitle = "Social Contact";
@@ -83,10 +83,6 @@ const supportList = [
         link: '#',
     },
     {
-        text: 'Paid with Mollie',
-        link: '#',
-    },
-    {
         text: 'Status',
         link: '#',
     },
@@ -119,8 +115,8 @@ const Footer = () => {
                         <div className="news-form">
                             <form action="/">
                                 <div className="nf-list">
-                                    <input type="email" name="email" placeholder="Enter Your Email" />
-                                    <input type="submit" name="submit" value="Subscribe Now" />
+                                    <input type="email" name="email" placeholder="Enter Your Email Address" />
+                                    <input type="submit" name="submit" value="Contact Us" />
                                 </div>
                             </form>
                         </div>

@@ -136,32 +136,38 @@ const StudentProfile = () => {
         <div className="container">
           <div className="profile-wrapper">
             {student ? (
-              <div className="profile-content">
+              <div className="profile-content text-center">
                 <h2 className="text-center">
                   Welcome, {student.firstName} {student.lastName}
                 </h2>
-                <div className="profile-info">
-                  <p>
-                    <strong>Email:</strong> {student.email}
-                  </p>
-                  <p>
-                    <strong>First Name:</strong> {student.firstName}
-                  </p>
-                  <p>
-                    <strong>Last Name:</strong> {student.lastName}
-                  </p>
-                  <p>
-                    <strong>Age:</strong> {student.age || "N/A"}
-                  </p>
-                  <p>
-                    <strong>Phone Number:</strong> {student.phoneNumber || "N/A"}
-                  </p>
-                  <p>
-                    <strong>Current Difficulty Level:</strong> {student.difficultyLevel.difficultyName || "N/A"}
-                  </p>
-                  <p><strong>Suggested Difficulty:</strong> {studentPerScore ? getDifficultyLevel(studentPerScore.performance_score) : "N/A"}</p>
-                </div>
 
+                <div className="d-flex align-items-center flex-wrap mb-4" style={{ gap: "40px" }}>
+                  <div className="profile-image text-center">
+                    <img
+                      src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg"
+                      alt="Profile"
+                      className="rounded"
+                      style={{
+                        width: "300px",
+                        height: "300px",
+                        objectFit: "cover",
+                        border: "3px solid #007bff",
+                        maxWidth: "100%",
+                      }}
+                    />
+                  </div>
+
+                  <div className="profile-info" style={{ flex: "1", minWidth: "250px" }}>
+                    <p><strong>Email:</strong> {student.email}</p>
+                    <p><strong>First Name:</strong> {student.firstName}</p>
+                    <p><strong>Last Name:</strong> {student.lastName}</p>
+                    <p><strong>Age:</strong> {student.age || "N/A"}</p>
+                    <p><strong>Phone Number:</strong> {student.phoneNumber || "N/A"}</p>
+                    <p><strong>Current Difficulty Level:</strong> {student.difficultyLevel.difficultyName || "N/A"}</p>
+                    <p><strong>Suggested Difficulty:</strong> {studentPerScore ? getDifficultyLevel(studentPerScore.performance_score) : "N/A"}</p>
+                  </div>
+                </div>
+                <br></br>
                 {/* Prediction Chart */}
                 <div className="chart-container">
                   <h3 className="text-center">Student's Average Score Trend</h3>
