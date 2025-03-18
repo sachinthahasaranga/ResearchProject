@@ -10,7 +10,7 @@ const getRandomImageNumber = (min, max) => {
 
 const Listening = () => {
   const location = useLocation();
-  const { listeningId } = location.state || {};  // Get the listening ID from location state
+  const { listeningId } = location.state || {};
   const [listening, setListening] = useState(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -22,39 +22,83 @@ const Listening = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [countdownImage, setCountdownImage] = useState(null);
   const [isQuestionContainerVisible, setIsQuestionContainerVisible] = useState(false);
-  const [activeQuestion, setActiveQuestion] = useState(null); // Track which question is active
-  const [isLoading, setIsLoading] = useState(true); // Track loading state
+  const [activeQuestion, setActiveQuestion] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [studentAnswers, setStudentAnswers] = useState({}); // State for student answers
 
-  const audioRef = React.useRef(null); // Reference to the audio element
+  const audioRef = React.useRef(null);
 
-  // Fetch the full listening data when the component mounts
   useEffect(() => {
-    if (!listeningId) return; // Make sure the listeningId exists
+    if (!listeningId) return;
     setBackgroundImageNumber(getRandomImageNumber(1, 6));
-  
+
     const token = localStorage.getItem('token');
     if (!token) {
       alert('No token found. Please log in.');
       return;
     }
-  
-    // Fetch the full listening data from the server
+
     axios
       .get(`http://localhost:3000/api/lstn/${listeningId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        setListening(response.data); // Store the fetched listening data
-        console.log("QnA Data:", response.data.QnA);  // Log the data
-        setIsLoading(false); // Set loading to false once data is fetched
+        setListening(response.data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching the listening:', error);
         alert('Failed to fetch listening. Please try again.');
-        setIsLoading(false); // Set loading to false even if there's an error
+        setIsLoading(false);
       });
-  }, [listeningId]); // Dependency array ensures fetch runs only when listeningId changes
-  
+  }, [listeningId]);
+
+  const handleAnswerChange = (questionNumber, answer) => {
+    setStudentAnswers((prev) => ({
+      ...prev,
+      [questionNumber]: answer,
+    }));
+  };
+
+  const handleOkayButtonClick = async () => {
+    if (!listening || !listening.QnA) {
+      alert("No questions found!");
+      return;
+    }
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('No token found. Please log in.');
+      return;
+    }
+
+    const responses = listening.QnA.map((qna, index) => ({
+      _id: qna._id,
+      question: qna.question,
+      answer: qna.answer,
+      studentsAnswer: studentAnswers[index + 1] || "",
+      isCorrect: false,
+    }));
+
+    try {
+      // const response = await axios.post(
+      //   'http://localhost:3000/api/quiz-responses',
+      //   { responses },
+      //   { headers: { Authorization: `Bearer ${token}` } }
+      // );
+
+      // if (response.status === 200) {
+      //   alert("Responses saved successfully!");
+      // } else {
+      //   alert("Failed to save responses.");
+      // }
+      console.log(responses);
+    } catch (error) {
+      console.error("Error saving responses:", error);
+      alert("An error occurred while saving responses.");
+    }
+  };
+
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
@@ -109,9 +153,9 @@ const Listening = () => {
     setActiveQuestion((prev) => (prev === questionNumber ? null : questionNumber)); // Toggle active question
   };
 
-  const handleOkayButtonClick = () => {
-    alert("Okay button clicked!"); // Add your logic here
-  };
+  // const handleOkayButtonClick = () => {
+  //   alert("Okay button clicked!"); // Add your logic here
+  // };
 
   const progress = (currentTime / duration) * 100;
 
