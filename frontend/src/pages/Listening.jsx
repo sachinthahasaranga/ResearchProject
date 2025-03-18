@@ -273,7 +273,7 @@ const Listening = () => {
           className="questions-scrollable-container"
           style={{
             width: "100%",
-            maxHeight: "60vh", // Adjust height as needed
+            maxHeight: "90vh", // Adjust height as needed
             overflowY: "auto", // Enable vertical scrolling
             padding: "0 20px",
           }}
