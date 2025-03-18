@@ -25,18 +25,21 @@ const SelectListenings = () => {
   const navigate = useNavigate();
   const [listenings, setListenings] = useState([]);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true); // Add loading state
   const randomBackgroundImageNumber = getRandomImageNumber(1, 6);
 
   // Fetch the list of listenings when the component mounts
   useEffect(() => {
     if (!categoryId) {
       setError('No category selected.');
+      setLoading(false); // Stop loading if no categoryId
       return;
     }
 
     const token = localStorage.getItem('token');
     if (!token) {
       setError('No token found. Please log in.');
+      setLoading(false); // Stop loading if no token
       return;
     }
 
@@ -49,12 +52,14 @@ const SelectListenings = () => {
       .then((response) => {
         if (isMounted) {
           setListenings(response.data); // Store the fetched data in the state
+          setLoading(false); // Stop loading after data is fetched
         }
       })
       .catch((error) => {
         if (isMounted) {
           console.error('Error fetching listenings:', error);
           setError('Failed to fetch listenings. Please try again.');
+          setLoading(false); // Stop loading on error
         }
       });
 
@@ -62,6 +67,17 @@ const SelectListenings = () => {
       isMounted = false; // Cleanup function to set isMounted to false
     };
   }, [categoryId]);
+
+  // Show nothing until data is fetched
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
