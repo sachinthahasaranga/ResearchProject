@@ -6,6 +6,7 @@ import SelectListenings from "../pages/SelectListenings";
 import Listening from '../pages/Listening';
 import ListeningResult from "../pages/ListeningResult";
 import LoginPage from "../pages/LoginPage";
+import SelectListeningsPractise from "../pages/SelectListeningsPractise"
 
 const AppRouter = () => {
   return (
@@ -15,6 +16,7 @@ const AppRouter = () => {
         <Route path="/listeningHome" element={<ListeningHomePage />} />
         <Route path="/SelectListeningCategory" element={<SelectCategory />} />
         <Route path="/SelectListenings" element={<SelectListenings />} /> 
+        <Route path="/SelectListeningsPractise" element={<SelectListeningsPractise />} /> 
         <Route path="/listening" element={<Listening />} />
         <Route path="/listeningResult" element={<ListeningResult />} />
         <Route path="/login" element={<LoginPage />} />
