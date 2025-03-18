@@ -78,7 +78,7 @@ const StudentProfile = () => {
       const requestBody = {
         resources_score: studentPerformance.resourceScore,
         minutes_spent: studentPerformance.totalStudyTime,
-        quiz_score: studentPerformance.averageScore,
+        quiz_score: (studentPerformance.averageScore/ 100),
       };
 
       const response = await axios.post(`http://127.0.0.1:5000/predict`, requestBody);
@@ -114,6 +114,20 @@ const StudentProfile = () => {
     }
   };
 
+  const getDifficultyLevel = (score) => {
+    if (score === null || score === undefined) return "N/A";
+  
+    if (score < 0.0065) {
+      return "Easy";
+    } else if (score >= 0.0065 && score < 0.0125) {
+      return "Medium";
+    } else if (score >= 0.0125 && score <= 0.0184) {
+      return "Hard";
+    } else {
+      return "Not Enough Data...";
+    }
+  };
+
   return (
     <Fragment>
       <Header />
@@ -145,10 +159,7 @@ const StudentProfile = () => {
                   <p>
                     <strong>Current Difficulty Level:</strong> {student.difficultyLevel.difficultyName || "N/A"}
                   </p>
-                  <p>
-                    <strong>Suggested Difficulty:</strong>{" "}
-                    {studentPerScore ? studentPerScore.performance_score : "N/A"}
-                  </p>
+                  <p><strong>Suggested Difficulty:</strong> {studentPerScore ? getDifficultyLevel(studentPerScore.performance_score) : "N/A"}</p>
                 </div>
 
                 {/* Prediction Chart */}
