@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom"; // Import useLocation
 import { CSSTransition } from "react-transition-group";
 import axios from "axios"; // Import axios for API calls
@@ -15,6 +15,7 @@ const ListeningResult = () => {
   const location = useLocation(); // Use the useLocation hook
   const { responses: initialResponses } = location.state || {}; // Access the passed state
   const [responses, setResponses] = useState([]); // State to store responses with scores
+  const containerRef = useRef(null); // Ref for scrollable container
 
   useEffect(() => {
     setBackgroundImageNumber(getRandomImageNumber(1, 6));
@@ -50,8 +51,18 @@ const ListeningResult = () => {
     }
   }, [initialResponses]);
 
-  const handleResultContainerClick = (resultNumber) => {
-    setActiveResult((prev) => (prev === resultNumber ? null : resultNumber)); // Toggle active result
+  const handleResultContainerClick = (index) => {
+    setActiveResult((prev) => (prev === index ? null : index)); // Toggle active result
+
+    // Scroll into view smoothly
+    setTimeout(() => {
+      if (containerRef.current) {
+        const selectedElement = containerRef.current.children[index];
+        if (selectedElement) {
+          selectedElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }, 100);
   };
 
   return (
@@ -82,27 +93,24 @@ const ListeningResult = () => {
         Listening Results
       </h1>
 
-
       <div
         className="results-scrollable-container"
+        ref={containerRef} // Reference for auto-scrolling
         style={{
           width: "100%",
-          maxHeight: "80vh", // Adjust height as needed
-          overflowY: "auto", // Enable vertical scrolling
+          maxHeight: "80vh",
+          overflowY: "auto",
           padding: "0 20px",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center", // Center horizontally
-          justifyContent: "center", // Center vertically
+          alignItems: "center",
         }}
       >
-        {/* Map through responses and render them */}
         {responses.map((response, index) => (
           <div key={index}>
             {/* Result Container */}
             <div
-              className={`result-container-${response.isCorrect ? "correct" : "wrong"} ${isResultContainerVisible ? "slide-up" : ""
-                }`}
+              className={`result-container-${response.isCorrect ? "correct" : "wrong"} ${isResultContainerVisible ? "slide-up" : ""}`}
               style={{
                 marginTop: "10px",
                 display: "flex",
@@ -110,8 +118,9 @@ const ListeningResult = () => {
                 justifyContent: "space-between",
                 paddingRight: "630px",
                 position: "relative",
+                cursor: "pointer", // Indicates it's clickable
               }}
-              onClick={() => handleResultContainerClick(index + 1)}
+              onClick={() => handleResultContainerClick(index)}
             >
               <p className="result-text">Question {index + 1}</p>
               <img
@@ -127,8 +136,8 @@ const ListeningResult = () => {
             </div>
 
             {/* Result Content */}
-            {activeResult === index + 1 && (
-              <CSSTransition in={activeResult === index + 1} timeout={500} classNames="slide" unmountOnExit>
+            {activeResult === index && (
+              <CSSTransition in={activeResult === index} timeout={500} classNames="slide" unmountOnExit>
                 <div
                   className="result-content"
                   style={{
@@ -139,7 +148,6 @@ const ListeningResult = () => {
                     position: "relative",
                   }}
                 >
-                  {/* Result Icon */}
                   <img
                     src="/icons/result.png"
                     alt="Result Icon"
@@ -152,18 +160,9 @@ const ListeningResult = () => {
                       opacity: 0.4,
                     }}
                   />
-                  <p className="result-text">
-                    <strong>Question:</strong> {response.question}
-                  </p>
-                  <p className="result-text">
-                    <strong>Your Answer:</strong> {response.studentsAnswer}
-                  </p>
-                  <p className="result-text">
-                    <strong>Correct Answer:</strong> {response.answer}
-                  </p>
-                  {/* <p className="result-text">
-                    <strong>Score:</strong> {response.score.toFixed(2)}
-                  </p> */}
+                  <p className="result-text"><strong>Question:</strong> {response.question}</p>
+                  <p className="result-text"><strong>Your Answer:</strong> {response.studentsAnswer}</p>
+                  <p className="result-text"><strong>Correct Answer:</strong> {response.answer}</p>
                 </div>
               </CSSTransition>
             )}
