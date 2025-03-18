@@ -298,19 +298,36 @@ audio {
 
 /* Additional styles for the result content */
 .result-content {
-  opacity: 0;
-  transform: translateY(100px);
-  animation: slideUp 0.6s ease-out forwards;
-  width: 95%;
-  max-width: 800px;
-  /* max-height: 0; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Ensures text is left-aligned */
+  justify-content: flex-start;
   padding: 20px;
   background: #f1f1f1;
   border-radius: 10px;
   margin-top: 10px;
-  overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 95%;
+  max-width: 800px;
+  word-wrap: break-word; /* Ensures long words break and wrap */
+  overflow-wrap: break-word; /* Ensures text wraps to the next line */
+  padding-right: 250px; /* Add padding to the right to avoid overlapping with the icon */
+}
+
+.result-content p {
+  text-align: left; /* Ensures paragraphs are left-aligned */
+  margin: 5px 0;
+  max-width: calc(100% - 250px); /* Ensures text does not overlap with the icon */
+}
+
+.result-content img {
+  position: absolute;
+  top: 10px;
+  right: -50px;
+  width: 250px;
+  height: 170px;
+  opacity: 0.0;
+  pointer-events: none; /* Prevents the icon from interfering with clicks */
 }
 
 /* Ensure the result text inside .result-content is black */

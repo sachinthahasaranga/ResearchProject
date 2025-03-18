@@ -144,21 +144,21 @@ const ListeningResult = () => {
                   }}
                 >
                   <img
-                    src="/icons/result.png"
+                    src={`/icons/${response.isCorrect ? "correct_result" : "wrong_result"}.png`}
                     alt="Result Icon"
                     style={{
-                      width: "70px",
-                      height: "70px",
+                      width: response.isCorrect ? "250px" : "170px",
+                      height: "170px",
                       position: "absolute",
                       top: "10px",
-                      right: "10px",
-                      opacity: 0.4,
+                      right: "-10px",
+                      opacity: 0.8,
                     }}
                   />
-                  <p className="result-text"><strong>Question:</strong> {response.question}</p>
-                  <p className="result-text"><strong>Your Answer:</strong> {response.studentsAnswer}</p>
-                  <p className="result-text"><strong>Correct Answer:</strong> {response.answer}</p>
-                  
+
+                  <p style={{ fontSize: "24px" }}><strong>Question:</strong> {response.question}</p>
+                  <p style={{ fontSize: "24px" }}><strong>Your Answer:</strong> {response.studentsAnswer}</p>
+                  <p style={{ fontSize: "24px" }}><strong>Correct Answer:</strong> {response.answer}</p>
                 </div>
               </CSSTransition>
             )}
