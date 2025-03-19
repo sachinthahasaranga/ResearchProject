@@ -98,25 +98,7 @@ async def upload_image(file: UploadFile = File(...)):
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
-# Sign Alpabet Sinhala
-def predict_hand_sign_alpabet(model, image_path):
-    # Open the image and convert it to RGB
-    img = Image.open(image_path).convert("RGB")  # Convert image to RGB to remove the alpha channel
-    img = img.resize((48, 48))  # Resize to match model input size
-    img = np.array(img)  # Convert image to numpy array
-    img = img / 255.0  # Normalize pixel values to be between 0 and 1
 
-    # Ensure the input has the correct shape for the model
-    img = np.expand_dims(img, axis=0)  # Add batch dimension
-
-    # Make prediction
-    prediction = model.predict(img)  
-    predicted_class_index = np.argmax(prediction)  # Get the index of the highest probability
-    
-    class_names = ['අ', 'අං', 'ආ', 'ඇ', 'ඈ', 'ඉ', 'ඊ', 'උ', 'ඌ', 'එ', 'ඒ', 'ඔ', 'ඕ', 'ක්', 'ග්', 'ඟ', 'ච්', 'ජ්', 'ට්', 'ඩ්', 'ණ්', 'ඬ', 'ත්', 'ද්', 'න්', 'ඳ', 'ප', 'ප්', 'බ්', 'ම්', 'ඹ', 'ය්', 'ර්', 'ල්', 'ව්', 'ස්', 'හ්', 'ළ්']
-    predicted_class = class_names[predicted_class_index]
-    
-    return predicted_class
 
 
 
