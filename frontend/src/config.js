@@ -1,4 +1,5 @@
 const BASE_URL = "http://localhost:3000/";
+const BASE_MODEL_URL = "http://localhost:5000/cosine-similarity"
 
 
 export const thresholds = {
@@ -8,4 +9,4 @@ export const thresholds = {
 }
 
 
-export default { BASE_URL, thresholds };
+export default { BASE_URL, thresholds, BASE_MODEL_URL };

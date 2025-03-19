@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"; // Import useNaviga
 import { CSSTransition } from "react-transition-group";
 import axios from "axios";
 import "../styles/ListeningResult.css";
+import config from '../config'
 
 const getRandomImageNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -26,7 +27,7 @@ const ListeningResult = () => {
     if (initialResponses) {
       const updatedResponses = initialResponses.map(async (response) => {
         try {
-          const apiResponse = await axios.post("http://localhost:5000/cosine-similarity", {
+          const apiResponse = await axios.post(config.BASE_MODEL_URL, {
             word1: [response.answer],
             word2: [response.studentsAnswer],
           });
