@@ -8,20 +8,23 @@ const getRandomImageNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const THRESHOLD = 0.7; // Set the threshold for correct answers
+ // Set the threshold for correct answers
 
 const ListeningResult = () => {
   const [backgroundImageNumber, setBackgroundImageNumber] = useState(null);
   const [isResultContainerVisible, setIsResultContainerVisible] = useState(false);
   const [activeResult, setActiveResult] = useState(null);
   const location = useLocation();
-  const { responses: initialResponses, isPractise } = location.state || {};
+  const { responses: initialResponses, isPractise, threshold } = location.state || {};
   const [responses, setResponses] = useState([]);
   const containerRef = useRef(null);
+  const THRESHOLD =  threshold;
 
   useEffect(() => {
     setBackgroundImageNumber(getRandomImageNumber(1, 6));
     setIsResultContainerVisible(true);
+
+    console.log(threshold)
 
     if (initialResponses) {
       const updatedResponses = initialResponses.map(async (response) => {
@@ -33,7 +36,7 @@ const ListeningResult = () => {
 
           const score = apiResponse.data[0].score || 0; // Ensure score is valid
           const isCorrect = score >= THRESHOLD; // Compare with threshold
-
+          console.log(isPractise)
           return { ...response, score, isCorrect }; // Assign score & correctness
         } catch (error) {
           console.error("Error calculating cosine similarity:", error);

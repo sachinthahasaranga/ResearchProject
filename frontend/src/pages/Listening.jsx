@@ -109,7 +109,7 @@ const Listening = () => {
       // }
 
       // Navigate to the ListeningResult page with responses as state
-      navigate("/listeningResult", { state: { responses, isPractise } });
+      navigate("/listeningResult", { state: { responses, isPractise, threshold } });
     } catch (error) {
       console.error("Error saving responses:", error);
       alert("An error occurred while saving responses.");
