@@ -245,7 +245,9 @@ html, body {
 .difficulty-level-card.selected {
   transform: scale(1.05);
   background-color: #e0e0e0;/* Match border color with background */
-  
+  color: black; /* Black text for better contrast */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a box shadow */
+  border-color: #4caf50; /* Match border color with background */
 }
 
 .difficulty-stars {
