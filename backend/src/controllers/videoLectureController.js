@@ -2,13 +2,11 @@ const cloudinary = require("../config/cloudinaryConfig");
 const VideoLecture = require("../models/VideoLecture");
 const multer = require("multer");
 
-// Configure Multer for Memory Storage
 const upload = multer({ storage: multer.memoryStorage() }).fields([
   { name: "video", maxCount: 1 },
   { name: "image", maxCount: 1 }
 ]);
 
-// Function to Upload to Cloudinary
 const uploadToCloudinary = (file, folder, resourceType) => {
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload_stream(
@@ -21,7 +19,6 @@ const uploadToCloudinary = (file, folder, resourceType) => {
   });
 };
 
-// **Create Video Lecture with Cloudinary Upload**
 exports.createVideoLecture = async (req, res) => {
   upload(req, res, async (err) => {
     if (err) return res.status(500).json({ message: "File upload error", err });
@@ -30,7 +27,6 @@ exports.createVideoLecture = async (req, res) => {
       const { lectureTitle, lectureDescription, categoryId, totalTime, difficultyLevel } = req.body;
       const createdBy = req.user.userId;
 
-      // Upload video and image to Cloudinary
       const videoUrl = req.files.video ? await uploadToCloudinary(req.files.video[0], "videos", "video") : null;
       const imgUrl = req.files.image ? await uploadToCloudinary(req.files.image[0], "images", "image") : null;
 
@@ -38,7 +34,6 @@ exports.createVideoLecture = async (req, res) => {
         return res.status(400).json({ message: "Video and Image upload required" });
       }
 
-      // Save metadata in MongoDB
       const newLecture = new VideoLecture({
         lectureTitle,
         videoUrl,
@@ -58,7 +53,6 @@ exports.createVideoLecture = async (req, res) => {
   });
 };
 
-// **Get All Video Lectures**
 exports.getVideoLectures = async (req, res) => {
   try {
     const lectures = await VideoLecture.find()
@@ -72,7 +66,6 @@ exports.getVideoLectures = async (req, res) => {
   }
 };
 
-// **Get Single Video Lecture by ID**
 exports.getVideoLectureById = async (req, res) => {
   try {
     const lecture = await VideoLecture.findById(req.params.id)
@@ -87,25 +80,52 @@ exports.getVideoLectureById = async (req, res) => {
   }
 };
 
-// **Update Video Lecture**
+// exports.updateVideoLecture = async (req, res) => {
+//   try {
+//     const { lectureTitle, videoUrl, imgUrl, lectureDescription, categoryId, totalTime, difficultyLevel } = req.body;
+
+//     const updatedLecture = await VideoLecture.findByIdAndUpdate(
+//       req.params.id,
+//       { lectureTitle, videoUrl, imgUrl, lectureDescription, categoryId, totalTime, difficultyLevel },
+//       { new: true }
+//     );
+
+//     if (!updatedLecture) return res.status(404).json({ message: "Video Lecture not found" });
+//     res.status(200).json({ message: "Video Lecture updated successfully!", updatedLecture });
+//   } catch (error) {
+//     res.status(500).json({ message: "Error updating video lecture", error });
+//   }
+// };
+
 exports.updateVideoLecture = async (req, res) => {
-  try {
-    const { lectureTitle, videoUrl, imgUrl, lectureDescription, categoryId, totalTime, difficultyLevel } = req.body;
+  upload(req, res, async (err) => {
+    if (err) return res.status(500).json({ message: "File upload error", err });
 
-    const updatedLecture = await VideoLecture.findByIdAndUpdate(
-      req.params.id,
-      { lectureTitle, videoUrl, imgUrl, lectureDescription, categoryId, totalTime, difficultyLevel },
-      { new: true }
-    );
+    try {
+      const { lectureTitle, lectureDescription, categoryId, totalTime, difficultyLevel } = req.body;
 
-    if (!updatedLecture) return res.status(404).json({ message: "Video Lecture not found" });
-    res.status(200).json({ message: "Video Lecture updated successfully!", updatedLecture });
-  } catch (error) {
-    res.status(500).json({ message: "Error updating video lecture", error });
-  }
+      let updatedData = { lectureTitle, lectureDescription, categoryId, totalTime, difficultyLevel };
+
+      const existingLecture = await VideoLecture.findById(req.params.id);
+      if (!existingLecture) return res.status(404).json({ message: "Video Lecture not found" });
+
+      updatedData.videoUrl = req.files.video
+        ? await uploadToCloudinary(req.files.video[0], "videos", "video")
+        : existingLecture.videoUrl;
+
+      updatedData.imgUrl = req.files.image
+        ? await uploadToCloudinary(req.files.image[0], "images", "image")
+        : existingLecture.imgUrl;
+
+      const updatedLecture = await VideoLecture.findByIdAndUpdate(req.params.id, updatedData, { new: true });
+
+      res.status(200).json({ message: "Video Lecture updated successfully!", updatedLecture });
+    } catch (error) {
+      res.status(500).json({ message: "Error updating video lecture", error });
+    }
+  });
 };
 
-// **Delete Video Lecture**
 exports.deleteVideoLecture = async (req, res) => {
   try {
     const deletedLecture = await VideoLecture.findByIdAndDelete(req.params.id);

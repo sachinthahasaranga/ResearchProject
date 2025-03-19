@@ -17,6 +17,7 @@ const SignupPage = () => {
         age: "",
         phoneNumber: "",
         difficultyLevel: "67c7de3332e1c2050d8aa152", // Default difficultyLevel ID
+        role: "67c7e58e2770ea591aec8bd6",
         status: 1, // Active user
     });
 
