@@ -76,7 +76,7 @@ const SearchPage = () => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        navigate(`/search-page/${searchQuery}`); // Update URL
+        navigate(`/search-page/${searchQuery}`); 
     };
 
     return (

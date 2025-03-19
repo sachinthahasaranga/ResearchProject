@@ -94,11 +94,11 @@ const StudentProfile = () => {
 
   const fetchForecastedPerformance = async () => {
     try {
-      const scores = studentPerformanceHistory.map((entry) => entry.averageScore); // Extract average scores
+      const scores = studentPerformanceHistory.map((entry) => entry.averageScore); 
 
       const requestBody = {
         scores: scores,
-        time_frame: 7, // Fixed time frame as per requirement
+        time_frame: 7, 
       };
 
       console.log("Sending Forecast Request:", requestBody);
@@ -106,7 +106,7 @@ const StudentProfile = () => {
       const response = await axios.post(`http://127.0.0.1:5000/predict-forecast`, requestBody);
 
       if (response.data) {
-        setForecastedPerformance(response.data.performance_score); // Store predictions
+        setForecastedPerformance(response.data.performance_score); 
         console.log("Forecasted Performance:", response.data.performance_score);
       }
     } catch (error) {
@@ -115,7 +115,7 @@ const StudentProfile = () => {
   };
 
   const getDifficultyLevel = (score) => {
-    if (score === null || score === undefined) return "N/A"; // Handle null case
+    if (score === null || score === undefined) return "N/A"; 
   
     if ( score < 393.06) {
       return "Easy";
