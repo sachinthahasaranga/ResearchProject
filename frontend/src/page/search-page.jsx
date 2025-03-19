@@ -6,10 +6,10 @@ import PageHeader from "../component/layout/pageheader";
 import apiClient from "../api";
 
 const SearchPage = () => {
-    const { name } = useParams(); // Get the search term from the URL
+    const { name } = useParams(); 
     const navigate = useNavigate();
     
-    const [searchQuery, setSearchQuery] = useState(name || ""); // Prefill search input
+    const [searchQuery, setSearchQuery] = useState(name || ""); 
     const [videoLectures, setVideoLectures] = useState([]);
     const [filteredLectures, setFilteredLectures] = useState([]);
     const [papers, setPapers] = useState([]);
