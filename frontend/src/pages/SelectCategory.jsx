@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/SelectCategory.css';
+import config from '../config'
 
 const SelectCategory = () => {
     const [categories, setCategories] = useState([]);
@@ -32,7 +33,7 @@ const SelectCategory = () => {
             return;
         }
 
-        axios.get('http://localhost:3000/api/ctgry', {
+        axios.get(config.BASE_URL+'api/ctgry', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
