@@ -84,17 +84,14 @@ const PaperDetails = () => {
 
   const fetchPaperDetails = async () => {
     try {
-      // Fetch Paper Details
       const paperResponse = await apiClient.get(`/api/papers/${paperId}`);
       setPaper(paperResponse.data);
 
-      // Fetch Question Titles for the Paper
       const questionTitleResponse = await apiClient.get(
         `/api/question-titles/paper/${paperId}`
       );
       setQuestionTitles(questionTitleResponse.data);
 
-      // Fetch Questions for each Question Title and store correct answers
       let questionsData = {};
       let correctAnswersData = {};
 
@@ -105,7 +102,6 @@ const PaperDetails = () => {
           );
           questionsData[title._id] = questionResponse.data;
 
-          // Store correct answers mapped by question ID
           questionResponse.data.forEach((question) => {
             correctAnswersData[question._id] = question.answer.trim().toLowerCase();
           });
@@ -172,7 +168,6 @@ const PaperDetails = () => {
     setTotalCorrectMarks(totalCorrectMarks.toFixed(2));
     setConvertedMarks(finalConvertedMarks.toFixed(2));
 
-    // Call the update function and handle alerts
     updateStudentPerformance(finalConvertedMarks);
     setIsSubmitted(true);
 };
@@ -184,13 +179,11 @@ const updateStudentPerformance = async (convertedMarks) => {
     }
 
     try {
-        // Fetch existing student performance record
         const response = await apiClient.get(`/api/student-performance/user/${userId}`);
 
         if (response.data) {
             const studentPerformance = response.data;
 
-            // Update existing student performance record
             await apiClient.put(`/api/student-performance/user/${userId}`, {
                 totalStudyTime: studentPerformance.totalStudyTime,
                 resourceScore: studentPerformance.resourceScore,
@@ -207,7 +200,6 @@ const updateStudentPerformance = async (convertedMarks) => {
 
             console.log(`Updated Study score: ${studentPerformance.totalScore + parseFloat(convertedMarks)}`);
         } else {
-            // If no record exists, create a new one
             console.log("No existing record found. Creating new student performance record...");
             await apiClient.post("/api/student-performance", {
                 userId,

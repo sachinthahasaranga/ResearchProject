@@ -20,7 +20,6 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      // Login API Request
       const response = await apiClient.post("/api/auth/login", formData);
       const { token, user } = response.data;
 
@@ -37,7 +36,6 @@ const LoginPage = () => {
         timer: 2000,
       });
 
-      // Fetch Student Performance Data
       await fetchStudentPerformance(user.id);
 
       setTimeout(() => navigate("/"), 2000);
@@ -66,7 +64,7 @@ const LoginPage = () => {
         const recordExists = await checkIfHistoryExistsForToday(userId);
 
         if (!recordExists) {
-          // Send Performance Data to History API
+          // Send Performance Data 
           await sendStudentPerformanceHistory(userId, totalStudyTime,resourceScore, totalScore, paperCount);
         } else {
           console.log("Performance history for today already exists. Skipping update.");
