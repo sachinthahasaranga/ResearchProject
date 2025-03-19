@@ -119,33 +119,6 @@ def predict_hand_sign_alpabet(model, image_path):
     return predicted_class
 
 
-@app.post("/predict-handsigns-alpabet")
-async def upload_images(files: list[UploadFile] = File(...)):
-    try:
-        # Load the model
-        model = load_model_with_custom_objects(MODEL_SIGN, custom_objects=None)
-
-        predictions = []
-        for file in files:
-            # Save the uploaded file
-            file_path = os.path.join(UPLOADS_DIR, file.filename)
-            os.makedirs(UPLOADS_DIR, exist_ok=True)  # Ensure the upload directory exists
-            with open(file_path, "wb") as buffer:
-                buffer.write(await file.read())
-            
-            # Make prediction for the image
-            predicted_class = predict_hand_sign_alpabet(model, file_path)
-            predictions.append(predicted_class)  # Add the prediction to the list
-
-        # Concatenate all predictions into a single string
-        result = ''.join(predictions)
-
-        return {"predicted_classes": result}
-    
-    except Exception as e:
-        error_trace = traceback.format_exc()
-        print(f"Error: {e}\nTraceback:\n{error_trace}")
-        return JSONResponse(content={"error": str(e)}, status_code=500)
 
 
 # Child Faces Identification =====================================================================================================
@@ -193,7 +166,7 @@ async def get_user_by_username(username: str):
 
 @app.post("/users", response_model=UserResponseModel)
 async def create_user(user: UserModel):
-    
+
     # Check if user already exists
     user_exists = await get_user_by_email(user.email)
     if user_exists:
