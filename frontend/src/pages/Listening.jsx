@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"; // Import useNaviga
 import axios from 'axios';
 import { CSSTransition } from "react-transition-group";
 import "../styles/Listening.css"; // Import CSS for animations
+import config from '../config'
 
 const getRandomImageNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -42,7 +43,7 @@ const Listening = () => {
     }
 
     axios
-      .get(`http://localhost:3000/api/lstn/${listeningId}`, {
+      .get(`${config.BASE_URL}api/lstn/${listeningId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
