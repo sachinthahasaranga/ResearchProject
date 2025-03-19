@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/SelectListeningsPractise.css';
+import config from '../config'
 
 const getRandomGradient = () => {
   const colors = [
@@ -20,10 +21,10 @@ const getRandomImageNumber = (min, max) => {
 };
 
 const getThreshold = (difficultyWeight) => {
-  if (difficultyWeight === 1) return 0.7;
-  if (difficultyWeight === 1.2) return 0.8;
-  if (difficultyWeight === 1.5) return 0.9;
-  return 0.7; // Default threshold
+  if (difficultyWeight === 1) return config.thresholds.easy;
+  if (difficultyWeight === 1.2) return config.thresholds.medium;
+  if (difficultyWeight === 1.5) return config.thresholds.hard;
+  return config.thresholds.easy; // Default threshold
 };
 
 const SelectListeningsPractise = () => {
@@ -62,7 +63,7 @@ const SelectListeningsPractise = () => {
 
     // Fetch listenings
     axios
-      .get(`http://localhost:3000/api/lstn/category/${categoryId}`, {
+      .get(`${config.BASE_URL}api/lstn/category/${categoryId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -82,7 +83,7 @@ const SelectListeningsPractise = () => {
 
     // Fetch difficulty levels
     axios
-      .get('http://localhost:3000/api/difficulty-levels')
+      .get(config.BASE_URL+'api/difficulty-levels')
       .then((response) => {
         if (isMounted) {
           setDifficultyLevels(response.data);
