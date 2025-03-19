@@ -1,0 +1,40 @@
+import { useNavigate } from "react-router-dom";
+import "../assets/css/listeningHome.css"; // Corrected CSS import
+import mainSessionImage from "../assets/images/listening/mainSessionJake.jpg";
+import practiceSessionImage from "../assets/images/listening/finn_practise.png";
+
+const ListeningHomePage = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="d-flex m-0 p-0" style={{ width: "100vw", height: "100vh", position: "fixed", top: 0, left: 0 }}>
+      {/* Main Session - Left Side */}
+      <div
+        className="session-box"
+        style={{ backgroundImage: `url(${mainSessionImage})` }}
+        onClick={() => navigate("/SelectListeningCategory", {
+          state: { isPractise: false }, // Pass only the listening ID
+        })}
+      >
+        <div className="session-content">
+          <h2>Main Session</h2>
+          <p>Start the main listening session.</p>
+        </div>
+      </div>
+
+      {/* Practice Session - Right Side */}
+      <div
+        className="session-box"
+        style={{ backgroundImage: `url(${practiceSessionImage})` }}
+        onClick={() => navigate("/SelectListeningCategory", {state: { isPractise: true },})} // Updated navigation path
+      >
+        <div className="session-content">
+          <h2>Practice Session</h2>
+          <p>Practice your listening skills here.</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ListeningHomePage;
