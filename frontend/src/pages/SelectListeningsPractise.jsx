@@ -19,6 +19,13 @@ const getRandomImageNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+const getThreshold = (difficultyWeight) => {
+  if (difficultyWeight === 1) return 0.7;
+  if (difficultyWeight === 1.2) return 0.8;
+  if (difficultyWeight === 1.5) return 0.9;
+  return 0.7; // Default threshold
+};
+
 const SelectListeningsPractise = () => {
   const location = useLocation();
   const { categoryId } = location.state || {};
@@ -170,6 +177,11 @@ const SelectListeningsPractise = () => {
         {filteredListenings.map((listening, index) => {
           const randomCardImageNumber = getRandomImageNumber(1, 10);
 
+          // Calculate threshold based on difficultyWeight
+          const threshold = getThreshold(listening.difficultyLevel.difficultyWeight);
+
+          console.log(threshold)
+
           return (
             <div
               key={listening._id}
@@ -177,7 +189,11 @@ const SelectListeningsPractise = () => {
               style={{ background: getRandomGradient() }}
               onClick={() =>
                 navigate('/listening', {
-                  state: { listeningId: listening._id },
+                  state: { 
+                    listeningId: listening._id,
+                    threshold: threshold, // Pass the threshold value
+                    isPractise: true
+                  },
                 })
               }
             >

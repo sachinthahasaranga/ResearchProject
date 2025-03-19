@@ -11,7 +11,7 @@ const getRandomImageNumber = (min, max) => {
 const Listening = () => {
   const location = useLocation();
   const navigate = useNavigate(); // Initialize useNavigate
-  const { listeningId } = location.state || {};
+  const { listeningId, threshold, isPractise } = location.state || {};
   const [listening, setListening] = useState(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -54,6 +54,7 @@ const Listening = () => {
         alert('Failed to fetch listening. Please try again.');
         setIsLoading(false); // Set loading to false even if there's an error
       });
+      console.log(threshold)
   }, [listeningId]);
 
   // Update responses when listening data or studentAnswers change
@@ -68,6 +69,7 @@ const Listening = () => {
         score: 0.0
       }));
       setResponses(updatedResponses); // Update the responses state
+      console.log()
     }
   }, [listening, studentAnswers]);
 
@@ -107,7 +109,7 @@ const Listening = () => {
       // }
 
       // Navigate to the ListeningResult page with responses as state
-      navigate("/listeningResult", { state: { responses } });
+      navigate("/listeningResult", { state: { responses, isPractise } });
     } catch (error) {
       console.error("Error saving responses:", error);
       alert("An error occurred while saving responses.");

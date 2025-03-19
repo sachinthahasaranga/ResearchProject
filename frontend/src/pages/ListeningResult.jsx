@@ -15,7 +15,7 @@ const ListeningResult = () => {
   const [isResultContainerVisible, setIsResultContainerVisible] = useState(false);
   const [activeResult, setActiveResult] = useState(null);
   const location = useLocation();
-  const { responses: initialResponses } = location.state || {};
+  const { responses: initialResponses, isPractise } = location.state || {};
   const [responses, setResponses] = useState([]);
   const containerRef = useRef(null);
 
