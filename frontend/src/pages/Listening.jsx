@@ -95,21 +95,8 @@ const Listening = () => {
     }
 
     try {
-      // Save responses to the backend (if needed)
-      // const response = await axios.post(
-      //   'http://localhost:3000/api/quiz-responses',
-      //   { responses },
-      //   { headers: { Authorization: `Bearer ${token}` } }
-      // );
-
-      // if (response.status === 200) {
-      //   alert("Responses saved successfully!");
-      // } else {
-      //   alert("Failed to save responses.");
-      // }
-
       // Navigate to the ListeningResult page with responses as state
-      navigate("/listeningResult", { state: { responses, isPractise, threshold } });
+      navigate("/listeningResult", { state: { responses, isPractise, threshold, categoryId: listening.category._id } });
     } catch (error) {
       console.error("Error saving responses:", error);
       alert("An error occurred while saving responses.");

@@ -21,10 +21,10 @@ const getRandomImageNumber = (min, max) => {
 
 // Function to calculate threshold based on difficultyWeight
 const getThreshold = (difficultyWeight) => {
-  if (difficultyWeight === 1) return 0.7;
-  if (difficultyWeight === 1.2) return 0.8;
-  if (difficultyWeight === 1.5) return 0.9;
-  return 0.7; // Default threshold
+  if (difficultyWeight === 1) return 0.5;
+  if (difficultyWeight === 1.2) return 0.7;
+  if (difficultyWeight === 1.5) return 0.8;
+  return 0.5; // Default threshold
 };
 
 const SelectListeningsPractise = () => {

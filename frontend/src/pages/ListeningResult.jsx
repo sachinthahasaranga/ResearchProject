@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import { CSSTransition } from "react-transition-group";
 import axios from "axios";
 import "../styles/ListeningResult.css";
@@ -8,24 +8,21 @@ const getRandomImageNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
- // Set the threshold for correct answers
-
 const ListeningResult = () => {
   const [backgroundImageNumber, setBackgroundImageNumber] = useState(null);
   const [isResultContainerVisible, setIsResultContainerVisible] = useState(false);
   const [activeResult, setActiveResult] = useState(null);
   const location = useLocation();
-  const { responses: initialResponses, isPractise, threshold } = location.state || {};
+  const navigate = useNavigate(); // Initialize useNavigate
+  const { responses: initialResponses, isPractise, threshold, categoryId } = location.state || {};
   const [responses, setResponses] = useState([]);
   const containerRef = useRef(null);
-  const THRESHOLD =  threshold;
+  const THRESHOLD = threshold;
 
   useEffect(() => {
     setBackgroundImageNumber(getRandomImageNumber(1, 6));
     setIsResultContainerVisible(true);
-
-    console.log(threshold)
-
+  
     if (initialResponses) {
       const updatedResponses = initialResponses.map(async (response) => {
         try {
@@ -33,22 +30,29 @@ const ListeningResult = () => {
             word1: [response.answer],
             word2: [response.studentsAnswer],
           });
-
+  
           const score = apiResponse.data[0].score || 0; // Ensure score is valid
           const isCorrect = score >= THRESHOLD; // Compare with threshold
-          console.log(isPractise)
           return { ...response, score, isCorrect }; // Assign score & correctness
         } catch (error) {
           console.error("Error calculating cosine similarity:", error);
           return { ...response, score: 0, isCorrect: false };
         }
       });
-
+  
       Promise.all(updatedResponses).then((updatedResponsesWithScores) => {
         setResponses(updatedResponsesWithScores);
+  
+        // If NOT a practice session, calculate and show the final score
+        if (!isPractise) {
+          const totalScore = updatedResponsesWithScores.reduce((acc, curr) => acc + curr.score, 0);
+          const finalScore = (totalScore / 5.0) * 100;
+          alert(`Your final score: ${finalScore.toFixed(2)}%`);
+        }
       });
     }
   }, [initialResponses]);
+  
 
   const handleResultContainerClick = (index) => {
     setActiveResult((prev) => (prev === index ? null : index));
@@ -65,6 +69,16 @@ const ListeningResult = () => {
 
   // Calculate the number of correct answers
   const correctAnswersCount = responses.filter((response) => response.isCorrect).length;
+
+  // Handle "Try Again" button click
+  const handleTryAgain = () => {
+    navigate("/listening", { state: { listeningId: initialResponses[0]._id, threshold, isPractise } });
+  };
+
+  // Handle "Select Another" button click
+  const handleSelectAnother = () => {
+    navigate("/select-listenings", { state: { categoryId } });
+  };
 
   return (
     <div
@@ -119,7 +133,7 @@ const ListeningResult = () => {
           <div key={index}>
             {/* Result Container */}
             <div
-              className={`result-container-${response.isCorrect ? "correct" : "wrong"} ${isResultContainerVisible ? "slide-up" : ""}`}
+              className={`result-container-${response.isCorrect ? "correct" : "wrong"} ${isResultContainerVisible ? "slide-up" : ''}`}
               style={{
                 marginTop: "10px",
                 display: "flex",
@@ -178,6 +192,82 @@ const ListeningResult = () => {
             )}
           </div>
         ))}
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          left: "20px", // Position "Try Again" button on the left
+          zIndex: 1000,
+        }}
+      >
+        <button
+          className="okay-button"
+          onClick={handleTryAgain}
+          style={{
+            backgroundColor: "#FFD700", // Gold color
+            border: "2px solid #006400", // Dark green border
+            color: "#006400", // Dark green text
+            fontWeight: "bold",
+            fontFamily: "'Spicy Rice', cursive",
+            padding: "15px 30px",
+            fontSize: "20px",
+            borderRadius: "30px",
+            transition: "background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease",
+            cursor: "pointer",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "#FFC107"; // Lighter gold on hover
+            e.target.style.transform = "scale(1.1)";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "#FFD700"; // Restore original color
+            e.target.style.transform = "scale(1)";
+          }}
+        >
+          Try Again
+        </button>
+      </div>
+
+      <div
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px", // Position "Select Another" button on the right
+          zIndex: 1000,
+        }}
+      >
+        <button
+          className="okay-button"
+          onClick={handleSelectAnother}
+          style={{
+            backgroundColor: "#ADD8E6", // Light blue
+            border: "2px solid #0000FF", // Blue border
+            color: "#0000FF", // Blue text
+            fontWeight: "bold",
+            fontFamily: "'Spicy Rice', cursive",
+            padding: "15px 30px",
+            fontSize: "20px",
+            borderRadius: "30px",
+            transition: "background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease",
+            cursor: "pointer",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "#0000FF"; // Blue background on hover
+            e.target.style.color = "#FFFFFF"; // White text on hover
+            e.target.style.borderColor = "#FFFFFF"; // White border on hover
+            e.target.style.transform = "scale(1.1)";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "#ADD8E6"; // Restore original color
+            e.target.style.color = "#0000FF"; // Restore original text color
+            e.target.style.borderColor = "#0000FF"; // Restore original border color
+            e.target.style.transform = "scale(1)";
+          }}
+        >
+          Select Another
+        </button>
       </div>
     </div>
   );
