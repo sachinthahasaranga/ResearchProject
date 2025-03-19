@@ -199,27 +199,23 @@ html, body {
   flex-wrap: wrap;
 }
 
-/* Base Styling */
+/* SelectListeningsPractise.css */
 .difficulty-level-card {
+  border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 150px;
   text-align: center;
-  font-weight: bold;
-  color: white;
-  font-family: Arial, sans-serif;
-  font-weight: 700;
-  border: 3px solid transparent; /* Default transparent border */
-  position: relative; /* Ensure it is positioned above the overlay */
-  z-index: 2; 
-  transition: border-color 0.3s ease-in-out, transform 0.2s;
+  cursor: pointer; /* Add pointer cursor */
+  transition: background-color 0.3s ease; /* Smooth transition */
 }
 
 /* Hover Effect */
 .difficulty-level-card:hover {
   transform: scale(1.05);
+  background-color: #e0e0e0;
 }
 
 /* Easy - Light Blue with Blue Outline */
@@ -245,6 +241,19 @@ html, body {
   border-color: yellow; /* Yellow outline */
   font-weight: bold;
 }
+
+.difficulty-level-card.selected {
+  transform: scale(1.05);
+  background-color: #e0e0e0;/* Match border color with background */
+  
+}
+
+.difficulty-stars {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
 
 .star-icon {
   width: 16px; /* Adjust the width as per your preference */

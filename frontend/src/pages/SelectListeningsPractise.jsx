@@ -23,12 +23,20 @@ const SelectListeningsPractise = () => {
   const location = useLocation();
   const { categoryId } = location.state || {};
   const navigate = useNavigate();
-  const [listenings, setListenings] = useState([]);
-  const [difficultyLevels, setDifficultyLevels] = useState([]);
+  const [listenings, setListenings] = useState([]); // All listenings
+  const [filteredListenings, setFilteredListenings] = useState([]); // Filtered listenings
+  const [difficultyLevels, setDifficultyLevels] = useState([]); // Difficulty levels
+  const [selectedDifficulty, setSelectedDifficulty] = useState(null); // Selected difficulty level
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
-  const randomBackgroundImageNumber = getRandomImageNumber(1, 6);
+  const [randomBackgroundImageNumber, setRandomBackgroundImageNumber] = useState(1); // Store random background image number
 
+  // Generate random background image number once when the component mounts
+  useEffect(() => {
+    setRandomBackgroundImageNumber(getRandomImageNumber(1, 6));
+  }, []);
+
+  // Fetch listenings and difficulty levels when the component mounts
   useEffect(() => {
     if (!categoryId) {
       setError('No category selected.');
@@ -45,13 +53,15 @@ const SelectListeningsPractise = () => {
 
     let isMounted = true;
 
+    // Fetch listenings
     axios
       .get(`http://localhost:3000/api/lstn/category/${categoryId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         if (isMounted) {
-          setListenings(response.data);
+          setListenings(response.data); // Store all listenings
+          setFilteredListenings(response.data); // Initially, show all listenings
           setLoading(false);
         }
       })
@@ -63,6 +73,7 @@ const SelectListeningsPractise = () => {
         }
       });
 
+    // Fetch difficulty levels
     axios
       .get('http://localhost:3000/api/difficulty-levels')
       .then((response) => {
@@ -82,6 +93,19 @@ const SelectListeningsPractise = () => {
     };
   }, [categoryId]);
 
+  // Filter listenings based on selected difficulty level
+  useEffect(() => {
+    if (selectedDifficulty) {
+      const filtered = listenings.filter(
+        (listening) => listening.difficultyLevel._id === selectedDifficulty._id
+      );
+      setFilteredListenings(filtered);
+    } else {
+      setFilteredListenings(listenings); // Show all listenings if no difficulty is selected
+    }
+  }, [selectedDifficulty, listenings]);
+
+  // Show loading spinner while fetching data
   if (loading) {
     return (
       <div className="loading-spinner-container">
@@ -92,6 +116,7 @@ const SelectListeningsPractise = () => {
     );
   }
 
+  // Show error message if there's an error
   if (error) {
     return <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>;
   }
@@ -105,6 +130,7 @@ const SelectListeningsPractise = () => {
     >
       <h1>Select a Listening</h1>
 
+      {/* Difficulty Levels Section */}
       <div className="difficulty-levels-section">
         <div className="difficulty-levels-list">
           {difficultyLevels.map((level) => {
@@ -122,7 +148,11 @@ const SelectListeningsPractise = () => {
             }
 
             return (
-              <div key={level._id} className={className}>
+              <div
+                key={level._id}
+                className={`${className} ${selectedDifficulty?._id === level._id ? 'selected' : ''}`}
+                onClick={() => setSelectedDifficulty(level)} // Set selected difficulty
+              >
                 <h3>{level.difficultyName}</h3>
                 <div className="difficulty-stars">
                   {stars.split(" ").map((src, index) => (
@@ -135,8 +165,9 @@ const SelectListeningsPractise = () => {
         </div>
       </div>
 
+      {/* Listenings Section */}
       <div className="listening-cards-wrapper">
-        {listenings.map((listening, index) => {
+        {filteredListenings.map((listening, index) => {
           const randomCardImageNumber = getRandomImageNumber(1, 10);
 
           return (
