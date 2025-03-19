@@ -193,6 +193,7 @@ async def get_user_by_username(username: str):
 
 @app.post("/users", response_model=UserResponseModel)
 async def create_user(user: UserModel):
+    
     # Check if user already exists
     user_exists = await get_user_by_email(user.email)
     if user_exists:
@@ -211,7 +212,7 @@ async def create_user(user: UserModel):
     
     # Map _id to id for the response model
     new_user_response = {
-        "id": str(new_user["_id"]),  # Convert ObjectId to string and map to id
+        "id": str(new_user["_id"]),  # Convert ObjectId to string and map to relevant id
         "username": new_user["username"],
         "email": new_user["email"],
         "role": new_user["role"],
