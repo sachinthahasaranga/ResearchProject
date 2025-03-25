@@ -1,0 +1,23 @@
+Tom: Hi, Sarah. Can you help me with a few things for next week?
+Sarah: Of course. What do you need?
+Tom: I need to prepare a report for our manager. Can you check the data for me?
+Sarah: Sure. I’ll do that today.
+Tom: Thanks! Also, can you schedule a meeting with the finance team?
+Sarah: I will, but I need to check their availability first.
+Tom: Great. And one more thing—can you print the presentation slides for me?
+Sarah: No problem. I’ll do it before the meeting.
+
+Questions:
+
+What report does Tom need to prepare? - 67d75b6972700c11274910ae - 
+A report for the manager.
+What does Sarah need to check before scheduling the meeting? - 67d75b9072700c11274910b0 -
+The availability of the finance team.
+When will Sarah print the presentation slides? - 67d75bbe72700c11274910b2 - 
+Before the meeting.
+What is the first task Sarah agrees to do? - 67d75bee72700c11274910b4 - 
+Check the data for the report.
+How many tasks does Tom ask Sarah to do? - 67d75c1272700c11274910b6 -
+Three tasks.
+
+

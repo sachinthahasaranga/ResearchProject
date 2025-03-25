@@ -37,14 +37,14 @@ const SelectListeningsPractise = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState(null); // Selected difficulty level
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
-  const [randomBackgroundImageNumber, setRandomBackgroundImageNumber] = useState(1); // Store random background image number
+  const [randomBackgroundImageNumber, setRandomBackgroundImageNumber] = useState(1); 
 
-  // Generate random background image number once when the component mounts
+
   useEffect(() => {
     setRandomBackgroundImageNumber(getRandomImageNumber(1, 6));
   }, []);
 
-  // Fetch listenings and difficulty levels when the component mounts
+
   useEffect(() => {
     if (!categoryId) {
       setError('No category selected.');

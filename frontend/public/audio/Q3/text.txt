@@ -1,0 +1,18 @@
+1. Navigating a Complex Shopping Center
+Tourist: Hi, I’m looking for a bookstore in this mall, but I can’t find it.
+Local: Oh, it’s on the second floor, but you can’t take the escalator directly there. First, go to the first floor, then take the stairs near the food court. Once you reach the second floor, turn right and walk past the electronics store. The bookstore is at the end of the hallway.
+Tourist: Got it. First, go to the first floor, then take the stairs near the food court, right?
+Local: Yes! And once you reach the second floor, turn right and continue straight.
+
+Questions:
+
+Where is the bookstore located?
+On the second floor of the mall.
+Why can’t the tourist take the escalator directly?
+They need to go to the first floor first, then take the stairs.
+What landmark is near the stairs?
+The food court.
+After reaching the second floor, which direction should they go?
+Turn right.
+What is next to the bookstore?
+An electronics store.
