@@ -21,7 +21,7 @@ const questionRoutes = require("./src/routes/questionRoutes");
 const studentPerformanceRoutes = require("./src/routes/studentPerformanceRoutes");
 const studentPerformanceHistoryRoutes = require("./src/routes/studentPerformanceHistoryRoutes");
 const videoLectureRoutes = require("./src/routes/videoLectureRoutes");
-const readingRoutes = require('./routes/readingRoutes');
+const readingRoutes = require('./src/routes/readingRoutes');
 
 
 const predictRoutes = require("./src/routes/predictRoutes");

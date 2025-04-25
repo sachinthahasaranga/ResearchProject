@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const readingController = require('../controllers/readingController');
+const authMiddleware = require("../middleware/authMiddleware");
 
 // Create a new reading
 router.post('/', authMiddleware,  readingController.createReading);
