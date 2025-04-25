@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Define the Category schema
 const categorySchema = new Schema({
     categoryName: {
         type: String, 
         required: true,
-        unique: true, // Ensures category names are unique
-        trim: true // Removes extra spaces
+        unique: true, 
+        trim: true 
     },
     callingName: {
         type: String, 
@@ -20,12 +19,12 @@ const categorySchema = new Schema({
         trim: true
     },
     backgroundImage: {
-        type: String, // URL to an image
-        default: "" // Optional: Set a default value if needed
+        type: String, 
+        default: "" 
     },
     categoryType: {
         type: String,
-        enum: ["paper", "listing", "lecture", "story"],
+        enum: ["paper", "listing", "lecture", "story", "reading"],
         required: true
     }
 }, { timestamps: true }); 

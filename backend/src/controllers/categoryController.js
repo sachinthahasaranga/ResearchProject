@@ -6,9 +6,9 @@ exports.createCategory = async (req, res) => {
         const { categoryName, callingName, description, backgroundImage, categoryType } = req.body;
 
         // Validate categoryType
-        const validCategoryTypes = ["paper", "listing", "lecture", "story"];
+        const validCategoryTypes = ["paper", "listing", "lecture", "story", "reading"];
         if (!validCategoryTypes.includes(categoryType)) {
-            return res.status(400).json({ message: "Invalid categoryType. Allowed values: paper, listing, lecture, story." });
+            return res.status(400).json({ message: "Invalid categoryType. Allowed values: paper, listing, lecture, story, reading " });
         }
 
         const category = new Category({ categoryName, callingName, description, backgroundImage, categoryType });
@@ -49,9 +49,9 @@ exports.updateCategory = async (req, res) => {
 
         // Validate categoryType if provided
         if (categoryType) {
-            const validCategoryTypes = ["paper", "listing", "lecture", "story"];
+            const validCategoryTypes = ["paper", "listing", "lecture", "story", "reading"];
             if (!validCategoryTypes.includes(categoryType)) {
-                return res.status(400).json({ message: "Invalid categoryType. Allowed values: paper, listing, lecture, story." });
+                return res.status(400).json({ message: "Invalid categoryType. Allowed values: paper, listing, lecture, story , reading" });
             }
         }
 
