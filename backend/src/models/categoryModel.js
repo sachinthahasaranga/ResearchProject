@@ -25,7 +25,7 @@ const categorySchema = new Schema({
     },
     categoryType: {
         type: String,
-        enum: ["paper", "listing", "lecture", "story"],
+        enum: ["paper", "listing", "lecture", "story", "reading"], // Define the allowed types
         required: true
     }
 }, { timestamps: true }); 
