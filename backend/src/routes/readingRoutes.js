@@ -18,4 +18,7 @@ router.put('/:id', authMiddleware,  readingController.updateReading);
 // Delete a reading
 router.delete('/:id', authMiddleware,  readingController.deleteReading);
 
+router.post('/analyze', authMiddleware, readingController.analyzeReading);
+
+
 module.exports = router;

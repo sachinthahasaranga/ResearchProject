@@ -1,4 +1,5 @@
 const Reading = require('../models/readingModel');
+const axios = require('axios');
 
 // Create a new reading
 exports.createReading = async (req, res) => {
@@ -57,3 +58,24 @@ exports.deleteReading = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+exports.analyzeReading = async (req, res) => {
+    try {
+      const { original, given } = req.body;
+  
+      if (!original || !given) {
+        return res.status(400).json({ message: "Both 'original' and 'given' text are required." });
+      }
+  
+      const response = await axios.post('http://127.0.0.1:5000/analyze', {
+        original,
+        given
+      });
+  
+      return res.status(200).json(response.data);
+  
+    } catch (error) {
+      console.error("Error calling analysis model:", error.message);
+      return res.status(500).json({ message: "Failed to analyze reading." });
+    }
+  };
