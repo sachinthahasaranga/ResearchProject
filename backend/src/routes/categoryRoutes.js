@@ -18,4 +18,8 @@ router.put('/:id', authMiddleware, categoryController.updateCategory);
 // Delete a category by ID
 router.delete('/:id', authMiddleware, categoryController.deleteCategory);
 
+// Get categories by categoryType
+router.get('/type/:type', authMiddleware, categoryController.getCategoriesByType);
+
+
 module.exports = router;

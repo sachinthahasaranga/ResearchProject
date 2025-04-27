@@ -82,3 +82,21 @@ exports.deleteCategory = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// Get categories by categoryType
+exports.getCategoriesByType = async (req, res) => {
+    try {
+        const { type } = req.params;
+
+        const validCategoryTypes = ["paper", "listing", "lecture", "story", "reading"];
+        if (!validCategoryTypes.includes(type)) {
+            return res.status(400).json({ message: "Invalid categoryType. Allowed values: paper, listing, lecture, story, reading" });
+        }
+
+        const categories = await Category.find({ categoryType: type });
+        res.status(200).json(categories);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
