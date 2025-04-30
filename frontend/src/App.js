@@ -19,6 +19,7 @@ import PaperList from "./page/PaperList";
 import PaperDetails from "./page/PaperDetails";
 import StudentProfile from "./page/StudentProfile";
 import ReadingActivity from "./page/readingActivity";
+import ReadingActivityHome from "./page/readingActivityHome";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="course" element={<CoursePage />} />
           <Route path="reading" element={<ReadingActivity />} />
+          <Route path="readingHome" element={<ReadingActivityHome />} />
           <Route path="course-view/:id" element={<CourseView />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="team" element={<TeamPage />} />
