@@ -79,3 +79,15 @@ exports.analyzeReading = async (req, res) => {
       return res.status(500).json({ message: "Failed to analyze reading." });
     }
   };
+
+// Get readings by category ID
+exports.getReadingsByCategory = async (req, res) => {
+  try {
+    const { categoryId } = req.params;
+    const readings = await Reading.find({ category: categoryId }).populate('category');
+    res.status(200).json(readings);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+

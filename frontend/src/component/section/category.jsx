@@ -47,6 +47,12 @@ const Category = () => {
             count: '04 Course',
         },
         {
+            imgUrl: 'assets/images/category/icon/02.jpg',
+            imgAlt: 'category',
+            title: 'Reading Activities',
+            count: '04 Course',
+        },
+        {
             imgUrl: 'assets/images/category/icon/03.jpg',
             imgAlt: 'category',
             title: 'English Papers',

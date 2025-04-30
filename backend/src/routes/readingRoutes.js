@@ -4,21 +4,24 @@ const readingController = require('../controllers/readingController');
 const authMiddleware = require("../middleware/authMiddleware");
 
 // Create a new reading
-router.post('/', authMiddleware,  readingController.createReading);
+router.post('/', authMiddleware, readingController.createReading);
+
+// Get readings by category ID (IMPORTANT: place before '/:id')
+router.get('/category/:categoryId', authMiddleware, readingController.getReadingsByCategory);
 
 // Get all readings
-router.get('/', authMiddleware,  readingController.getAllReadings);
+router.get('/', authMiddleware, readingController.getAllReadings);
 
 // Get a single reading by ID
-router.get('/:id', authMiddleware,  readingController.getReadingById);
+router.get('/:id', authMiddleware, readingController.getReadingById);
 
 // Update a reading
-router.put('/:id', authMiddleware,  readingController.updateReading);
+router.put('/:id', authMiddleware, readingController.updateReading);
 
 // Delete a reading
-router.delete('/:id', authMiddleware,  readingController.deleteReading);
+router.delete('/:id', authMiddleware, readingController.deleteReading);
 
+// Analyze reading
 router.post('/analyze', authMiddleware, readingController.analyzeReading);
-
 
 module.exports = router;
