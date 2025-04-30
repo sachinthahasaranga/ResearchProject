@@ -1,26 +1,29 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
+import apiClient from "../api";
 import "../assets/css/LatestCourse.css";
-import apiClient from "../api"; // your configured axios instance
 
 const ReadingActivityHome = () => {
+    const { categoryId } = useParams();
     const [readings, setReadings] = useState([]);
 
     useEffect(() => {
-        const fetchReadings = async () => {
-            try {
-                const res = await apiClient.get("/api/readings/category/680ccd8e81e2d4911e2d81a9");
-                setReadings(res.data);
-            } catch (err) {
-                console.error("Error fetching readings:", err);
-            }
-        };
+        if (categoryId) {
+            fetchReadings(categoryId);
+        }
+    }, [categoryId]);
 
-        fetchReadings();
-    }, []);
+    const fetchReadings = async (id) => {
+        try {
+            const res = await apiClient.get(`/api/readings/category/${id}`);
+            setReadings(res.data);
+        } catch (err) {
+            console.error("Error fetching readings:", err);
+        }
+    };
 
     return (
         <>

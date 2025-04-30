@@ -17,7 +17,6 @@ const ReadingActivity = () => {
         try {
             const response = await apiClient.get("/api/ctgry/type/reading");
             setCategories(response.data);
-            console.log("Fetched Categories:", response.data);
         } catch (error) {
             console.error("Error fetching reading categories:", error);
         }
@@ -26,10 +25,8 @@ const ReadingActivity = () => {
     return (
         <>
             <Header />
-
             <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
                 <PageHeader title="Reading Activity" />
-
                 <div style={{ flex: 1, padding: '20px' }}>
                     <div style={{
                         display: 'grid',
@@ -40,7 +37,7 @@ const ReadingActivity = () => {
                         {categories.map((cat) => (
                             <Link 
                                 key={cat._id} 
-                                to={`/reading-activity/${cat.categoryName}`} 
+                                to={`/readingHome/${cat._id}`} 
                                 style={{ textDecoration: 'none', color: 'inherit', width: '100%' }}
                             >
                                 <div style={{
@@ -68,7 +65,6 @@ const ReadingActivity = () => {
                     </div>
                 </div>
             </div>
-
             <Footer />
         </>
     );
