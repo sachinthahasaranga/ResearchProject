@@ -20,6 +20,7 @@ import PaperDetails from "./page/PaperDetails";
 import StudentProfile from "./page/StudentProfile";
 import ReadingActivity from "./page/readingActivity";
 import ReadingActivityHome from "./page/readingActivityHome";
+import ReadingTest from "./page/readingTest";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="course" element={<CoursePage />} />
           <Route path="reading" element={<ReadingActivity />} />
           <Route path="readingHome/:categoryId" element={<ReadingActivityHome />} />
+          <Route path="readingtest" element={<ReadingTest />} />
           <Route path="course-view/:id" element={<CourseView />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="team" element={<TeamPage />} />
