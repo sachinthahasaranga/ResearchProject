@@ -24,4 +24,8 @@ router.delete('/:id', authMiddleware, readingController.deleteReading);
 // Analyze reading
 router.post('/analyze', authMiddleware, readingController.analyzeReading);
 
+// Transcribe audio using Google STT
+router.post('/transcribe', authMiddleware, readingController.uploadAudio, readingController.transcribeReading);
+
+
 module.exports = router;

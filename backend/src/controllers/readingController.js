@@ -1,5 +1,17 @@
 const Reading = require('../models/readingModel');
 const axios = require('axios');
+const fs = require('fs');
+const multer = require('multer');
+const { SpeechClient } = require('@google-cloud/speech');
+
+// Setup Google Speech client using custom key path
+const speechClient = new SpeechClient({
+  keyFilename: 'gCloudKeys/gCloud-speechToText.json' // ✅ your custom path
+});
+
+// Multer config to handle audio upload
+const upload = multer({ dest: 'uploads/' });
+exports.uploadAudio = upload.single('audio');
 
 // Create a new reading
 exports.createReading = async (req, res) => {
@@ -59,26 +71,27 @@ exports.deleteReading = async (req, res) => {
   }
 };
 
+// Analyze reading text
 exports.analyzeReading = async (req, res) => {
-    try {
-      const { original, given } = req.body;
-  
-      if (!original || !given) {
-        return res.status(400).json({ message: "Both 'original' and 'given' text are required." });
-      }
-  
-      const response = await axios.post('http://127.0.0.1:5000/analyze', {
-        original,
-        given
-      });
-  
-      return res.status(200).json(response.data);
-  
-    } catch (error) {
-      console.error("Error calling analysis model:", error.message);
-      return res.status(500).json({ message: "Failed to analyze reading." });
+  try {
+    const { original, given } = req.body;
+
+    if (!original || !given) {
+      return res.status(400).json({ message: "Both 'original' and 'given' text are required." });
     }
-  };
+
+    const response = await axios.post('http://127.0.0.1:5000/analyze', {
+      original,
+      given
+    });
+
+    return res.status(200).json(response.data);
+
+  } catch (error) {
+    console.error("Error calling analysis model:", error.message);
+    return res.status(500).json({ message: "Failed to analyze reading." });
+  }
+};
 
 // Get readings by category ID
 exports.getReadingsByCategory = async (req, res) => {
@@ -91,3 +104,30 @@ exports.getReadingsByCategory = async (req, res) => {
   }
 };
 
+// Transcribe uploaded audio using Google STT
+exports.transcribeReading = async (req, res) => {
+  const filePath = req.file.path;
+
+  const audio = {
+    content: fs.readFileSync(filePath).toString('base64'),
+  };
+
+  const config = {
+    encoding: 'WEBM_OPUS', // Or 'LINEAR16' for .wav
+    sampleRateHertz: 48000,
+    languageCode: 'en-US',
+  };
+
+  const request = { audio, config };
+
+  try {
+    const [response] = await speechClient.recognize(request);
+    const transcript = response.results.map(r => r.alternatives[0].transcript).join(' ');
+    res.status(200).json({ transcript });
+  } catch (error) {
+    console.error("Google STT error:", error);
+    res.status(500).json({ message: "Failed to transcribe audio." });
+  } finally {
+    fs.unlinkSync(filePath); // Clean up uploaded file
+  }
+};
