@@ -37,17 +37,23 @@ const ReadingActivityHome = () => {
                         gap: '20px',
                     }}>
                         {readings.map((item) => (
-                            <div key={item._id} style={{
-                                border: '1px solid #ccc',
-                                borderRadius: '8px',
-                                padding: '20px',
-                                width: '100%',
-                                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                                textAlign: 'center',
-                            }}>
-                                <h3>{item.name}</h3>
-                                <Link to={`/reading/${item._id}`}>Read More</Link>
-                            </div>
+                            <Link
+                                key={item._id}
+                                to={`/readingtest/${item._id}`}
+                                style={{ textDecoration: 'none', color: 'inherit' }}
+                            >
+                                <div style={{
+                                    border: '1px solid #ccc',
+                                    borderRadius: '8px',
+                                    padding: '20px',
+                                    width: '100%',
+                                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                                    textAlign: 'center',
+                                }}>
+                                    <h3>{item.name}</h3>
+                                    <p>Click to read</p>
+                                </div>
+                            </Link>
                         ))}
                     </div>
                 </div>
