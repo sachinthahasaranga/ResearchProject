@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const readingController = require('../controllers/readingController');
 const authMiddleware = require("../middleware/authMiddleware");
+const upload = require('../utils/multer');
 
 // Create a new reading
 router.post('/', authMiddleware, readingController.createReading);
@@ -25,6 +26,18 @@ router.delete('/:id', authMiddleware, readingController.deleteReading);
 router.post('/analyze', authMiddleware, readingController.analyzeReading);
 
 // Transcribe audio using AssemblyAI
-router.post('/transcribe', authMiddleware, readingController.uploadAudio, readingController.transcribeReading);
+router.post('/transcribe', upload.single('audio'), (req, res, next) => {
+    console.log('Multer Debugging: req.file =', req.file);
+    console.log('Multer Debugging: req.body =', req.body);
+    next();
+  }, readingController.transcribeReading);
+
+  // router.post('/transcribe', upload.single('audio'), (req, res, next) => {
+  //   console.log('Multer Debugging: req.file =', req.file);
+  //   console.log('Multer Debugging: req.body =', req.body);
+  //   next();
+  // }, readingController.transcribeReading);
+  
+
 
 module.exports = router;

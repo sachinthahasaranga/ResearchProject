@@ -108,25 +108,35 @@ exports.getReadingsByCategory = async (req, res) => {
 
 // Transcribe uploaded audio using Google STT
 exports.transcribeReading = async (req, res) => {
-  const filePath = req.file.path; // audio uploaded via Multer
 
+  // if (!req.file) {
+  //   return res.status(400).json({ message: 'No audio file uploaded.' });
+  // }
+
+  console.log("req.file:", req.file);
+  console.log("req.body:", req.body);
+
+
+  const filePath = req.file.path; // audio uploaded via Multer
+  //const filePath = "C:\\SLIIT\\4th Year\\Research\\Project\\ResearchProject\\ResearchProject\\backend\\uploads\\1746522755501.mp3";
+  
   try {
     // Step 1: Upload the file to AssemblyAI
-    const formData = new FormData();
-    formData.append('file', fs.createReadStream(filePath));
+    // const formData = new FormData();
+    // formData.append('file', fs.createReadStream(filePath));
 
-    const uploadResponse = await axios.post('https://api.assemblyai.com/v2/upload', formData, {
-      headers: {
-        ...formData.getHeaders(),
-        authorization: process.env.ASSEMBLYAI_API_KEY,
-      },
-    });
+    // const uploadResponse = await axios.post('https://api.assemblyai.com/v2/upload', formData, {
+    //   headers: {
+    //     ...formData.getHeaders(),
+    //     authorization: process.env.ASSEMBLYAI_API_KEY,
+    //   },
+    // });
 
-    const audioUrl = uploadResponse.data.upload_url;
+    // const audioUrl = uploadResponse.data.upload_url;
 
     // Step 2: Transcription params
     const params = {
-      audio_url: audioUrl,
+      audio: filePath,
       speech_model: 'slam-1',
     };
 
