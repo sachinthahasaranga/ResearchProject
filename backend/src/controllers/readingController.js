@@ -3,10 +3,12 @@ const axios = require('axios');
 const fs = require('fs');
 const multer = require('multer');
 const { SpeechClient } = require('@google-cloud/speech');
+const { AssemblyAI } = require('assemblyai');
+require('dotenv').config();
 
 // Setup Google Speech client using custom key path
-const speechClient = new SpeechClient({
-  keyFilename: 'gCloudKeys/gCloud-speechToText.json' // ✅ your custom path
+const client = new AssemblyAI({
+  apiKey: process.env.ASSEMBLYAI_API_KEY,
 });
 
 // Multer config to handle audio upload
@@ -106,28 +108,42 @@ exports.getReadingsByCategory = async (req, res) => {
 
 // Transcribe uploaded audio using Google STT
 exports.transcribeReading = async (req, res) => {
-  const filePath = req.file.path;
-
-  const audio = {
-    content: fs.readFileSync(filePath).toString('base64'),
-  };
-
-  const config = {
-    encoding: 'WEBM_OPUS', // Or 'LINEAR16' for .wav
-    sampleRateHertz: 48000,
-    languageCode: 'en-US',
-  };
-
-  const request = { audio, config };
+  const filePath = req.file.path; // audio uploaded via Multer
 
   try {
-    const [response] = await speechClient.recognize(request);
-    const transcript = response.results.map(r => r.alternatives[0].transcript).join(' ');
-    res.status(200).json({ transcript });
+    // Step 1: Upload the file to AssemblyAI
+    const formData = new FormData();
+    formData.append('file', fs.createReadStream(filePath));
+
+    const uploadResponse = await axios.post('https://api.assemblyai.com/v2/upload', formData, {
+      headers: {
+        ...formData.getHeaders(),
+        authorization: process.env.ASSEMBLYAI_API_KEY,
+      },
+    });
+
+    const audioUrl = uploadResponse.data.upload_url;
+
+    // Step 2: Transcription params
+    const params = {
+      audio_url: audioUrl,
+      speech_model: 'slam-1',
+    };
+
+    // Step 3: Request transcription
+    const transcript = await client.transcripts.transcribe(params);
+
+    if (transcript.status === 'error') {
+      console.error(`Transcription failed: ${transcript.error}`);
+      return res.status(500).json({ message: 'Transcription failed', error: transcript.error });
+    }
+
+    // Step 4: Return the transcription
+    return res.status(200).json({ transcript: transcript.text });
   } catch (error) {
-    console.error("Google STT error:", error);
-    res.status(500).json({ message: "Failed to transcribe audio." });
+    console.error('AssemblyAI transcription error:', error.message || error);
+    return res.status(500).json({ message: 'Failed to transcribe audio.' });
   } finally {
-    fs.unlinkSync(filePath); // Clean up uploaded file
+    fs.unlinkSync(filePath); // Cleanup uploaded file
   }
 };

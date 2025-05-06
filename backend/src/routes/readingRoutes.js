@@ -21,11 +21,10 @@ router.put('/:id', authMiddleware, readingController.updateReading);
 // Delete a reading
 router.delete('/:id', authMiddleware, readingController.deleteReading);
 
-// Analyze reading
+// Analyze reading text
 router.post('/analyze', authMiddleware, readingController.analyzeReading);
 
-// Transcribe audio using Google STT
+// Transcribe audio using AssemblyAI
 router.post('/transcribe', authMiddleware, readingController.uploadAudio, readingController.transcribeReading);
-
 
 module.exports = router;
