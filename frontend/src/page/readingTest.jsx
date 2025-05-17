@@ -43,7 +43,7 @@ const ReadingTest = () => {
     const onStop = async (recordedBlob) => {
         try {
             const formData = new FormData();
-            formData.append("audio", recordedBlob.blob, "speech.webm");
+            formData.append("audio", recordedBlob.blob, "speech.wav");
 
             const token = localStorage.getItem("token");
 

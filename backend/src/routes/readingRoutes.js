@@ -26,7 +26,7 @@ router.delete('/:id', authMiddleware, readingController.deleteReading);
 router.post('/analyze', authMiddleware, readingController.analyzeReading);
 
 // Transcribe audio using AssemblyAI
-router.post('/transcribe', upload.single('audio'), readingController.transcribeReading);
+router.post('/transcribe', authMiddleware, upload.single('audio'), readingController.transcribeReading);
 
   // router.post('/transcribe', upload.single('audio'), (req, res, next) => {
   //   console.log('Multer Debugging: req.file =', req.file);
