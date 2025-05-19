@@ -13,6 +13,7 @@ const ReadingTest = () => {
     const [record, setRecord] = useState(false);
     const [spokenText, setSpokenText] = useState("");
     const [status, setStatus] = useState("");
+    const [analysisResult, setAnalysisResult] = useState(null);
 
     useEffect(() => {
         if (readingId) {
@@ -32,6 +33,7 @@ const ReadingTest = () => {
     const startRecording = () => {
         setRecord(true);
         setSpokenText("");
+        setAnalysisResult(null);
         setStatus("Recording...");
     };
 
@@ -58,11 +60,36 @@ const ReadingTest = () => {
                 }
             );
 
-            setSpokenText(res.data.transcript);
+            const transcript = res.data.transcript;
+            setSpokenText(transcript);
+            setStatus("Analyzing...");
+
+            console.log("Analyzing with:", {
+                original: reading?.content,
+                given: transcript
+            });
+
+
+            // Analyze
+            const analyzeRes = await apiClient.post(
+                "/api/readings/analyze",
+                {
+                    original: reading.content,
+                    given: transcript
+                },
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+
+            setAnalysisResult(analyzeRes.data);
             setStatus("Done");
         } catch (err) {
-            console.error("Transcription failed:", err);
-            setStatus("Failed to transcribe");
+            console.error("Transcription or analysis failed:", err);
+            setStatus("Failed to transcribe or analyze");
         }
     };
 
@@ -103,6 +130,15 @@ const ReadingTest = () => {
                             <p style={{ maxWidth: '600px', margin: 'auto', fontSize: '16px', color: '#333' }}>
                                 {spokenText}
                             </p>
+                        </div>
+                    )}
+
+                    {analysisResult && (
+                        <div style={{ marginTop: '30px' }}>
+                            <h4>Analysis Result:</h4>
+                            <pre style={{ textAlign: 'left', maxWidth: '600px', margin: 'auto', background: '#f8f8f8', padding: '10px', borderRadius: '6px' }}>
+                                {JSON.stringify(analysisResult, null, 2)}
+                            </pre>
                         </div>
                     )}
                 </div>
