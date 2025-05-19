@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ReactMic } from "react-mic";
 import Footer from "../component/layout/footer";
@@ -14,6 +14,7 @@ const ReadingTest = () => {
     const [spokenText, setSpokenText] = useState("");
     const [status, setStatus] = useState("");
     const [analysisResult, setAnalysisResult] = useState(null);
+    const readingRef = useRef(null); // ✅ ref to always access current reading
 
     useEffect(() => {
         if (readingId) {
@@ -25,6 +26,8 @@ const ReadingTest = () => {
         try {
             const res = await apiClient.get(`/api/readings/${id}`);
             setReading(res.data);
+            readingRef.current = res.data; // ✅ update ref with latest reading
+            console.log("Fetched reading:", res.data);
         } catch (err) {
             console.error("Error fetching reading detail:", err);
         }
@@ -60,21 +63,27 @@ const ReadingTest = () => {
                 }
             );
 
-            const transcript = res.data.transcript;
+            const transcript = res.data.transcript?.trim();
             setSpokenText(transcript);
             setStatus("Analyzing...");
 
-            console.log("Analyzing with:", {
-                original: reading?.content,
+            const originalText = readingRef.current?.content?.trim(); // ✅ using ref
+
+            if (!originalText || !transcript) {
+                console.error("Missing content for analysis", { originalText, transcript });
+                setStatus("Missing data for analysis.");
+                return;
+            }
+
+            console.log("Sending to analysis:", {
+                original: originalText,
                 given: transcript
             });
 
-
-            // Analyze
             const analyzeRes = await apiClient.post(
                 "/api/readings/analyze",
                 {
-                    original: reading.content,
+                    original: originalText,
                     given: transcript
                 },
                 {
@@ -87,6 +96,7 @@ const ReadingTest = () => {
 
             setAnalysisResult(analyzeRes.data);
             setStatus("Done");
+
         } catch (err) {
             console.error("Transcription or analysis failed:", err);
             setStatus("Failed to transcribe or analyze");
