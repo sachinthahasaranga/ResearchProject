@@ -14,7 +14,7 @@ const ReadingTest = () => {
     const [spokenText, setSpokenText] = useState("");
     const [status, setStatus] = useState("");
     const [analysisResult, setAnalysisResult] = useState(null);
-    const readingRef = useRef(null); // ✅ ref to always access current reading
+    const readingRef = useRef(null);
 
     useEffect(() => {
         if (readingId) {

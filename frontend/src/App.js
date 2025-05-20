@@ -21,6 +21,7 @@ import StudentProfile from "./page/StudentProfile";
 import ReadingActivity from "./page/readingActivity";
 import ReadingActivityHome from "./page/readingActivityHome";
 import ReadingTest from "./page/readingTest";
+import ReadingResults from "./page/readingResult";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="reading" element={<ReadingActivity />} />
           <Route path="readingHome/:categoryId" element={<ReadingActivityHome />} />
           <Route path="/readingtest/:readingId" element={<ReadingTest />} />
+          <Route path="/readingResults" element={<ReadingResults />} />
           <Route path="course-view/:id" element={<CourseView />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="team" element={<TeamPage />} />
