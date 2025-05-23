@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'swiper/css';
 import ScrollToTop from "./component/layout/ScrollToTop";
-import ProtectedRoute from "./ProtectedRoute"; 
+import ProtectedRoute from "./ProtectedRoute";
 import ErrorPage from "./page/404";
 import AboutPage from "./page/about";
 import ContactPage from "./page/contact";
@@ -41,6 +41,7 @@ function App() {
           <Route path="readingHome/:categoryId" element={<ReadingActivityHome />} />
           <Route path="/readingtest/:readingId" element={<ReadingTest />} />
           <Route path="/readingResults" element={<ReadingResults />} />
+
           <Route path="course-view/:id" element={<CourseView />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="team" element={<TeamPage />} />
