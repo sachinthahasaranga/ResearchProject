@@ -1,0 +1,171 @@
+/* Main container styling */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background-size: cover; /* Ensures background image covers entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents background image repetition */
+  background-attachment: fixed; /* Fixes background during scrolling */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  position: absolute; /* Ensure the container is positioned correctly */
+  top: 0;
+  left: 0;
+  overflow: hidden; /* Disable scrollbars for entire container */
+  
+}
+
+/* Add a pseudo-element to create the blur effect */
+.main-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: inherit; /* Inherit the background image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  filter: blur(10px); /* Apply blur effect */
+  z-index: -1; /* Place the blurred background behind the content */
+}
+
+/* Ensure content is above the blurred background */
+.main-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Container for the cards */
+.category-container {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Prevents cards from wrapping to the next line */
+  display: flex;
+  align-items: center; /* Center cards vertically */
+  scroll-snap-type: x mandatory; /* Smooth scrolling effect */
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Wrapper for the cards */
+.cards-wrapper {
+  display: inline-flex; /* Ensures cards stay in a single row */
+  gap: 16px; /* Adds space between cards */
+  height: 83%; /* Full height of the container */
+  padding-bottom: 20px;
+}
+
+/* Individual card styling */
+.card {
+  flex: 0 0 auto; /* Prevents cards from shrinking or growing */
+  width: 700px; /* Fixed width for each card */
+  height: 100%; /* Full height of the container */
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Push text to bottom */
+  align-items: center;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  overflow: hidden; /* Ensures content doesn't overflow */
+  scroll-snap-align: center; /* Aligns cards properly when scrolling */
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer; /* Indicates the card is clickable */
+}
+
+/* Add overlay effect for better text readability */
+.card::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%; /* Dark gradient at bottom */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  z-index: 1; /* Ensures overlay is above the background image */
+}
+
+/* Card text styling */
+.card h2, 
+.card p {
+  position: relative; /* Keeps text above overlay */
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  padding: 10px;
+  border-radius: 5px;
+  width: 90%;
+  text-align: center;
+  z-index: 2; /* Ensures text is above the overlay */
+}
+
+/* Background image for the card */
+.card {
+  background-size: cover;
+  background-position: center;
+}
+
+/* Smooth horizontal scrolling */
+.category-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.category-container::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+.category-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.category-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker color on hover */
+}
+
+/* Hover Effect */
+.card:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Optional: Add navigation buttons */
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-button.left {
+  left: 10px;
+}
+
+.scroll-button.right {
+  right: 10px;
+}
+
+.scroll-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}

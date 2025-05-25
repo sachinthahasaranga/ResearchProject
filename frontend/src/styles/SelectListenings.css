@@ -1,0 +1,187 @@
+/* Reset styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* Prevent vertical scrolling */
+  box-sizing: border-box; /* Apply box-sizing universally */
+}
+
+/* Full-screen container with background image */
+.listening-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background-size: cover; /* Ensures background image covers entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents background image repetition */
+  background-attachment: fixed; /* Fixes background during scrolling */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  position: absolute; /* Ensure the container is positioned correctly */
+  top: 0;
+  left: 0;
+  overflow: hidden; /* Disable scrollbars for entire container */
+}
+
+/* Dark overlay */
+.listening-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+  z-index: 0;
+}
+
+/* Title styling */
+.listening-container h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  padding: 10px 0;
+  z-index: 2;
+}
+
+/* Scrollable cards section */
+.listening-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  height: calc(100vh - 80px); /* Adjust height to account for header */
+  overflow-y: auto; /* Allow vertical scroll if needed */
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+/* Custom scrollbar */
+.listening-cards-wrapper::-webkit-scrollbar {
+  width: 5px;
+}
+
+.listening-cards-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+/* Card styling */
+.listening-card {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  width: 100%;
+  max-width: 600px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effect */
+.listening-card:hover {
+  transform: scale(1.05);
+}
+
+/* Card content layout */
+.card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Text section */
+.text-section {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adds space between the number and the name */
+}
+
+.card-number {
+  font-size: 22px;
+  font-weight: bold;
+  color: black;
+}
+
+.text-section h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  color: black; /* Ensuring heading is black */
+}
+
+.text-section p {
+  font-size: 16px;
+  margin: 5px 0;
+  color: black; /* Ensuring paragraph text is black */
+}
+
+/* Image section */
+.image-section {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Hover effect on cards */
+.listening-card:hover {
+  transform: scale(1.05);
+}
+
+/* Loading Spinner */
+.loading-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  z-index: 10; /* Ensure it's above other content */
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3); /* Light gray border */
+  border-top-color: #09f; /* Blue color for the spinning part */
+  border-radius: 50%; /* Makes it circular */
+  width: 40px; /* Size of the spinner */
+  height: 40px; /* Size of the spinner */
+  animation: spin 1s linear infinite; /* Spin animation */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg); /* Rotate 360 degrees */
+  }
+}

@@ -22,6 +22,7 @@ import ReadingActivity from "./page/readingActivity";
 import ReadingActivityHome from "./page/readingActivityHome";
 import ReadingTest from "./page/readingTest";
 import ReadingResults from "./page/readingResult";
+import ListeningHomePage from "./page/ListeningHomePage";
 
 function App() {
   return (
@@ -41,7 +42,6 @@ function App() {
           <Route path="readingHome/:categoryId" element={<ReadingActivityHome />} />
           <Route path="/readingtest/:readingId" element={<ReadingTest />} />
           <Route path="/readingResults" element={<ReadingResults />} />
-
           <Route path="course-view/:id" element={<CourseView />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="team" element={<TeamPage />} />
@@ -52,6 +52,7 @@ function App() {
           <Route path="paperlist" element={<PaperList />} />
           <Route path="paper-details/:paperId" element={<PaperDetails />} />
           <Route path="studentprofile" element={<StudentProfile />} />
+          <Route path="ListeningHomePage" element={<ListeningHomePage />} />
         </Route>
 
         {/* 404 Page */}
