@@ -35,18 +35,18 @@ const ReadingResults = () => {
         if (!transcript || !analysis) {
             navigate("/");
         } else {
-            fetchPhoneticDefinitions();
+            fetchDictionaryDefinitions();
         }
     }, [transcript, analysis, navigate]);
 
-    const fetchPhoneticDefinitions = async () => {
-        const phoneticWords = (analysis?.defects || [])
-            .filter(d => d.error_type === 1 && d.original)
+    const fetchDictionaryDefinitions = async () => {
+        const words = (analysis?.defects || [])
+            .filter(d => [1, 2].includes(d.error_type) && d.original)
             .map(d => d.original.toLowerCase());
 
-        const uniqueWords = [...new Set(phoneticWords)];
-
+        const uniqueWords = [...new Set(words)];
         const results = {};
+
         for (const word of uniqueWords) {
             try {
                 const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
@@ -56,86 +56,113 @@ const ReadingResults = () => {
                 results[word] = null;
             }
         }
+
         setDictionaryData(results);
     };
 
-    const highlightErrorsInReadingContent = () => {
-        if (!analysis?.defects) return readingContent;
+const highlightErrorsInReadingContent = () => {
+    if (!analysis?.defects || !Array.isArray(analysis.defects)) return readingContent;
 
-        const errorMap = {};
-        analysis.defects.forEach(defect => {
-            if (defect.original && defect.error_type) {
-                const word = defect.original.toLowerCase();
-                errorMap[word] = defect.error_type;
-            }
-        });
+    // Split into words + keep spaces/punctuation
+    const tokens = readingContent.split(/(\s+|[^\w\s]+)/g); // Match words, spaces, punctuation
+    if (!tokens) return readingContent;
 
-        const words = readingContent.split(/\b/);
-        return words.map((word, idx) => {
-            const cleanWord = word.replace(/[^\w\s]|_/g, "").toLowerCase();
-            const errorType = errorMap[cleanWord];
-            if (errorType) {
-                return (
-                    <span
-                        key={idx}
-                        style={{
-                            backgroundColor: errorTypeColors[errorType] || "#fdd",
-                            color: "white",
-                            fontWeight: "bold",
-                            padding: "0 2px",
-                            borderRadius: "3px"
-                        }}
-                        title={errorTypeLabels[errorType]}
-                    >
-                        {word}
-                    </span>
-                );
-            }
-            return <span key={idx}>{word}</span>;
-        });
-    };
+    let defectIndex = 0;
 
-    const renderErrorCards = () => {
-        const nonMissingDefects = (analysis?.defects || []).filter(defect => defect.error_type !== 6);
-
-        if (nonMissingDefects.length === 0) {
-            return <p style={{ textAlign: 'center' }}>No non-missing-word errors found</p>;
+    return tokens.map((token, idx) => {
+        // If it's not a word (e.g., space or punctuation), just render normally
+        if (!/\w/.test(token)) {
+            return <span key={idx}>{token}</span>;
         }
 
-        return nonMissingDefects.map((defect, index) => {
-            const wordKey = defect.original?.toLowerCase();
-            const dictionary = dictionaryData[wordKey];
+        const defect = analysis.defects[defectIndex++];
 
+        // Only highlight specific error types
+        if (
+            defect &&
+            defect.error_type !== 4 && // Skip UNKNOWN_ERROR
+            (
+                (defect.error_type === 6 && !defect.given) ||
+                [1, 2, 3].includes(defect.error_type)
+            )
+        ) {
             return (
-                <div key={index} style={{
-                    border: `2px solid ${errorTypeColors[defect.error_type] || "#ccc"}`,
-                    borderRadius: "8px",
-                    padding: "15px",
-                    marginBottom: "15px",
-                    backgroundColor: "#fdfdfd",
-                    boxShadow: "0 2px 5px rgba(0,0,0,0.1)"
-                }}>
-                    <p><strong>Error Type:</strong> {errorTypeLabels[defect.error_type] || "Unrecognized Error"}</p>
-                    <p><strong>Should Be:</strong> {defect.original || "-"}</p>
-                    <p><strong>You Said:</strong> {defect.given || "-"}</p>
-
-                    {defect.error_type === 1 && dictionary && (
-                        <div style={{ marginTop: "10px", fontSize: "14px" }}>
-                            <p><strong>Definition:</strong> {dictionary.meanings?.[0]?.definitions?.[0]?.definition || "Not found"}</p>
-                            {dictionary.phonetics?.[0]?.audio && (
-                                <div>
-                                    <strong>Pronunciation:</strong><br />
-                                    <audio controls src={dictionary.phonetics[0].audio}>
-                                        Your browser does not support the audio element.
-                                    </audio>
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </div>
+                <span
+                    key={idx}
+                    style={{
+                        backgroundColor: errorTypeColors[defect.error_type] || "#fdd",
+                        color: "white",
+                        fontWeight: "bold",
+                        padding: "0 3px",
+                        borderRadius: "4px"
+                    }}
+                    title={errorTypeLabels[defect.error_type]}
+                >
+                    {token}
+                </span>
             );
-        });
-    };
+        }
+
+        return <span key={idx}>{token}</span>;
+    });
+};
+
+const renderErrorCards = () => {
+    const filteredDefects = (analysis?.defects || []).filter(
+        defect =>
+            defect.error_type !== 0 &&
+            defect.error_type !== 4 &&
+            defect.error_type !== 6
+    );
+
+    if (filteredDefects.length === 0) {
+        return <p style={{ textAlign: 'center' }}>No displayable errors found.</p>;
+    }
+
+    return filteredDefects.map((defect, index) => {
+        const wordKey = defect.original?.toLowerCase();
+        const dictionary = dictionaryData[wordKey];
+
+        return (
+            <div key={index} style={{
+                border: `2px solid ${errorTypeColors[defect.error_type] || "#ccc"}`,
+                borderRadius: "8px",
+                padding: "15px",
+                marginBottom: "15px",
+                backgroundColor: "#fdfdfd",
+                boxShadow: "0 2px 5px rgba(0,0,0,0.1)"
+            }}>
+                <p><strong>Error Type:</strong> {errorTypeLabels[defect.error_type] || "Unrecognized Error"}</p>
+                <p><strong>Should Be:</strong> {defect.original || "-"}</p>
+                <p><strong>You Said:</strong> {defect.given || "-"}</p>
+
+                {[1, 2].includes(defect.error_type) && dictionary && (
+                    <div style={{ marginTop: "10px", fontSize: "14px" }}>
+                        <p><strong>Definition:</strong> {dictionary.meanings?.[0]?.definitions?.[0]?.definition || "Not found"}</p>
+                        <p><strong>Part of Speech:</strong> {dictionary.meanings?.[0]?.partOfSpeech || "N/A"}</p>
+                        <p><strong>Synonyms:</strong> {dictionary.meanings?.[0]?.synonyms?.slice(0, 5).join(', ') || "N/A"}</p>
+
+                        {defect.error_type === 1 && (() => {
+                            const audioUrl = dictionary.phonetics?.find(p => p.audio)?.audio;
+                            if (audioUrl) {
+                                return (
+                                    <div style={{ marginTop: '10px' }}>
+                                        <strong>Pronunciation:</strong><br />
+                                        <audio controls src={audioUrl}>
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    </div>
+                                );
+                            }
+                            return null;
+                        })()}
+                    </div>
+                )}
+            </div>
+        );
+    });
+};
+
 
     return (
         <>

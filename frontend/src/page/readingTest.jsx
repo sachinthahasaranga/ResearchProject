@@ -91,7 +91,7 @@ const ReadingTest = () => {
 
             setAnalysisResult(analyzeRes.data);
             setStatus("Done");
-
+            console.log("Analysis result:", analyzeRes.data);
             // Navigate to results page with data
             navigate("/readingResults", {
                 state: {
