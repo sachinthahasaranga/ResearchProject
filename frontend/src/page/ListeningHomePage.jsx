@@ -8,49 +8,58 @@ import "../styles/listeningHome.css";
 import mainSessionImage from "../assets/mainSessionJake.jpg";
 import practiceSessionImage from "../assets/finn_practise.png";
 
-
-
 const ListeningHomePage = () => {
-
     const navigate = useNavigate();
     
-
     return (
-        <>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Header />
-            <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-                <PageHeader title="ListeningHomePage" />
-                 <div className="d-flex m-0 p-0" style={{ width: "100vw", height: "100vh", position: "fixed", top: 0, left: 0 }}>
-      {/* Main Session - Left Side */}
-      <div
-        className="session-box"
-        style={{ backgroundImage: `url(${mainSessionImage})` }}
-        onClick={() => navigate("/SelectListeningCategory", {
-          state: { isPractise: false }, // Pass only the listening ID
-        })}
-      >
-        <div className="session-content">
-          <h2>Main Session</h2>
-          <p>Start the main listening session.</p>
-        </div>
-      </div>
+            <PageHeader title="ListeningHomePage" />
+            
+            {/* Main content container */}
+            <div style={{ 
+                display: 'flex', 
+                flex: 1, // Takes up remaining space
+                width: '100%',
+                overflow: 'hidden' // Prevents internal scrolling
+            }}>
+                {/* Main Session - Left Side */}
+                <div
+                    className="session-box"
+                    style={{ 
+                        backgroundImage: `url(${mainSessionImage})`,
+                        width: '50%'
+                    }}
+                    onClick={() => navigate("/SelectListeningCategory", {
+                        state: { isPractise: false },
+                    })}
+                >
+                    <div className="session-content">
+                        <h2>Main Session</h2>
+                        <p>Start the main listening session.</p>
+                    </div>
+                </div>
 
-      {/* Practice Session - Right Side */}
-      <div
-        className="session-box"
-        style={{ backgroundImage: `url(${practiceSessionImage})` }}
-        onClick={() => navigate("/SelectListeningCategory", {state: { isPractise: true },})} // Updated navigation path
-      >
-        <div className="session-content">
-          <h2>Practice Session</h2>
-          <p>Practice your listening skills here.</p>
-        </div>
-      </div>
-    </div>
-
+                {/* Practice Session - Right Side */}
+                <div
+                    className="session-box"
+                    style={{ 
+                        backgroundImage: `url(${practiceSessionImage})`,
+                        width: '50%'
+                    }}
+                    onClick={() => navigate("/SelectListeningCategory", {
+                        state: { isPractise: true },
+                    })}
+                >
+                    <div className="session-content">
+                        <h2>Practice Session</h2>
+                        <p>Practice your listening skills here.</p>
+                    </div>
+                </div>
             </div>
+            
             <Footer />
-        </>
+        </div>
     );
 };
 
