@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../component/layout/footer";
-import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import apiClient from "../api";
 import "../assets/css/LatestCourse.css";
 import '../styles/SelectListeningsPractise.css';
+import HeaderLstn from "../component/layout/headerlstn";
 
-// Utility functions
 const getRandomGradient = () => {
   const colors = [
     'linear-gradient(to right, #ff9a9e, white)',
@@ -24,7 +23,6 @@ const getRandomImageNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-// Threshold configuration
 const thresholds = {
   easy: 0.5,
   medium: 0.7,
@@ -52,7 +50,6 @@ const SelectListeningsPractise = () => {
   const [loading, setLoading] = useState(true);
   const [randomBackgroundImageNumber] = useState(getRandomImageNumber(1, 6));
 
-  // Fetch data on component mount
   useEffect(() => {
     if (!categoryId) {
       setError('No category selected.');
@@ -71,9 +68,7 @@ const SelectListeningsPractise = () => {
 
     const fetchData = async () => {
       try {
-        // Fetch listenings
         const listeningsResponse = await apiClient.get(`/api/lstn/category/${categoryId}`);
-        // Fetch difficulty levels
         const difficultyResponse = await apiClient.get('/api/difficulty-levels');
 
         if (isMounted) {
@@ -98,7 +93,6 @@ const SelectListeningsPractise = () => {
     };
   }, [categoryId]);
 
-  // Filter listenings when difficulty changes
   useEffect(() => {
     if (!selectedDifficulty) {
       setFilteredListenings(listenings);
@@ -111,7 +105,6 @@ const SelectListeningsPractise = () => {
     setFilteredListenings(filtered);
   }, [selectedDifficulty, listenings]);
 
-  // Loading state
   if (loading) {
     return (
       <div className="loading-spinner-container">
@@ -122,11 +115,10 @@ const SelectListeningsPractise = () => {
     );
   }
 
-  // Error state
   if (error) {
     return (
       <div className="error-container">
-        <Header />
+        <HeaderLstn />
         <div className="error-message">
           {error}
           <button onClick={() => window.location.reload()}>Try Again</button>
@@ -136,22 +128,30 @@ const SelectListeningsPractise = () => {
     );
   }
 
-  // Main render
   return (
     <>
-      <Header />
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <PageHeader title="Select Listening Practice" />
+      <HeaderLstn />
+      <div style={{ 
+        minHeight: '100vh', 
+        display: 'flex', 
+        flexDirection: 'column',
+        position: 'relative',
+        paddingTop: '150px' // Adjust based on header height
+      }}>
+
         
         <div
           className="listening-container"
           style={{
             backgroundImage: `url('/images/background/bg${randomBackgroundImageNumber}.png')`,
+            position: 'relative',
+            zIndex: 1,
+            marginTop: '-100px', // Pull content up under header
+            paddingTop: '100px' // Compensate for fixed header
           }}
         >
           <h1>Select a Listening</h1>
 
-          {/* Difficulty Levels Section */}
           <div className="difficulty-levels-section">
             <div className="difficulty-levels-list">
               {difficultyLevels.map((level) => {
@@ -181,7 +181,6 @@ const SelectListeningsPractise = () => {
             </div>
           </div>
 
-          {/* Listenings Section */}
           <div className="listening-cards-wrapper">
             {filteredListenings.map((listening, index) => {
               const randomCardImageNumber = getRandomImageNumber(1, 10);
@@ -217,7 +216,6 @@ const SelectListeningsPractise = () => {
                       />
                     </div>
                   </div>
-                
                 </div>
               );
             })}
