@@ -8,7 +8,7 @@
         {
           "id": "intro",
           "text": "You are a warrior waking up in a strange forest after a battle. A path lies ahead, and you hear faint cries from the woods.",
-          "image": "/images/logo.png",
+          "image": "/images/L1.png",
           "choices": [
             {
               "text": "Follow the path",
@@ -37,6 +37,7 @@
         {
           "id": "cries",
           "text": "You find a wounded beast caught in a trap. It growls weakly.",
+          "image": "/images/L2.png",
           "choices": [
             {
               "text": "Help the beast",
@@ -93,6 +94,7 @@
         {
           "id": "leave_beast",
           "text": "The cries stop. As you walk away, you're ambushed by forest bandits!",
+          "image": "/images/L3.png",
           "choices": [
             {
               "text": "Fight the bandits",
@@ -146,6 +148,7 @@
         {
           "id": "briefing",
           "text": "You're a top-level spy tasked with infiltrating a secret facility. Your handler offers two approaches.",
+          "image": "/images/J1.png",
           "choices": [
             {
               "text": "Go in disguised as a janitor",
@@ -160,6 +163,7 @@
         {
           "id": "janitor_entry",
           "text": "Your disguise works. Inside, you overhear guards talking about a suspicious delivery.",
+           "image": "/images/J2.png",
           "choices": [
             {
               "text": "Investigate the delivery",
@@ -191,7 +195,9 @@
         },
         {
           "id": "server_room",
-          "text": "You reach the server room and extract vital intel unnoticed. Mission accomplished. The end."
+          "text": "You reach the server room and extract vital intel unnoticed. Mission accomplished. The end.",
+          "image": "/images/J3.png"
+          
         },
         {
           "id": "vent_crawl",
@@ -229,6 +235,8 @@
         {
           "id": "start",
           "text": "Lila, a curious girl who listens to the stars, hears a strange whisper one night: 'The Moon Cat is missing... Only a child of Earth can help.' A glowing silver pawprint appears on her windowsill.",
+          "image": "/images/M1.png",
+          
           "choices": [
             {
               "text": "Touch the pawprint",
@@ -247,6 +255,7 @@
         {
           "id": "moon",
           "text": "Lila is transported to a magical Moon filled with glowing trees. She meets Nova, the Moon Cat, who explains the Shadow Fox has stolen the Moon Crystal.",
+           "image": "/images/M2.png",
           "choices": [
             {
               "text": "Offer to help Nova",
@@ -265,6 +274,7 @@
         {
           "id": "forest",
           "text": "Nova leads Lila to the Forest of Forgotten Wishes. A spirit named Whimsy offers help. The trees whisper old dreams and shadows stir.",
+           "image": "/images/M3.png",
           "choices": [
             {
               "text": "Accept Whimsy\u2019s help",
@@ -283,6 +293,7 @@
         {
           "id": "shadow_encounter",
           "text": "As they journey, shadowy vines attack Lila. Whimsy urges her to believe in herself.",
+          "image": "/images/M4.png",
           "choices": [
             {
               "text": "Believe and push forward",
@@ -301,6 +312,7 @@
         {
           "id": "river",
           "text": "Lila must travel down the River of Time. Good and bad memories flood around her.",
+          "image": "/images/M5.png",
           "choices": [
             {
               "text": "Accept her past and move forward",
@@ -315,6 +327,7 @@
         {
           "id": "bridge",
           "text": "At the river\u2019s end is the Bridge of Echoes, guarded by the Moon Rabbits. They ask her to prove her heart is pure.",
+          "image": "/images/M6.png",
           "choices": [
             {
               "text": "Share her dreams and fears",
@@ -333,6 +346,7 @@
         {
           "id": "cave",
           "text": "They reach the Shadow Fox\u2019s cave. Inside, the Moon Crystal glows brightly. The Shadow Fox appears, snarling.",
+          "image": "/images/M7.png",
           "choices": [
             {
               "text": "Confront the Shadow Fox with courage",

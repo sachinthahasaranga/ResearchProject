@@ -5,56 +5,76 @@ import { useLocation } from 'react-router-dom';
 const socket = io("http://localhost:5000");
 
 function AutoCapture() {
-
   const location = useLocation();
   const isGamePage = location.pathname === "/game-launch";
 
-  const emotionArrayRef = useRef([]);
-  const MAX_SIZE = 50;
-
-  const [mostFrequent, setMostFrequent] = useState("");
+  const emotionWindowRef = useRef([]);
   const [showModal, setShowModal] = useState(false);
   const [popupInterval, setPopupInterval] = useState(localStorage.getItem("popupInterval") || "10");
 
-  // Util: Check if it's time to show modal
+  const getSuppressDuration = (value) => {
+    switch (value) {
+      case "5": return 5 * 60 * 1000;
+      case "10": return 10 * 60 * 1000;
+      case "30": return 30 * 60 * 1000;
+      case "60": return 60 * 60 * 1000;
+      default: return 10 * 60 * 1000;
+    }
+  };
+
   const shouldShowModal = () => {
     const nextPopupTime = localStorage.getItem("nextPopupTime");
     const now = Date.now();
-
     if (!nextPopupTime) return true;
     if (nextPopupTime === "never") return false;
     return now >= parseInt(nextPopupTime);
   };
 
-  // Listen for emotion detection
   useEffect(() => {
     socket.on("emotion_result", (data) => {
-      const emotion = data.emotion;
-      const arr = emotionArrayRef.current;
-      arr.push(emotion);
-      if (arr.length > MAX_SIZE) arr.shift();
+      emotionWindowRef.current.push(data.emotion);
+    });
 
+    return () => socket.off("emotion_result");
+  }, []);
+
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const emotions = emotionWindowRef.current;
+      if (emotions.length === 0) return;
+
+      // Count frequencies
       const counts = {};
-      arr.forEach((em) => {
+      emotions.forEach((em) => {
         counts[em] = (counts[em] || 0) + 1;
       });
 
-      const most = Object.entries(counts).reduce((a, b) => (b[1] > a[1] ? b : a))[0];
-      setMostFrequent(most);
-      localStorage.setItem("emotion", most);
+      // Get most frequent
+      const mostFrequent = Object.entries(counts).reduce((a, b) => (b[1] > a[1] ? b : a))[0];
+      console.log("Most frequent (last 5s):", mostFrequent);
 
-      // Check if should show modal
-      if (!isGamePage && most !== "Happy" && most !== "No Face Detected" && shouldShowModal()) {
-          setShowModal(true);
+      // Trigger popup if needed
+      if (!isGamePage && mostFrequent !== "Neutral" && mostFrequent !== "Happy"  && mostFrequent !== "No Face" && shouldShowModal()) {
+        setShowModal(true);
       }
-    });
 
-    return () => {
-      socket.off("emotion_result");
-    };
-  }, []);
+      // Clear the 5-second window
+      emotionWindowRef.current = [];
+    }, 5000); // every 5 seconds
 
-  // Camera logic (unchanged)
+    return () => clearInterval(interval);
+  }, [popupInterval, isGamePage]);
+
+
+  const handleDismiss = () => {
+    const delay = popupInterval === "never" ? "never" : Date.now() + getSuppressDuration(popupInterval);
+    localStorage.setItem("popupInterval", popupInterval);
+    localStorage.setItem("nextPopupTime", delay);
+    setShowModal(false);
+  };
+
+
   useEffect(() => {
     const video = document.createElement("video");
     video.setAttribute("autoplay", true);
@@ -79,13 +99,10 @@ function AutoCapture() {
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
             const imageData = canvas.toDataURL("image/jpeg");
             socket.emit("send_image", imageData);
-            console.log("Image captured and sent to server");
-          }, 10000);
+          }, 10000); // Capture every 10s
         };
       })
-      .catch((err) => {
-        console.error("Camera access failed:", err);
-      });
+      .catch((err) => console.error("Camera access failed:", err));
 
     return () => {
       if (captureInterval) clearInterval(captureInterval);
@@ -94,27 +111,9 @@ function AutoCapture() {
     };
   }, []);
 
-  // Handle dismiss and set next time
-  const handleDismiss = () => {
-    let delay;
-    switch (popupInterval) {
-      case "5": delay = 5 * 60 * 1000; break;
-      case "10": delay = 10 * 60 * 1000; break;
-      case "30": delay = 30 * 60 * 1000; break;
-      case "60": delay = 60 * 60 * 1000; break;
-      case "never": delay = "never"; break;
-      default: delay = 10 * 60 * 1000;
-    }
-
-    const nextTime = delay === "never" ? "never" : Date.now() + delay;
-    localStorage.setItem("popupInterval", popupInterval);
-    localStorage.setItem("nextPopupTime", nextTime);
-    setShowModal(false);
-  };
-
   return (
     <>
-      {(showModal && mostFrequent !== "No Face Detected") && (
+      {showModal && (
         <div style={{
           position: "fixed",
           bottom: "20px",
@@ -126,15 +125,18 @@ function AutoCapture() {
           zIndex: 9999
         }}>
           <h4>😟 Mood Detected</h4>
-          <p>We detected your mood as <strong>{mostFrequent}</strong>.</p>
-          <p>Shall we play a game?</p>
+          <p>We noticed you seem frustrated. Want to play a game to relax?</p>
 
           <div style={{ marginBottom: '10px' }}>
             <label htmlFor="remind">Remind me again in: </label>
             <select
               id="remind"
               value={popupInterval}
-              onChange={(e) => setPopupInterval(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                setPopupInterval(value);
+                localStorage.setItem("popupInterval", value);
+              }}
             >
               <option value="5">5 minutes</option>
               <option value="10">10 minutes</option>
@@ -145,9 +147,13 @@ function AutoCapture() {
           </div>
 
           <button style={{ marginRight: '10px' }} onClick={handleDismiss}>Dismiss</button>
-          <button style={{ backgroundColor: 'lightgreen' }} onClick={() => {setShowModal(false)
-            window.location.href = "http://localhost:3000/game-launch";
-          }}>
+          <button
+            style={{ backgroundColor: 'lightgreen' }}
+            onClick={() => {
+              setShowModal(false);
+              window.location.href = "http://localhost:3000/game-launch";
+            }}
+          >
             Play game
           </button>
         </div>

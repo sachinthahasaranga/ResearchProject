@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import storiesData from "../data/standardized_stories.json";
 import "./Story.css"; 
 
+
+
 const StoryViewer = () => {
   const [selectedStoryId, setSelectedStoryId] = useState(null);
   const [currentNodeId, setCurrentNodeId] = useState(null);
@@ -41,7 +43,7 @@ const StoryViewer = () => {
         <>
           <h2 className="story-title">{story.title}</h2>
             {currentNode?.image && (
-                <img src={currentNode.image} alt="" className="story-image" />
+                <img src={currentNode.image} style={{height:'400px',width:'auto'}} alt="" className="story-image" />
             )}
           <p className="story-text">{currentNode.text}</p>
           {currentNode.choices ? (
