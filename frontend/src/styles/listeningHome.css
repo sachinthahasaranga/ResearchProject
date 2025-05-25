@@ -26,12 +26,12 @@
     background-position: center;
     position: relative;
     transition: all 0.5s ease;
-    min-height: calc(100vh - 160px); /* Adjust based on header/footer height */
-    filter: grayscale(100%); /* Force black and white by default */
+    min-height: calc(100vh - 160px);
+    filter: grayscale(100%);
 }
 
 .session-box:hover {
-    filter: grayscale(0%); /* Full color on hover */
+    filter: grayscale(0%);
 }
 
 .session-overlay {
@@ -54,10 +54,16 @@
     background-color: rgba(0, 0, 0, 0.7);
     padding: 2rem 3rem;
     border-radius: 8px;
-    color: white;
+    color: white !important; /* Ensures text stays white */
     text-align: center;
     transition: all 0.3s ease;
     transform: scale(1);
+}
+
+.session-content h2,
+.session-content p {
+    color: white !important; /* Explicit white for all text elements */
+    margin: 0.5rem 0;
 }
 
 .session-box:hover .session-content {
@@ -73,5 +79,9 @@
     
     .session-box {
         min-height: 50vh;
+    }
+    
+    .session-content {
+        padding: 1.5rem 2rem;
     }
 }
