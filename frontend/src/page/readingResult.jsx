@@ -41,7 +41,7 @@ const ReadingResults = () => {
 
     const fetchDictionaryDefinitions = async () => {
         const words = (analysis?.defects || [])
-            .filter(d => [1, 2].includes(d.error_type) && d.original)
+            .filter(d => [1, 2, 3].includes(d.error_type) && d.original)
             .map(d => d.original.toLowerCase());
 
         const uniqueWords = [...new Set(words)];
