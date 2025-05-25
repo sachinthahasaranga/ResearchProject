@@ -18,20 +18,25 @@ import TeamSingle from "./page/team-single";
 import PaperList from "./page/PaperList";
 import PaperDetails from "./page/PaperDetails";
 import StudentProfile from "./page/StudentProfile";
+import GameLaunch from "./page/GameLaunch";
+import AutoCapture from "./page/CameraCapturing";
 
 function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+        <AutoCapture />
       <Routes>
         {/* Public Routes */}
         <Route path="login" element={<LoginPage />} />
         <Route path="signup" element={<SignupPage />} />
         <Route path="forgetpass" element={<ForgetPass />} />
+        
 
         {/* Protected Routes: Requires Login */}
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Home />} />
+          <Route path="game-launch" element={<GameLaunch />} />
           <Route path="course" element={<CoursePage />} />
           <Route path="course-view/:id" element={<CourseView />} />
           <Route path="about" element={<AboutPage />} />

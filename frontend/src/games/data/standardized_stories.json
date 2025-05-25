@@ -1,0 +1,524 @@
+{
+  "stories": [
+    {
+      "id": "story_1",
+      "title": "The Lost Warrior",
+      "startNodeId": "intro",
+      "nodes": [
+        {
+          "id": "intro",
+          "text": "You are a warrior waking up in a strange forest after a battle. A path lies ahead, and you hear faint cries from the woods.",
+          "image": "/images/logo.png",
+          "choices": [
+            {
+              "text": "Follow the path",
+              "nextId": "path"
+            },
+            {
+              "text": "Search for the cries",
+              "nextId": "cries"
+            }
+          ]
+        },
+        {
+          "id": "path",
+          "text": "The path leads to a ruined temple. As you approach, shadows move inside.",
+          "choices": [
+            {
+              "text": "Enter the temple",
+              "nextId": "temple"
+            },
+            {
+              "text": "Wait and observe",
+              "nextId": "observe_temple"
+            }
+          ]
+        },
+        {
+          "id": "cries",
+          "text": "You find a wounded beast caught in a trap. It growls weakly.",
+          "choices": [
+            {
+              "text": "Help the beast",
+              "nextId": "help_beast"
+            },
+            {
+              "text": "Leave it and move on",
+              "nextId": "leave_beast"
+            }
+          ]
+        },
+        {
+          "id": "temple",
+          "text": "Inside the temple, you find an ancient sword. The power courses through your veins. Suddenly, a guardian appears!",
+          "choices": [
+            {
+              "text": "Fight the guardian",
+              "nextId": "fight_guardian"
+            },
+            {
+              "text": "Talk to the guardian",
+              "nextId": "talk_guardian"
+            }
+          ]
+        },
+        {
+          "id": "observe_temple",
+          "text": "You see robed figures performing a ritual. One of them notices you.",
+          "choices": [
+            {
+              "text": "Run away",
+              "nextId": "run_forest"
+            },
+            {
+              "text": "Reveal yourself",
+              "nextId": "reveal_self"
+            }
+          ]
+        },
+        {
+          "id": "help_beast",
+          "text": "The beast transforms into a magical spirit, offering to aid you on your journey.",
+          "choices": [
+            {
+              "text": "Accept the spirit's help",
+              "nextId": "spirit_help"
+            },
+            {
+              "text": "Decline and continue alone",
+              "nextId": "continue_alone"
+            }
+          ]
+        },
+        {
+          "id": "leave_beast",
+          "text": "The cries stop. As you walk away, you're ambushed by forest bandits!",
+          "choices": [
+            {
+              "text": "Fight the bandits",
+              "nextId": "fight_bandits"
+            },
+            {
+              "text": "Surrender",
+              "nextId": "surrender"
+            }
+          ]
+        },
+        {
+          "id": "fight_guardian",
+          "text": "After a fierce battle, you defeat the guardian and gain control of the temple's secrets. The end."
+        },
+        {
+          "id": "talk_guardian",
+          "text": "The guardian tests your wisdom. You pass, gaining its trust and ancient knowledge. The end."
+        },
+        {
+          "id": "run_forest",
+          "text": "You escape into the forest but get lost for days. Eventually, you find your way home. The end."
+        },
+        {
+          "id": "reveal_self",
+          "text": "The robed figures welcome you. They believe you are the prophesied hero. The end."
+        },
+        {
+          "id": "spirit_help",
+          "text": "With the spirit's aid, you overcome many challenges and unite the forest clans. The end."
+        },
+        {
+          "id": "continue_alone",
+          "text": "You walk alone and face many trials, but your strength carries you to victory. The end."
+        },
+        {
+          "id": "fight_bandits",
+          "text": "You bravely fight but are outnumbered and fall. The forest remembers your courage. The end."
+        },
+        {
+          "id": "surrender",
+          "text": "The bandits rob you and leave you stranded. Eventually, a merchant rescues you. The end."
+        }
+      ]
+    },
+    {
+      "id": "story_2",
+      "title": "Spy in the Shadows",
+      "startNodeId": "briefing",
+      "nodes": [
+        {
+          "id": "briefing",
+          "text": "You're a top-level spy tasked with infiltrating a secret facility. Your handler offers two approaches.",
+          "choices": [
+            {
+              "text": "Go in disguised as a janitor",
+              "nextId": "janitor_entry"
+            },
+            {
+              "text": "Parachute onto the roof at night",
+              "nextId": "roof_entry"
+            }
+          ]
+        },
+        {
+          "id": "janitor_entry",
+          "text": "Your disguise works. Inside, you overhear guards talking about a suspicious delivery.",
+          "choices": [
+            {
+              "text": "Investigate the delivery",
+              "nextId": "delivery"
+            },
+            {
+              "text": "Head to the server room",
+              "nextId": "server_room"
+            }
+          ]
+        },
+        {
+          "id": "roof_entry",
+          "text": "You land on the roof and find a ventilation shaft.",
+          "choices": [
+            {
+              "text": "Enter the shaft",
+              "nextId": "vent_crawl"
+            },
+            {
+              "text": "Survey the perimeter",
+              "nextId": "survey"
+            }
+          ]
+        },
+        {
+          "id": "delivery",
+          "text": "The package is a bomb. You defuse it just in time, becoming a hero to some, a threat to others. The end."
+        },
+        {
+          "id": "server_room",
+          "text": "You reach the server room and extract vital intel unnoticed. Mission accomplished. The end."
+        },
+        {
+          "id": "vent_crawl",
+          "text": "The vents lead you to a secret lab. You discover illegal experiments.",
+          "choices": [
+            {
+              "text": "Destroy the lab",
+              "nextId": "destroy_lab"
+            },
+            {
+              "text": "Report and exit",
+              "nextId": "report_lab"
+            }
+          ]
+        },
+        {
+          "id": "survey",
+          "text": "You find a blind spot in the cameras. A perfect escape route later. You continue the mission successfully. The end."
+        },
+        {
+          "id": "destroy_lab",
+          "text": "You plant charges and destroy the lab. The explosion exposes the organization. The end."
+        },
+        {
+          "id": "report_lab",
+          "text": "You quietly send evidence to HQ. The agency takes it down without a trace. The end."
+        }
+      ]
+    },
+    {
+      "id": "story 3",
+      "title": "The Midnight Adventure of Lila and the Moon Cat",
+      "startNodeId": "start",
+      "nodes": [
+        {
+          "id": "start",
+          "text": "Lila, a curious girl who listens to the stars, hears a strange whisper one night: 'The Moon Cat is missing... Only a child of Earth can help.' A glowing silver pawprint appears on her windowsill.",
+          "choices": [
+            {
+              "text": "Touch the pawprint",
+              "nextId": "moon"
+            },
+            {
+              "text": "Ignore it and go back to sleep",
+              "nextId": "sleep"
+            }
+          ]
+        },
+        {
+          "id": "sleep",
+          "text": "Lila decides to sleep. The whisper fades and is never heard again. The Moon weeps silver tears, and dreams slowly vanish. The end."
+        },
+        {
+          "id": "moon",
+          "text": "Lila is transported to a magical Moon filled with glowing trees. She meets Nova, the Moon Cat, who explains the Shadow Fox has stolen the Moon Crystal.",
+          "choices": [
+            {
+              "text": "Offer to help Nova",
+              "nextId": "forest"
+            },
+            {
+              "text": "Ask to return home",
+              "nextId": "home_return"
+            }
+          ]
+        },
+        {
+          "id": "home_return",
+          "text": "Nova nods sadly and sends Lila back. She spends her life wondering what might have happened. The Moon remains dim. The end."
+        },
+        {
+          "id": "forest",
+          "text": "Nova leads Lila to the Forest of Forgotten Wishes. A spirit named Whimsy offers help. The trees whisper old dreams and shadows stir.",
+          "choices": [
+            {
+              "text": "Accept Whimsy\u2019s help",
+              "nextId": "shadow_encounter"
+            },
+            {
+              "text": "Refuse and go alone",
+              "nextId": "lost"
+            }
+          ]
+        },
+        {
+          "id": "lost",
+          "text": "Without Whimsy, Lila gets lost among forgotten dreams and is trapped in the forest. The end."
+        },
+        {
+          "id": "shadow_encounter",
+          "text": "As they journey, shadowy vines attack Lila. Whimsy urges her to believe in herself.",
+          "choices": [
+            {
+              "text": "Believe and push forward",
+              "nextId": "river"
+            },
+            {
+              "text": "Panic and run",
+              "nextId": "trapped"
+            }
+          ]
+        },
+        {
+          "id": "trapped",
+          "text": "The shadows wrap around Lila and she falls into darkness. The end."
+        },
+        {
+          "id": "river",
+          "text": "Lila must travel down the River of Time. Good and bad memories flood around her.",
+          "choices": [
+            {
+              "text": "Accept her past and move forward",
+              "nextId": "bridge"
+            },
+            {
+              "text": "Try to escape the memories",
+              "nextId": "trapped"
+            }
+          ]
+        },
+        {
+          "id": "bridge",
+          "text": "At the river\u2019s end is the Bridge of Echoes, guarded by the Moon Rabbits. They ask her to prove her heart is pure.",
+          "choices": [
+            {
+              "text": "Share her dreams and fears",
+              "nextId": "cave"
+            },
+            {
+              "text": "Say she has no fears",
+              "nextId": "denied_entry"
+            }
+          ]
+        },
+        {
+          "id": "denied_entry",
+          "text": "The rabbits sense dishonesty and block her path. She is sent back to the forest. The end."
+        },
+        {
+          "id": "cave",
+          "text": "They reach the Shadow Fox\u2019s cave. Inside, the Moon Crystal glows brightly. The Shadow Fox appears, snarling.",
+          "choices": [
+            {
+              "text": "Confront the Shadow Fox with courage",
+              "nextId": "battle"
+            },
+            {
+              "text": "Try to understand the Shadow Fox",
+              "nextId": "talk"
+            }
+          ]
+        },
+        {
+          "id": "battle",
+          "text": "Lila uses her Moonlight powers to battle. With Nova and Whimsy, they defeat the Shadow Fox and restore the Moon Crystal.",
+          "choices": [
+            {
+              "text": "Return home with a piece of the Moonlight",
+              "nextId": "return_hero"
+            },
+            {
+              "text": "Stay on the Moon and become a guardian",
+              "nextId": "moon_guardian"
+            }
+          ]
+        },
+        {
+          "id": "talk",
+          "text": "Lila learns the Shadow Fox was once a forgotten wish. She offers him kindness, and he returns the Moon Crystal peacefully.",
+          "choices": [
+            {
+              "text": "Return home and share her story",
+              "nextId": "return_hero"
+            },
+            {
+              "text": "Stay and help forgotten wishes find light",
+              "nextId": "moon_guardian"
+            }
+          ]
+        },
+        {
+          "id": "return_hero",
+          "text": "Lila returns home, forever changed. She becomes a storyteller, helping others believe in their dreams. The end."
+        },
+        {
+          "id": "moon_guardian",
+          "text": "Lila stays on the Moon, guarding dreams and guiding other children on magical adventures. The end."
+        }
+      ]
+    },
+   {
+  "id": "story 4",
+  "title": "The Crystal of Dawn",
+  "startNodeId": "awakening",
+  "nodes": [
+    {
+      "id": "awakening",
+      "text": "You awaken in a glowing cavern, clutching a shimmering crystal. An echoing voice whispers, 'Return it, or be consumed.' Two tunnels stretch out before you.",
+      "image": "/images/crystal_cave.png",
+      "choices": [
+        {
+          "text": "Take the left tunnel",
+          "nextId": "left_tunnel"
+        },
+        {
+          "text": "Take the right tunnel",
+          "nextId": "right_tunnel"
+        }
+      ]
+    },
+    {
+      "id": "left_tunnel",
+      "text": "The left tunnel leads to an underground lake. A boat floats silently at the edge. A shadow watches from the other side.",
+      "choices": [
+        {
+          "text": "Take the boat",
+          "nextId": "lake_boat"
+        },
+        {
+          "text": "Swim across",
+          "nextId": "lake_swim"
+        }
+      ]
+    },
+    {
+      "id": "right_tunnel",
+      "text": "The right tunnel opens into a chamber filled with ancient statues. One statue is cracked and leaking a strange blue mist.",
+      "choices": [
+        {
+          "text": "Touch the statue",
+          "nextId": "touch_statue"
+        },
+        {
+          "text": "Ignore it and move forward",
+          "nextId": "ignore_statue"
+        }
+      ]
+    },
+    {
+      "id": "lake_boat",
+      "text": "As you cross the lake, a serpent rises. It speaks, 'Only those who offer something may pass.'",
+      "choices": [
+        {
+          "text": "Offer the crystal",
+          "nextId": "offer_crystal"
+        },
+        {
+          "text": "Offer a piece of your memory",
+          "nextId": "offer_memory"
+        }
+      ]
+    },
+    {
+      "id": "lake_swim",
+      "text": "The water is freezing. Halfway across, you're pulled under by invisible hands.",
+      "choices": [
+        {
+          "text": "Struggle and swim harder",
+          "nextId": "struggle_swim"
+        },
+        {
+          "text": "Let yourself sink",
+          "nextId": "sink_down"
+        }
+      ]
+    },
+    {
+      "id": "touch_statue",
+      "text": "The mist surrounds you, and time stops. You see visions of a future where the crystal saves a dying world.",
+      "choices": [
+        {
+          "text": "Embrace the vision",
+          "nextId": "embrace_vision"
+        },
+        {
+          "text": "Break free",
+          "nextId": "break_free"
+        }
+      ]
+    },
+    {
+      "id": "ignore_statue",
+      "text": "You pass safely into a sunlit garden underground. A glowing tree hums with energy.",
+      "choices": [
+        {
+          "text": "Place the crystal at its roots",
+          "nextId": "plant_crystal"
+        },
+        {
+          "text": "Keep walking",
+          "nextId": "walk_on"
+        }
+      ]
+    },
+    {
+      "id": "offer_crystal",
+      "text": "The serpent swallows the crystal and disappears. The lake parts, revealing a glowing doorway. You step through into a radiant world of peace. The end."
+    },
+    {
+      "id": "offer_memory",
+      "text": "You forget your past but gain safe passage. On the far shore, you begin a new life as a wanderer of forgotten truths. The end."
+    },
+    {
+      "id": "struggle_swim",
+      "text": "You break free and reach the shore, exhausted but alive. A hidden village welcomes you and you become their protector. The end."
+    },
+    {
+      "id": "sink_down",
+      "text": "You surrender and awaken in a crystal cocoon. You are reborn as a guardian of the cave. The end."
+    },
+    {
+      "id": "embrace_vision",
+      "text": "You become one with the vision, transformed into a beacon of hope. You ascend to the stars. The end."
+    },
+    {
+      "id": "break_free",
+      "text": "You shatter the vision, and the crystal darkens. You're alone in a ruined world. The end."
+    },
+    {
+      "id": "plant_crystal",
+      "text": "The tree absorbs the crystal and blossoms into radiant light. Peace spreads across the realm and you become a legend. The end."
+    },
+    {
+      "id": "walk_on",
+      "text": "You leave the garden, always wondering what might have been. The journey continues into forgotten lands. The end."
+    }
+  ]
+}
+  ]
+}

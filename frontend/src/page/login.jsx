@@ -5,10 +5,14 @@ import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import apiClient, { setAuthToken } from "../api";
 import Swal from "sweetalert2";
+import FaceCapture from "../component/WebCamCapture";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
+  const [showFaceLogin, setShowFaceLogin] = useState(false);
+  const [capturedImage, setCapturedImage] = useState(null);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -25,7 +29,6 @@ const LoginPage = () => {
 
       localStorage.setItem("token", token);
       localStorage.setItem("userId", user.id);
-
       setAuthToken(token);
 
       Swal.fire({
@@ -36,77 +39,71 @@ const LoginPage = () => {
         timer: 2000,
       });
 
-      await fetchStudentPerformance(user.id);
-
       setTimeout(() => navigate("/"), 2000);
     } catch (error) {
       console.error("Login Error:", error);
-
       Swal.fire({
         icon: "error",
         title: "Login Failed!",
-        text: "Invalid email or password. Please try again.",
-        confirmButtonColor: "#d33",
+        text: "Invalid email or password. Or try Face Login below.",
       });
     } finally {
       setLoading(false);
     }
   };
 
-  const fetchStudentPerformance = async (userId) => {
+  const handleFaceLogin = async () => {
+    if (!formData.email || !capturedImage) {
+      Swal.fire({
+        icon: "warning",
+        title: "Missing Info",
+        text: "Please enter your email and capture your face.",
+      });
+      return;
+    }
+
     try {
-      const response = await apiClient.get(`/api/student-performance/user/${userId}`);
+      Swal.fire({ title: "Verifying Face...", allowOutsideClick: false });
+      Swal.showLoading();
 
-      if (response.data) {
-        const { totalStudyTime,resourceScore, totalScore, paperCount } = response.data;
+      const response = await apiClient.post("/api/auth/face-login", {
+        email: formData.email,
+        capturedImage,
+      });
 
-        // Check if a history record exists for today
-        const recordExists = await checkIfHistoryExistsForToday(userId);
+      Swal.close();
 
-        if (!recordExists) {
-          // Send Performance Data 
-          await sendStudentPerformanceHistory(userId, totalStudyTime,resourceScore, totalScore, paperCount);
-        } else {
-          console.log("Performance history for today already exists. Skipping update.");
-        }
+      if (response?.data) {
+        const { token, user } = response.data;
+        console.log(response)
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", user.id);
+        setAuthToken(token);
+
+        Swal.fire({
+          icon: "success",
+          title: "Face Login Successful!",
+          text: `Welcome back, ${user.username}!`,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+
+        setTimeout(() => navigate("/"), 2000);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: response.data.message || "Face not recognized.",
+        });
       }
     } catch (error) {
-      console.error("Error fetching student performance:", error);
-    }
-  };
-
-  const checkIfHistoryExistsForToday = async (userId) => {
-    try {
-      const response = await apiClient.get(`/api/student-performance-history/user/${userId}`);
-
-      if (response.data.length > 0) {
-        const today = new Date().toISOString().split("T")[0];
-
-        return response.data.some((record) => record.createdAt.split("T")[0] === today);
-      }
-
-      return false;
-    } catch (error) {
-      console.error("Error checking performance history:", error);
-      return false;
-    }
-  };
-
-  const sendStudentPerformanceHistory = async (userId, totalStudyTime,resourceScore, totalScore, paperCount) => {
-    try {
-      const requestBody = {
-        userId: userId,
-        totalStudyTime: totalStudyTime,
-        resourceScore: resourceScore,
-        totalScore: totalScore,
-        paperCount: paperCount,
-      };
-
-      await apiClient.post("/api/student-performance-history/", requestBody);
-
-      console.log("Student performance history updated successfully.");
-    } catch (error) {
-      console.error("Error sending student performance history:", error);
+      console.error("Face login error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Face Login Error",
+        text: "Something went wrong during face authentication.",
+      });
     }
   };
 
@@ -139,26 +136,44 @@ const LoginPage = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <div className="d-flex justify-content-between flex-wrap pt-sm-2">
-                  <div className="checkgroup">
-                    <input type="checkbox" name="remember" id="remember" />
-                    <label htmlFor="remember">Remember Me</label>
-                  </div>
-                  <Link to="/forgetpass">Forget Password?</Link>
-                </div>
-              </div>
               <div className="form-group text-center">
-                <button className="d-block lab-btn" type="submit" disabled={loading}>
-                  <span>{loading ? "Logging in..." : "Submit Now"}</span>
+                <button className="lab-btn" type="submit" disabled={loading}>
+                  <span>{loading ? "Logging in..." : "Login Now"}</span>
                 </button>
               </div>
             </form>
-            <div className="account-bottom">
+
+            <div className="account-bottom text-center">
+              <span className="d-block cate pt-10">
+                Forgot Password?{" "}
+                <Link
+                  to="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowFaceLogin(true);
+                  }}
+                >
+                  Login with Face
+                </Link>
+              </span>
               <span className="d-block cate pt-10">
                 Don’t Have an Account? <Link to="/signup">Sign Up</Link>
               </span>
             </div>
+
+            {showFaceLogin && (
+              <div className="mt-4">
+                <h5>Face Login</h5>
+                <FaceCapture onCapture={setCapturedImage} />
+                {capturedImage && (
+                  <div className="mt-3 text-center">
+                    <button className="lab-btn" type="button" onClick={handleFaceLogin}>
+                      Login Using Face
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
     difficultyLevel: { type: mongoose.Schema.Types.ObjectId, ref: "DifficultyLevel", required: true },
     role: { type: mongoose.Schema.Types.ObjectId, ref: "UserRole", required: true },
     status: { type: Number, enum: [0, 1], default: 1 }, // 0 - inactive, 1 - active
+    faceImgUrl:{type:String}
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema);
