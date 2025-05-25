@@ -25,16 +25,13 @@
     background-size: cover;
     background-position: center;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     min-height: calc(100vh - 160px); /* Adjust based on header/footer height */
+    filter: grayscale(100%); /* Force black and white by default */
 }
 
-.main-session {
-    background-image: url('../assets/mainSessionJake.jpg');
-}
-
-.practice-session {
-    background-image: url('../assets/finn_practise.png');
+.session-box:hover {
+    filter: grayscale(0%); /* Full color on hover */
 }
 
 .session-overlay {

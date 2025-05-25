@@ -20,6 +20,7 @@ const ListeningHomePage = () => {
                 {/* Main Session */}
                 <div 
                     className="session-box main-session"
+                    style={{ backgroundImage: `url(${mainSessionImage})` }}
                     onClick={() => navigate("/SelectListeningCategory", { state: { isPractise: false } })}
                 >
                     <div className="session-overlay"></div>
@@ -32,6 +33,7 @@ const ListeningHomePage = () => {
                 {/* Practice Session */}
                 <div 
                     className="session-box practice-session"
+                    style={{ backgroundImage: `url(${practiceSessionImage})` }}
                     onClick={() => navigate("/SelectListeningCategory", { state: { isPractise: true } })}
                 >
                     <div className="session-overlay"></div>
