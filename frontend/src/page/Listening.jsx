@@ -5,6 +5,7 @@ import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import apiClient from "../api";
 import "../assets/css/LatestCourse.css";
+
 import "../styles/Listening.css";
 
 // Helper
@@ -145,13 +146,9 @@ const Listening = () => {
     setIsQuestionContainerVisible(true);
   };
 
-  const handleQuestionContainerClick = (questionNumber) => {
-    setActiveQuestion((prev) => (prev === questionNumber ? null : questionNumber));
-  };
-
   const progress = (duration > 0) ? (currentTime / duration) * 100 : 0;
 
-  // 1. LOADING SPINNER (insert at the top of the return!)
+  // 1. LOADING SPINNER
   if (isLoading) {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
@@ -162,10 +159,14 @@ const Listening = () => {
     );
   }
 
-  // 2. REST OF THE LAYOUT
+  // 2. MAIN LAYOUT
   return (
     <>
       <Header />
+
+      {/* Place PageHeader here to appear under Header but above the background/overlay */}
+      <PageHeader title={listening ? listening.name : "Listening Page"} />
+
       <div
         style={{
           minHeight: "100vh",
@@ -179,226 +180,221 @@ const Listening = () => {
           overflow: "hidden"
         }}
       >
-        {/* Dark overlay (behind everything, with zIndex 0) */}
+        {/* Dark overlay */}
         <div
           className="position-absolute top-0 left-0 w-100 h-100 bg-dark"
           style={{ opacity: 0.5, zIndex: 0 }}
         ></div>
 
-        {/* Page header always on top (zIndex 2) */}
-        <div style={{ zIndex: 2, position: "relative" }}>
-          <PageHeader title={listening ? listening.name : "Listening Page"} />
-        </div>
-
-        {/* --- Start Button (Below PageHeader, Centered) --- */}
-        {!isCountingDown && !isAudioPlaying && !isAudioFinished && (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-              margin: '32px 0 8px 0', // spacing below PageHeader
-              zIndex: 3,
-            }}
-          >
-            <button
-              className="btn mt-3"
-              onClick={handleStart}
+        {/* Content wrapper with higher zIndex */}
+        <div style={{ position: "relative", zIndex: 2, paddingBottom: "60px" }}>
+          {/* Start Button */}
+          {!isCountingDown && !isAudioPlaying && !isAudioFinished && (
+            <div
               style={{
-                backgroundColor: "#FFD700",
-                border: "2px solid #006400",
-                color: "#006400",
-                fontWeight: "bold",
-                fontFamily: "'Spicy Rice', cursive",
-                padding: "15px 30px",
-                fontSize: "20px",
-                borderRadius: "25px",
-                transition: "background-color 0.3s ease",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                boxShadow: "0 4px 18px rgba(0,0,0,0.13)",
-                minWidth: "180px",
-                textAlign: "center",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                margin: '32px 0 8px 0',
               }}
-              onMouseEnter={e => e.target.style.backgroundColor = "#FFC107"}
-              onMouseLeave={e => e.target.style.backgroundColor = "#FFD700"}
             >
-              <i className="fas fa-flag waving-flag" style={{ marginRight: "10px" }}></i>
-              Start
-            </button>
-          </div>
-        )}
-
-        {/* Audio controls and progress */}
-        <div className="text-center text-white" style={{ zIndex: 2, marginTop: '30px', position: 'relative' }}>
-          {isAudioFinished ? (
-            <p className="fs-4">You can now answer the questions!</p>
-          ) : (
-            <p className="fs-4"></p>
-          )}
-
-          {isAudioPlaying && (
-            <>
-              <button className="btn btn-secondary mt-3" onClick={handleAudioPlayPause}>
-                {isAudioPlaying ? "Pause" : "Play"}
+              <button
+                className="btn mt-3"
+                onClick={handleStart}
+                style={{
+                  backgroundColor: "#FFD700",
+                  border: "2px solid #006400",
+                  color: "#006400",
+                  fontWeight: "bold",
+                  fontFamily: "'Spicy Rice', cursive",
+                  padding: "15px 30px",
+                  fontSize: "20px",
+                  borderRadius: "25px",
+                  transition: "background-color 0.3s ease",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  boxShadow: "0 4px 18px rgba(0,0,0,0.13)",
+                  minWidth: "180px",
+                  textAlign: "center",
+                  zIndex: 2,
+                }}
+                onMouseEnter={e => e.target.style.backgroundColor = "#FFC107"}
+                onMouseLeave={e => e.target.style.backgroundColor = "#FFD700"}
+              >
+                <i className="fas fa-flag waving-flag" style={{ marginRight: "10px" }}></i>
+                Start
               </button>
-
-              <div className="mt-3">
-                <span>{Math.floor(currentTime)}s</span> / <span>{Math.floor(duration)}s</span>
-              </div>
-            </>
+            </div>
           )}
-        </div>
 
-        {/* Progress bar */}
-        {isAudioPlaying && (
-          <div style={{ width: "90%", marginTop: "20px", zIndex: 2, position: 'relative' }}>
-            <progress value={progress} max="100" style={{ width: "100%", height: "20px" }} />
-          </div>
-        )}
+          {/* Audio controls and progress */}
+          <div className="text-center text-white" style={{ marginTop: '30px', position: 'relative', zIndex: 2 }}>
+            {isAudioFinished ? (
+              <p className="fs-4">You can now answer the questions!</p>
+            ) : (
+              <p className="fs-4"></p>
+            )}
 
-        {/* Countdown overlay (highest zIndex) */}
-        {showOverlay && countdownImage && (
-          <div className="overlay" style={{ zIndex: 9999 }}>
-            <img src={countdownImage} alt={`Countdown ${countdown}`} className="countdown-image" />
-          </div>
-        )}
+            {isAudioPlaying && (
+              <>
+                <button className="btn btn-secondary mt-3" onClick={handleAudioPlayPause}>
+                  {isAudioPlaying ? "Pause" : "Play"}
+                </button>
 
-        {/* Questions container */}
-        {isAudioFinished && (
-          <div
-            className="questions-scrollable-container"
-            style={{
-              width: "100%",
-              maxHeight: "65vh",
-              overflowY: "auto",
-              padding: "0 20px",
-              zIndex: 2,
-              position: 'relative'
-            }}
-          >
-            {/* Map through questions and render them */}
-            {listening.QnA.map((qna, index) => (
-              <div key={index}>
-                {/* Question Container */}
-                <div
-                  className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
-                  style={{
-                    marginTop: '20px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    paddingRight: '20px',
-                    position: 'relative',
-                  }}
-                  onClick={() => setActiveQuestion(activeQuestion === index + 1 ? null : index + 1)}
-                >
-                  <p className="question-text">Question {index + 1}</p>
-                  <img
-                    src="/icons/q_mark.png"
-                    alt="Question Mark"
-                    style={{
-                      width: '40px',
-                      height: '40px',
-                      position: 'absolute',
-                      right: '15px',
-                    }}
-                  />
+                <div className="mt-3">
+                  <span>{Math.floor(currentTime)}s</span> / <span>{Math.floor(duration)}s</span>
                 </div>
+              </>
+            )}
+          </div>
 
-                {/* Question Content */}
-                {activeQuestion === index + 1 && (
-                  <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px', position: 'relative' }}>
-                    {/* Answer Icon */}
+          {/* Progress bar */}
+          {isAudioPlaying && (
+            <div style={{ width: "90%", marginTop: "20px", position: 'relative', zIndex: 2 }}>
+              <progress value={progress} max="100" style={{ width: "100%", height: "20px" }} />
+            </div>
+          )}
+
+          {/* Countdown overlay */}
+          {showOverlay && countdownImage && (
+            <div className="overlay" style={{ zIndex: 9999, position: "fixed", top: 0, left: 0, width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)", display: "flex", justifyContent: "center", alignItems: "center" }}>
+              <img src={countdownImage} alt={`Countdown ${countdown}`} className="countdown-image" />
+            </div>
+          )}
+
+          {/* Questions container */}
+          {isAudioFinished && (
+            <div
+              className="questions-scrollable-container"
+              style={{
+                width: "100%",
+                maxHeight: "65vh",
+                overflowY: "auto",
+                padding: "0 20px",
+                position: 'relative',
+                zIndex: 2
+              }}
+            >
+              {listening.QnA.map((qna, index) => (
+                <div key={index}>
+                  <div
+                    className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
+                    style={{
+                      marginTop: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      paddingRight: '20px',
+                      position: 'relative',
+                      cursor: 'pointer'
+                    }}
+                    onClick={() => setActiveQuestion(activeQuestion === index + 1 ? null : index + 1)}
+                  >
+                    <p className="question-text">Question {index + 1}</p>
                     <img
-                      src="/icons/answer.png"
-                      alt="Answer Icon"
+                      src="/icons/q_mark.png"
+                      alt="Question Mark"
                       style={{
-                        width: '70px',
-                        height: '70px',
+                        width: '40px',
+                        height: '40px',
                         position: 'absolute',
-                        top: '10px',
-                        right: '10px',
-                        opacity: 0.4,
-                      }}
-                    />
-                    <p className="question-text">{qna.question}</p>
-                    <input
-                      type="text"
-                      placeholder="Your answer here..."
-                      value={studentAnswers[index + 1] || ""}
-                      onChange={(e) => handleAnswerChange(index + 1, e.target.value)}
-                      style={{
-                        width: '100%',
-                        padding: '10px',
-                        borderRadius: '5px',
-                        border: '2px solid green',
-                        fontSize: '16px',
-                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                        right: '15px',
                       }}
                     />
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
 
-        {/* Okay Button */}
-        {isAudioFinished && (
-          <button
-            className="okay-button"
-            onClick={handleOkayButtonClick}
-            style={{
-              position: "fixed",
-              bottom: "20px",
-              right: "20px",
-              zIndex: 1000,
-              padding: "15px 30px",
-              fontSize: "24px",
-              borderRadius: "30px",
-              backgroundColor: "#ADD8E6",
-              border: "2px solid #0000FF",
-              color: "#0000FF",
-              fontWeight: "bold",
-              fontFamily: "'Spicy Rice', cursive",
-              transition: "background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-            }}
-            onMouseEnter={e => {
-              e.target.style.backgroundColor = "#0000FF";
-              e.target.style.color = "#FFFFFF";
-              e.target.style.borderColor = "#FFFFFF";
-              e.target.style.transform = "scale(1.1)";
-            }}
-            onMouseLeave={e => {
-              e.target.style.backgroundColor = "#ADD8E6";
-              e.target.style.color = "#0000FF";
-              e.target.style.borderColor = "#0000FF";
-              e.target.style.transform = "scale(1)";
-            }}
-          >
-            <i className="fas fa-thumbs-up" style={{ marginRight: "15px", transition: "color 0.3s ease" }}></i>
-            Okay
-          </button>
-        )}
+                  {activeQuestion === index + 1 && (
+                    <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px', position: 'relative' }}>
+                      <img
+                        src="/icons/answer.png"
+                        alt="Answer Icon"
+                        style={{
+                          width: '70px',
+                          height: '70px',
+                          position: 'absolute',
+                          top: '10px',
+                          right: '10px',
+                          opacity: 0.4,
+                        }}
+                      />
+                      <p className="question-text">{qna.question}</p>
+                      <input
+                        type="text"
+                        placeholder="Your answer here..."
+                        value={studentAnswers[index + 1] || ""}
+                        onChange={(e) => handleAnswerChange(index + 1, e.target.value)}
+                        style={{
+                          width: '100%',
+                          padding: '10px',
+                          borderRadius: '5px',
+                          border: '2px solid green',
+                          fontSize: '16px',
+                          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
 
-        {/* Audio element (always present but hidden if not playing) */}
-        {listening && (
-          <audio
-            ref={audioRef}
-            src={listening.audio}
-            onTimeUpdate={handleTimeUpdate}
-            onLoadedMetadata={handleTimeUpdate}
-            onEnded={handleAudioEnd}
-            style={{ display: "none" }}
-          />
-        )}
+          {/* Okay Button */}
+          {isAudioFinished && (
+            <button
+              className="okay-button"
+              onClick={handleOkayButtonClick}
+              style={{
+                position: "fixed",
+                bottom: "20px",
+                right: "20px",
+                zIndex: 1000,
+                padding: "15px 30px",
+                fontSize: "24px",
+                borderRadius: "30px",
+                backgroundColor: "#ADD8E6",
+                border: "2px solid #0000FF",
+                color: "#0000FF",
+                fontWeight: "bold",
+                fontFamily: "'Spicy Rice', cursive",
+                transition: "background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+              }}
+              onMouseEnter={e => {
+                e.target.style.backgroundColor = "#0000FF";
+                e.target.style.color = "#FFFFFF";
+                e.target.style.borderColor = "#FFFFFF";
+                e.target.style.transform = "scale(1.1)";
+              }}
+              onMouseLeave={e => {
+                e.target.style.backgroundColor = "#ADD8E6";
+                e.target.style.color = "#0000FF";
+                e.target.style.borderColor = "#0000FF";
+                e.target.style.transform = "scale(1)";
+              }}
+            >
+              <i className="fas fa-thumbs-up" style={{ marginRight: "15px", transition: "color 0.3s ease" }}></i>
+              Okay
+            </button>
+          )}
+
+          {/* Audio element (hidden) */}
+          {listening && (
+            <audio
+              ref={audioRef}
+              src={listening.audio}
+              onTimeUpdate={handleTimeUpdate}
+              onLoadedMetadata={handleTimeUpdate}
+              onEnded={handleAudioEnd}
+              style={{ display: "none" }}
+            />
+          )}
+        </div>
       </div>
       <Footer />
     </>

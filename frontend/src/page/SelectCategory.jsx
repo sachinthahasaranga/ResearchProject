@@ -26,13 +26,16 @@ const SelectCategory = () => {
         fetchCategories();
     }, []);
 
+
     const fetchCategories = async () => {
         try {
-            const response = await apiClient.get('/api/ctgry');
-            setCategories(response.data);
+            const response = await apiClient.get("/api/ctgry/");
+            // Filter here before setting state
+            const listeningCategories = response.data.filter(cat => cat.categoryType === "listing");
+            setCategories(listeningCategories);
+            console.log("Filtered categories (reading):", listeningCategories);
         } catch (error) {
-            console.error('Error fetching categories:', error);
-            setError('Failed to fetch categories. Please try again.');
+            console.error("Error fetching reading categories:", error);
         }
     };
 
@@ -74,8 +77,8 @@ const SelectCategory = () => {
                                         onClick={() => navigate(isPractise ? '/SelectListeningsPractise' : '/SelectListenings', 
                                             { state: { categoryId: category._id } })}
                                         style={{
-                                            backgroundImage: `url(/images/listeningCategories/${category.backgroundImage})`,
-                                        }}
+                                                backgroundImage: `url(${category.backgroundImage})`,
+                                            }}
                                     >
                                         <h2>{category.callingName}</h2>
                                         <p>{category.description}</p>
