@@ -1,22 +1,48 @@
-const Category = require('../models/categoryModel'); // Adjust the path to the Category model
+const Category = require('../models/categoryModel');
+const multer = require("multer");
+const cloudinary = require("../config/cloudinaryConfig");
 
-// Create a new category
+const upload = multer({ storage: multer.memoryStorage() }).single('backgroundImage');
+
+const uploadToCloudinary = (file, folder = "category-images") => {
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader.upload_stream(
+      { folder, resource_type: "image" },
+      (error, result) => {
+        if (error) reject(error);
+        else resolve(result.secure_url);
+      }
+    ).end(file.buffer);
+  });
+};
+
+
 exports.createCategory = async (req, res) => {
+  upload(req, res, async (err) => {
+    if (err) return res.status(500).json({ message: "File upload error", err });
+
     try {
-        const { categoryName, callingName, description, backgroundImage, categoryType } = req.body;
+      const { categoryName, callingName, description, categoryType } = req.body;
 
-        // Validate categoryType
-        const validCategoryTypes = ["paper", "listing", "lecture", "story", "reading"];
-        if (!validCategoryTypes.includes(categoryType)) {
-            return res.status(400).json({ message: "Invalid categoryType. Allowed values: paper, listing, lecture, story, reading " });
-        }
+      // Validate categoryType
+      const validCategoryTypes = ["paper", "listing", "lecture", "story", "reading"];
+      if (!validCategoryTypes.includes(categoryType)) {
+        return res.status(400).json({ message: "Invalid categoryType. Allowed values: paper, listing, lecture, story, reading" });
+      }
 
-        const category = new Category({ categoryName, callingName, description, backgroundImage, categoryType });
-        const savedCategory = await category.save();
-        res.status(201).json({ message: "Category created successfully!", category: savedCategory });
+      // Cloudinary upload if image present
+      let backgroundImage = "";
+      if (req.file) {
+        backgroundImage = await uploadToCloudinary(req.file, "category-images");
+      }
+
+      const category = new Category({ categoryName, callingName, description, backgroundImage, categoryType });
+      const savedCategory = await category.save();
+      res.status(201).json({ message: "Category created successfully!", category: savedCategory });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+      res.status(400).json({ message: error.message });
     }
+  });
 };
 
 // Get all categories
@@ -44,30 +70,46 @@ exports.getCategoryById = async (req, res) => {
 
 // Update a category by ID
 exports.updateCategory = async (req, res) => {
+  upload(req, res, async (err) => {
+    if (err) return res.status(500).json({ message: "File upload error", err });
+
     try {
-        const { categoryName, callingName, description, backgroundImage, categoryType } = req.body;
+      const { categoryName, callingName, description, categoryType } = req.body;
 
-        // Validate categoryType if provided
-        if (categoryType) {
-            const validCategoryTypes = ["paper", "listing", "lecture", "story", "reading"];
-            if (!validCategoryTypes.includes(categoryType)) {
-                return res.status(400).json({ message: "Invalid categoryType. Allowed values: paper, listing, lecture, story , reading" });
-            }
+      // Validate categoryType if provided
+      if (categoryType) {
+        const validCategoryTypes = ["paper", "listing", "lecture", "story", "reading"];
+        if (!validCategoryTypes.includes(categoryType)) {
+          return res.status(400).json({ message: "Invalid categoryType. Allowed values: paper, listing, lecture, story, reading" });
         }
+      }
 
-        const updatedCategory = await Category.findByIdAndUpdate(
-            req.params.id,
-            { categoryName, callingName, description, backgroundImage, categoryType },
-            { new: true, runValidators: true }
-        );
+      // Find existing category
+      const existingCategory = await Category.findById(req.params.id);
+      if (!existingCategory) {
+        return res.status(404).json({ message: "Category not found" });
+      }
 
-        if (!updatedCategory) {
-            return res.status(404).json({ message: "Category not found" });
-        }
-        res.status(200).json({ message: "Category updated successfully!", category: updatedCategory });
+      let updatedData = { categoryName, callingName, description, categoryType };
+
+      // Cloudinary upload if new image present
+      if (req.file) {
+        updatedData.backgroundImage = await uploadToCloudinary(req.file, "category-images");
+      } else {
+        updatedData.backgroundImage = existingCategory.backgroundImage;
+      }
+
+      const updatedCategory = await Category.findByIdAndUpdate(
+        req.params.id,
+        updatedData,
+        { new: true, runValidators: true }
+      );
+
+      res.status(200).json({ message: "Category updated successfully!", category: updatedCategory });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+      res.status(400).json({ message: error.message });
     }
+  });
 };
 
 // Delete a category by ID

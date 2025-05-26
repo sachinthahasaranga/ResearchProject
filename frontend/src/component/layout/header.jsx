@@ -84,6 +84,7 @@ const Header = () => {
                                             <li><NavLink to="/course">Course</NavLink></li>
                                             <li><NavLink to="/paperlist">Papers</NavLink></li>
                                             <li><NavLink to="/lisning">Listening Activities</NavLink></li>
+                                            <li><NavLink to="/game-launch">Play Games</NavLink></li>
                                         </ul>
                                     </li>
                                     {/* <li className="menu-item-has-children">

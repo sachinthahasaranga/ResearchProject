@@ -21,6 +21,7 @@ const questionRoutes = require("./src/routes/questionRoutes");
 const studentPerformanceRoutes = require("./src/routes/studentPerformanceRoutes");
 const studentPerformanceHistoryRoutes = require("./src/routes/studentPerformanceHistoryRoutes");
 const videoLectureRoutes = require("./src/routes/videoLectureRoutes");
+const readingRoutes = require('./src/routes/readingRoutes');
 
 
 const predictRoutes = require("./src/routes/predictRoutes");
@@ -50,6 +51,7 @@ app.use("/api/questions", questionRoutes);
 app.use("/api/student-performance", studentPerformanceRoutes);
 app.use("/api/student-performance-history", studentPerformanceHistoryRoutes);
 app.use("/api/video-lectures", videoLectureRoutes);
+app.use('/api/readings', readingRoutes);
 
 app.use("/api/prediction", predictRoutes);
 

@@ -5,6 +5,8 @@ import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import apiClient from "../api"; // Import API client
 import Swal from "sweetalert2"; // Import SweetAlert for notifications
+import FaceCapture from "../component/WebCamCapture";
+import axios from 'axios';
 
 const SignupPage = () => {
     const [formData, setFormData] = useState({
@@ -19,6 +21,8 @@ const SignupPage = () => {
         difficultyLevel: "67c7de3332e1c2050d8aa152", // Default difficultyLevel ID
         status: 1, // Active user
     });
+
+    const [faceImage, setFaceImage] = useState(null);
 
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -44,8 +48,53 @@ const SignupPage = () => {
             return;
         }
 
+         if (!faceImage) {
+        Swal.fire({
+            icon: "warning",
+            title: "Face Image Required!",
+            text: "Please capture a face image before submitting.",
+        });
+        setLoading(false);
+        return;
+    }
+
+    // Validate face on backend
         try {
-            await apiClient.post("/api/auth/register", formData);
+            const res = await axios.post("http://localhost:5000/validate-face", { image: faceImage });
+            if (!res.data.valid) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid Face Image!",
+                    text: res.data.message || "Please try capturing a clear image.",
+                });
+                setLoading(false);
+                return;
+            }
+        } catch (error) {
+            console.error("Face validation error:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Validation Failed!",
+                text: "Unable to validate the face image.",
+            });
+            setLoading(false);
+            return;
+        }
+
+        try {
+                const formDataToSend = new FormData();
+                Object.entries(formData).forEach(([key, value]) => {
+                formDataToSend.append(key, value);
+                });
+                if (faceImage) {
+                const blob = await fetch(faceImage).then(res => res.blob());
+                formDataToSend.append("faceImage", blob, "face.jpg");
+                }
+                
+
+                await apiClient.post("/api/auth/register", formDataToSend, {
+                headers: { "Content-Type": "multipart/form-data" },
+});
 
             // Show success message
             Swal.fire({
@@ -80,6 +129,7 @@ const SignupPage = () => {
                     <div className="account-wrapper">
                         <h3 className="title">Register Now</h3>
                         <form className="account-form" onSubmit={handleSubmit}>
+                            <FaceCapture onCapture={setFaceImage} />
                             <div className="form-group">
                                 <input
                                     type="text"
