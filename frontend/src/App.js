@@ -24,6 +24,7 @@ import ReadingTest from "./page/readingTest";
 import ReadingResults from "./page/readingResult";
 import ListeningHomePage from "./page/ListeningHomePage";
 import SelectCategory from "./page/SelectCategory";
+import SelectListeningsPractise from "./page/SelectListeningsPractise";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
           <Route path="studentprofile" element={<StudentProfile />} />
           <Route path="ListeningHomePage" element={<ListeningHomePage />} />
           <Route path="SelectListeningCategory" element={<SelectCategory/>} />
+          <Route path="SelectListeningsPractise" element={<SelectListeningsPractise />} /> 
         </Route>
 
         {/* 404 Page */}

@@ -12,6 +12,7 @@
     flex-direction: column;
     padding-top: 20px;
     padding-bottom: 40px;
+    position: relative; /* Make this relative so scroll buttons are positioned inside */
 }
 
 /* Header styles */
@@ -145,10 +146,10 @@
     font-size: 1.1rem;
 }
 
-/* Scroll buttons */
+/* Scroll buttons: now absolute inside main-content-wrapper */
 .scroll-button {
-    position: fixed;
-    top: 60%;
+    position: absolute;   /* Absolute to .main-content-wrapper */
+    top: 50%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
@@ -162,14 +163,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .scroll-button.left {
-    left: 30px;
+    left: 20px;
 }
 
 .scroll-button.right {
-    right: 30px;
+    right: 20px;
 }
 
 .scroll-button:hover {
@@ -228,10 +230,16 @@
     }
     
     .scroll-button.left {
-        left: 15px;
+        left: 10px;
     }
     
     .scroll-button.right {
-        right: 15px;
+        right: 10px;
     }
+}
+
+/* --- MAKE ALL TEXT INSIDE .main-content-wrapper WHITE --- */
+.main-content-wrapper,
+.main-content-wrapper * {
+    color: #fff !important;
 }
