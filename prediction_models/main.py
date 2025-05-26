@@ -358,7 +358,7 @@ def compare_faces():
 
         # Compare embeddings (cosine or euclidean distance)
         distance = np.linalg.norm(captured_emb - stored_emb)
-        threshold = 15  # adjust based on your model and validation set
+        threshold = 18  # adjust based on your model and validation set
 
         print(f"the distance {distance}")
 

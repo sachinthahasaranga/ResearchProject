@@ -4,6 +4,7 @@ const feedbackController = require("../controllers/feedbackController");
 const authMiddleware = require("../middleware/authMiddleware");
 
 router.post("/", authMiddleware, feedbackController.createFeedback);
+router.get("/", authMiddleware,feedbackController.getAllFeedbacks);
 router.get("/video/:videoLectureId", feedbackController.getFeedbacksByLecture);
 router.get("/user/:userId", feedbackController.getFeedbacksByUser);  // All feedback by user
 router.get("/user/:userId/video/:videoLectureId", feedbackController.getFeedbackByUserAndVideo); // Specific feedback by user and video

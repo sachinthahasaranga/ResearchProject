@@ -39,6 +39,8 @@ const LoginPage = () => {
         timer: 2000,
       });
 
+      await fetchStudentPerformance(user.id);
+
       setTimeout(() => navigate("/"), 2000);
     } catch (error) {
       console.error("Login Error:", error);
@@ -89,6 +91,8 @@ const LoginPage = () => {
           timer: 2000,
         });
 
+        await fetchStudentPerformance(user.id);
+
         setTimeout(() => navigate("/"), 2000);
       } else {
         Swal.fire({
@@ -106,6 +110,64 @@ const LoginPage = () => {
       });
     }
   };
+
+  const fetchStudentPerformance = async (userId) => {
+    try {
+      const response = await apiClient.get(`/api/student-performance/user/${userId}`);
+
+      if (response.data) {
+        const { totalStudyTime,resourceScore, totalScore, paperCount } = response.data;
+
+        // Check if a history record exists for today
+        const recordExists = await checkIfHistoryExistsForToday(userId);
+
+        if (!recordExists) {
+          // Send Performance Data 
+          await sendStudentPerformanceHistory(userId, totalStudyTime,resourceScore, totalScore, paperCount);
+        } else {
+          console.log("Performance history for today already exists. Skipping update.");
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching student performance:", error);
+    }
+  };
+
+  const checkIfHistoryExistsForToday = async (userId) => {
+    try {
+      const response = await apiClient.get(`/api/student-performance-history/user/${userId}`);
+
+      if (response.data.length > 0) {
+        const today = new Date().toISOString().split("T")[0];
+
+        return response.data.some((record) => record.createdAt.split("T")[0] === today);
+      }
+
+      return false;
+    } catch (error) {
+      console.error("Error checking performance history:", error);
+      return false;
+    }
+  };
+
+  const sendStudentPerformanceHistory = async (userId, totalStudyTime,resourceScore, totalScore, paperCount) => {
+    try {
+      const requestBody = {
+        userId: userId,
+        totalStudyTime: totalStudyTime,
+        resourceScore: resourceScore,
+        totalScore: totalScore,
+        paperCount: paperCount,
+      };
+
+      await apiClient.post("/api/student-performance-history/", requestBody);
+
+      console.log("Student performance history updated successfully.");
+    } catch (error) {
+      console.error("Error sending student performance history:", error);
+    }
+  };
+
 
   return (
     <>

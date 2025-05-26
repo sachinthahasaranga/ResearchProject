@@ -36,6 +36,17 @@ exports.getFeedbacksByLecture = async (req, res) => {
   }
 };
 
+exports.getAllFeedbacks = async (req, res) => {
+    try {
+        const feedbacks = await Feedback.find()
+          .populate('userId', 'username')
+          .populate('videoLectureId', 'lectureTitle');
+        res.status(200).json(feedbacks);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching Feedbacks", error });
+    }
+};
+
 // Get single feedback by ID
 exports.getFeedbackById = async (req, res) => {
   try {
