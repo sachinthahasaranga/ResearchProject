@@ -1,0 +1,245 @@
+/* Base layout */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+/* Main content wrapper - now positioning context for buttons */
+.main-content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    position: relative; /* Make this relative so scroll buttons are positioned inside */
+}
+
+/* Header styles */
+.header {
+    position: relative;
+    z-index: 100;
+}
+
+.page-header {
+    position: relative;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Content section with background */
+.content-section {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 200px);
+    margin: 0 20px;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.content-area {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin: 0 40px; /* Added to accommodate buttons */
+}
+
+/* Category container */
+.category-container {
+    flex: 1;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+/* Card styles with bottom-centered WHITE text */
+.cards-wrapper {
+    display: inline-flex;
+    gap: 25px;
+    height: 75vh;
+    padding-bottom: 30px;
+}
+
+.cards {
+    flex: 0 0 auto;
+    width: 700px;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: #FFFFFF !important;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    scroll-snap-align: center;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 40px;
+}
+
+.cards::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    z-index: 1;
+}
+
+.cards h2 {
+    margin: 0 0 10px 0;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 12px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1.8rem;
+    color: #FFFFFF !important;
+}
+
+.cards p {
+    margin: 0;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1.1rem;
+    color: #FFFFFF !important;
+}
+
+/* Scroll buttons: now absolute inside main-content-wrapper */
+.scroll-button {
+    position: absolute;   /* Absolute to .main-content-wrapper */
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #FFFFFF !important;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.scroll-button.left {
+    left: 20px;
+}
+
+.scroll-button.right {
+    right: 20px;
+}
+
+.scroll-button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Error message */
+.error-message {
+    color: #FFFFFF !important;
+    text-align: center;
+    background-color: rgba(255, 0, 0, 0.7);
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 80%;
+    border-radius: 8px;
+    z-index: 2;
+    font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-content-wrapper {
+        padding-top: 10px;
+        padding-bottom: 30px;
+    }
+    
+    .content-section {
+        min-height: calc(100vh - 180px);
+        margin: 0 10px;
+    }
+    
+    .content-area {
+        margin: 0 30px;
+    }
+    
+    .cards-wrapper {
+        height: 65vh;
+        gap: 15px;
+    }
+    
+    .cards {
+        width: 85vw;
+        padding-bottom: 30px;
+    }
+    
+    .cards h2 {
+        font-size: 1.5rem;
+        padding: 10px 15px;
+    }
+    
+    .cards p {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
+    
+    .scroll-button {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+    
+    .scroll-button.left {
+        left: 10px;
+    }
+    
+    .scroll-button.right {
+        right: 10px;
+    }
+}
+
+/* --- MAKE ALL TEXT INSIDE .main-content-wrapper WHITE --- */
+.main-content-wrapper,
+.main-content-wrapper * {
+    color: #fff !important;
+}

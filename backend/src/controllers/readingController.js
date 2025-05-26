@@ -109,18 +109,14 @@ exports.getReadingsByCategory = async (req, res) => {
 // Transcribe uploaded audio using Google STT
 exports.transcribeReading = async (req, res) => {
 
-  
-
   console.log("req.file:", req.file);
   console.log("req.body:", req.body);
-
 
   const filePath = req.file.path; // audio uploaded via Multer
   //const filePath = "C:\\Users\\thisarad\\Downloads\\harvard.webm";
   
   try {
    
-
     const params = {
       audio: filePath,
       speech_model: 'slam-1',

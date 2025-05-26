@@ -21,6 +21,16 @@ import StudentProfile from "./page/StudentProfile";
 import GameLaunch from "./page/GameLaunch";
 import AutoCapture from "./page/CameraCapturing";
 
+ import ReadingActivity from "./page/readingActivity";
+ import ReadingActivityHome from "./page/readingActivityHome";
+ import ReadingTest from "./page/readingTest";
+ import ReadingResults from "./page/readingResult";
+ import ListeningHomePage from "./page/ListeningHomePage";
+ import SelectCategory from "./page/SelectCategory";
+ import SelectListeningsPractise from "./page/SelectListeningsPractise";
+ import SelectListenings from "./page/SelectListenings";
+ import Listening from "./page/Listening";
+
 function App() {
   return (
     <BrowserRouter>
@@ -48,6 +58,17 @@ function App() {
           <Route path="paperlist" element={<PaperList />} />
           <Route path="paper-details/:paperId" element={<PaperDetails />} />
           <Route path="studentprofile" element={<StudentProfile />} />
+
+          <Route path="reading" element={<ReadingActivity />} />
+          <Route path="readingHome/:categoryId" element={<ReadingActivityHome />} />
+          <Route path="/readingtest/:readingId" element={<ReadingTest />} />
+          <Route path="/readingResults" element={<ReadingResults />} />
+          <Route path="ListeningHomePage" element={<ListeningHomePage />} />
+          <Route path="SelectListeningCategory" element={<SelectCategory/>} />
+          <Route path="SelectListeningsPractise" element={<SelectListeningsPractise />} /> 
+          <Route path="SelectListenings" element={<SelectListenings />} />
+          <Route path="listening" element={<Listening />} />
+
         </Route>
 
         {/* 404 Page */}
