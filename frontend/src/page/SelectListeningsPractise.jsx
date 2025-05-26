@@ -7,14 +7,14 @@ import apiClient from '../api';
 import "../assets/css/LatestCourse.css";
 import '../styles/SelectListeningsPractise.css';
 
-// Enable this flag to filter by difficulty level (using numeric value)
+// Enable/disable difficulty filter
 const FILTER_BY_DIFFICULTY = true;
 
-// Map numeric difficultyLevel to readable name and "stars"
+// Difficulty config
 const DIFFICULTY_LIST = [
-  { value: 1, label: "Easy", stars: 1 },
-  { value: 1.2, label: "Medium", stars: 2 },
-  { value: 1.5, label: "Hard", stars: 4 },
+  { value: 1, label: "Easy", stars: 1, threshold: 0.5 },
+  { value: 1.2, label: "Medium", stars: 2, threshold: 0.7 },
+  { value: 1.5, label: "Hard", stars: 4, threshold: 0.8 },
 ];
 
 const getRandomGradient = () => {
@@ -71,7 +71,6 @@ const SelectListeningsPractise = () => {
           setListenings(response.data);
           setFilteredListenings(response.data);
           setLoading(false);
-          console.log(response.data);
         }
       })
       .catch(() => {
@@ -88,7 +87,6 @@ const SelectListeningsPractise = () => {
 
   useEffect(() => {
     if (FILTER_BY_DIFFICULTY && selectedDifficulty !== null) {
-      // Use == instead of === for easier comparison of numbers/strings
       const filtered = listenings.filter(
         (listening) => listening.difficultyLevel == selectedDifficulty
       );
@@ -97,6 +95,10 @@ const SelectListeningsPractise = () => {
       setFilteredListenings(listenings);
     }
   }, [selectedDifficulty, listenings]);
+
+  // Pick correct threshold for selected difficulty (default to Easy)
+  const selectedThreshold =
+    DIFFICULTY_LIST.find((d) => d.value === selectedDifficulty)?.threshold || 0.5;
 
   return (
     <>
@@ -120,7 +122,7 @@ const SelectListeningsPractise = () => {
             <p className="error-message">{error}</p>
           )}
 
-          {/* Show difficulty filter bar */}
+          {/* Difficulty filter bar */}
           {FILTER_BY_DIFFICULTY && (
             <div className="difficulty-levels-section">
               <div className="difficulty-levels-list">
@@ -153,7 +155,7 @@ const SelectListeningsPractise = () => {
                     </div>
                   </div>
                 ))}
-                {/* All difficulties button */}
+                {/* "All" button */}
                 <div
                   className={
                     "difficulty-level-card" +
@@ -183,7 +185,8 @@ const SelectListeningsPractise = () => {
                     navigate('/listening', {
                       state: {
                         listeningId: listening._id,
-                        isPractise: true
+                        isPractise: true,
+                        threshold: selectedThreshold, // <-- This is now passed!
                       },
                     })
                   }
