@@ -26,6 +26,7 @@ import ListeningHomePage from "./page/ListeningHomePage";
 import SelectCategory from "./page/SelectCategory";
 import SelectListeningsPractise from "./page/SelectListeningsPractise";
 import SelectListenings from "./page/SelectListenings";
+import Listening from "./page/Listening";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
           <Route path="SelectListeningCategory" element={<SelectCategory/>} />
           <Route path="SelectListeningsPractise" element={<SelectListeningsPractise />} /> 
           <Route path="SelectListenings" element={<SelectListenings />} />
+          <Route path="listening" element={<Listening />} />
         </Route>
 
         {/* 404 Page */}
