@@ -83,7 +83,8 @@ const Header = () => {
                                         <ul className="lab-ul dropdown-menu">
                                             <li><NavLink to="/course">Course</NavLink></li>
                                             <li><NavLink to="/paperlist">Papers</NavLink></li>
-                                            <li><NavLink to="/lisning">Listening Activities</NavLink></li>
+                                            <li><NavLink to="/ListeningHomePage">Listening Activities</NavLink></li>
+                                            <li><NavLink to="/reading">Reading Activities</NavLink></li>
                                             <li><NavLink to="/game-launch">Play Games</NavLink></li>
                                         </ul>
                                     </li>

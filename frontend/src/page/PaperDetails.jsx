@@ -167,68 +167,68 @@ const PaperDetails = () => {
     setEvaluationResults(results);
     setTotalCorrectMarks(totalCorrectMarks.toFixed(2));
     setConvertedMarks(finalConvertedMarks.toFixed(2));
-
+    console.log('converteds marks : ',finalConvertedMarks);
     updateStudentPerformance(finalConvertedMarks);
     setIsSubmitted(true);
-};
+  };
 
-const updateStudentPerformance = async (convertedMarks) => {
-    if (!userId) {
-        console.error("User ID is missing");
-        return;
-    }
+  const updateStudentPerformance = async (convertedMarks) => {
+      if (!userId) {
+          console.error("User ID is missing");
+          return;
+      }
 
-    try {
-        const response = await apiClient.get(`/api/student-performance/user/${userId}`);
+      try {
+          const response = await apiClient.get(`/api/student-performance/user/${userId}`);
 
-        if (response.data) {
-            const studentPerformance = response.data;
+          if (response.data) {
+              const studentPerformance = response.data;
 
-            await apiClient.put(`/api/student-performance/user/${userId}`, {
-                totalStudyTime: studentPerformance.totalStudyTime,
-                resourceScore: studentPerformance.resourceScore,
-                totalScore: studentPerformance.totalScore + parseFloat(convertedMarks),
-                paperCount: studentPerformance.paperCount + 1,
-            });
+              await apiClient.put(`/api/student-performance/user/${userId}`, {
+                  totalStudyTime: studentPerformance.totalStudyTime,
+                  resourceScore: studentPerformance.resourceScore,
+                  totalScore: studentPerformance.totalScore + parseFloat(convertedMarks),
+                  paperCount: studentPerformance.paperCount + 1,
+              });
 
-            Swal.fire({
-                title: "Success!",
-                text: `Your score has been updated! Total Score: ${(studentPerformance.totalScore + parseFloat(convertedMarks)).toFixed(2)}`,
-                icon: "success",
-                confirmButtonText: "OK",
-            });
+              Swal.fire({
+                  title: "Success!",
+                  text: `Your score has been updated! Total Score: ${(studentPerformance.totalScore + parseFloat(convertedMarks)).toFixed(2)}`,
+                  icon: "success",
+                  confirmButtonText: "OK",
+              });
 
-            console.log(`Updated Study score: ${studentPerformance.totalScore + parseFloat(convertedMarks)}`);
-        } else {
-            console.log("No existing record found. Creating new student performance record...");
-            await apiClient.post("/api/student-performance", {
-                userId,
-                totalStudyTime: 0,
-                resourceScore: 0,
-                totalScore: parseFloat(convertedMarks),
-                paperCount: 1,
-            });
+              console.log(`Updated Study score: ${studentPerformance.totalScore + parseFloat(convertedMarks)}`);
+          } else {
+              console.log("No existing record found. Creating new student performance record...");
+              await apiClient.post("/api/student-performance", {
+                  userId,
+                  totalStudyTime: 0,
+                  resourceScore: 0,
+                  totalScore: parseFloat(convertedMarks),
+                  paperCount: 1,
+              });
 
-            Swal.fire({
-                title: "Success!",
-                text: `New record created. Your initial score is: ${convertedMarks}`,
-                icon: "success",
-                confirmButtonText: "OK",
-            });
+              Swal.fire({
+                  title: "Success!",
+                  text: `New record created. Your initial score is: ${convertedMarks}`,
+                  icon: "success",
+                  confirmButtonText: "OK",
+              });
 
-            console.log(`Created new record with study score: ${convertedMarks}`);
-        }
-    } catch (error) {
-        console.error("Error updating student performance:", error);
+              console.log(`Created new record with study score: ${convertedMarks}`);
+          }
+      } catch (error) {
+          console.error("Error updating student performance:", error);
 
-        Swal.fire({
-            title: "Error!",
-            text: "There was an issue updating your score. Please try again.",
-            icon: "error",
-            confirmButtonText: "OK",
-        });
-    }
-}
+          Swal.fire({
+              title: "Error!",
+              text: "There was an issue updating your score. Please try again.",
+              icon: "error",
+              confirmButtonText: "OK",
+          });
+      }
+  }
 
   return (
     <Fragment>

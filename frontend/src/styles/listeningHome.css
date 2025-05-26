@@ -1,0 +1,87 @@
+/* Base Layout */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.sessions-wrapper {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    position: relative;
+}
+
+/* Session Box Styles */
+.session-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: all 0.5s ease;
+    min-height: calc(100vh - 160px);
+    filter: grayscale(100%);
+}
+
+.session-box:hover {
+    filter: grayscale(0%);
+}
+
+.session-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+.session-box:hover .session-overlay {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.session-content {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    color: white !important; /* Ensures text stays white */
+    text-align: center;
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.session-content h2,
+.session-content p {
+    color: white !important; /* Explicit white for all text elements */
+    margin: 0.5rem 0;
+}
+
+.session-box:hover .session-content {
+    transform: scale(1.05);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sessions-wrapper {
+        flex-direction: column;
+    }
+    
+    .session-box {
+        min-height: 50vh;
+    }
+    
+    .session-content {
+        padding: 1.5rem 2rem;
+    }
+}

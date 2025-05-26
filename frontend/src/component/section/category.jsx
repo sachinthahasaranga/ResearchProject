@@ -10,11 +10,13 @@ const Category = () => {
     const [videoLectureCount, setVideoLectureCount] = useState(0);
     const [paperCount, setPaperCount] = useState(0);
     const [listeningCount, setListeningCount] = useState(0);
+    const [readingCount, setReadingCount] = useState(0);
 
     useEffect(() => {
         fetchListeningActivities();
         fetchVideoLectures();
         fetchPapers();
+        fetchReadingActivities();
     }, []);
 
     const fetchVideoLectures = async () => {
@@ -42,7 +44,16 @@ const Category = () => {
         } catch (error) {
             console.error("Error fetching listening activities:", error);
         }
-    };           
+    };  
+    
+    const fetchReadingActivities = async () => {
+        try {
+            const response = await apiClient.get("/api/readings/");
+            setReadingCount(response.data.length);
+        } catch (error) {
+            console.error("Error fetching readings activities:", error);
+        }
+    };  
 
     const categoryList = [
         {
@@ -57,7 +68,7 @@ const Category = () => {
             imgAlt: 'category',
             title: 'Listening Activities',
             count: `${listeningCount} Activities`,
-            url: '/course',
+            url: '/ListeningHomePage',
         },
         {
             imgUrl: 'assets/images/category/icon/03.jpg',
@@ -65,6 +76,13 @@ const Category = () => {
             title: 'English Papers',
             count: `${paperCount} Papers`,
             url: '/paperlist',
+        },
+        {
+            imgUrl: 'assets/images/category/icon/16.jpg',
+            imgAlt: 'category',
+            title: 'Reading Activities',
+            count: `${readingCount} Activities`,
+            url: '/reading',
         },
     ];
 
