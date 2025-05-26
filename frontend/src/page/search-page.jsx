@@ -98,7 +98,7 @@ const SearchPage = () => {
                                                     <div className="post-item style-2">
                                                         <div className="post-inner">
                                                             <div className="post-content">
-                                                                <Link to={`/course-single/${lecture._id}`}>
+                                                                <Link to={`/course-view/${lecture._id}`}>
                                                                     <h3>{lecture.lectureTitle}</h3>
                                                                 </Link>
                                                                 <div className="meta-post">
@@ -110,7 +110,7 @@ const SearchPage = () => {
                                                                     </ul>
                                                                 </div>
                                                                 <p>{lecture.lectureDescription}</p>
-                                                                <Link to={`/course-single/${lecture._id}`} className="lab-btn">
+                                                                <Link to={`/course-view/${lecture._id}`} className="lab-btn">
                                                                     <span>Read More <i className="icofont-external-link"></i></span>
                                                                 </Link>
                                                             </div>
@@ -129,7 +129,7 @@ const SearchPage = () => {
                                                     <div className="post-item style-2">
                                                         <div className="post-inner">
                                                             <div className="post-content">
-                                                                <Link to={`/paper-single/${paper._id}`}>
+                                                                <Link to={`/paper-details/${paper._id}`}>
                                                                     <h3>{paper.paperTitle}</h3>
                                                                 </Link>
                                                                 <div className="meta-post">
@@ -141,7 +141,7 @@ const SearchPage = () => {
                                                                         <li><i className="icofont-graduate"></i> Recommended Age: {paper.recommendedAge}+</li>
                                                                     </ul>
                                                                 </div>
-                                                                <Link to={`/paper-single/${paper._id}`} className="lab-btn">
+                                                                <Link to={`/paper-details/${paper._id}`} className="lab-btn">
                                                                     <span>Read More <i className="icofont-external-link"></i></span>
                                                                 </Link>
                                                             </div>
