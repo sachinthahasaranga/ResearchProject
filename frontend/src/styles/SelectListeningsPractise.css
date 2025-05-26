@@ -5,7 +5,6 @@ html, body {
   min-height: 100vh;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
-  /* DO NOT ADD overflow: hidden! */
 }
 
 .listening-container {
@@ -15,7 +14,17 @@ html, body {
   min-height: 100px;
   width: 100%;
   position: relative;
-  padding-bottom: 40px;
+}
+
+.listening-main-content {
+  padding-top: 260px;   /* Space below Header+PageHeader */
+  padding-bottom: 250px; /* Space above Footer */
+}
+
+/* Add gap below/above PageHeader */
+.page-header {
+  margin-top: 16px;
+  margin-bottom: 32px;
 }
 
 .difficulty-levels-section {
@@ -168,6 +177,14 @@ html, body {
   .difficulty-levels-list {
     gap: 8px;
   }
+  .listening-main-content {
+    padding-top: 22px;
+    padding-bottom: 28px;
+  }
+  .page-header {
+    margin-top: 8px;
+    margin-bottom: 18px;
+  }
 }
 @media (max-width: 600px) {
   .listening-container {
@@ -179,5 +196,13 @@ html, body {
   .difficulty-level-card {
     padding: 8px 8px;
     min-width: 82px;
+  }
+  .listening-main-content {
+    padding-top: 10px;
+    padding-bottom: 18px;
+  }
+  .page-header {
+    margin-top: 4px;
+    margin-bottom: 10px;
   }
 }
