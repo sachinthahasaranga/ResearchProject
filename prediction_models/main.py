@@ -17,6 +17,12 @@ import insightface
 from insightface.app import FaceAnalysis
 import mediapipe as mp
 
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+import string
+import re
+
+
 
 mp_face = mp.solutions.face_detection
 face_detection = mp_face.FaceDetection(model_selection=0, min_detection_confidence=0.6)
@@ -37,7 +43,7 @@ emotion_dict = {
 }
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
-# ----- ML Prediction Model Setup -----
+# ----- ML Prediction Model Setup My-----
 minmax_scl = pickle.load(open('scaler_minmax.pkl', 'rb'))
 std_scl = pickle.load(open('scaler_standard.pkl', 'rb'))
 trgt_scl_std = pickle.load(open('targeted_sclar_standard.pkl', 'rb'))
@@ -123,7 +129,118 @@ def send_image(sid, data):
         print(f"Error in send_image: {e}")
         sio.emit("emotion_result", {"emotion": "Error processing image"}, to=sid)
 
-# ----- REST API Routes -----
+# -- thisara's function ------
+
+def soundex(word):
+    if not word:
+        return ""
+    word = word.upper()
+    soundex_code = word[0]
+    mapping = {
+        "BFPV": "1", "CGJKQSXZ": "2", "DT": "3",
+        "L": "4", "MN": "5", "R": "6", "AEIOUHWY": "."
+    }
+    for char in word[1:]:
+        for key in mapping:
+            if char in key:
+                code = mapping[key]
+                if code != '.':
+                    if code != soundex_code[-1]:
+                        soundex_code += code
+                break
+    soundex_code = soundex_code.replace(".", "")
+    soundex_code = soundex_code.ljust(4, "0")[:4]
+    return soundex_code
+
+# --- Levenshtein Distance ---
+def levenshtein_distance(s1, s2):
+    rows = len(s1) + 1
+    cols = len(s2) + 1
+    dist_matrix = np.zeros((rows, cols), dtype=int)
+    for i in range(1, rows): dist_matrix[i][0] = i
+    for j in range(1, cols): dist_matrix[0][j] = j
+    for i in range(1, rows):
+        for j in range(1, cols):
+            cost = 0 if s1[i-1] == s2[j-1] else 1
+            dist_matrix[i][j] = min(
+                dist_matrix[i-1][j] + 1,
+                dist_matrix[i][j-1] + 1,
+                dist_matrix[i-1][j-1] + cost
+            )
+    return dist_matrix[rows-1][cols-1]
+
+# --- Semantic Similarity ---
+sentence_model = SentenceTransformer('all-MiniLM-L6-v2')
+def semantic_similarity(text1, text2):
+    emb1 = sentence_model.encode(text1, convert_to_tensor=True)
+    emb2 = sentence_model.encode(text2, convert_to_tensor=True)
+    score = cosine_similarity(emb1.reshape(1, -1), emb2.reshape(1, -1))[0][0]
+    return float(score)
+
+# --- Preprocessing ---
+def preprocess(text):
+    text = text.lower()
+    text = re.sub(f"[{string.punctuation}]", "", text)
+    return text
+
+# --- Error Type Codes ---
+error_code_map = {
+    "NO_ERROR": 0,
+    "PHONETIC_ERROR": 1,
+    "SEMANTIC_ERROR": 2,
+    "SPELLING_ERROR": 3,
+    "UNKNOWN_ERROR": 4,
+    "EXTRA_WORD": 5,
+    "MISSING_WORD": 6
+}
+
+# --- Find Defect Words ---
+def find_defect_words(original, given, semantic_threshold=0.7):
+    original_words = preprocess(original).split()
+    given_words = preprocess(given).split()
+    defect_words = []
+
+    max_len = max(len(original_words), len(given_words))
+
+    for i in range(max_len):
+        orig_word = original_words[i] if i < len(original_words) else None
+        given_word = given_words[i] if i < len(given_words) else None
+
+        if orig_word and given_word:
+            if orig_word == given_word:
+                defect_words.append((orig_word, given_word, "NO_ERROR"))
+            elif soundex(orig_word) == soundex(given_word):
+                defect_words.append((orig_word, given_word, "PHONETIC_ERROR"))
+            elif semantic_similarity(orig_word, given_word) >= semantic_threshold:
+                sim_score = semantic_similarity(orig_word, given_word)
+                defect_words.append((orig_word, given_word, f"SEMANTIC_ERROR (score={sim_score:.2f})"))
+            elif levenshtein_distance(orig_word, given_word) <= 2:
+                defect_words.append((orig_word, given_word, "SPELLING_ERROR"))
+            else:
+                defect_words.append((orig_word, given_word, "UNKNOWN_ERROR"))
+        elif orig_word and not given_word:
+            defect_words.append((orig_word, "", "MISSING_WORD"))
+        elif given_word and not orig_word:
+            defect_words.append(("", given_word, "EXTRA_WORD"))
+
+    return defect_words
+
+# --- Calculate Overall Score ---
+def calculate_overall_score(original, given, defects, semantic_weight=0.7):
+    original = preprocess(original)
+    given = preprocess(given)
+
+    semantic_score = semantic_similarity(original, given)
+
+    total_words = max(len(original.split()), len(given.split()))
+    defect_penalty = sum(1 for _, _, e in defects if e != "NO_ERROR") / total_words if total_words else 1
+
+    final_score = (semantic_weight * semantic_score) + ((1 - semantic_weight) * (1 - defect_penalty))
+    return round(final_score * 100, 2)
+
+
+
+# ----- My REST API Routes -----
 @flask_app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -231,6 +348,37 @@ def compare_faces():
 
     except Exception as e:
         return jsonify({"success": False, "message": str(e)})
+
+
+@flask_app.route('/analyze', methods=['POST'])
+def analyze():
+    data = request.get_json()
+    original = data.get('original')
+    given = data.get('given')
+
+    if not original or not given:
+        return jsonify({"error": "Both 'original' and 'given' fields are required."}), 400
+
+    defects = find_defect_words(original, given)
+    score = calculate_overall_score(original, given, defects)
+
+    result = []
+    for o, g, e in defects:
+        base_error = e.split()[0]  # e.g., "SEMANTIC_ERROR" from "SEMANTIC_ERROR (score=0.78)"
+        error_type_id = error_code_map.get(base_error, 0)
+
+        result.append({
+            "original": o or "",
+            "given": g or "",
+            "error": base_error,
+            "error_type": error_type_id
+        })
+
+    return jsonify({
+        "defects": result,
+        "score": score,
+        "score_description": f"{score}% similarity"
+    }), 200
 
 
 # ----- Start Server -----
