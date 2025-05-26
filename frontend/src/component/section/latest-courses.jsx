@@ -51,7 +51,7 @@ const LatestCourse = () => {
                                                     <span className="ratting-count"> 0 reviews</span>
                                                 </div>
                                             </div>
-                                            <Link to={`/course-single/${lecture._id}`}>
+                                            <Link to={`/course-view/${lecture._id}`}>
                                                 <h4>{lecture.lectureTitle}</h4>
                                             </Link>
                                             <div className="course-details">
@@ -65,7 +65,7 @@ const LatestCourse = () => {
                                             <div className="course-footer">
                                                 <div className="course-author">
                                                     
-                                                    <Link to="/team-single" className="ca-name">
+                                                    <Link to="#" className="ca-name">
                                                         {lecture.createdBy?.username || "Unknown"}
                                                     </Link>
                                                 </div>

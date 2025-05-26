@@ -9,48 +9,62 @@ const btnText = "Browse All Categories";
 const Category = () => {
     const [videoLectureCount, setVideoLectureCount] = useState(0);
     const [paperCount, setPaperCount] = useState(0);
+    const [listeningCount, setListeningCount] = useState(0);
 
     useEffect(() => {
-        const fetchVideoLectures = async () => {
-            try {
-                const response = await apiClient.get("/api/video-lectures");
-                setVideoLectureCount(response.data.length);
-            } catch (error) {
-                console.error("Error fetching video lectures:", error);
-            }
-        };
-
-        const fetchPapers = async () => {
-            try {
-              const response = await apiClient.get("/api/papers");
-              setPaperCount(response.data.length);
-            } catch (error) {
-                console.error("Error fetching paper count:", error);
-            }
-        };
-
+        fetchListeningActivities();
         fetchVideoLectures();
         fetchPapers();
     }, []);
+
+    const fetchVideoLectures = async () => {
+        try {
+            const response = await apiClient.get("/api/video-lectures");
+            setVideoLectureCount(response.data.length);
+        } catch (error) {
+            console.error("Error fetching video lectures:", error);
+        }
+    };
+
+    const fetchPapers = async () => {
+        try {
+          const response = await apiClient.get("/api/papers");
+          setPaperCount(response.data.length);
+        } catch (error) {
+            console.error("Error fetching paper count:", error);
+        }
+    };
+
+    const fetchListeningActivities = async () => {
+        try {
+            const response = await apiClient.get("/api/lstn/");
+            setListeningCount(response.data.length);
+        } catch (error) {
+            console.error("Error fetching listening activities:", error);
+        }
+    };           
 
     const categoryList = [
         {
             imgUrl: 'assets/images/category/icon/01.jpg',
             imgAlt: 'category',
             title: 'English Videos',
-            count: `${videoLectureCount} Videos`, // Dynamic count from API
+            count: `${videoLectureCount} Videos`,
+            url: '/course',
         },
         {
             imgUrl: 'assets/images/category/icon/02.jpg',
             imgAlt: 'category',
             title: 'Listening Activities',
-            count: '04 Course',
+            count: `${listeningCount} Activities`,
+            url: '/course',
         },
         {
             imgUrl: 'assets/images/category/icon/03.jpg',
             imgAlt: 'category',
             title: 'English Papers',
             count: `${paperCount} Papers`,
+            url: '/paperlist',
         },
     ];
 
@@ -71,7 +85,7 @@ const Category = () => {
                                             <img src={`${val.imgUrl}`} alt={val.imgAlt} />
                                         </div>
                                         <div className="category-content">
-                                            <Link to="/course">
+                                            <Link to={val.url}>
                                                 <h6>{val.title}</h6>
                                             </Link>
                                             <span>{val.count}</span>

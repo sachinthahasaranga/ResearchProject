@@ -27,7 +27,7 @@ const StudentProfile = () => {
   }, [studentPerformance]);
 
   useEffect(() => {
-    if (studentPerformanceHistory.length > 0) {
+    if (studentPerformanceHistory.length > 7) {
       fetchForecastedPerformance();
     }
   }, [studentPerformanceHistory]);
@@ -144,7 +144,7 @@ const StudentProfile = () => {
                 <div className="d-flex align-items-center flex-wrap mb-4" style={{ gap: "40px" }}>
                   <div className="profile-image text-center">
                     <img
-                      src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg"
+                      src={student.faceImgUrl ? student.faceImgUrl : "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg"}
                       alt="Profile"
                       className="rounded"
                       style={{
