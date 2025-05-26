@@ -4,6 +4,7 @@ import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import apiClient from "../api";
+import Swal from "sweetalert2";
 
 
 const socialList = [
@@ -41,6 +42,11 @@ const CourseView = () => {
     const [viewFull, setViewFull] = useState(false);
     const userId = localStorage.getItem("userId");
     const intervalRef = useRef(null);
+    const [icon, setIcon] = useState(false);
+    const [feedbackText, setFeedbackText] = useState('');
+    const [submittingFeedback, setSubmittingFeedback] = useState(false);
+    const [feedbackList, setFeedbackList] = useState([]);
+    const [ratingValue, setRatingValue] = useState(5);
 
     const hasFetched = useRef(false);
 
@@ -50,7 +56,7 @@ const CourseView = () => {
         
         fetchLecture();
         checkAndUpdateStudentPerformance();
-
+        fetchFeedbacks();
     }, []);
 
     useEffect(() => {
@@ -112,6 +118,16 @@ const CourseView = () => {
         }
     };
 
+    const fetchFeedbacks = async () => {
+        try {
+            const res = await apiClient.get(`/api/feedbacks/video/${id}`);
+            setFeedbackList(res.data);
+            console.log("feedback data",res.data)
+        } catch (err) {
+            setFeedbackList([]);
+        }
+    };
+
     const checkAndUpdateStudentPerformance = async () => {
         if (!userId) {
             console.error("User ID is missing");
@@ -135,6 +151,35 @@ const CourseView = () => {
         }
     };
 
+    const handleFeedbackSubmit = async (e) => {
+        e.preventDefault();
+        if (!feedbackText.trim()) return;
+        setSubmittingFeedback(true);
+        try {
+            await apiClient.post('/api/feedbacks/', {
+                feedback: feedbackText,
+                rating: ratingValue,         
+                videoLectureId: id,
+                userId,
+            });
+            Swal.fire({
+                icon: 'success',
+                title: 'Feedback Submitted!',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            setFeedbackText('');
+            fetchFeedbacks(); // refresh list
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: 'You have Already Submitted FeedBack for this lecture',
+            });
+        } finally {
+            setSubmittingFeedback(false);
+        }
+    };
 
     if (loading) {
         return <div className="text-center p-5">Loading...</div>;
@@ -165,7 +210,7 @@ const CourseView = () => {
                                                     <source src={lecture.videoUrl} type="video/mp4" />
                                                 </video>
                                             </div>
-                                            {/* <div className={`content-wrapper ${icon ? "open" : ""}`} >
+                                            <div className={`content-wrapper ${icon ? "open" : ""}`} >
                                                 <div className="content-icon d-lg-none" onClick={() => setIcon(!icon)}>
                                                     <i className="icofont-caret-down"></i>
                                                 </div>
@@ -174,7 +219,80 @@ const CourseView = () => {
                                                     <p>{lecture.lectureDescription}</p>
                                                 </div>
                                                 
-                                            </div> */}
+                                            </div>
+                                            <div className="card mt-4 p-3">
+                                                <h5>Leave Feedback</h5>
+                                                <form onSubmit={handleFeedbackSubmit}>
+                                                    <textarea
+                                                        className="form-control mb-2"
+                                                        rows={3}
+                                                        value={feedbackText}
+                                                        onChange={e => setFeedbackText(e.target.value)}
+                                                        placeholder="Write your feedback..."
+                                                        disabled={submittingFeedback}
+                                                        required
+                                                    />
+                                                    {/* Star rating selector */}
+                                                    <div className="mb-2">
+                                                        <span>Rate: </span>
+                                                        {[1, 2, 3, 4, 5].map(star => (
+                                                            <span
+                                                                key={star}
+                                                                style={{
+                                                                    cursor: 'pointer',
+                                                                    color: ratingValue >= star ? '#FFD700' : '#ddd',
+                                                                    fontSize: '1.5em',
+                                                                    marginRight: '2px',
+                                                                }}
+                                                                onClick={() => setRatingValue(star)}
+                                                                role="button"
+                                                                aria-label={`Set rating to ${star}`}
+                                                            >
+                                                                ★
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                    <button className="btn btn-success" type="submit" disabled={submittingFeedback || !feedbackText.trim()}>
+                                                        {submittingFeedback ? 'Submitting...' : 'Submit Feedback'}
+                                                    </button>
+                                                </form>
+                                            </div>
+
+                                            {/* Show previous feedbacks */}
+                                            {feedbackList.length > 0 && (
+                                            <div className="card mt-3 p-3">
+                                                <h6 className="mb-3">Feedback from Students</h6>
+                                                <ul className="list-unstyled">
+                                                {feedbackList.map((fb, idx) => (
+                                                    <li key={idx} className="mb-2 border-bottom pb-2">
+                                                    <strong>{fb.userId?.username || 'Student'}</strong>:
+                                                    <br />
+                                                    {/* Star rating display */}
+                                                    <span>
+                                                        {[1, 2, 3, 4, 5].map(star => (
+                                                        <span
+                                                            key={star}
+                                                            style={{
+                                                            color: fb.rating >= star ? '#FFD700' : '#ddd',
+                                                            fontSize: '1.2em',
+                                                            marginRight: '1px'
+                                                            }}
+                                                        >
+                                                            ★
+                                                        </span>
+                                                        ))}
+                                                    </span>
+                                                    <br />
+                                                    <span>{fb.feedback}</span>
+                                                    <div style={{ fontSize: '0.8em', color: '#888' }}>
+                                                        {new Date(fb.createdAt).toLocaleString()}
+                                                    </div>
+                                                    </li>
+                                                ))}
+                                                </ul>
+                                            </div>
+                                            )}
+
                                         </div>
                                     </div>
                                     
@@ -247,6 +365,8 @@ const CourseView = () => {
                                                     </li>
                                                 </ul>
                                             </div>
+
+                                            
                                         </div>
                                     </div>
                                 </div>

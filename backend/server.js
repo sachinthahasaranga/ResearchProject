@@ -22,6 +22,7 @@ const studentPerformanceRoutes = require("./src/routes/studentPerformanceRoutes"
 const studentPerformanceHistoryRoutes = require("./src/routes/studentPerformanceHistoryRoutes");
 const videoLectureRoutes = require("./src/routes/videoLectureRoutes");
 const readingRoutes = require('./src/routes/readingRoutes');
+const feedbackRoutes = require("./src/routes/feedbackRoutes");
 
 
 const predictRoutes = require("./src/routes/predictRoutes");
@@ -41,7 +42,7 @@ app.use('/api/qna', qnaRoutes);
 app.use('/api/ctgry', categoryRoutes);
 app.use('/api/lstnScore', lstnScoreRoutes)
 
-//sachintha
+
 app.use("/api/users", userRoutes);
 app.use("/api/difficulty-levels", difficultyLevelRoutes);
 app.use("/api/user-roles", userRoleRoutes);
@@ -52,6 +53,7 @@ app.use("/api/student-performance", studentPerformanceRoutes);
 app.use("/api/student-performance-history", studentPerformanceHistoryRoutes);
 app.use("/api/video-lectures", videoLectureRoutes);
 app.use('/api/readings', readingRoutes);
+app.use("/api/feedbacks", feedbackRoutes);
 
 app.use("/api/prediction", predictRoutes);
 
