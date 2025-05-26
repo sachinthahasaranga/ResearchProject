@@ -151,7 +151,7 @@ function AutoCapture() {
             style={{ backgroundColor: 'lightgreen' }}
             onClick={() => {
               setShowModal(false);
-              window.location.href = "http://localhost:3000/game-launch";
+              window.location.href = "/game-launch";
             }}
           >
             Play game
