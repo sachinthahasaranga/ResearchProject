@@ -23,6 +23,7 @@
         {
           "id": "path",
           "text": "The path leads to a ruined temple. As you approach, shadows move inside.",
+          "image": "/images/fp.png",
           "choices": [
             {
               "text": "Enter the temple",
@@ -52,6 +53,7 @@
         {
           "id": "temple",
           "text": "Inside the temple, you find an ancient sword. The power courses through your veins. Suddenly, a guardian appears!",
+          "image": "/images/fp2.png",
           "choices": [
             {
               "text": "Fight the guardian",
@@ -80,6 +82,7 @@
         {
           "id": "help_beast",
           "text": "The beast transforms into a magical spirit, offering to aid you on your journey.",
+          "image": "/images/fp5.png",
           "choices": [
             {
               "text": "Accept the spirit's help",
@@ -108,11 +111,13 @@
         },
         {
           "id": "fight_guardian",
-          "text": "After a fierce battle, you defeat the guardian and gain control of the temple's secrets. The end."
+          "text": "After a fierce battle, you defeat the guardian and gain control of the temple's secrets. The end.",
+          "image": "/images/fp3.png"
         },
         {
           "id": "talk_guardian",
-          "text": "The guardian tests your wisdom. You pass, gaining its trust and ancient knowledge. The end."
+          "text": "The guardian tests your wisdom. You pass, gaining its trust and ancient knowledge. The end.",
+          "image": "/images/fp4.png"
         },
         {
           "id": "run_forest",

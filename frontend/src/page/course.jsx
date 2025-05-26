@@ -61,8 +61,9 @@ const CoursePage = () => {
     const fetchCategory = async () => {
         try {
             const response = await apiClient.get("/api/ctgry");
-            setCategory(response.data);
-            console.log("category:", response.data);
+            const filterCategories = response.data.filter(cat => cat.categoryType === "lecture");
+            setCategory(filterCategories);
+            console.log("category:", filterCategories);
         } catch (error) {
             console.error("Error fetching category:", error);
         }
