@@ -75,6 +75,7 @@ const SelectListeningsPractise = () => {
           setListenings(response.data);
           setFilteredListenings(response.data);
           setLoading(false);
+          console.log(response.data)
         }
       })
       .catch((error) => {
