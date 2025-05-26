@@ -3,9 +3,10 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #f5f5f5;
 }
 
-/* Main content wrapper */
+/* Main content wrapper - now positioning context for buttons */
 .main-content-wrapper {
     flex: 1;
     display: flex;
@@ -28,6 +29,7 @@
     padding: 1.5rem;
     text-align: center;
     margin-bottom: 20px;
+    color: #333;
 }
 
 /* Content section with background */
@@ -62,6 +64,7 @@
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
+    margin: 0 40px; /* Added to accommodate buttons */
 }
 
 /* Category container */
@@ -78,7 +81,7 @@
     margin-top: 20px;
 }
 
-/* Card styles with bottom-centered text */
+/* Card styles with bottom-centered WHITE text */
 .cards-wrapper {
     display: inline-flex;
     gap: 25px;
@@ -92,7 +95,7 @@
     height: 100%;
     box-sizing: border-box;
     border-radius: 10px;
-    color: white;
+    color: #FFFFFF !important;
     font-size: 1.2rem;
     display: flex;
     flex-direction: column;
@@ -119,15 +122,6 @@
     z-index: 1;
 }
 
-.card-content {
-    width: 100%;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-    z-index: 2;
-    margin-bottom: 20px;
-}
-
 .card h2 {
     margin: 0 0 10px 0;
     background: rgba(0, 0, 0, 0.7);
@@ -135,6 +129,7 @@
     border-radius: 5px;
     display: inline-block;
     font-size: 1.8rem;
+    color: #FFFFFF !important;
 }
 
 .card p {
@@ -144,6 +139,7 @@
     border-radius: 5px;
     display: inline-block;
     font-size: 1.1rem;
+    color: #FFFFFF !important;
 }
 
 /* Scroll buttons: now absolute inside main-content-wrapper */
@@ -152,7 +148,7 @@
     top: 50%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.7);
-    color: white;
+    color: #FFFFFF !important;
     border: none;
     border-radius: 50%;
     width: 50px;
@@ -180,9 +176,9 @@
 
 /* Error message */
 .error-message {
-    color: red;
+    color: #FFFFFF !important;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 0, 0, 0.7);
     padding: 15px;
     margin: 20px auto;
     max-width: 80%;
@@ -201,6 +197,10 @@
     .content-section {
         min-height: calc(100vh - 180px);
         margin: 0 10px;
+    }
+    
+    .content-area {
+        margin: 0 30px;
     }
     
     .cards-wrapper {
