@@ -5,25 +5,26 @@ html, body {
   min-height: 100vh;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
+  background: #f7f7f7;
 }
 
 .listening-container {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;      /* Ensure fills viewport */
+  min-height: 100vh;
   width: 100%;
   position: relative;
 }
 
 .listening-main-content {
-  padding-top: 36px;    /* Enough for good spacing */
-  padding-bottom: 48px; /* Enough above footer */
+  padding-top: 48px;
+  padding-bottom: 64px;
 }
 
 .page-header {
-  margin-top: 16px;
-  margin-bottom: 28px;
+  margin-top: 32px;
+  margin-bottom: 32px;
 }
 
 .difficulty-levels-section {
@@ -82,31 +83,31 @@ html, body {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: 24px;
   justify-content: center;
   padding-bottom: 36px;
 }
 
 .listening-card {
-  width: 340px;
-  min-height: 220px;
+  width: 320px;
+  min-height: 150px;
   border-radius: 15px;
   box-shadow: 0 3px 18px rgba(0,0,0,0.11);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px 12px 14px 12px;
+  padding: 10px 10px 10px 10px;
   cursor: pointer;
   transition: transform 0.18s, box-shadow 0.18s;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   background-size: cover;
   background-position: center;
 }
 
 .listening-card:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 8px 32px rgba(0,123,255,0.15);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(0,123,255,0.13);
 }
 
 .card-content {
@@ -114,35 +115,38 @@ html, body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  min-height: 60px;
 }
 
 .text-section {
   flex: 1;
 }
 .card-number {
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   margin-right: 5px;
   color: #007bff;
 }
 .card-content h2 {
-  margin: 0 0 8px 0;
-  font-size: 1.06rem;
-  font-weight: 600;
+  margin: 0 0 6px 0;
+  font-size: 1.02rem;
+  font-weight: 500;
   color: #1a1a1a;
+  line-height: 1.1;
 }
 
 .image-section img {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  background: #fff;
+  border-radius: 12px;
+  border: none;         /* <---- REMOVE outline */
+  background: none;     /* <---- REMOVE background */
+  box-shadow: none;     /* <---- REMOVE any shadow */
 }
 
 .listening-card audio {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
 .loading-spinner-container {
@@ -164,44 +168,58 @@ html, body {
   font-size: 1.05rem;
 }
 
+/* Responsive adjustments */
 @media (max-width: 900px) {
   .listening-cards-wrapper {
-    gap: 16px;
+    gap: 12px;
     max-width: 99vw;
   }
   .listening-card {
     width: 97vw;
-    max-width: 420px;
+    max-width: 390px;
+    min-height: 130px;
   }
   .difficulty-levels-list {
     gap: 10px;
   }
   .listening-main-content {
-    padding-top: 20px;
-    padding-bottom: 24px;
+    padding-top: 10px;
+    padding-bottom: 16px;
   }
   .page-header {
-    margin-top: 8px;
-    margin-bottom: 14px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+  }
+  .image-section img {
+    width: 64px;
+    height: 64px;
   }
 }
+
 @media (max-width: 600px) {
   .listening-container {
-    padding-bottom: 8px;
+    padding-bottom: 6px;
   }
   .listening-cards-wrapper {
-    gap: 8px;
+    gap: 6px;
   }
   .difficulty-level-card {
-    padding: 8px 8px;
-    min-width: 82px;
+    padding: 7px 7px;
+    min-width: 70px;
+  }
+  .listening-card {
+    min-height: 96px;
+  }
+  .image-section img {
+    width: 48px;
+    height: 48px;
   }
   .listening-main-content {
-    padding-top: 6px;
-    padding-bottom: 12px;
+    padding-top: 2px;
+    padding-bottom: 5px;
   }
   .page-header {
     margin-top: 2px;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
 }

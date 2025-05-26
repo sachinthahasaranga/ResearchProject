@@ -7,11 +7,15 @@ import apiClient from '../api';
 import "../assets/css/LatestCourse.css";
 import '../styles/SelectListeningsPractise.css';
 
-const thresholds = {
-  easy: 0.5,
-  medium: 0.7,
-  hard: 0.8
-};
+// Enable this flag to filter by difficulty level (using numeric value)
+const FILTER_BY_DIFFICULTY = true;
+
+// Map numeric difficultyLevel to readable name and "stars"
+const DIFFICULTY_LIST = [
+  { value: 1, label: "Easy", stars: 1 },
+  { value: 1.2, label: "Medium", stars: 2 },
+  { value: 1.5, label: "Hard", stars: 4 },
+];
 
 const getRandomGradient = () => {
   const colors = [
@@ -29,20 +33,12 @@ const getRandomImageNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const getThreshold = (difficultyWeight) => {
-  if (difficultyWeight === 1) return thresholds.easy;
-  if (difficultyWeight === 1.2) return thresholds.medium;
-  if (difficultyWeight === 1.5) return thresholds.hard;
-  return thresholds.easy;
-};
-
 const SelectListeningsPractise = () => {
   const location = useLocation();
   const { categoryId } = location.state || {};
   const navigate = useNavigate();
   const [listenings, setListenings] = useState([]);
   const [filteredListenings, setFilteredListenings] = useState([]);
-  const [difficultyLevels, setDifficultyLevels] = useState([]);
   const [selectedDifficulty, setSelectedDifficulty] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
@@ -75,28 +71,12 @@ const SelectListeningsPractise = () => {
           setListenings(response.data);
           setFilteredListenings(response.data);
           setLoading(false);
-          console.log(response.data)
         }
       })
-      .catch((error) => {
+      .catch(() => {
         if (isMounted) {
-          console.error('Error fetching listenings:', error);
           setError('Failed to fetch listenings. Please try again.');
           setLoading(false);
-        }
-      });
-
-    apiClient
-      .get('/api/difficulty-levels')
-      .then((response) => {
-        if (isMounted) {
-          setDifficultyLevels(response.data);
-        }
-      })
-      .catch((error) => {
-        if (isMounted) {
-          console.error('Error fetching difficulty levels:', error);
-          setError('Failed to fetch difficulty levels. Please try again.');
         }
       });
 
@@ -106,9 +86,10 @@ const SelectListeningsPractise = () => {
   }, [categoryId]);
 
   useEffect(() => {
-    if (selectedDifficulty) {
+    if (FILTER_BY_DIFFICULTY && selectedDifficulty !== null) {
+      // Use == instead of === for easier comparison of numbers/strings
       const filtered = listenings.filter(
-        (listening) => listening.difficultyLevel?._id === selectedDifficulty._id
+        (listening) => listening.difficultyLevel == selectedDifficulty
       );
       setFilteredListenings(filtered);
     } else {
@@ -138,46 +119,61 @@ const SelectListeningsPractise = () => {
             <p className="error-message">{error}</p>
           )}
 
-          <div className="difficulty-levels-section">
-            <div className="difficulty-levels-list">
-              {difficultyLevels.map((level) => {
-                let className = "difficulty-level-card";
-                let stars = "";
-                if (level.difficultyName.toLowerCase() === "easy") {
-                  className += " easy";
-                  stars = "/icons/star.png";
-                } else if (level.difficultyName.toLowerCase() === "medium") {
-                  className += " medium";
-                  stars = "/icons/star.png /icons/star.png";
-                } else if (level.difficultyName.toLowerCase() === "hard") {
-                  className += " hard";
-                  stars = "/icons/star.png /icons/star.png /icons/star.png /icons/star.png";
-                }
-
-                return (
+          {/* Show difficulty filter bar */}
+          {FILTER_BY_DIFFICULTY && (
+            <div className="difficulty-levels-section">
+              <div className="difficulty-levels-list">
+                {DIFFICULTY_LIST.map((level) => (
                   <div
-                    key={level._id}
-                    className={`${className} ${selectedDifficulty?._id === level._id ? 'selected' : ''}`}
-                    onClick={() => setSelectedDifficulty(level)}
+                    key={level.value}
+                    className={
+                      "difficulty-level-card" +
+                      (selectedDifficulty === level.value ? " selected" : "") +
+                      (level.label === "Easy"
+                        ? " easy"
+                        : level.label === "Medium"
+                        ? " medium"
+                        : level.label === "Hard"
+                        ? " hard"
+                        : "")
+                    }
+                    onClick={() => setSelectedDifficulty(level.value)}
                   >
-                    <h3>{level.difficultyName}</h3>
+                    <h3>{level.label}</h3>
                     <div className="difficulty-stars">
-                      {stars.split(" ").map((src, index) => (
-                        <img key={index} src={src} alt="star" className="star-icon" />
+                      {[...Array(level.stars)].map((_, i) => (
+                        <img
+                          key={i}
+                          src="/icons/star.png"
+                          alt="star"
+                          className="star-icon"
+                        />
                       ))}
                     </div>
                   </div>
-                );
-              })}
+                ))}
+                {/* All difficulties button */}
+                <div
+                  className={
+                    "difficulty-level-card" +
+                    (selectedDifficulty === null ? " selected" : "")
+                  }
+                  style={{ minWidth: 50, opacity: 0.75 }}
+                  onClick={() => setSelectedDifficulty(null)}
+                >
+                  <h3>All</h3>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
+
           <div className="listening-cards-wrapper">
-            {filteredListenings.map((listening, index) => {
-              // Skip cards with missing difficultyLevel or difficultyWeight
-              const difficultyWeight = listening.difficultyLevel?.difficultyWeight;
-              if (difficultyWeight === undefined || difficultyWeight === null) return null;
-              const threshold = getThreshold(difficultyWeight);
-              return (
+            {filteredListenings.length === 0 && !loading ? (
+              <div style={{ textAlign: 'center', width: '100%', color: '#666', padding: '40px' }}>
+                No listenings found in this category.
+              </div>
+            ) : (
+              filteredListenings.map((listening, index) => (
                 <div
                   key={listening._id}
                   className="listening-card"
@@ -186,7 +182,6 @@ const SelectListeningsPractise = () => {
                     navigate('/listening', {
                       state: {
                         listeningId: listening._id,
-                        threshold: threshold,
                         isPractise: true
                       },
                     })
@@ -204,13 +199,13 @@ const SelectListeningsPractise = () => {
                       />
                     </div>
                   </div>
-                  <audio controls>
+                  {/* <audio controls>
                     <source src={listening.audio} type="audio/mpeg" />
                     Your browser does not support the audio element.
-                  </audio>
+                  </audio> */}
                 </div>
-              );
-            })}
+              ))
+            )}
           </div>
         </div>
       </div>
