@@ -17,10 +17,12 @@ import insightface
 from insightface.app import FaceAnalysis
 import mediapipe as mp
 
+from collections import Counter
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import string
 import re
+
 
 
 
@@ -238,6 +240,25 @@ def calculate_overall_score(original, given, defects, semantic_weight=0.7):
     final_score = (semantic_weight * semantic_score) + ((1 - semantic_weight) * (1 - defect_penalty))
     return round(final_score * 100, 2)
 
+# ------word_similarity--------------
+def preprocess_word(word):
+    return word.lower()
+
+def vectorize_word(word):
+    char_counts = Counter(word)
+    chars = 'abcdefghijklmnopqrstuvwxyz'
+    vector = np.zeros(len(chars))
+    for i, char in enumerate(chars):
+        vector[i] = char_counts.get(char, 0)
+    return vector
+
+def word_cosine_sim(word1, word2):
+    word1 = preprocess_word(word1)
+    word2 = preprocess_word(word2)
+    vec1 = vectorize_word(word1).reshape(1, -1)
+    vec2 = vectorize_word(word2).reshape(1, -1)
+    similarity = cosine_similarity(vec1, vec2)
+    return similarity[0][0]
 
 
 # ----- My REST API Routes -----
@@ -379,6 +400,29 @@ def analyze():
         "score": score,
         "score_description": f"{score}% similarity"
     }), 200
+
+@flask_app.route('/cosine-similarity', methods=['POST'])
+def cosine_similarity_api():
+    try:
+        data = request.get_json()
+        word1_list = data.get('word1')
+        word2_list = data.get('word2')
+        if not word1_list or not word2_list or len(word1_list) != len(word2_list):
+            error_message = 'word1 and word2 must be non-empty lists of the same length'
+            return jsonify({'error': error_message}), 400
+
+        results = []
+        for w1, w2 in zip(word1_list, word2_list):
+            score = word_cosine_sim(w1, w2)
+            results.append({
+                'word1': w1,
+                'word2': w2,
+                'score': round(score, 4)
+            })
+
+        return jsonify(results)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 # ----- Start Server -----
