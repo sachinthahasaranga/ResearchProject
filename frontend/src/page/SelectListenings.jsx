@@ -7,15 +7,8 @@ import apiClient from '../api';
 import "../assets/css/LatestCourse.css";
 import '../styles/SelectListeningsPractise.css';
 
-// Enable this flag to filter by difficulty level (using numeric value)
-const FILTER_BY_DIFFICULTY = true;
-
-// Map numeric difficultyLevel to readable name and "stars"
-const DIFFICULTY_LIST = [
-  { value: 1, label: "Easy", stars: 1 },
-  { value: 1.2, label: "Medium", stars: 2 },
-  { value: 1.5, label: "Hard", stars: 4 },
-];
+// No filtering!
+const FILTER_BY_DIFFICULTY = false;
 
 const getRandomGradient = () => {
   const colors = [
@@ -33,13 +26,11 @@ const getRandomImageNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const SelectListeningsPractise = () => {
+const SelectListenings = () => {
   const location = useLocation();
   const { categoryId } = location.state || {};
   const navigate = useNavigate();
   const [listenings, setListenings] = useState([]);
-  const [filteredListenings, setFilteredListenings] = useState([]);
-  const [selectedDifficulty, setSelectedDifficulty] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [randomBackgroundImageNumber, setRandomBackgroundImageNumber] = useState(1);
@@ -69,9 +60,7 @@ const SelectListeningsPractise = () => {
       .then((response) => {
         if (isMounted) {
           setListenings(response.data);
-          setFilteredListenings(response.data);
           setLoading(false);
-          console.log(response.data);
         }
       })
       .catch(() => {
@@ -85,18 +74,6 @@ const SelectListeningsPractise = () => {
       isMounted = false;
     };
   }, [categoryId]);
-
-  useEffect(() => {
-    if (FILTER_BY_DIFFICULTY && selectedDifficulty !== null) {
-      // Use == instead of === for easier comparison of numbers/strings
-      const filtered = listenings.filter(
-        (listening) => listening.difficultyLevel == selectedDifficulty
-      );
-      setFilteredListenings(filtered);
-    } else {
-      setFilteredListenings(listenings);
-    }
-  }, [selectedDifficulty, listenings]);
 
   return (
     <>
@@ -120,61 +97,15 @@ const SelectListeningsPractise = () => {
             <p className="error-message">{error}</p>
           )}
 
-          {/* Show difficulty filter bar */}
-          {FILTER_BY_DIFFICULTY && (
-            <div className="difficulty-levels-section">
-              <div className="difficulty-levels-list">
-                {DIFFICULTY_LIST.map((level) => (
-                  <div
-                    key={level.value}
-                    className={
-                      "difficulty-level-card" +
-                      (selectedDifficulty === level.value ? " selected" : "") +
-                      (level.label === "Easy"
-                        ? " easy"
-                        : level.label === "Medium"
-                        ? " medium"
-                        : level.label === "Hard"
-                        ? " hard"
-                        : "")
-                    }
-                    onClick={() => setSelectedDifficulty(level.value)}
-                  >
-                    <h3>{level.label}</h3>
-                    <div className="difficulty-stars">
-                      {[...Array(level.stars)].map((_, i) => (
-                        <img
-                          key={i}
-                          src="/icons/star.png"
-                          alt="star"
-                          className="star-icon"
-                        />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                {/* All difficulties button */}
-                <div
-                  className={
-                    "difficulty-level-card" +
-                    (selectedDifficulty === null ? " selected" : "")
-                  }
-                  style={{ minWidth: 50, opacity: 0.75 }}
-                  onClick={() => setSelectedDifficulty(null)}
-                >
-                  <h3>All</h3>
-                </div>
-              </div>
-            </div>
-          )}
+          {/* Filter bar is removed entirely */}
 
           <div className="listening-cards-wrapper">
-            {filteredListenings.length === 0 && !loading ? (
+            {listenings.length === 0 && !loading ? (
               <div style={{ textAlign: 'center', width: '100%', color: '#666', padding: '40px' }}>
                 No listenings found in this category.
               </div>
             ) : (
-              filteredListenings.map((listening, index) => (
+              listenings.map((listening, index) => (
                 <div
                   key={listening._id}
                   className="listening-card"
@@ -215,4 +146,4 @@ const SelectListeningsPractise = () => {
   );
 };
 
-export default SelectListeningsPractise;
+export default SelectListenings;
