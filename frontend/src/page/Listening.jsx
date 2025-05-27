@@ -1,399 +1,279 @@
 import { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 import Footer from "../component/layout/footer";
 import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
-import apiClient from "../api";
 import "../assets/css/LatestCourse.css";
+import "../styles/ListeningResult.css";
+import axios from "axios";
 
-import "../styles/Listening.css";
+const getRandomImageNumber = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
-// Helper
-const getRandomImageNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-const Listening = () => {
+const ListeningResult = () => {
+  const [backgroundImageNumber, setBackgroundImageNumber] = useState(null);
+  const [isResultContainerVisible, setIsResultContainerVisible] = useState(false);
+  const [activeResult, setActiveResult] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
-  const { listeningId, threshold, isPractise } = location.state || {};
-  const [listening, setListening] = useState(null);
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [countdown, setCountdown] = useState(3);
-  const [isCountingDown, setIsCountingDown] = useState(false);
-  const [isAudioFinished, setIsAudioFinished] = useState(false);
-  const [backgroundImageNumber, setBackgroundImageNumber] = useState(getRandomImageNumber(1, 6));
-  const [showOverlay, setShowOverlay] = useState(false);
-  const [countdownImage, setCountdownImage] = useState(null);
-  const [isQuestionContainerVisible, setIsQuestionContainerVisible] = useState(false);
-  const [activeQuestion, setActiveQuestion] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [studentAnswers, setStudentAnswers] = useState({});
+  const { responses: initialResponses, isPractise, threshold, categoryId } = location.state || {};
   const [responses, setResponses] = useState([]);
+  const containerRef = useRef(null);
+  const THRESHOLD = threshold;
 
-  const audioRef = useRef(null);
-
-  // Fetch listening data with apiClient
   useEffect(() => {
-    if (!listeningId) return;
     setBackgroundImageNumber(getRandomImageNumber(1, 6));
-    const token = localStorage.getItem('token');
-    if (!token) {
-      alert('No token found. Please log in.');
-      setIsLoading(false);
-      return;
-    }
-    setIsLoading(true);
-    apiClient
-      .get(`/api/lstn/${listeningId}`)
-      .then((response) => {
-        setListening(response.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching the listening:', error);
-        alert('Failed to fetch listening. Please try again.');
-        setIsLoading(false);
+    setIsResultContainerVisible(true);
+
+    if (initialResponses) {
+      const updatedResponses = initialResponses.map(async (response) => {
+        try {
+          const apiResponse = await axios.post('http://127.0.0.1:5000/cosine-similarity', {
+            word1: [response.answer],
+            word2: [response.studentsAnswer],
+          });
+
+          const score = apiResponse.data[0].score || 0;
+          const isCorrect = score >= THRESHOLD;
+          return { ...response, score, isCorrect };
+        } catch (error) {
+          console.error("Error calculating cosine similarity:", error);
+          return { ...response, score: 0, isCorrect: false };
+        }
       });
-  }, [listeningId]);
 
-  // Update responses when listening data or studentAnswers change
-  useEffect(() => {
-    if (listening && listening.QnA) {
-      const updatedResponses = listening.QnA.map((qna, index) => ({
-        _id: qna._id,
-        question: qna.question,
-        answer: qna.answer,
-        studentsAnswer: studentAnswers[index + 1] || "",
-        isCorrect: false,
-        score: 0.0
-      }));
-      setResponses(updatedResponses);
+      Promise.all(updatedResponses).then((updatedResponsesWithScores) => {
+        setResponses(updatedResponsesWithScores);
+
+        if (!isPractise) {
+          const totalScore = updatedResponsesWithScores.reduce((acc, curr) => acc + curr.score, 0);
+          const finalScore = (totalScore / 5.0) * 100;
+          alert(`Your final score: ${finalScore.toFixed(2)}%`);
+        }
+      });
     }
-  }, [listening, studentAnswers]);
+  }, [initialResponses, THRESHOLD, isPractise]);
 
-  // Handle student answer input changes
-  const handleAnswerChange = (questionNumber, answer) => {
-    setStudentAnswers((prev) => ({
-      ...prev,
-      [questionNumber]: answer,
-    }));
-  };
-
-  // Handle "Okay" button click to save responses and navigate to the result page
-  const handleOkayButtonClick = () => {
-    if (!responses.length) {
-      alert("No responses to save!");
-      return;
-    }
-    navigate("/listeningResult", {
-      state: {
-        responses,
-        isPractise,
-        threshold,
-        categoryId: listening?.category?._id,
-      },
-    });
-  };
-
-  // Audio controls
-  const handleTimeUpdate = () => {
-    if (audioRef.current) {
-      setCurrentTime(audioRef.current.currentTime);
-      setDuration(audioRef.current.duration);
-    }
-  };
-
-  const handleAudioPlayPause = () => {
-    if (isAudioPlaying) {
-      audioRef.current.pause();
-      setIsAudioPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsAudioPlaying(true);
-    }
-  };
-
-  const handleStart = () => {
-    setIsCountingDown(true);
-    setShowOverlay(true);
-
-    const countdownSequence = [3, 2, 1];
-    let index = 0;
-
-    setCountdownImage(`/images/countdown/${countdownSequence[index]}.png`);
-    setCountdown(countdownSequence[index]);
-    index++;
-
-    const countdownInterval = setInterval(() => {
-      if (index < countdownSequence.length) {
-        setCountdownImage(`/images/countdown/${countdownSequence[index]}.png`);
-        setCountdown(countdownSequence[index]);
-        index++;
-      } else {
-        clearInterval(countdownInterval);
-        setIsCountingDown(false);
-        setShowOverlay(false);
-        setIsAudioPlaying(true);
-        audioRef.current.play();
+  const handleResultContainerClick = (index) => {
+    setActiveResult((prev) => (prev === index ? null : index));
+    setTimeout(() => {
+      if (containerRef.current) {
+        const selectedElement = containerRef.current.children[index];
+        if (selectedElement) {
+          selectedElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       }
-    }, 1000);
+    }, 100);
   };
 
-  const handleAudioEnd = () => {
-    setIsAudioPlaying(false);
-    setIsAudioFinished(true);
-    setIsQuestionContainerVisible(true);
+  const correctAnswersCount = responses.filter((response) => response.isCorrect).length;
+
+  const handleTryAgain = () => {
+    navigate("/listening", { state: { listeningId: initialResponses[0]._id, threshold, isPractise } });
   };
 
-  const progress = (duration > 0) ? (currentTime / duration) * 100 : 0;
+  const handleSelectAnother = () => {
+    navigate("/select-listenings", { state: { categoryId } });
+  };
 
-  // 1. LOADING SPINNER
-  if (isLoading) {
-    return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
-  }
-
-  // 2. MAIN LAYOUT
   return (
     <>
       <Header />
-
-      {/* Place PageHeader here to appear under Header but above the background/overlay */}
-      <PageHeader title={listening ? listening.name : "Listening Page"} />
-
       <div
+        className="d-flex flex-column justify-content-start align-items-center"
         style={{
-          minHeight: "100vh",
+          height: "100vh",
           width: "100vw",
           backgroundImage: `url('/images/background/bg${backgroundImageNumber}.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",
-          position: "relative",
-          overflow: "hidden"
+          position: "absolute",
+          top: 0,
+          left: 0,
         }}
       >
-        {/* Dark overlay */}
         <div
           className="position-absolute top-0 left-0 w-100 h-100 bg-dark"
           style={{ opacity: 0.5, zIndex: 0 }}
         ></div>
 
-        {/* Content wrapper with higher zIndex */}
-        <div style={{ position: "relative", zIndex: 2, paddingBottom: "60px" }}>
-          {/* Start Button */}
-          {!isCountingDown && !isAudioPlaying && !isAudioFinished && (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '100%',
-                margin: '32px 0 8px 0',
-              }}
-            >
-              <button
-                className="btn mt-3"
-                onClick={handleStart}
+        {/* PageHeader placed INSIDE the absolute background container */}
+        <PageHeader title="Your Results" style={{ position: "relative", zIndex: 1 }} />
+
+        <h2
+          className="text-white text-center w-100 p-3 bg-dark bg-opacity-50"
+          style={{ zIndex: 1, position: "relative", marginBottom: "20px" }}
+        >
+          You got {correctAnswersCount} out of 5 correct answers!
+        </h2>
+
+        <div
+          className="results-scrollable-container"
+          ref={containerRef}
+          style={{
+            width: "100%",
+            maxWidth: "800px",
+            maxHeight: "80vh",
+            overflowY: "auto",
+            padding: "0 20px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            zIndex: 1,
+            position: "relative",
+            margin: "0 auto",
+            boxSizing: "border-box",
+          }}
+        >
+          {responses.map((response, index) => (
+            <div key={index} style={{ width: "100%" }}>
+              <div
+                className={`result-container-${response.isCorrect ? "correct" : "wrong"} ${
+                  isResultContainerVisible ? "slide-up" : ""
+                }`}
                 style={{
-                  backgroundColor: "#FFD700",
-                  border: "2px solid #006400",
-                  color: "#006400",
-                  fontWeight: "bold",
-                  fontFamily: "'Spicy Rice', cursive",
-                  padding: "15px 30px",
-                  fontSize: "20px",
-                  borderRadius: "25px",
-                  transition: "background-color 0.3s ease",
+                  marginTop: "10px",
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  boxShadow: "0 4px 18px rgba(0,0,0,0.13)",
-                  minWidth: "180px",
-                  textAlign: "center",
-                  zIndex: 2,
+                  justifyContent: "space-between",
+                  paddingRight: "20px",
+                  position: "relative",
+                  cursor: "pointer",
                 }}
-                onMouseEnter={e => e.target.style.backgroundColor = "#FFC107"}
-                onMouseLeave={e => e.target.style.backgroundColor = "#FFD700"}
+                onClick={() => handleResultContainerClick(index)}
               >
-                <i className="fas fa-flag waving-flag" style={{ marginRight: "10px" }}></i>
-                Start
-              </button>
-            </div>
-          )}
+                <p className="result-text">Question {index + 1}</p>
+                <img
+                  src={`/icons/${response.isCorrect ? "correct" : "wrong"}.png`}
+                  alt="Result Mark"
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    position: "absolute",
+                    right: "15px",
+                  }}
+                />
+              </div>
 
-          {/* Audio controls and progress */}
-          <div className="text-center text-white" style={{ marginTop: '30px', position: 'relative', zIndex: 2 }}>
-            {isAudioFinished ? (
-              <p className="fs-4">You can now answer the questions!</p>
-            ) : (
-              <p className="fs-4"></p>
-            )}
-
-            {isAudioPlaying && (
-              <>
-                <button className="btn btn-secondary mt-3" onClick={handleAudioPlayPause}>
-                  {isAudioPlaying ? "Pause" : "Play"}
-                </button>
-
-                <div className="mt-3">
-                  <span>{Math.floor(currentTime)}s</span> / <span>{Math.floor(duration)}s</span>
-                </div>
-              </>
-            )}
-          </div>
-
-          {/* Progress bar */}
-          {isAudioPlaying && (
-            <div style={{ width: "90%", marginTop: "20px", position: 'relative', zIndex: 2 }}>
-              <progress value={progress} max="100" style={{ width: "100%", height: "20px" }} />
-            </div>
-          )}
-
-          {/* Countdown overlay */}
-          {showOverlay && countdownImage && (
-            <div className="overlay" style={{ zIndex: 9999, position: "fixed", top: 0, left: 0, width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)", display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <img src={countdownImage} alt={`Countdown ${countdown}`} className="countdown-image" />
-            </div>
-          )}
-
-          {/* Questions container */}
-          {isAudioFinished && (
-            <div
-              className="questions-scrollable-container"
-              style={{
-                width: "100%",
-                maxHeight: "65vh",
-                overflowY: "auto",
-                padding: "0 20px",
-                position: 'relative',
-                zIndex: 2
-              }}
-            >
-              {listening.QnA.map((qna, index) => (
-                <div key={index}>
+              {activeResult === index && (
+                <CSSTransition in={activeResult === index} timeout={500} classNames="slide" unmountOnExit>
                   <div
-                    className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
+                    className="result-content"
                     style={{
-                      marginTop: '20px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      paddingRight: '20px',
-                      position: 'relative',
-                      cursor: 'pointer'
+                      padding: "20px",
+                      background: "#f1f1f1",
+                      borderRadius: "10px",
+                      marginTop: "10px",
+                      position: "relative",
                     }}
-                    onClick={() => setActiveQuestion(activeQuestion === index + 1 ? null : index + 1)}
                   >
-                    <p className="question-text">Question {index + 1}</p>
                     <img
-                      src="/icons/q_mark.png"
-                      alt="Question Mark"
+                      src={`/icons/${response.isCorrect ? "correct_result" : "wrong_result"}.png`}
+                      alt="Result Icon"
                       style={{
-                        width: '40px',
-                        height: '40px',
-                        position: 'absolute',
-                        right: '15px',
+                        width: response.isCorrect ? "250px" : "170px",
+                        height: "170px",
+                        position: "absolute",
+                        top: "10px",
+                        right: "-10px",
+                        opacity: 0.8,
                       }}
                     />
+
+                    <p style={{ fontSize: "24px" }}>
+                      <strong>Question:</strong> {response.question}
+                    </p>
+                    <p style={{ fontSize: "24px" }}>
+                      <strong>Your Answer:</strong> {response.studentsAnswer}
+                    </p>
+                    <p style={{ fontSize: "24px" }}>
+                      <strong>Correct Answer:</strong> {response.answer}
+                    </p>
                   </div>
-
-                  {activeQuestion === index + 1 && (
-                    <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px', position: 'relative' }}>
-                      <img
-                        src="/icons/answer.png"
-                        alt="Answer Icon"
-                        style={{
-                          width: '70px',
-                          height: '70px',
-                          position: 'absolute',
-                          top: '10px',
-                          right: '10px',
-                          opacity: 0.4,
-                        }}
-                      />
-                      <p className="question-text">{qna.question}</p>
-                      <input
-                        type="text"
-                        placeholder="Your answer here..."
-                        value={studentAnswers[index + 1] || ""}
-                        onChange={(e) => handleAnswerChange(index + 1, e.target.value)}
-                        style={{
-                          width: '100%',
-                          padding: '10px',
-                          borderRadius: '5px',
-                          border: '2px solid green',
-                          fontSize: '16px',
-                          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                        }}
-                      />
-                    </div>
-                  )}
-                </div>
-              ))}
+                </CSSTransition>
+              )}
             </div>
-          )}
+          ))}
+        </div>
 
-          {/* Okay Button */}
-          {isAudioFinished && (
-            <button
-              className="okay-button"
-              onClick={handleOkayButtonClick}
-              style={{
-                position: "fixed",
-                bottom: "20px",
-                right: "20px",
-                zIndex: 1000,
-                padding: "15px 30px",
-                fontSize: "24px",
-                borderRadius: "30px",
-                backgroundColor: "#ADD8E6",
-                border: "2px solid #0000FF",
-                color: "#0000FF",
-                fontWeight: "bold",
-                fontFamily: "'Spicy Rice', cursive",
-                transition: "background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-              onMouseEnter={e => {
-                e.target.style.backgroundColor = "#0000FF";
-                e.target.style.color = "#FFFFFF";
-                e.target.style.borderColor = "#FFFFFF";
-                e.target.style.transform = "scale(1.1)";
-              }}
-              onMouseLeave={e => {
-                e.target.style.backgroundColor = "#ADD8E6";
-                e.target.style.color = "#0000FF";
-                e.target.style.borderColor = "#0000FF";
-                e.target.style.transform = "scale(1)";
-              }}
-            >
-              <i className="fas fa-thumbs-up" style={{ marginRight: "15px", transition: "color 0.3s ease" }}></i>
-              Okay
-            </button>
-          )}
+        <div
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            left: "20px",
+            zIndex: 1000,
+          }}
+        >
+          <button
+            className="okay-button"
+            onClick={handleTryAgain}
+            style={{
+              backgroundColor: "#FFD700",
+              border: "2px solid #006400",
+              color: "#006400",
+              fontWeight: "bold",
+              fontFamily: "'Spicy Rice', cursive",
+              padding: "15px 30px",
+              fontSize: "20px",
+              borderRadius: "30px",
+              transition: "background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "#FFC107";
+              e.target.style.transform = "scale(1.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "#FFD700";
+              e.target.style.transform = "scale(1)";
+            }}
+          >
+            Try Again
+          </button>
+        </div>
 
-          {/* Audio element (hidden) */}
-          {listening && (
-            <audio
-              ref={audioRef}
-              src={listening.audio}
-              onTimeUpdate={handleTimeUpdate}
-              onLoadedMetadata={handleTimeUpdate}
-              onEnded={handleAudioEnd}
-              style={{ display: "none" }}
-            />
-          )}
+        <div
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            zIndex: 1000,
+          }}
+        >
+          <button
+            className="okay-button"
+            onClick={handleSelectAnother}
+            style={{
+              backgroundColor: "#ADD8E6",
+              border: "2px solid #0000FF",
+              color: "#0000FF",
+              fontWeight: "bold",
+              fontFamily: "'Spicy Rice', cursive",
+              padding: "15px 30px",
+              fontSize: "20px",
+              borderRadius: "30px",
+              transition: "background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "#0000FF";
+              e.target.style.color = "#FFFFFF";
+              e.target.style.borderColor = "#FFFFFF";
+              e.target.style.transform = "scale(1.1)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "#ADD8E6";
+              e.target.style.color = "#0000FF";
+              e.target.style.borderColor = "#0000FF";
+              e.target.style.transform = "scale(1)";
+            }}
+          >
+            Select Another
+          </button>
         </div>
       </div>
       <Footer />
@@ -401,4 +281,4 @@ const Listening = () => {
   );
 };
 
-export default Listening;
+export default ListeningResult;
