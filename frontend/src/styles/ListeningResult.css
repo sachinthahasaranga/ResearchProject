@@ -1,7 +1,7 @@
 /* Define the Spicy Rice font */
 @font-face {
   font-family: 'Spicy Rice';
-  src: url('/fonts/SpicyRice-Regular.ttf') format('truetype'); /* Path to the font file */
+  /*src: url('/fonts/SpicyRice-Regular.ttf') format('truetype'); /* Path to the font file */
   font-weight: normal;
   font-style: normal;
 }

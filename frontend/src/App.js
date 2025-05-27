@@ -30,6 +30,7 @@ import AutoCapture from "./page/CameraCapturing";
  import SelectListeningsPractise from "./page/SelectListeningsPractise";
  import SelectListenings from "./page/SelectListenings";
  import Listening from "./page/Listening";
+import ListeningResult from "./page/ListeningResult";
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
           <Route path="SelectListeningsPractise" element={<SelectListeningsPractise />} /> 
           <Route path="SelectListenings" element={<SelectListenings />} />
           <Route path="listening" element={<Listening />} />
+          <Route path="listeningResult" element={<ListeningResult />} />
 
         </Route>
 
