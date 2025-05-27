@@ -5,7 +5,6 @@ import Header from "../component/layout/header";
 import PageHeader from "../component/layout/pageheader";
 import apiClient from "../api";
 import "../assets/css/LatestCourse.css";
-
 import "../styles/Listening.css";
 
 // Helper
@@ -33,17 +32,11 @@ const Listening = () => {
 
   const audioRef = useRef(null);
 
-  // Fetch listening data with apiClient
   useEffect(() => {
     if (!listeningId) return;
     setBackgroundImageNumber(getRandomImageNumber(1, 6));
-    const token = localStorage.getItem('token');
-    if (!token) {
-      alert('No token found. Please log in.');
-      setIsLoading(false);
-      return;
-    }
     setIsLoading(true);
+
     apiClient
       .get(`/api/lstn/${listeningId}`)
       .then((response) => {
@@ -51,13 +44,12 @@ const Listening = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching the listening:', error);
-        alert('Failed to fetch listening. Please try again.');
+        console.error("Error fetching the listening:", error);
+        alert("Failed to fetch listening. Please try again.");
         setIsLoading(false);
       });
   }, [listeningId]);
 
-  // Update responses when listening data or studentAnswers change
   useEffect(() => {
     if (listening && listening.QnA) {
       const updatedResponses = listening.QnA.map((qna, index) => ({
@@ -66,13 +58,12 @@ const Listening = () => {
         answer: qna.answer,
         studentsAnswer: studentAnswers[index + 1] || "",
         isCorrect: false,
-        score: 0.0
+        score: 0.0,
       }));
       setResponses(updatedResponses);
     }
   }, [listening, studentAnswers]);
 
-  // Handle student answer input changes
   const handleAnswerChange = (questionNumber, answer) => {
     setStudentAnswers((prev) => ({
       ...prev,
@@ -80,7 +71,6 @@ const Listening = () => {
     }));
   };
 
-  // Handle "Okay" button click to save responses and navigate to the result page
   const handleOkayButtonClick = () => {
     if (!responses.length) {
       alert("No responses to save!");
@@ -96,7 +86,6 @@ const Listening = () => {
     });
   };
 
-  // Audio controls
   const handleTimeUpdate = () => {
     if (audioRef.current) {
       setCurrentTime(audioRef.current.currentTime);
@@ -146,9 +135,8 @@ const Listening = () => {
     setIsQuestionContainerVisible(true);
   };
 
-  const progress = (duration > 0) ? (currentTime / duration) * 100 : 0;
+  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
-  // 1. LOADING SPINNER
   if (isLoading) {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
@@ -159,50 +147,59 @@ const Listening = () => {
     );
   }
 
-  // 2. MAIN LAYOUT
   return (
     <>
       <Header />
 
-      {/* Place PageHeader here to appear under Header but above the background/overlay */}
-      <PageHeader title={listening ? listening.name : "Listening Page"} />
-
-      <div
-        style={{
-          height: "100vh",
-          width: "100vw",
-          backgroundImage: `url('/images/background/bg${backgroundImageNumber}.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
-          position: "absolute",
-          top: 0,
-          left: 0,
-        }}
-      >
-        {/* Dark overlay */}
+      <div style={{ position: "relative", minHeight: "100vh", overflow: "hidden" }}>
+        {/* Background */}
         <div
-          className="position-absolute top-0 left-0 w-100 h-100 bg-dark"
-          style={{ opacity: 0.5, zIndex: 0 }}
-        ></div>
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `url('/images/background/bg${backgroundImageNumber}.png')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+            backgroundAttachment: "fixed",
+            zIndex: 0,
+          }}
+        />
+        {/* Overlay */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0,0,0,0.5)",
+            zIndex: 1,
+          }}
+        />
 
+        {/* Content container - no left/right padding */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            padding: "0 0 100px 0", // only bottom padding
+            margin: 0,
+          }}
+        >
+          {/* PageHeader with zero margin and padding */}
+          <PageHeader
+            title={listening ? listening.name : "Listening Page"}
+            style={{ margin: 0, padding: 0 }}
+          />
 
-        {/* Content wrapper with higher zIndex */}
-        <div style={{ position: "relative", zIndex: 2, paddingBottom: "60px" }}>
           {/* Start Button */}
           {!isCountingDown && !isAudioPlaying && !isAudioFinished && (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '100%',
-                margin: '32px 0 8px 0',
-              }}
-            >
+            <div style={{ margin: "32px 0 8px", textAlign: "center" }}>
               <button
-                className="btn mt-3"
                 onClick={handleStart}
                 style={{
                   backgroundColor: "#FFD700",
@@ -213,17 +210,12 @@ const Listening = () => {
                   padding: "15px 30px",
                   fontSize: "20px",
                   borderRadius: "25px",
-                  transition: "background-color 0.3s ease",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  cursor: "pointer",
                   boxShadow: "0 4px 18px rgba(0,0,0,0.13)",
                   minWidth: "180px",
-                  textAlign: "center",
-                  zIndex: 2,
                 }}
-                onMouseEnter={e => e.target.style.backgroundColor = "#FFC107"}
-                onMouseLeave={e => e.target.style.backgroundColor = "#FFD700"}
+                onMouseEnter={(e) => (e.target.style.backgroundColor = "#FFC107")}
+                onMouseLeave={(e) => (e.target.style.backgroundColor = "#FFD700")}
               >
                 <i className="fas fa-flag waving-flag" style={{ marginRight: "10px" }}></i>
                 Start
@@ -231,8 +223,8 @@ const Listening = () => {
             </div>
           )}
 
-          {/* Audio controls and progress */}
-          <div className="text-center text-white" style={{ marginTop: '30px', position: 'relative', zIndex: 2 }}>
+          {/* Audio Controls */}
+          <div className="text-center text-white" style={{ marginTop: "30px" }}>
             {isAudioFinished ? (
               <p className="fs-4">You can now answer the questions!</p>
             ) : (
@@ -252,21 +244,35 @@ const Listening = () => {
             )}
           </div>
 
-          {/* Progress bar */}
+          {/* Progress Bar */}
           {isAudioPlaying && (
-            <div style={{ width: "90%", marginTop: "20px", position: 'relative', zIndex: 2 }}>
+            <div style={{ width: "90%", marginTop: "20px" }}>
               <progress value={progress} max="100" style={{ width: "100%", height: "20px" }} />
             </div>
           )}
 
-          {/* Countdown overlay */}
+          {/* Countdown Overlay */}
           {showOverlay && countdownImage && (
-            <div className="overlay" style={{ zIndex: 9999, position: "fixed", top: 0, left: 0, width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.5)", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div
+              className="overlay"
+              style={{
+                zIndex: 9999,
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgba(0,0,0,0.5)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <img src={countdownImage} alt={`Countdown ${countdown}`} className="countdown-image" />
             </div>
           )}
 
-          {/* Questions container */}
+          {/* Questions */}
           {isAudioFinished && (
             <div
               className="questions-scrollable-container"
@@ -275,22 +281,22 @@ const Listening = () => {
                 maxHeight: "65vh",
                 overflowY: "auto",
                 padding: "0 20px",
-                position: 'relative',
-                zIndex: 2
+                position: "relative",
+                zIndex: 2,
               }}
             >
               {listening.QnA.map((qna, index) => (
                 <div key={index}>
                   <div
-                    className={`question-container ${isQuestionContainerVisible ? 'slide-up' : ''}`}
+                    className={`question-container ${isQuestionContainerVisible ? "slide-up" : ""}`}
                     style={{
-                      marginTop: '20px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      paddingRight: '20px',
-                      position: 'relative',
-                      cursor: 'pointer'
+                      marginTop: "20px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      paddingRight: "20px",
+                      position: "relative",
+                      cursor: "pointer",
                     }}
                     onClick={() => setActiveQuestion(activeQuestion === index + 1 ? null : index + 1)}
                   >
@@ -299,25 +305,34 @@ const Listening = () => {
                       src="/icons/q_mark.png"
                       alt="Question Mark"
                       style={{
-                        width: '40px',
-                        height: '40px',
-                        position: 'absolute',
-                        right: '15px',
+                        width: "40px",
+                        height: "40px",
+                        position: "absolute",
+                        right: "15px",
                       }}
                     />
                   </div>
 
                   {activeQuestion === index + 1 && (
-                    <div className="question-content" style={{ padding: '20px', background: '#f1f1f1', borderRadius: '10px', marginTop: '10px', position: 'relative' }}>
+                    <div
+                      className="question-content"
+                      style={{
+                        padding: "20px",
+                        background: "#f1f1f1",
+                        borderRadius: "10px",
+                        marginTop: "10px",
+                        position: "relative",
+                      }}
+                    >
                       <img
                         src="/icons/answer.png"
                         alt="Answer Icon"
                         style={{
-                          width: '70px',
-                          height: '70px',
-                          position: 'absolute',
-                          top: '10px',
-                          right: '10px',
+                          width: "70px",
+                          height: "70px",
+                          position: "absolute",
+                          top: "10px",
+                          right: "10px",
                           opacity: 0.4,
                         }}
                       />
@@ -328,12 +343,12 @@ const Listening = () => {
                         value={studentAnswers[index + 1] || ""}
                         onChange={(e) => handleAnswerChange(index + 1, e.target.value)}
                         style={{
-                          width: '100%',
-                          padding: '10px',
-                          borderRadius: '5px',
-                          border: '2px solid green',
-                          fontSize: '16px',
-                          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                          width: "100%",
+                          padding: "10px",
+                          borderRadius: "5px",
+                          border: "2px solid green",
+                          fontSize: "16px",
+                          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                         }}
                       />
                     </div>
@@ -361,26 +376,30 @@ const Listening = () => {
                 color: "#0000FF",
                 fontWeight: "bold",
                 fontFamily: "'Spicy Rice', cursive",
-                transition: "background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease",
+                transition:
+                  "background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 cursor: "pointer",
               }}
-              onMouseEnter={e => {
+              onMouseEnter={(e) => {
                 e.target.style.backgroundColor = "#0000FF";
                 e.target.style.color = "#FFFFFF";
                 e.target.style.borderColor = "#FFFFFF";
                 e.target.style.transform = "scale(1.1)";
               }}
-              onMouseLeave={e => {
+              onMouseLeave={(e) => {
                 e.target.style.backgroundColor = "#ADD8E6";
                 e.target.style.color = "#0000FF";
                 e.target.style.borderColor = "#0000FF";
                 e.target.style.transform = "scale(1)";
               }}
             >
-              <i className="fas fa-thumbs-up" style={{ marginRight: "15px", transition: "color 0.3s ease" }}></i>
+              <i
+                className="fas fa-thumbs-up"
+                style={{ marginRight: "15px", transition: "color 0.3s ease" }}
+              ></i>
               Okay
             </button>
           )}
@@ -398,6 +417,7 @@ const Listening = () => {
           )}
         </div>
       </div>
+
       <Footer />
     </>
   );
