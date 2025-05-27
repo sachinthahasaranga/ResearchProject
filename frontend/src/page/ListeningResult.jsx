@@ -10,6 +10,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import apiClient from "../api";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const getRandomImageNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -27,6 +28,8 @@ const ListeningResult = () => {
     const [responses, setResponses] = useState([]);
     const containerRef = useRef(null);
     const THRESHOLD = threshold;
+    const userId = localStorage.getItem("userId");
+    const hasFetched = useRef(false);
 
     useEffect(() => {
         setBackgroundImageNumber(getRandomImageNumber(1, 6));
@@ -55,12 +58,101 @@ const ListeningResult = () => {
                 // If NOT a practice session, calculate and show the final score
                 if (!isPractise) {
                     const totalScore = updatedResponsesWithScores.reduce((acc, curr) => acc + curr.score, 0);
-                    const finalScore = (totalScore / 5.0) * 100;
-                    alert(`Your final score: ${finalScore.toFixed(2)}%`);
+                    const finalScore = (totalScore / 5.0) * 100; //need
+
+                    updateStudentPerformance(finalScore);
+                    // alert(`Your final score: ${finalScore.toFixed(2)}%`);
                 }
             });
         }
     }, [initialResponses]);
+
+    useEffect(() => {
+        if (hasFetched.current) return;
+        hasFetched.current = true; 
+        checkAndUpdateStudentPerformance();
+    }, [userId]);
+
+    const checkAndUpdateStudentPerformance = async () => {
+        if (!userId) {
+            console.error("User ID is missing");
+            return;
+        }
+
+        try {
+            const response = await apiClient.get(`/api/student-performance/user/${userId}`);
+            if (!response.data) {
+                console.log("Creating new student performance record...");
+                await apiClient.post("/api/student-performance", {
+                    userId,
+                    totalStudyTime: 0,
+                    resourceScore: 0,
+                    totalScore: 0,
+                    paperCount: 0,
+                });
+            }
+        } catch (error) {
+            console.error("Error checking/updating student performance:", error);
+        }
+    };
+
+    const updateStudentPerformance = async (convertedMarks) => {
+        if (!userId) {
+            console.error("User ID is missing");
+            return;
+        }
+
+        try {
+            const response = await apiClient.get(`/api/student-performance/user/${userId}`);
+
+            if (response.data) {
+                const studentPerformance = response.data;
+
+                await apiClient.put(`/api/student-performance/user/${userId}`, {
+                    totalStudyTime: studentPerformance.totalStudyTime,
+                    resourceScore: studentPerformance.resourceScore,
+                    totalScore: studentPerformance.totalScore + parseFloat(convertedMarks),
+                    paperCount: studentPerformance.paperCount + 1,
+                });
+
+                Swal.fire({
+                    title: "Success!",
+                    text: `Your score has been updated!`,
+                    icon: "success",
+                    confirmButtonText: "OK",
+                });
+
+                console.log(`Updated Study score: ${studentPerformance.totalScore + parseFloat(convertedMarks)}`);
+            } else {
+                console.log("No existing record found. Creating new student performance record...");
+                await apiClient.post("/api/student-performance", {
+                    userId,
+                    totalStudyTime: 0,
+                    resourceScore: 0,
+                    totalScore: parseFloat(convertedMarks),
+                    paperCount: 1,
+                });
+
+                Swal.fire({
+                    title: "Success!",
+                    text: `New record created. Your initial score is: ${convertedMarks}`,
+                    icon: "success",
+                    confirmButtonText: "OK",
+                });
+
+                console.log(`Created new record with study score: ${convertedMarks}`);
+            }
+        } catch (error) {
+            console.error("Error updating student performance:", error);
+
+            Swal.fire({
+                title: "Error!",
+                text: "There was an issue updating your score. Please try again.",
+                icon: "error",
+                confirmButtonText: "OK",
+            });
+        }
+    }
 
     const handleResultContainerClick = (index) => {
         setActiveResult((prev) => (prev === index ? null : index));
